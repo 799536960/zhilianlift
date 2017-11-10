@@ -1,14 +1,19 @@
 package com.duma.ld.zhilianlift;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.duma.ld.baselibrary.base.BaseActivity;
+import com.duma.ld.baselibrary.util.ActivityConfig;
+import com.duma.ld.baselibrary.util.ConfigConstants;
+import com.duma.ld.baselibrary.util.TypeConfig;
+
+public class MainActivity extends BaseActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+    protected ActivityConfig setActivityConfig(Bundle savedInstanceState, TypeConfig typeConfig) {
+        return typeConfig
+                .setmActivityType(ConfigConstants.ActivityType_null)
+                .setLayoutResID(R.layout.activity_main)
+                .end();
     }
 }
