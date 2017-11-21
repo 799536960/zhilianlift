@@ -1,7 +1,6 @@
 package com.duma.ld.baselibrary.base;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.SupportActivity;
@@ -15,7 +14,7 @@ import com.duma.ld.baselibrary.util.TypeConfig;
  */
 
 public abstract class BaseActivity extends SupportActivity {
-    protected Activity mActivity;
+    protected BaseActivity mActivity;
     protected ActivityConfig mActivityConfig;
 
     @SuppressLint("RestrictedApi")
@@ -28,6 +27,10 @@ public abstract class BaseActivity extends SupportActivity {
     }
 
     protected void init() {
+    }
+
+    public void onLoadingRefresh() {
+
     }
 
     protected abstract ActivityConfig setActivityConfig(Bundle savedInstanceState, TypeConfig typeConfig);

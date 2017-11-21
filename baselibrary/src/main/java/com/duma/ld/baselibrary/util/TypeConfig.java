@@ -1,18 +1,19 @@
 package com.duma.ld.baselibrary.util;
 
-import android.app.Activity;
 import android.support.annotation.LayoutRes;
+
+import com.duma.ld.baselibrary.base.BaseActivity;
 
 /**
  * Created by liudong on 2017/11/10.
  */
 
 public class TypeConfig {
-    private Activity mActivity;
+    private BaseActivity mActivity;
     @LayoutRes
     private int layoutResID;
 
-    public TypeConfig(Activity mActivity) {
+    public TypeConfig(BaseActivity mActivity) {
         this.mActivity = mActivity;
     }
 

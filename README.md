@@ -13,8 +13,8 @@
 1. 创建base文件 提取部分功能
 1. 导入设配最新Android 8.1 sdk和兼容包 
 
-###11.13
-1. 完善activity的base 现在base没有type
+###11.21
+1. 添加loading error 和 refresh
 
     
     

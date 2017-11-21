@@ -9,11 +9,10 @@ import com.duma.ld.baselibrary.util.ActivityConfig;
 import com.duma.ld.baselibrary.util.TypeConfig;
 
 public class MainActivity extends BaseActivity {
-
     @Override
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, TypeConfig typeConfig) {
         return typeConfig
-                .setLayoutId(R.layout.activity_main, false)
+                .setLayoutId(R.layout.activity_main)
                 .setTopBar("首页", new OnTopBarLeftListener() {
                     @Override
                     public void onClick() {
@@ -31,5 +30,9 @@ public class MainActivity extends BaseActivity {
                 mActivityConfig.setShowLoading(true);
             }
         });
+    }
+
+    @Override
+    public void onLoadingRefresh() {
     }
 }

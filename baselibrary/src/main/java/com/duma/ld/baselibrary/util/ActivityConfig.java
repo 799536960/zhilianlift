@@ -1,6 +1,5 @@
 package com.duma.ld.baselibrary.util;
 
-import android.app.Activity;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -13,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.duma.ld.baselibrary.R;
+import com.duma.ld.baselibrary.base.BaseActivity;
 import com.duma.ld.baselibrary.base.OnTopBarLeftListener;
 import com.duma.ld.baselibrary.base.OnTopBarRightListener;
 
@@ -24,7 +24,7 @@ public class ActivityConfig {
     //topbar 左边图片的默认值
     private final int LiftImg_Default = -1;
     //绑定的activity
-    private Activity mActivity;
+    private BaseActivity mActivity;
     //资源id
     @LayoutRes
     private int layoutResID;
@@ -34,7 +34,7 @@ public class ActivityConfig {
     private TextView mTvLoadingTitle, mTvErrorBtn;
     private boolean isOpen;
 
-    private ActivityConfig(Activity activity, @LayoutRes int layoutResID, boolean isOpen) {
+    private ActivityConfig(BaseActivity activity, @LayoutRes int layoutResID, boolean isOpen) {
         this.layoutResID = layoutResID;
         this.mActivity = activity;
         this.isOpen = isOpen;
@@ -42,7 +42,7 @@ public class ActivityConfig {
     }
 
     @NonNull
-    static ActivityConfig init(Activity activity, @LayoutRes int layoutResID, boolean isOpen) {
+    static ActivityConfig init(BaseActivity activity, @LayoutRes int layoutResID, boolean isOpen) {
         return new ActivityConfig(activity, layoutResID, isOpen);
     }
 
@@ -151,6 +151,14 @@ public class ActivityConfig {
 
         setShowLoading(false);
         setShowError(false);
+
+        mTvErrorBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setShowLoading(true);
+                mActivity.onLoadingRefresh();
+            }
+        });
         return this;
     }
 
