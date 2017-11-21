@@ -10,12 +10,13 @@ import com.duma.ld.baselibrary.util.ActivityConfig;
 import com.duma.ld.baselibrary.util.TypeConfig;
 
 /**
- * Created by liudong on 2017/11/10.
+ * @author liudong
+ * @date 2017/11/10
  */
 
 public abstract class BaseActivity extends SupportActivity {
     protected Activity mActivity;
-    private ActivityConfig mActivityConfig;
+    protected ActivityConfig mActivityConfig;
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -23,7 +24,10 @@ public abstract class BaseActivity extends SupportActivity {
         super.onCreate(savedInstanceState);
         mActivity = this;
         this.mActivityConfig = setActivityConfig(savedInstanceState, new TypeConfig(mActivity));
-        setContentView(mActivityConfig.getmView());
+        init();
+    }
+
+    protected void init() {
     }
 
     protected abstract ActivityConfig setActivityConfig(Bundle savedInstanceState, TypeConfig typeConfig);

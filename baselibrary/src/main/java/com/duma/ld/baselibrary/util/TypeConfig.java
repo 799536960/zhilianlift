@@ -1,6 +1,7 @@
 package com.duma.ld.baselibrary.util;
 
 import android.app.Activity;
+import android.support.annotation.LayoutRes;
 
 /**
  * Created by liudong on 2017/11/10.
@@ -8,16 +9,19 @@ import android.app.Activity;
 
 public class TypeConfig {
     private Activity mActivity;
-    //activity的类型
-    @ConfigConstants.ActivityType
-    private int mActivityType;
+    @LayoutRes
+    private int layoutResID;
 
     public TypeConfig(Activity mActivity) {
         this.mActivity = mActivity;
     }
 
-    public ActivityConfig setmActivityType(@ConfigConstants.ActivityType int activityType) {
-        this.mActivityType = activityType;
-        return ActivityConfig.init(mActivity, activityType);
+
+    public ActivityConfig setLayoutId(@LayoutRes int layoutResID) {
+        return ActivityConfig.init(mActivity, layoutResID, true);
+    }
+
+    public ActivityConfig setLayoutId(@LayoutRes int layoutResID, boolean isLoadOrError) {
+        return ActivityConfig.init(mActivity, layoutResID, isLoadOrError);
     }
 }
