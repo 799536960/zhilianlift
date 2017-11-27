@@ -6,7 +6,7 @@ import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.v4.content.ContextCompat;
 
-import com.duma.ld.baselibrary.base.MyApplication;
+import com.duma.ld.baselibrary.base.BaseApplication;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -17,12 +17,12 @@ import java.text.SimpleDateFormat;
 
 public class ZhuanHuanUtil {
     public static Drawable getDrawable(@DrawableRes int id) {
-        return ContextCompat.getDrawable(MyApplication.getInstance(), id);
+        return ContextCompat.getDrawable(BaseApplication.getInstance(), id);
     }
 
     @ColorInt
     public static int getColor(@ColorRes int id) {
-        return ContextCompat.getColor(MyApplication.getInstance(), id);
+        return ContextCompat.getColor(BaseApplication.getInstance(), id);
     }
 
     public static String Time2nian(long l) {

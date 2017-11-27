@@ -6,8 +6,14 @@ import android.view.View;
 import com.duma.ld.baselibrary.base.BaseActivity;
 import com.duma.ld.baselibrary.base.OnTopBarLeftListener;
 import com.duma.ld.baselibrary.util.ActivityConfig;
+import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.baselibrary.util.TypeConfig;
+import com.orhanobut.logger.Logger;
 
+
+/**
+ * @author liudong
+ */
 public class MainActivity extends BaseActivity {
     @Override
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, TypeConfig typeConfig) {
@@ -16,11 +22,14 @@ public class MainActivity extends BaseActivity {
                 .setTopBar("首页", new OnTopBarLeftListener() {
                     @Override
                     public void onClick() {
+                        Logger.e("首页");
                         mActivityConfig.setShowError(true);
+                        TsUtils.show("首页");
                     }
                 })
                 .end();
     }
+
 
     @Override
     protected void init() {
@@ -30,6 +39,7 @@ public class MainActivity extends BaseActivity {
                 mActivityConfig.setShowLoading(true);
             }
         });
+
     }
 
     @Override
