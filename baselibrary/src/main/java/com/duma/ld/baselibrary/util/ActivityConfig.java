@@ -149,24 +149,24 @@ public class ActivityConfig {
         mLayoutError = error.findViewById(R.id.layout_error);
         mTvErrorBtn = error.findViewById(R.id.tv_refresh);
 
-        setShowLoading(false);
-        setShowError(false);
+        showLoading(false);
+        showError(false);
 
         mTvErrorBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setShowLoading(true);
+                showLoading(true);
                 mActivity.onLoadingRefresh();
             }
         });
         return this;
     }
 
-    public void setShowLoading(boolean isShow) {
-        setShowLoading(isShow, "");
+    public void showLoading(boolean isShow) {
+        showLoading(isShow, "");
     }
 
-    public void setShowLoading(boolean isShow, String title) {
+    public void showLoading(boolean isShow, String title) {
         if (!isOpen) {
             return;
         }
@@ -181,7 +181,7 @@ public class ActivityConfig {
         }
     }
 
-    public void setShowError(boolean isShow) {
+    public void showError(boolean isShow) {
         if (!isOpen) {
             return;
         }

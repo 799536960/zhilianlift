@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'com.jakewharton.butterknife'
 android {
     compileSdkVersion 27
     buildToolsVersion "27"
@@ -79,4 +79,7 @@ dependencies {
     api 'com.yanzhenjie:permission:1.1.2'
     //数据库
     implementation 'org.litepal.android:core:1.6.0'
+    //插件
+    api 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 }

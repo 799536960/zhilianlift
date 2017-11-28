@@ -139,9 +139,7 @@
 # 使用Gson时需要配置Gson的解析对象及变量都不混淆。不然Gson会找不到变量。
 # 将下面替换成自己的实体类
 -keep class com.duma.ld.zhilianlift.model.** { *; }
-
--keep class com.duma.ld.baselibrary.base.** { *; }
--keep class com.duma.ld.baselibrary.util.** { *; }
+-keep class com.duma.ld.baselibrary.model.** { *; }
 
 
 # EventBus

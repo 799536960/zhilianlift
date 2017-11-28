@@ -30,7 +30,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (isRegisterEventBus()) {
             EventBusUtil.register(this);
         }
-        init();
     }
 
     /**
@@ -58,8 +57,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     }
 
-    protected void init() {
-    }
 
     public void onLoadingRefresh() {
 
