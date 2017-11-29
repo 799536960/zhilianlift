@@ -1,4 +1,4 @@
-package com.duma.ld.baselibrary.util;
+package com.duma.ld.baselibrary.util.config;
 
 import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
@@ -20,30 +20,24 @@ import com.duma.ld.baselibrary.base.OnTopBarRightListener;
  * Created by liudong on 2017/11/10.
  */
 
-public class ActivityConfig {
+public class ActivityConfig extends PublicConfig {
     //topbar 左边图片的默认值
     private final int LiftImg_Default = -1;
     //绑定的activity
     private BaseActivity mActivity;
-    //资源id
-    @LayoutRes
-    private int layoutResID;
-    //视图
-    private LinearLayout mLayoutLoading, mLayoutError;
+    //本体布局视图
     private View mViewContent;
-    private TextView mTvLoadingTitle, mTvErrorBtn;
-    private boolean isOpen;
 
-    private ActivityConfig(BaseActivity activity, @LayoutRes int layoutResID, boolean isOpen) {
-        this.layoutResID = layoutResID;
+
+    public ActivityConfig(BaseActivity activity, @LayoutRes int layoutResID, boolean isOpen, OnViewConfigListener onViewConfigListener) {
+        super(onViewConfigListener, activity, isOpen);
         this.mActivity = activity;
-        this.isOpen = isOpen;
+        //设置根布局
         mActivity.setContentView(R.layout.activity_root);
-    }
-
-    @NonNull
-    static ActivityConfig init(BaseActivity activity, @LayoutRes int layoutResID, boolean isOpen) {
-        return new ActivityConfig(activity, layoutResID, isOpen);
+        //本体布局
+        mViewContent = LayoutInflater.from(mActivity).inflate(layoutResID, (FrameLayout) mActivity.findViewById(R.id.layout_content));
+        //初始化load error 页面
+        initLoadOrErrorView((FrameLayout) mActivity.findViewById(R.id.layout_boot_loading), (FrameLayout) mActivity.findViewById(R.id.layout_boot_error));
     }
 
     /**
@@ -132,65 +126,5 @@ public class ActivityConfig {
 
     }
 
-
-    public ActivityConfig end() {
-        //本体布局
-        mViewContent = LayoutInflater.from(mActivity).inflate(layoutResID, (FrameLayout) mActivity.findViewById(R.id.layout_content));
-        if (!isOpen) {
-            return this;
-        }
-        //loading
-        View loading = LayoutInflater.from(mActivity).inflate(R.layout.include_loading, (FrameLayout) mActivity.findViewById(R.id.layout_boot_loading));
-        //error
-        View error = LayoutInflater.from(mActivity).inflate(R.layout.include_error, (FrameLayout) mActivity.findViewById(R.id.layout_boot_error));
-
-        mLayoutLoading = loading.findViewById(R.id.layout_loading);
-        mTvLoadingTitle = loading.findViewById(R.id.tv_loadingTitle);
-        mLayoutError = error.findViewById(R.id.layout_error);
-        mTvErrorBtn = error.findViewById(R.id.tv_refresh);
-
-        showLoading(false);
-        showError(false);
-
-        mTvErrorBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showLoading(true);
-                mActivity.onLoadingRefresh();
-            }
-        });
-        return this;
-    }
-
-    public void showLoading(boolean isShow) {
-        showLoading(isShow, "");
-    }
-
-    public void showLoading(boolean isShow, String title) {
-        if (!isOpen) {
-            return;
-        }
-        if (isShow) {
-            mLayoutLoading.setVisibility(View.VISIBLE);
-            mLayoutError.setVisibility(View.GONE);
-        } else {
-            mLayoutLoading.setVisibility(View.GONE);
-        }
-        if (!title.isEmpty()) {
-            mTvLoadingTitle.setText(title);
-        }
-    }
-
-    public void showError(boolean isShow) {
-        if (!isOpen) {
-            return;
-        }
-        if (isShow) {
-            mLayoutError.setVisibility(View.VISIBLE);
-            mLayoutLoading.setVisibility(View.GONE);
-        } else {
-            mLayoutError.setVisibility(View.GONE);
-        }
-    }
 
 }

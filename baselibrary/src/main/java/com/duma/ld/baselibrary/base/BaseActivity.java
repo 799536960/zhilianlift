@@ -5,19 +5,24 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.duma.ld.baselibrary.model.EventModel;
-import com.duma.ld.baselibrary.util.ActivityConfig;
+import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.EventBusUtil;
-import com.duma.ld.baselibrary.util.TypeConfig;
+import com.duma.ld.baselibrary.util.config.OnViewConfigListener;
+import com.duma.ld.baselibrary.util.config.InitConfig;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 /**
+ * 目前的功能
+ * 配置一些公共ui
+ * 封装了eventbus
+ *
  * @author liudong
  * @date 2017/11/10
  */
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements OnViewConfigListener {
     protected BaseActivity mActivity;
     protected ActivityConfig mActivityConfig;
 
@@ -26,7 +31,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mActivity = this;
-        this.mActivityConfig = setActivityConfig(savedInstanceState, new TypeConfig(mActivity));
+        this.mActivityConfig = setActivityConfig(savedInstanceState, new InitConfig(mActivity, this));
         if (isRegisterEventBus()) {
             EventBusUtil.register(this);
         }
@@ -58,11 +63,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
 
-    public void onLoadingRefresh() {
-
-    }
-
-    protected abstract ActivityConfig setActivityConfig(Bundle savedInstanceState, TypeConfig typeConfig);
+    protected abstract ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig);
 
     @Override
     protected void onDestroy() {
@@ -71,4 +72,6 @@ public abstract class BaseActivity extends AppCompatActivity {
             EventBusUtil.unregister(this);
         }
     }
+
+
 }

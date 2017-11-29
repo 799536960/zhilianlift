@@ -17,10 +17,15 @@ public abstract class BaseMyActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
-        init();
+        init(savedInstanceState);
     }
 
-    protected void init() {
+    @Override
+    public void onClickLoadingRefresh() {
+
+    }
+
+    protected void init(Bundle savedInstanceState) {
 
     }
 }
