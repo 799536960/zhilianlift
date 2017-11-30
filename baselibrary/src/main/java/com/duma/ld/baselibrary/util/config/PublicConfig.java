@@ -61,14 +61,14 @@ public class PublicConfig {
         });
     }
 
-    private void hideLoadingView() {
+    public void hideLoadingView() {
         if (!isOpen) {
             return;
         }
         mLayoutLoading.setVisibility(View.GONE);
     }
 
-    private void hideErrorView() {
+    public void hideErrorView() {
         if (!isOpen) {
             return;
         }

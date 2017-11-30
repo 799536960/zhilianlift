@@ -10,10 +10,12 @@ import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.BaseMyActivity;
+import com.duma.ld.zhilianlift.util.PermissionUtil;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import butterknife.BindView;
 import me.yokeyword.fragmentation.SupportFragment;
+
 
 /**
  * Created by liudong on 2017/11/29.
@@ -34,6 +36,11 @@ public class HomeActivity extends BaseMyActivity {
     @Override
     protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
+        initFragment();
+
+    }
+
+    private void initFragment() {
         if (findFragment(HomeFragment.class) == null) {
             mFragments[0] = new HomeFragment();
             mFragments[1] = new ClassFragment();

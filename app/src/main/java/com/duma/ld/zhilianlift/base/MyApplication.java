@@ -1,5 +1,6 @@
 package com.duma.ld.zhilianlift.base;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.duma.ld.baselibrary.base.BaseApplication;
 
 /**
@@ -10,6 +11,7 @@ public class MyApplication extends BaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        SDKInitializer.initialize(this);
     }
 
     /**

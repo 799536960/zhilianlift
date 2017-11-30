@@ -74,6 +74,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation project(':baselibrary')
+    implementation project(':maplibrary')
     implementation 'com.google.code.gson:gson:2.8.1'
     //权限
     implementation 'com.yanzhenjie:permission:1.1.2'
@@ -84,5 +85,6 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     //bottomBar
     compile 'com.github.ittianyu:BottomNavigationViewEx:1.2.4'
-    compile "com.android.support:design:27.0.2"
+    compile 'com.android.support:design:27.0.2'
+
 }
