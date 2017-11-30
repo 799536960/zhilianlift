@@ -8,19 +8,19 @@
 
     <item
         android:id="@+id/i_class"
-        android:icon="@drawable/selector_main1"
+        android:icon="@drawable/selector_main2"
         android:title="@string/main_bottom_bar2" />
 
     <item
         android:id="@+id/i_finance"
-        android:icon="@drawable/selector_main1"
+        android:icon="@drawable/selector_main3"
         android:title="@string/main_bottom_bar3" />
     <item
         android:id="@+id/i_shoppingCart"
-        android:icon="@drawable/selector_main1"
+        android:icon="@drawable/selector_main4"
         android:title="@string/main_bottom_bar4" />
     <item
         android:id="@+id/i_my"
-        android:icon="@drawable/selector_main1"
+        android:icon="@drawable/selector_main5"
         android:title="@string/main_bottom_bar5" />
 </menu>
