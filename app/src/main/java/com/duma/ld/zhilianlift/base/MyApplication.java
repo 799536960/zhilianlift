@@ -1,4 +1,4 @@
-package com.duma.ld.zhilianlift;
+package com.duma.ld.zhilianlift.base;
 
 import com.duma.ld.baselibrary.base.BaseApplication;
 

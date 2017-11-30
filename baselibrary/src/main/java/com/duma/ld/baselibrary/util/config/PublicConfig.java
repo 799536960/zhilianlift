@@ -65,7 +65,7 @@ public class PublicConfig {
         if (!isOpen) {
             return;
         }
-        mLayoutLoading.setVisibility(View.VISIBLE);
+        mLayoutLoading.setVisibility(View.GONE);
     }
 
     private void hideErrorView() {

@@ -19,8 +19,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     //库
     api 'com.android.support.constraint:constraint-layout:1.0.2'
-    api 'com.android.support:appcompat-v7:27.0.1'
-    api 'com.android.support:recyclerview-v7:27.0.1'
+    api 'com.android.support:appcompat-v7:27.0.2'
+    api 'com.android.support:recyclerview-v7:27.0.2'
     //事件分发
     api 'org.greenrobot:eventbus:3.1.1'
     //adapter
@@ -33,4 +33,6 @@ dependencies {
     api 'com.orhanobut:logger:2.1.1'
     //工具
     api 'com.blankj:utilcode:1.9.8'
+    //fragment
+    compile 'me.yokeyword:fragmentation:1.1.8'
 }

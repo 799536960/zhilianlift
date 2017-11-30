@@ -76,10 +76,13 @@ dependencies {
     implementation project(':baselibrary')
     implementation 'com.google.code.gson:gson:2.8.1'
     //权限
-    api 'com.yanzhenjie:permission:1.1.2'
+    implementation 'com.yanzhenjie:permission:1.1.2'
     //数据库
     implementation 'org.litepal.android:core:1.6.0'
     //插件
-    api 'com.jakewharton:butterknife:8.8.1'
+    implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    //bottomBar
+    compile 'com.github.ittianyu:BottomNavigationViewEx:1.2.4'
+    compile "com.android.support:design:27.0.2"
 }

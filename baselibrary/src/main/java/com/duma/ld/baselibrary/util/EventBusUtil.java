@@ -7,7 +7,9 @@ import org.greenrobot.eventbus.EventBus;
 
 
 /**
- * Created by liudong on 2017/6/6.
+ *
+ * @author liudong
+ * @date 2017/6/6
  */
 
 public class EventBusUtil {

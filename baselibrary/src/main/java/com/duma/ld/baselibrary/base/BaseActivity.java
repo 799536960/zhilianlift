@@ -2,16 +2,17 @@ package com.duma.ld.baselibrary.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 
 import com.duma.ld.baselibrary.model.EventModel;
-import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.EventBusUtil;
-import com.duma.ld.baselibrary.util.config.OnViewConfigListener;
+import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
+import com.duma.ld.baselibrary.util.config.OnViewConfigListener;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+import me.yokeyword.fragmentation.SupportActivity;
 
 /**
  * 目前的功能
@@ -22,7 +23,7 @@ import org.greenrobot.eventbus.ThreadMode;
  * @date 2017/11/10
  */
 
-public abstract class BaseActivity extends AppCompatActivity implements OnViewConfigListener {
+public abstract class BaseActivity extends SupportActivity implements OnViewConfigListener {
     protected BaseActivity mActivity;
     protected ActivityConfig mActivityConfig;
 

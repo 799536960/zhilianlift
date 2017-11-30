@@ -1,4 +1,4 @@
-package com.duma.ld.zhilianlift;
+package com.duma.ld.zhilianlift.view.start;
 
 import android.os.Bundle;
 import android.widget.TextView;
@@ -7,6 +7,7 @@ import com.duma.ld.baselibrary.base.OnTopBarLeftListener;
 import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
+import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.BaseMyActivity;
 
 import butterknife.BindView;

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">智联生活</string>
+    <string name="main_bottom_bar1">首页</string>
+    <string name="main_bottom_bar2">分类</string>
+    <string name="main_bottom_bar3">金融</string>
+    <string name="main_bottom_bar4">购物车</string>
+    <string name="main_bottom_bar5">我的</string>
 </resources>
