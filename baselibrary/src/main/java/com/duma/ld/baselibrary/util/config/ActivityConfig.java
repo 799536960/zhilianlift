@@ -35,7 +35,7 @@ public class ActivityConfig extends PublicConfig {
         //设置根布局
         mActivity.setContentView(R.layout.activity_root);
         //本体布局
-        mViewContent = LayoutInflater.from(mActivity).inflate(layoutResID, (FrameLayout) mActivity.findViewById(R.id.layout_content));
+        mViewContent = LayoutInflater.from(mActivity).inflate(layoutResID, (FrameLayout) mActivity.findViewById(R.id.layout_boot_content));
         //初始化load error 页面
         initLoadOrErrorView((FrameLayout) mActivity.findViewById(R.id.layout_boot_loading), (FrameLayout) mActivity.findViewById(R.id.layout_boot_error));
     }

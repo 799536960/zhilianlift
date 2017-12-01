@@ -24,4 +24,12 @@ public class Constants {
     public static final String sp_street = "sp_street";//获取街道信息
     public static final String sp_latitude = "sp_latitude"; //获取纬度信息
     public static final String sp_longitude = "sp_longitude"; //获取经度信息
+
+    /**
+     * 首页 type
+     */
+    public static final int type_1 = 1; //商品 goodsModel不能为空
+    public static final int type_2 = 2; //分类 id title imgUrl
+    public static final int type_3 = 3; //网页 h5 url title  imgUrl不能为空
+    public static final int type_4 = 4; //搜索 title  imgUrl不能为空
 }

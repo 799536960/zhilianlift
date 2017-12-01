@@ -23,10 +23,14 @@ public class FragmentConfig extends PublicConfig {
         super(onViewConfigListener, activity, isOpen);
         this.mRootView = rootView;
         //本体布局
-        mViewContent = LayoutInflater.from(activity).inflate(layoutResID, (FrameLayout) rootView.findViewById(R.id.layout_content));
+        mViewContent = LayoutInflater.from(activity).inflate(layoutResID, (FrameLayout) rootView.findViewById(R.id.layout_boot_content));
+        setmViewContent(mViewContent);
         //初始化load error 页面
         initLoadOrErrorView((FrameLayout) mRootView.findViewById(R.id.layout_boot_loading), (FrameLayout) mRootView.findViewById(R.id.layout_boot_error));
     }
 
-
+    public FragmentConfig setRefreshByFragment(int swId, int contentId) {
+        setRefresh(swId, contentId);
+        return this;
+    }
 }

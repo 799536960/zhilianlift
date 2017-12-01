@@ -28,7 +28,6 @@ public class MainActivity extends BaseMyActivity {
                 .setTopBar("首页", new OnTopBarLeftListener() {
                     @Override
                     public void onClick() {
-                        mActivityConfig.showErrorView();
                         TsUtils.show("点击返回键");
                     }
                 });

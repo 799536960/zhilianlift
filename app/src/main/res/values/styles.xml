@@ -1,17 +1,19 @@
 <resources>
 
-    <!--<style name="baseStyle" parent="Theme.AppCompat.Light.NoActionBar">-->
-    <!--<item name="colorPrimary">@color/primary</item>-->
-    <!--&lt;!&ndash;导航栏颜色&ndash;&gt;-->
-    <!--<item name="colorPrimaryDark">@color/primary_dark</item>-->
-    <!--<item name="colorAccent">@color/accent</item>-->
-    <!--<item name="android:textColor">@color/textColor</item>-->
-    <!--<item name="android:textColorSecondary">@color/textColorSecondary</item>-->
-    <!--<item name="android:textColorHint">@color/textColorHint</item>-->
-    <!--</style>-->
-    <!--&lt;!&ndash; Base application theme. &ndash;&gt;-->
-    <!--<style name="AppTheme" parent="baseStyle">-->
-    <!--<item name="android:windowBackground">@color/white</item>-->
-    <!--<item name="android:windowSoftInputMode">stateAlwaysHidden</item>-->
-    <!--</style>-->
+    <style name="layout_padding">
+        <item name="android:paddingLeft">11dp</item>
+        <item name="android:paddingRight">11dp</item>
+    </style>
+    <!--横线-->
+    <style name="henxian">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/hui3</item>
+    </style>
+    <!--竖线-->
+    <style name="shuxian">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/hui3</item>
+    </style>
 </resources>

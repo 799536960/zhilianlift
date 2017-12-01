@@ -1,6 +1,8 @@
 package com.duma.ld.baselibrary.util.config;
 
 import android.app.Activity;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +20,6 @@ public class PublicConfig {
     private Activity mActivity;
     //load error 的view
     private LinearLayout mLayoutLoading, mLayoutError;
-    private View mViewContent;
     private TextView mTvLoadingTitle, mTvErrorBtn;
 
     /**
@@ -27,6 +28,20 @@ public class PublicConfig {
     private OnViewConfigListener onViewConfigListener;
     //是否加载布局
     private boolean isOpen;
+
+    /**
+     * 刷新的配置
+     */
+    private boolean isRefresh = false;
+    private SwipeRefreshLayout sw_loading;
+    //下拉刷新包含的view
+    private View contentView;
+    //本体布局视图
+    private View mViewContent;
+
+    public void setmViewContent(View mViewContent) {
+        this.mViewContent = mViewContent;
+    }
 
     public PublicConfig(OnViewConfigListener onViewConfigListener, Activity activity, boolean isOpen) {
         this.onViewConfigListener = onViewConfigListener;
@@ -49,7 +64,6 @@ public class PublicConfig {
         mTvErrorBtn = error.findViewById(R.id.tv_refresh);
 
         //默认隐藏布局的
-        hideErrorView();
         hideLoadingView();
 
         mTvErrorBtn.setOnClickListener(new View.OnClickListener() {
@@ -66,28 +80,12 @@ public class PublicConfig {
             return;
         }
         mLayoutLoading.setVisibility(View.GONE);
-    }
-
-    public void hideErrorView() {
-        if (!isOpen) {
-            return;
-        }
         mLayoutError.setVisibility(View.GONE);
-    }
-
-
-    public void showLoadingView() {
-        showLoadingView("");
-    }
-
-    public void showLoadingView(String title) {
-        if (!isOpen) {
-            return;
+        if (isRefresh) {
+            sw_loading.setRefreshing(false);
         }
-        mLayoutLoading.setVisibility(View.VISIBLE);
-        mLayoutError.setVisibility(View.GONE);
-        if (!title.isEmpty()) {
-            mTvLoadingTitle.setText(title);
+        if (contentView != null) {
+            contentView.setVisibility(View.VISIBLE);
         }
     }
 
@@ -97,5 +95,64 @@ public class PublicConfig {
         }
         mLayoutError.setVisibility(View.VISIBLE);
         mLayoutLoading.setVisibility(View.GONE);
+        if (isRefresh) {
+            sw_loading.setRefreshing(false);
+        }
+    }
+
+
+    public void showLoadingView() {
+        showLoadingView("", false);
+    }
+
+    public void showLoadingView(boolean isShowContentView) {
+        showLoadingView("", isShowContentView);
+    }
+
+    public void showLoadingView(String title, boolean isShowContentView) {
+        if (!isOpen) {
+            return;
+        }
+        if (isRefresh) {
+            if (!sw_loading.isRefreshing()) {
+                sw_loading.setRefreshing(true);
+            }
+        } else {
+            mLayoutLoading.setVisibility(View.VISIBLE);
+            if (!title.isEmpty()) {
+                mTvLoadingTitle.setText(title);
+            }
+        }
+        mLayoutError.setVisibility(View.GONE);
+        //是否显示下拉刷新包含的view
+        if (contentView != null) {
+            if (isShowContentView) {
+                contentView.setVisibility(View.VISIBLE);
+            } else {
+                contentView.setVisibility(View.GONE);
+            }
+        }
+
+    }
+
+
+    /**
+     * 是否加入下拉swloading 加入后就会替代原来的loading
+     *
+     * @param id 资源id
+     *           contentid 是内容的view 如果是第一次还没加载数据的话 这个view会隐藏 有数据后就会显示
+     */
+    public void setRefresh(int id, int contentId) {
+        isRefresh = true;
+        sw_loading = mViewContent.findViewById(id);
+        sw_loading.setColorSchemeColors(ContextCompat.getColor(mActivity, R.color.accent));
+        sw_loading.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                onViewConfigListener.onClickLoadingRefresh();
+            }
+        });
+
+        contentView = mViewContent.findViewById(contentId);
     }
 }

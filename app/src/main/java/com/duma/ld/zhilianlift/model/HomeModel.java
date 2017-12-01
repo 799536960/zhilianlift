@@ -3,91 +3,80 @@ package com.duma.ld.zhilianlift.model;
 import java.util.List;
 
 /**
- * Created by liudong on 2017/11/30.
+ * Created by liudong on 2017/12/1.
  */
 
 public class HomeModel {
-    private List<AdModel> LunBoTuList;
-    private List<AdModel> FenleiList;
-    private AdModel adModel1;
-    private AdModel adModel2;
-    private AdModel adModel3;
-    private AdModel adModel4;
-    private AdModel adModel5;
-    private List<AdClassModel> adClassModels;
+    private AdBean ad1;
+    private AdBean ad2;
+    private AdBean ad3;
+    private AdBean ad4;
+    private AdBean ad5;
+    private List<GoodsAllBean> GoodsAll;
+    private List<AdBean> lunbo;
+    private List<AdBean> goodsCategoryList;
 
-    public HomeModel(List<AdModel> lunBoTuList, List<AdModel> fenleiList, AdModel adModel1, AdModel adModel2, AdModel adModel3, AdModel adModel4, AdModel adModel5, List<AdClassModel> adClassModels) {
-        LunBoTuList = lunBoTuList;
-        FenleiList = fenleiList;
-        this.adModel1 = adModel1;
-        this.adModel2 = adModel2;
-        this.adModel3 = adModel3;
-        this.adModel4 = adModel4;
-        this.adModel5 = adModel5;
-        this.adClassModels = adClassModels;
+    public AdBean getAd1() {
+        return ad1;
     }
 
-    public List<AdModel> getLunBoTuList() {
-        return LunBoTuList;
+    public void setAd1(AdBean ad1) {
+        this.ad1 = ad1;
     }
 
-    public void setLunBoTuList(List<AdModel> lunBoTuList) {
-        LunBoTuList = lunBoTuList;
+    public AdBean getAd2() {
+        return ad2;
     }
 
-    public List<AdModel> getFenleiList() {
-        return FenleiList;
+    public void setAd2(AdBean ad2) {
+        this.ad2 = ad2;
     }
 
-    public void setFenleiList(List<AdModel> fenleiList) {
-        FenleiList = fenleiList;
+    public AdBean getAd3() {
+        return ad3;
     }
 
-    public AdModel getAdModel1() {
-        return adModel1;
+    public void setAd3(AdBean ad3) {
+        this.ad3 = ad3;
     }
 
-    public void setAdModel1(AdModel adModel1) {
-        this.adModel1 = adModel1;
+    public AdBean getAd4() {
+        return ad4;
     }
 
-    public AdModel getAdModel2() {
-        return adModel2;
+    public void setAd4(AdBean ad4) {
+        this.ad4 = ad4;
     }
 
-    public void setAdModel2(AdModel adModel2) {
-        this.adModel2 = adModel2;
+    public AdBean getAd5() {
+        return ad5;
     }
 
-    public AdModel getAdModel3() {
-        return adModel3;
+    public void setAd5(AdBean ad5) {
+        this.ad5 = ad5;
     }
 
-    public void setAdModel3(AdModel adModel3) {
-        this.adModel3 = adModel3;
+    public List<GoodsAllBean> getGoodsAll() {
+        return GoodsAll;
     }
 
-    public AdModel getAdModel4() {
-        return adModel4;
+    public void setGoodsAll(List<GoodsAllBean> goodsAll) {
+        GoodsAll = goodsAll;
     }
 
-    public void setAdModel4(AdModel adModel4) {
-        this.adModel4 = adModel4;
+    public List<AdBean> getLunbo() {
+        return lunbo;
     }
 
-    public AdModel getAdModel5() {
-        return adModel5;
+    public void setLunbo(List<AdBean> lunbo) {
+        this.lunbo = lunbo;
     }
 
-    public void setAdModel5(AdModel adModel5) {
-        this.adModel5 = adModel5;
+    public List<AdBean> getGoodsCategoryList() {
+        return goodsCategoryList;
     }
 
-    public List<AdClassModel> getAdClassModels() {
-        return adClassModels;
-    }
-
-    public void setAdClassModels(List<AdClassModel> adClassModels) {
-        this.adClassModels = adClassModels;
+    public void setGoodsCategoryList(List<AdBean> goodsCategoryList) {
+        this.goodsCategoryList = goodsCategoryList;
     }
 }
