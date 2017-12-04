@@ -5,6 +5,6 @@ package com.duma.ld.zhilianlift.util;
  */
 
 public class HttpUrl {
-    public static String BaseUrl = "http://192.168.0.94:8080";
+    public static String BaseUrl = "http://192.168.0.58:8081";
     public static String homePage = BaseUrl + "/index.php/api/index/homePage";
 }

@@ -1,13 +1,19 @@
 package com.duma.ld.zhilianlift.view.home;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.baidu.location.BDLocation;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -31,10 +37,12 @@ import com.duma.ld.zhilianlift.util.ImageLoader;
 import com.duma.ld.zhilianlift.util.LocalImageHolderView;
 import com.duma.ld.zhilianlift.util.LocationUtil;
 import com.duma.ld.zhilianlift.util.PermissionUtil;
+import com.duma.ld.zhilianlift.util.SpDataUtil;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 import static com.duma.ld.zhilianlift.util.HttpUrl.homePage;
 
@@ -62,6 +70,16 @@ public class HomeFragment extends BaseMyFragment {
     RecyclerView rvClassGoods;
     @BindView(R.id.sw_loading)
     SwipeRefreshLayout swLoading;
+    @BindView(R.id.tv_city)
+    TextView tvCity;
+    @BindView(R.id.layout_city)
+    FrameLayout layoutCity;
+    @BindView(R.id.layout_search)
+    LinearLayout layoutSearch;
+    @BindView(R.id.layout_scan)
+    FrameLayout layoutScan;
+    @BindView(R.id.layout_content)
+    LinearLayout layoutContent;
     private MyJsonCallback<HttpResModel<HomeModel>> callback;
     private BaseAdapter<AdBean> mFenleiAdapter;
     private BaseAdapter<GoodsAllBean> mAdClassAdapter;
@@ -79,6 +97,21 @@ public class HomeFragment extends BaseMyFragment {
     @Override
     protected void onReceiveEvent(EventModel eventModel) {
         if (eventModel.getCode() == Constants.event_location) {
+            final BDLocation bdLocation = (BDLocation) eventModel.getData();
+            if (!SpDataUtil.isCity(bdLocation)) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(mActivity)
+                        .setTitle("切换城市")
+                        .setMessage("当前城市和您所在的城市不同,是否切换为 " + bdLocation.getCity() + "?")
+                        .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                SpDataUtil.setLocation(bdLocation);
+                                onClickLoadingRefresh();
+                            }
+                        })
+                        .setNegativeButton("否", null);
+                builder.show();
+            }
         }
     }
 
@@ -187,8 +220,22 @@ public class HomeFragment extends BaseMyFragment {
 
     @Override
     public void onClickLoadingRefresh() {
+        tvCity.setText(SpDataUtil.getCity());
         OkGo.<HttpResModel<HomeModel>>get(homePage)
                 .tag(this)
+                .params("city_name", SpDataUtil.getCity())
                 .execute(callback);
+    }
+
+    @OnClick({R.id.layout_city, R.id.layout_search, R.id.layout_scan})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.layout_city:
+                break;
+            case R.id.layout_search:
+                break;
+            case R.id.layout_scan:
+                break;
+        }
     }
 }

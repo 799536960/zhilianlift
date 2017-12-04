@@ -5,6 +5,8 @@ package com.duma.ld.zhilianlift.util;
  */
 
 public class Constants {
+    //默认城市
+    public static final String defaultCity = "湖州市";
     /**
      * event
      */

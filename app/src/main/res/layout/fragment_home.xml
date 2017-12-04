@@ -13,11 +13,14 @@
         android:orientation="horizontal">
 
         <FrameLayout
+            android:id="@+id/layout_city"
             style="@style/layout_padding"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@drawable/ripple_hong">
 
             <TextView
+                android:id="@+id/tv_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -29,6 +32,7 @@
         </FrameLayout>
 
         <LinearLayout
+            android:id="@+id/layout_search"
             style="@style/layout_padding"
             android:layout_width="0dp"
             android:layout_height="30dp"
@@ -45,9 +49,11 @@
         </LinearLayout>
 
         <FrameLayout
+            android:id="@+id/layout_scan"
             style="@style/layout_padding"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@drawable/ripple_hong">
 
             <ImageView
                 android:layout_width="wrap_content"

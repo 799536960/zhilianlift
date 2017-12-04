@@ -4,7 +4,6 @@ import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
-import com.blankj.utilcode.util.SPUtils;
 import com.duma.ld.baselibrary.util.EventBusUtil;
 import com.duma.ld.zhilianlift.base.MyApplication;
 
@@ -46,14 +45,7 @@ public class LocationUtil {
         mLocationClient.registerLocationListener(new BDAbstractLocationListener() {
             @Override
             public void onReceiveLocation(BDLocation bdLocation) {
-                SPUtils.getInstance().put(Constants.sp_latitude, bdLocation.getLatitude() + "");
-                SPUtils.getInstance().put(Constants.sp_longitude, bdLocation.getLongitude() + "");
-                SPUtils.getInstance().put(Constants.sp_addr, bdLocation.getAddress() + "");
-                SPUtils.getInstance().put(Constants.sp_province, bdLocation.getProvince() + "");
-                SPUtils.getInstance().put(Constants.sp_city, bdLocation.getCity() + "");
-                SPUtils.getInstance().put(Constants.sp_district, bdLocation.getDistrict() + "");
-                SPUtils.getInstance().put(Constants.sp_street, bdLocation.getStreet() + "");
-                EventBusUtil.sendModel(Constants.event_location);
+                EventBusUtil.sendModel(Constants.event_location, bdLocation);
                 mLocationClient.stop();
             }
         });
