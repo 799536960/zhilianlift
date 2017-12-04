@@ -3,8 +3,10 @@ package com.duma.ld.zhilianlift.base.baseJsonHttp;
 import com.duma.ld.baselibrary.util.Log;
 import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.baselibrary.util.config.PublicConfig;
+import com.google.gson.Gson;
 import com.lzy.okgo.model.Response;
 import com.lzy.okgo.request.base.Request;
+import com.orhanobut.logger.Logger;
 
 /**
  * Created by liudong on 2017/6/5.
@@ -13,7 +15,6 @@ import com.lzy.okgo.request.base.Request;
 public abstract class MyJsonCallback<T> extends JsonCallback<T> {
 
     private PublicConfig config;
-    private boolean isOneSuccess = false;
 
     public MyJsonCallback() {
     }
@@ -30,7 +31,10 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
 
     @Override
     public void onSuccess(Response<T> response) {
-        isOneSuccess = true;
+        Logger.json(new Gson().toJson(response.body()));
+        if (config != null) {
+            config.setOneSuccess(true);
+        }
         loadingHide();
     }
 
@@ -56,13 +60,7 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
     }
 
     private void showErrorView() {
-        if (!isOneSuccess) {
-            //没有请求成功的话 就显示error页面
-            config.showErrorView();
-        } else {
-            //已经请求成功一次了 说明页面有数据了 而且只可能是下拉刷新  所以啥都不做
-        }
-
+        config.showErrorView();
     }
 
     private void loadingHide() {
@@ -70,6 +68,6 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
     }
 
     private void loadingShow() {
-        config.showLoadingView(isOneSuccess);
+        config.showLoadingView();
     }
 }

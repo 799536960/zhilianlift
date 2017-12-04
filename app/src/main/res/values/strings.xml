@@ -7,4 +7,6 @@
     <string name="main_bottom_bar5">我的</string>
     <string name="permission1">权限设置</string>
     <string name="permission2">我们需要获取您的位置权限来为您提供周边的商品信息.</string>
+    <string name="permission3">继续</string>
+    <string name="main1">更多</string>
 </resources>

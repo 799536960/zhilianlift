@@ -1,9 +1,10 @@
 package com.duma.ld.zhilianlift.util;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 
-import com.duma.ld.baselibrary.view.OkDialog;
 import com.duma.ld.zhilianlift.R;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
@@ -55,21 +56,21 @@ public class PermissionUtil {
      */
     public void openLocation() {
         if (!AndPermission.hasPermission(mActivity, Permission.LOCATION)) {
-            OkDialog okDialog = new OkDialog(mActivity)
-                    .setBiaoti(mActivity.getString(R.string.permission1))
-                    .setLeirong(mActivity.getString(R.string.permission2))
-                    .setRight("继续");
-            okDialog.setOnRightClickListener(new OkDialog.OnRightClickListener() {
+            DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
                 @Override
-                public void onRight(Object object) {
+                public void onClick(DialogInterface dialogInterface, int i) {
                     AndPermission.with(mActivity)
                             .requestCode(codeLocation)
                             .permission(Permission.LOCATION)
                             .callback(callback)
                             .start();
                 }
-            });
-            okDialog.show();
+            };
+            AlertDialog.Builder builder = new AlertDialog.Builder(mActivity)
+                    .setTitle(mActivity.getString(R.string.permission1))
+                    .setMessage(mActivity.getString(R.string.permission2))
+                    .setPositiveButton(mActivity.getString(R.string.permission3), listener);
+            builder.show();
         } else {
             AndPermission.with(mActivity)
                     .requestCode(codeLocation)

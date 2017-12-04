@@ -8,7 +8,7 @@ import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
-import com.duma.ld.zhilianlift.base.BaseMyActivity;
+import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;

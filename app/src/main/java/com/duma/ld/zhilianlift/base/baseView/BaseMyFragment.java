@@ -1,4 +1,4 @@
-package com.duma.ld.zhilianlift.base;
+package com.duma.ld.zhilianlift.base.baseView;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

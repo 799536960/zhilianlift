@@ -6,7 +6,7 @@ import android.widget.TextView;
 import com.duma.ld.baselibrary.util.config.FragmentConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
-import com.duma.ld.zhilianlift.base.BaseMyFragment;
+import com.duma.ld.zhilianlift.base.baseView.BaseMyFragment;
 
 import butterknife.BindView;
 import butterknife.OnClick;

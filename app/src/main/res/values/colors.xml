@@ -5,4 +5,8 @@
     <color name="hui1">#a1a1a1</color>
     <color name="hui2">#999999</color>
     <color name="hui3">#d7d7d7</color>
+    <color name="hui4">#ebebeb</color>
+
+    <color name="hei1">#222222</color>
+    <color name="primary_hong">#fe2643</color>
 </resources>

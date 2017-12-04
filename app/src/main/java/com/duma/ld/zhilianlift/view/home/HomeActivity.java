@@ -9,8 +9,7 @@ import android.widget.FrameLayout;
 import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
-import com.duma.ld.zhilianlift.base.BaseMyActivity;
-import com.duma.ld.zhilianlift.util.PermissionUtil;
+import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import butterknife.BindView;

@@ -22,6 +22,8 @@ public class PublicConfig {
     private LinearLayout mLayoutLoading, mLayoutError;
     private TextView mTvLoadingTitle, mTvErrorBtn;
 
+    //是否已经有数据了
+    private boolean isOneSuccess = false;
     /**
      * 配置的监听
      */
@@ -93,6 +95,10 @@ public class PublicConfig {
         if (!isOpen) {
             return;
         }
+        if (isOneSuccess) {
+            //已经请求成功一次了 说明页面有数据了 不是空白页面的 不用显示error了 而且只可能是下拉刷新
+            return;
+        }
         mLayoutError.setVisibility(View.VISIBLE);
         mLayoutLoading.setVisibility(View.GONE);
         if (isRefresh) {
@@ -102,14 +108,10 @@ public class PublicConfig {
 
 
     public void showLoadingView() {
-        showLoadingView("", false);
+        showLoadingView("");
     }
 
-    public void showLoadingView(boolean isShowContentView) {
-        showLoadingView("", isShowContentView);
-    }
-
-    public void showLoadingView(String title, boolean isShowContentView) {
+    public void showLoadingView(String title) {
         if (!isOpen) {
             return;
         }
@@ -126,7 +128,7 @@ public class PublicConfig {
         mLayoutError.setVisibility(View.GONE);
         //是否显示下拉刷新包含的view
         if (contentView != null) {
-            if (isShowContentView) {
+            if (isOneSuccess) {
                 contentView.setVisibility(View.VISIBLE);
             } else {
                 contentView.setVisibility(View.GONE);
@@ -154,5 +156,9 @@ public class PublicConfig {
         });
 
         contentView = mViewContent.findViewById(contentId);
+    }
+
+    public void setOneSuccess(boolean oneSuccess) {
+        isOneSuccess = oneSuccess;
     }
 }

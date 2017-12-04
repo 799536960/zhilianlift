@@ -15,6 +15,24 @@ public class GoodsBean {
     private String shop_price;
     private int cat_id3;
     private String original_img;
+    private long sales_sum;
+    private long good_comment_rate;
+
+    public long getSales_sum() {
+        return sales_sum;
+    }
+
+    public void setSales_sum(long sales_sum) {
+        this.sales_sum = sales_sum;
+    }
+
+    public long getGood_comment_rate() {
+        return good_comment_rate;
+    }
+
+    public void setGood_comment_rate(long good_comment_rate) {
+        this.good_comment_rate = good_comment_rate;
+    }
 
     public int getGoods_id() {
         return goods_id;

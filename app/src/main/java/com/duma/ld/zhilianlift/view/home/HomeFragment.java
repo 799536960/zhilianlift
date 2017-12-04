@@ -2,19 +2,28 @@ package com.duma.ld.zhilianlift.view.home;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.duma.ld.baselibrary.model.EventModel;
-import com.duma.ld.baselibrary.util.Log;
+import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.baselibrary.util.config.FragmentConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
+import com.duma.ld.zhilianlift.Adapter.GoodsAdapter;
+import com.duma.ld.zhilianlift.Adapter.HomeClickTypeListener;
 import com.duma.ld.zhilianlift.R;
-import com.duma.ld.zhilianlift.base.BaseMyFragment;
+import com.duma.ld.zhilianlift.base.baseAdapter.BaseAdapter;
 import com.duma.ld.zhilianlift.base.baseJsonHttp.MyJsonCallback;
+import com.duma.ld.zhilianlift.base.baseView.BaseMyFragment;
+import com.duma.ld.zhilianlift.model.AdBean;
+import com.duma.ld.zhilianlift.model.GoodsAllBean;
 import com.duma.ld.zhilianlift.model.HomeModel;
 import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.util.Constants;
@@ -26,11 +35,11 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 import static com.duma.ld.zhilianlift.util.HttpUrl.homePage;
 
 /**
+ * 首页
  * Created by liudong on 2017/11/29.
  */
 
@@ -54,6 +63,8 @@ public class HomeFragment extends BaseMyFragment {
     @BindView(R.id.sw_loading)
     SwipeRefreshLayout swLoading;
     private MyJsonCallback<HttpResModel<HomeModel>> callback;
+    private BaseAdapter<AdBean> mFenleiAdapter;
+    private BaseAdapter<GoodsAllBean> mAdClassAdapter;
 
     @Override
     protected FragmentConfig setFragmentConfig(Bundle savedInstanceState, InitConfig initConfig) {
@@ -95,15 +106,55 @@ public class HomeFragment extends BaseMyFragment {
             @Override
             public void onSuccess(Response<HttpResModel<HomeModel>> response) {
                 super.onSuccess(response);
-                Log.e("成功:" + response.body().getResult().toString());
                 initData(response.body().getResult());
             }
         };
+        //初始哈adapter
+        initAdapter();
         //请求数据
         onClickLoadingRefresh();
     }
 
+    private void initAdapter() {
+        mFenleiAdapter = new BaseAdapter<AdBean>(R.layout.adapter_home_class) {
+            @Override
+            protected void convert(BaseViewHolder helper, AdBean item) {
+                ImageLoader.with(mActivity, item.getImg_url(), (ImageView) helper.getView(R.id.img_class));
+                helper.setText(R.id.tv_class, item.getTitle());
+            }
+        };
+        rvClass.setFocusable(false);
+        rvClass.setNestedScrollingEnabled(false);
+        rvClass.setLayoutManager(new GridLayoutManager(mActivity, 5));
+        rvClass.setAdapter(mFenleiAdapter);
+        mAdClassAdapter = new BaseAdapter<GoodsAllBean>(R.layout.adapter_home_class_goods) {
+            @Override
+            protected void convert(BaseViewHolder helper, GoodsAllBean item) {
+                ImageLoader.with(mActivity, item.getImg_url(), (ImageView) helper.getView(R.id.img_title));
+                RecyclerView rvGoods = helper.getView(R.id.tv_goods);
+                rvGoods.setFocusable(false);
+                rvGoods.setNestedScrollingEnabled(false);
+                rvGoods.setLayoutManager(new GridLayoutManager(mActivity, 2));
+                GoodsAdapter goodsAdapter = new GoodsAdapter(mActivity);
+                rvGoods.setAdapter(goodsAdapter);
+                goodsAdapter.setNewData(item.getGoods());
+                goodsAdapter.setOnItemClickListener(new OnItemClickListener() {
+                    @Override
+                    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                        TsUtils.show("商品详情");
+                    }
+                });
+            }
+        };
+        rvClassGoods.setFocusable(false);
+        rvClassGoods.setNestedScrollingEnabled(false);
+        rvClassGoods.setLayoutManager(new LinearLayoutManager(mActivity));
+        rvClassGoods.setAdapter(mAdClassAdapter);
+    }
+
     private void initData(HomeModel result) {
+        HomeClickTypeListener listener = new HomeClickTypeListener(result);
+        //轮播图数据
         bannerTop.setPages(
                 new CBViewHolderCreator<LocalImageHolderView>() {
                     @Override
@@ -112,14 +163,26 @@ public class HomeFragment extends BaseMyFragment {
                     }
                 }, result.getLunbo())
                 //设置两个点图片作为翻页指示器，不设置则没有指示器，可以根据自己需求自行配合自己的指示器,不需要圆点指示器可用不设
-                .setPageIndicator(new int[]{R.drawable.home_lunbo_unselected, R.drawable.home_lunbo_selected})
+                .setPageIndicator(new int[]{R.drawable.lunbo_unselected, R.drawable.lunbo_selected})
                 //设置指示器的方向
-                .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL);
+                .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
+                .setOnItemClickListener(listener);
+        //分类的数据
+        mFenleiAdapter.setNewData(result.getGoodsCategoryList());
+        mFenleiAdapter.setOnItemClickListener(listener);
+        //中间的五张图片
         ImageLoader.with(mActivity, result.getAd1().getImg_url(), img1);
         ImageLoader.with(mActivity, result.getAd2().getImg_url(), img2);
         ImageLoader.with(mActivity, result.getAd3().getImg_url(), img3);
         ImageLoader.with(mActivity, result.getAd4().getImg_url(), img4);
         ImageLoader.with(mActivity, result.getAd5().getImg_url(), img5);
+        img1.setOnClickListener(listener);
+        img2.setOnClickListener(listener);
+        img3.setOnClickListener(listener);
+        img4.setOnClickListener(listener);
+        img5.setOnClickListener(listener);
+        //商品分类的数据
+        mAdClassAdapter.setNewData(result.getGoodsAll());
     }
 
     @Override
@@ -127,21 +190,5 @@ public class HomeFragment extends BaseMyFragment {
         OkGo.<HttpResModel<HomeModel>>get(homePage)
                 .tag(this)
                 .execute(callback);
-    }
-
-    @OnClick({R.id.img_1, R.id.img_2, R.id.img_4, R.id.img_3, R.id.img_5})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.img_1:
-                break;
-            case R.id.img_2:
-                break;
-            case R.id.img_4:
-                break;
-            case R.id.img_3:
-                break;
-            case R.id.img_5:
-                break;
-        }
     }
 }

@@ -1,5 +1,6 @@
 package com.duma.ld.zhilianlift.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -57,6 +58,9 @@ public class HomeModel {
     }
 
     public List<GoodsAllBean> getGoodsAll() {
+        if (GoodsAll == null) {
+            return new ArrayList<>();
+        }
         return GoodsAll;
     }
 
@@ -65,6 +69,9 @@ public class HomeModel {
     }
 
     public List<AdBean> getLunbo() {
+        if (lunbo == null) {
+            return new ArrayList<>();
+        }
         return lunbo;
     }
 
@@ -73,6 +80,9 @@ public class HomeModel {
     }
 
     public List<AdBean> getGoodsCategoryList() {
+        if (goodsCategoryList == null) {
+            return new ArrayList<>();
+        }
         return goodsCategoryList;
     }
 

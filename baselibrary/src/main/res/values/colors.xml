@@ -10,4 +10,5 @@
     <color name="white">#ffffff</color>
     <color name="hui_bg">#f3f4f5</color>
     <color name="hei_text">#999999</color>
+    <color name="ripple_hui">#dfe0e1</color>
 </resources>
