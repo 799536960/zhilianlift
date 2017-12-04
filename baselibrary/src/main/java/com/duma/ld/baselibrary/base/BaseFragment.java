@@ -14,6 +14,7 @@ import com.duma.ld.baselibrary.util.EventBusUtil;
 import com.duma.ld.baselibrary.util.config.FragmentConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.baselibrary.util.config.OnViewConfigListener;
+import com.lzy.okgo.OkGo;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -32,6 +33,7 @@ import me.yokeyword.fragmentation.SupportFragment;
 public abstract class BaseFragment extends SupportFragment implements OnViewConfigListener {
     protected BaseActivity mActivity;
     protected FragmentConfig mFragmentConfig;
+    public static final int httpTag = 200;
 
     @Override
     public void onAttach(Context context) {
@@ -66,6 +68,7 @@ public abstract class BaseFragment extends SupportFragment implements OnViewConf
         if (isRegisterEventBus()) {
             EventBusUtil.unregister(this);
         }
+        OkGo.getInstance().cancelTag(httpTag);
     }
 
     /**

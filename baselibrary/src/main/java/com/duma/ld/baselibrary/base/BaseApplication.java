@@ -58,7 +58,7 @@ public abstract class BaseApplication extends Application {
          */
         Fragmentation.builder()
                 // 设置 栈视图 模式为 悬浮球模式   SHAKE: 摇一摇唤出   NONE：隐藏
-                .stackViewMode(Fragmentation.BUBBLE)
+                .stackViewMode(Fragmentation.NONE)
                 // ture时，遇到异常："Can not perform this action after onSaveInstanceState!"时，会抛出
                 // false时，不会抛出，会捕获，可以在handleException()里监听到
                 .debug(isDebug())

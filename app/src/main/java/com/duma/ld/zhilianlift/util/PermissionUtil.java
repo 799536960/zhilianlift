@@ -69,7 +69,9 @@ public class PermissionUtil {
             AlertDialog.Builder builder = new AlertDialog.Builder(mActivity)
                     .setTitle(mActivity.getString(R.string.permission1))
                     .setMessage(mActivity.getString(R.string.permission2))
-                    .setPositiveButton(mActivity.getString(R.string.permission3), listener);
+                    .setPositiveButton(mActivity.getString(R.string.permission3), listener)
+                    .setCancelable(false);
+            ;
             builder.show();
         } else {
             AndPermission.with(mActivity)

@@ -1,19 +1,138 @@
 package com.duma.ld.zhilianlift.view.home;
 
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.duma.ld.baselibrary.util.config.FragmentConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
+import com.duma.ld.zhilianlift.base.baseAdapter.BaseAdapter;
+import com.duma.ld.zhilianlift.base.baseJsonHttp.MyJsonCallback;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyFragment;
+import com.duma.ld.zhilianlift.model.ClassModel;
+import com.duma.ld.zhilianlift.model.HttpResModel;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.model.Response;
+
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.OnClick;
+
+import static com.duma.ld.zhilianlift.util.HttpUrl.classMian;
 
 /**
  * Created by liudong on 2017/11/29.
  */
 
 public class ClassFragment extends BaseMyFragment {
+    @BindView(R.id.layout_scan)
+    FrameLayout layoutScan;
+    @BindView(R.id.layout_search)
+    LinearLayout layoutSearch;
+    @BindView(R.id.layout_message)
+    FrameLayout layoutMessage;
+    @BindView(R.id.rv_class)
+    RecyclerView rvClass;
+    @BindView(R.id.layout_framgment)
+    FrameLayout layoutFramgment;
+
+    private BaseAdapter<ClassModel> baseAdapter;
+    private int click_position = 0;
+
     @Override
     protected FragmentConfig setFragmentConfig(Bundle savedInstanceState, InitConfig initConfig) {
         return initConfig.setLayoutIdByFragment(R.layout.fragment_class);
+    }
+
+    @Override
+    protected void init(Bundle savedInstanceState) {
+        super.init(savedInstanceState);
+        initAdapter();
+        initFragment();
+        onClickLoadingRefresh();
+    }
+
+    private void initFragment() {
+        loadRootFragment(R.id.layout_framgment, new Class_2_Fragment(), false, false);
+    }
+
+    private void initAdapter() {
+        baseAdapter = new BaseAdapter<ClassModel>(R.layout.adapter_class) {
+            @Override
+            protected void convert(BaseViewHolder holder, ClassModel item) {
+                final TextView tv_name = holder.getView(R.id.tv_name);
+                tv_name.setText(item.getName());
+                setChecked(tv_name, false);
+                if (holder.getLayoutPosition() == click_position) {
+                    setChecked(tv_name, true);
+                }
+            }
+        };
+        baseAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                if (position == click_position) {
+                    return;
+                }
+                TextView tv_name_old = (TextView) baseAdapter.getViewByPosition(rvClass, click_position, R.id.tv_name);
+                setChecked(tv_name_old, false);
+                click_position = position;
+                TextView tv_name_new = (TextView) baseAdapter.getViewByPosition(rvClass, click_position, R.id.tv_name);
+                setChecked(tv_name_new, true);
+                switchClass();
+            }
+
+        });
+        rvClass.setLayoutManager(new LinearLayoutManager(mActivity));
+        rvClass.setAdapter(baseAdapter);
+    }
+
+    private void switchClass() {
+        Class_2_Fragment fragment = findChildFragment(Class_2_Fragment.class);
+        fragment.setData(baseAdapter.getItem(click_position));
+    }
+
+    private void setChecked(TextView tv_name, boolean checked) {
+        if (checked) {
+            tv_name.setTextColor(ContextCompat.getColor(mActivity, R.color.primary_hong));
+            tv_name.setBackgroundColor(ContextCompat.getColor(mActivity, R.color.hui_bg));
+        } else {
+            tv_name.setTextColor(ContextCompat.getColor(mActivity, R.color.textColor));
+            tv_name.setBackgroundColor(ContextCompat.getColor(mActivity, R.color.white));
+        }
+    }
+
+    @Override
+    public void onClickLoadingRefresh() {
+        OkGo.<HttpResModel<List<ClassModel>>>get(classMian)
+                .tag(httpTag)
+                .execute(new MyJsonCallback<HttpResModel<List<ClassModel>>>(mFragmentConfig) {
+                    @Override
+                    protected void onJsonSuccess(Response<HttpResModel<List<ClassModel>>> respons, HttpResModel<List<ClassModel>> listHttpResModel) {
+                        baseAdapter.setNewData(listHttpResModel.getResult());
+                        switchClass();
+                    }
+                });
+    }
+
+    @OnClick({R.id.layout_scan, R.id.layout_search, R.id.layout_message})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.layout_scan:
+                break;
+            case R.id.layout_search:
+                break;
+            case R.id.layout_message:
+                break;
+        }
     }
 }

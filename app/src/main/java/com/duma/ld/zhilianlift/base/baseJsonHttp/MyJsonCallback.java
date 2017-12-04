@@ -36,6 +36,7 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
             config.setOneSuccess(true);
         }
         loadingHide();
+        onJsonSuccess(response, response.body());
     }
 
     @Override
@@ -60,14 +61,25 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
     }
 
     private void showErrorView() {
+        if (config == null) {
+            return;
+        }
         config.showErrorView();
     }
 
     private void loadingHide() {
+        if (config == null) {
+            return;
+        }
         config.hideLoadingView();
     }
 
     private void loadingShow() {
+        if (config == null) {
+            return;
+        }
         config.showLoadingView();
     }
+
+    protected abstract void onJsonSuccess(Response<T> respons, T t);
 }

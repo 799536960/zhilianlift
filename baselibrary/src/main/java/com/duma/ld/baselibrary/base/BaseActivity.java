@@ -8,6 +8,7 @@ import com.duma.ld.baselibrary.util.EventBusUtil;
 import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.baselibrary.util.config.OnViewConfigListener;
+import com.lzy.okgo.OkGo;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -26,7 +27,7 @@ import me.yokeyword.fragmentation.SupportActivity;
 public abstract class BaseActivity extends SupportActivity implements OnViewConfigListener {
     protected BaseActivity mActivity;
     protected ActivityConfig mActivityConfig;
-
+    public static final int httpTag = 200;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,12 +67,14 @@ public abstract class BaseActivity extends SupportActivity implements OnViewConf
 
     protected abstract ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig);
 
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         if (isRegisterEventBus()) {
             EventBusUtil.unregister(this);
         }
+        OkGo.getInstance().cancelTag(httpTag);
     }
 
 

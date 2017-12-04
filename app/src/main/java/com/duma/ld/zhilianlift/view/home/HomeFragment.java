@@ -109,7 +109,8 @@ public class HomeFragment extends BaseMyFragment {
                                 onClickLoadingRefresh();
                             }
                         })
-                        .setNegativeButton("否", null);
+                        .setNegativeButton("否", null)
+                        .setCancelable(false);
                 builder.show();
             }
         }
@@ -137,9 +138,8 @@ public class HomeFragment extends BaseMyFragment {
         //网络请求
         callback = new MyJsonCallback<HttpResModel<HomeModel>>(mFragmentConfig) {
             @Override
-            public void onSuccess(Response<HttpResModel<HomeModel>> response) {
-                super.onSuccess(response);
-                initData(response.body().getResult());
+            protected void onJsonSuccess(Response<HttpResModel<HomeModel>> respons, HttpResModel<HomeModel> homeModelHttpResModel) {
+                initData(homeModelHttpResModel.getResult());
             }
         };
         //初始哈adapter
@@ -222,7 +222,7 @@ public class HomeFragment extends BaseMyFragment {
     public void onClickLoadingRefresh() {
         tvCity.setText(SpDataUtil.getCity());
         OkGo.<HttpResModel<HomeModel>>get(homePage)
-                .tag(this)
+                .tag(httpTag)
                 .params("city_name", SpDataUtil.getCity())
                 .execute(callback);
     }
