@@ -22,7 +22,7 @@ public class CityHeaderTopAdapter extends IndexableHeaderAdapter<String> {
     private static final int TYPE = 2;
     private Activity activity;
 
-    public CityHeaderTopAdapter(Activity activity, List list) {
+    public CityHeaderTopAdapter(Activity activity, List<String> list) {
         super("当前", null, list);
         this.activity = activity;
     }

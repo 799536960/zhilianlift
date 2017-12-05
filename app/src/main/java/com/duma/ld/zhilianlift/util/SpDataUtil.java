@@ -20,8 +20,27 @@ public class SpDataUtil {
         SPUtils.getInstance().put(Constants.sp_street, bdLocation.getStreet() + "");
     }
 
-    public static boolean isCity(BDLocation bdLocation) {
-        return getCity().equals(bdLocation.getCity());
+    public static void setCity(String city) {
+        SPUtils.getInstance().put(Constants.sp_city, city + "");
+        SPUtils.getInstance().put(Constants.sp_latitude, "");
+        SPUtils.getInstance().put(Constants.sp_longitude, "");
+        SPUtils.getInstance().put(Constants.sp_addr, "");
+        SPUtils.getInstance().put(Constants.sp_province, "");
+        SPUtils.getInstance().put(Constants.sp_district, "");
+        SPUtils.getInstance().put(Constants.sp_street, "");
+    }
+
+    public static void setDistrict(String district) {
+        SPUtils.getInstance().put(Constants.sp_district, district);
+        SPUtils.getInstance().put(Constants.sp_latitude, "");
+        SPUtils.getInstance().put(Constants.sp_longitude, "");
+        SPUtils.getInstance().put(Constants.sp_addr, "");
+        SPUtils.getInstance().put(Constants.sp_province, "");
+        SPUtils.getInstance().put(Constants.sp_street, "");
+    }
+
+    public static boolean isCity(String city) {
+        return getCity().equals(city);
     }
 
     //返回当前城市

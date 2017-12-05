@@ -37,7 +37,6 @@ import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.ImageLoader;
 import com.duma.ld.zhilianlift.util.LocalImageHolderView;
 import com.duma.ld.zhilianlift.util.LocationUtil;
-import com.duma.ld.zhilianlift.util.PermissionUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
 import com.duma.ld.zhilianlift.view.home.city.SelectCityActivity;
 import com.lzy.okgo.OkGo;
@@ -46,6 +45,7 @@ import com.lzy.okgo.model.Response;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.duma.ld.zhilianlift.util.Constants.event_location_home;
 import static com.duma.ld.zhilianlift.util.HttpUrl.homePage;
 
 /**
@@ -98,9 +98,9 @@ public class HomeFragment extends BaseMyFragment {
 
     @Override
     protected void onReceiveEvent(EventModel eventModel) {
-        if (eventModel.getCode() == Constants.event_location) {
+        if (eventModel.getCode() == Constants.event_location_home) {
             final BDLocation bdLocation = (BDLocation) eventModel.getData();
-            if (!SpDataUtil.isCity(bdLocation)) {
+            if (!SpDataUtil.isCity(bdLocation.getCity())) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(mActivity)
                         .setTitle("切换城市")
                         .setMessage("当前城市和您所在的城市不同,是否切换为 " + bdLocation.getCity() + "?")
@@ -115,6 +115,8 @@ public class HomeFragment extends BaseMyFragment {
                         .setCancelable(false);
                 builder.show();
             }
+        } else if (eventModel.getCode() == Constants.event_select_city) {
+            onClickLoadingRefresh();
         }
     }
 
@@ -126,17 +128,7 @@ public class HomeFragment extends BaseMyFragment {
     protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
         //获取权限 和定位
-        PermissionUtil permissionUtil = new PermissionUtil(mActivity, new PermissionUtil.onPermissionListener() {
-            @Override
-            public void onResult(int requestCode, boolean result) {
-                if (result) {
-                    //开启定位
-                    LocationUtil.getInstance().start();
-                }
-            }
-
-        });
-        permissionUtil.openLocation();
+        LocationUtil.getInstance().start(mActivity, event_location_home);
         //网络请求
         callback = new MyJsonCallback<HttpResModel<HomeModel>>(mFragmentConfig) {
             @Override
@@ -223,8 +215,9 @@ public class HomeFragment extends BaseMyFragment {
     @Override
     public void onClickLoadingRefresh() {
         tvCity.setText(SpDataUtil.getCity());
+        OkGo.getInstance().cancelTag("onClickLoadingRefresh");
         OkGo.<HttpResModel<HomeModel>>get(homePage)
-                .tag(httpTag)
+                .tag("onClickLoadingRefresh")
                 .params("city_name", SpDataUtil.getCity())
                 .execute(callback);
     }

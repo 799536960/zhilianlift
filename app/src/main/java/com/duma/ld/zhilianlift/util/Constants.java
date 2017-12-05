@@ -7,10 +7,13 @@ package com.duma.ld.zhilianlift.util;
 public class Constants {
     //默认城市
     public static final String defaultCity = "湖州市";
+    public static final String locationString = "加载中..";
     /**
      * event
      */
-    public static final int event_location = 1;
+    public static final int event_location_home = 1;
+    public static final int event_location_city = 2;
+    public static final int event_select_city = 3;
     /**
      * intent
      */

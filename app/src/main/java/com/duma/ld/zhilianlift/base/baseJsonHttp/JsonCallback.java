@@ -13,8 +13,6 @@ import java.lang.reflect.Type;
 import okhttp3.Response;
 
 public abstract class JsonCallback<T> extends AbsCallback<T> {
-
-
     @Override
     public T convertResponse(Response response) throws Throwable {
         Type genType = getClass().getGenericSuperclass();

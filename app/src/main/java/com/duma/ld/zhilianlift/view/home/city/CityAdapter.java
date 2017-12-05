@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.duma.ld.zhilianlift.R;
+import com.duma.ld.zhilianlift.model.CityEntity;
 
 import me.yokeyword.indexablerv.IndexableAdapter;
 

@@ -1,4 +1,4 @@
-package com.duma.ld.zhilianlift.view.home.city;
+package com.duma.ld.zhilianlift.model;
 
 import me.yokeyword.indexablerv.IndexableEntity;
 
