@@ -1,4 +1,4 @@
-package com.duma.ld.zhilianlift.view.home;
+package com.duma.ld.zhilianlift.view.home.main;
 
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -83,10 +83,10 @@ public class ClassFragment extends BaseMyFragment {
                 if (position == click_position) {
                     return;
                 }
-                TextView tv_name_old = (TextView) baseAdapter.getViewByPosition(rvClass, click_position, R.id.tv_name);
-                setChecked(tv_name_old, false);
+                int old = click_position;
                 click_position = position;
-                TextView tv_name_new = (TextView) baseAdapter.getViewByPosition(rvClass, click_position, R.id.tv_name);
+                baseAdapter.notifyItemChanged(old);
+                TextView tv_name_new = (TextView) adapter.getViewByPosition(rvClass, click_position, R.id.tv_name);
                 setChecked(tv_name_new, true);
                 switchClass();
             }

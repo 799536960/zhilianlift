@@ -1,4 +1,4 @@
-package com.duma.ld.zhilianlift.view.home;
+package com.duma.ld.zhilianlift.view.home.main;
 
 import android.os.Bundle;
 
@@ -11,9 +11,9 @@ import com.duma.ld.zhilianlift.base.baseView.BaseMyFragment;
  * Created by liudong on 2017/11/29.
  */
 
-public class MyFragment extends BaseMyFragment {
+public class ShoppingCartFragment extends BaseMyFragment {
     @Override
     protected FragmentConfig setFragmentConfig(Bundle savedInstanceState, InitConfig initConfig) {
-        return initConfig.setLayoutIdByFragment(R.layout.fragment_my);
+        return initConfig.setLayoutIdByFragment(R.layout.fragment_shopping_cart);
     }
 }

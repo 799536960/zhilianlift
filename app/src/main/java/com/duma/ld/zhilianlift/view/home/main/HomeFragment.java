@@ -1,6 +1,7 @@
-package com.duma.ld.zhilianlift.view.home;
+package com.duma.ld.zhilianlift.view.home.main;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
@@ -38,6 +39,7 @@ import com.duma.ld.zhilianlift.util.LocalImageHolderView;
 import com.duma.ld.zhilianlift.util.LocationUtil;
 import com.duma.ld.zhilianlift.util.PermissionUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
+import com.duma.ld.zhilianlift.view.home.city.SelectCityActivity;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 
@@ -231,6 +233,7 @@ public class HomeFragment extends BaseMyFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.layout_city:
+                startActivity(new Intent(mActivity, SelectCityActivity.class));
                 break;
             case R.id.layout_search:
                 break;

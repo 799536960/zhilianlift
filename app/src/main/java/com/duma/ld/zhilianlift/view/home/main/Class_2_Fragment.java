@@ -1,4 +1,4 @@
-package com.duma.ld.zhilianlift.view.home;
+package com.duma.ld.zhilianlift.view.home.main;
 
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;

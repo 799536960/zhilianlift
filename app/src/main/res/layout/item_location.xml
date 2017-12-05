@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="105dp"
+    android:background="#f3f4f7"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="定位"
+        android:textColor="@color/hei2" />
+
+    <LinearLayout
+        android:layout_width="103dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/lr_bx_4_bai_bghui"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tv_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/dingwei"
+            android:drawablePadding="8dp"
+            android:text="定位中"
+            android:textColor="@color/hei1" />
+    </LinearLayout>
+</LinearLayout>

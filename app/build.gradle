@@ -88,5 +88,7 @@ dependencies {
     implementation 'com.android.support:design:27.0.2'
     //轮播
     implementation 'com.bigkoo:convenientbanner:2.0.5'
+    //选择城市索引
+    compile 'me.yokeyword:indexablerecyclerview:1.3.0'
 
 }
