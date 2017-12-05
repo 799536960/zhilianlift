@@ -55,7 +55,7 @@ public class CityHeaderLocationAdapter extends IndexableHeaderAdapter<String> {
 
         public VH(View itemView) {
             super(itemView);
-            tv = (TextView) itemView.findViewById(R.id.tv_location);
+            tv = itemView.findViewById(R.id.tv_location);
         }
     }
 }

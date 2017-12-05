@@ -64,6 +64,6 @@
         android:layout_height="match_parent"
         app:indexBar_layout_width="26dp"
         app:indexBar_textColor="@color/hei4"
-        app:indexBar_textSize="12sp"
-        app:indexBar_textSpace="8dp" />
+        app:indexBar_textSize="11sp"
+        app:indexBar_textSpace="7dp" />
 </LinearLayout>
