@@ -4,13 +4,19 @@ package com.duma.ld.baselibrary.base;
 import android.app.Application;
 
 import com.blankj.utilcode.util.Utils;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.interceptor.HttpLoggingInterceptor;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
 
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+
 import me.yokeyword.fragmentation.Fragmentation;
 import me.yokeyword.fragmentation.helper.ExceptionHandler;
+import okhttp3.OkHttpClient;
 
 /**
  * @author liudong
@@ -22,10 +28,29 @@ public abstract class BaseApplication extends Application {
         return instance;
     }
 
+    public static final long DEFAULT_MILLISECONDS = 15000;
+
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
+        /**
+         * okhttp
+         */
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor("OkGo");
+        //log打印级别，决定了log显示的详细程度
+        loggingInterceptor.setPrintLevel(HttpLoggingInterceptor.Level.BASIC);
+        //log颜色级别，决定了log在控制台显示的颜色
+        loggingInterceptor.setColorLevel(Level.WARNING);
+        builder.addInterceptor(loggingInterceptor);
+        //全局的读取超时时间
+        builder.readTimeout(DEFAULT_MILLISECONDS, TimeUnit.MILLISECONDS);
+        //全局的写入超时时间
+        builder.writeTimeout(DEFAULT_MILLISECONDS, TimeUnit.MILLISECONDS);
+        //全局的连接超时时间
+        builder.connectTimeout(DEFAULT_MILLISECONDS, TimeUnit.MILLISECONDS);
+        OkGo.getInstance().init(this).setOkHttpClient(builder.build());
         /**
          * 常用工具
          */
