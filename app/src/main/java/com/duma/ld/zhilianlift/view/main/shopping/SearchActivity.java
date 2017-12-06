@@ -29,6 +29,7 @@ import com.duma.ld.zhilianlift.model.CacheModel;
 import com.duma.ld.zhilianlift.model.HotModel;
 import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.util.CacheUtil;
+import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 
@@ -137,7 +138,7 @@ public class SearchActivity extends BaseMyActivity {
         //刷新当前样式
         refresh();
         //去搜索
-        TsUtils.show("去搜索:" + s);
+        IntentUtil.goGoodsList_search(mActivity, s);
     }
 
     /**

@@ -141,8 +141,8 @@ public class PublicConfig {
     /**
      * 是否加入下拉swloading 加入后就会替代原来的loading
      *
-     * @param id 资源id
-     *           contentid 是内容的view 如果是第一次还没加载数据的话 这个view会隐藏 有数据后就会显示
+     * @param id        资源id
+     * @param contentId 是内容的view 如果是第一次还没加载数据的话 这个view会隐藏 然后显示错误页面 有数据后就会显示
      */
     public void setRefresh(int id, int contentId) {
         isRefresh = true;

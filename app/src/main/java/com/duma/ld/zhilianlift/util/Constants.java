@@ -19,6 +19,10 @@ public class Constants {
      */
     public static final String key = "key";
     public static final String Name = "name";
+    public static final String Type = "Type";
+    public static final String Res = "Res";
+    public static final String ClassId = "ClassId";
+    public static final String SearchString = "SearchString";
     /**
      * sp
      */
