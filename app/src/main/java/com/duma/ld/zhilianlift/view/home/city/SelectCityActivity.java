@@ -23,6 +23,7 @@ import butterknife.OnClick;
 import me.yokeyword.fragmentation.SupportFragment;
 
 import static com.duma.ld.zhilianlift.util.HttpUrl.getcity;
+import static com.lzy.okgo.cache.CacheMode.FIRST_CACHE_THEN_REQUEST;
 
 /**
  * 选择城市页面
@@ -89,6 +90,7 @@ public class SelectCityActivity extends BaseMyActivity {
         super.onClickLoadingRefresh();
         OkGo.<HttpResModel<List<CityEntity>>>get(getcity)
                 .tag(httpTag)
+                .cacheMode(FIRST_CACHE_THEN_REQUEST)
                 .execute(new MyJsonCallback<HttpResModel<List<CityEntity>>>(mActivityConfig, false) {
                     @Override
                     protected void onJsonSuccess(Response<HttpResModel<List<CityEntity>>> respons, HttpResModel<List<CityEntity>> listHttpResModel) {

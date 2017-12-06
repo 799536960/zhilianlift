@@ -10,4 +10,8 @@ public class Log {
     public static void e(String message) {
         Logger.e(message);
     }
+
+    public static void w(String message) {
+        Logger.w(message);
+    }
 }

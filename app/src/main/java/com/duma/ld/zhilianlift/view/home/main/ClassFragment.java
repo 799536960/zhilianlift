@@ -1,6 +1,7 @@
 package com.duma.ld.zhilianlift.view.home.main;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -28,6 +29,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 import static com.duma.ld.zhilianlift.util.HttpUrl.classMian;
+import static com.lzy.okgo.cache.CacheMode.FIRST_CACHE_THEN_REQUEST;
 
 /**
  * Created by liudong on 2017/11/29.
@@ -58,6 +60,11 @@ public class ClassFragment extends BaseMyFragment {
         super.init(savedInstanceState);
         initAdapter();
         initFragment();
+    }
+
+    @Override
+    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
         onClickLoadingRefresh();
     }
 
@@ -114,6 +121,7 @@ public class ClassFragment extends BaseMyFragment {
     @Override
     public void onClickLoadingRefresh() {
         OkGo.<HttpResModel<List<ClassModel>>>get(classMian)
+                .cacheMode(FIRST_CACHE_THEN_REQUEST)
                 .tag(httpTag)
                 .execute(new MyJsonCallback<HttpResModel<List<ClassModel>>>(mFragmentConfig) {
                     @Override

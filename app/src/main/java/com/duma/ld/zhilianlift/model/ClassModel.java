@@ -1,12 +1,13 @@
 package com.duma.ld.zhilianlift.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by liudong on 2017/12/4.
  */
 
-public class ClassModel {
+public class ClassModel implements Serializable {
 
     /**
      * id : 6
@@ -181,7 +182,7 @@ public class ClassModel {
         this.list = list;
     }
 
-    public static class ListBean {
+    public static class ListBean implements Serializable{
         /**
          * mobile_name : 身体护肤
          * image : /public/upload/category/2016/04-02/56ffa28b12f4f.jpg
@@ -246,7 +247,7 @@ public class ClassModel {
             this.sub_category = sub_category;
         }
 
-        public static class SubCategoryBean {
+        public static class SubCategoryBean implements Serializable{
             /**
              * mobile_name : 沐浴
              * image :

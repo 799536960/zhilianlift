@@ -1,11 +1,13 @@
 package com.duma.ld.zhilianlift.model;
 
+import java.io.Serializable;
+
 import me.yokeyword.indexablerv.IndexableEntity;
 
 /**
  * Created by YoKey on 16/10/7.
  */
-public class CityEntity implements IndexableEntity {
+public class CityEntity implements IndexableEntity, Serializable {
     private long id;
     private String name;
     private String pinyin;

@@ -15,7 +15,8 @@ import com.orhanobut.logger.Logger;
 
 public abstract class MyJsonCallback<T> extends JsonCallback<T> {
     private PublicConfig config;
-    private boolean successIsHideLoading = true;
+    private boolean successIsHideLoading;
+    private boolean isOpenCache;
 
     public MyJsonCallback() {
     }
@@ -33,10 +34,23 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
     public MyJsonCallback(PublicConfig config, boolean successIsHideLoading) {
         this.config = config;
         this.successIsHideLoading = successIsHideLoading;
+        isOpenCache = false;
     }
 
     @Override
     public void onSuccess(Response<T> response) {
+        if (isOpenCache) {
+            /**
+             * 如果缓存开启的话 网络请求回来的就不回调了
+             * 因为缓存已经回调一次了
+             * 网络请求就负责缓存就好了
+             */
+            return;
+        }
+        httpSuccess(response);
+    }
+
+    private void httpSuccess(Response<T> response) {
         Logger.json(new Gson().toJson(response.body()));
         if (config != null) {
             config.setOneSuccess(true);
@@ -47,6 +61,14 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
         onJsonSuccess(response, response.body());
     }
 
+    @Override
+    public void onCacheSuccess(Response<T> response) {
+        super.onCacheSuccess(response);
+        //回调了这里 说明启动了缓存
+        Log.e("读取的缓存");
+        isOpenCache = true;
+        httpSuccess(response);
+    }
 
     @Override
     public void onError(Response<T> response) {
@@ -77,7 +99,6 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
     }
 
     private void loadingHide() {
-        Log.e("loadingHide");
         if (config == null) {
             return;
         }
