@@ -5,9 +5,11 @@ package com.duma.ld.zhilianlift.util;
  */
 
 public class HttpUrl {
-    public static String BaseUrl = "http://192.168.0.58:8081";
+    //    public static String BaseUrl = "http://192.168.0.58:8081";
+    public static String BaseUrl = "http://192.168.0.94:8080";
     public static String homePage = BaseUrl + "/index.php/api/index/homePage";
     public static String classMian = BaseUrl + "/index.php/api/goods/allCategoryList";
     public static String getcity = BaseUrl + "/index.php/api/index/getcity";
     public static String get_region = BaseUrl + "/index.php/api/index/get_region";
+    public static String hot_keywords = BaseUrl + "/index.php/api/index/hot_keywords";
 }

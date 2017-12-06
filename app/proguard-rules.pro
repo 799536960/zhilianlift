@@ -180,3 +180,11 @@
 -keep class vi.com.** {*;}
 -dontwarn com.baidu.**
 
+#数据库
+-keep class org.litepal.** {
+    *;
+}
+-keep class * extends org.litepal.crud.DataSupport {
+    *;
+}
+

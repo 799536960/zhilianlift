@@ -1,4 +1,4 @@
-package com.duma.ld.zhilianlift.view.home.main;
+package com.duma.ld.zhilianlift.view.main.home;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

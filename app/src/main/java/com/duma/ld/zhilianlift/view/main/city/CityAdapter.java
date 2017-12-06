@@ -1,4 +1,4 @@
-package com.duma.ld.zhilianlift.view.home.city;
+package com.duma.ld.zhilianlift.view.main.city;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

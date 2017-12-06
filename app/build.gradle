@@ -90,4 +90,8 @@ dependencies {
     implementation 'com.bigkoo:convenientbanner:2.0.5'
     //选择城市索引
     compile 'me.yokeyword:indexablerecyclerview:1.3.0'
+    //可伸缩布局
+    compile 'com.google.android:flexbox:0.3.1'
+    //数据库
+    compile 'org.litepal.android:core:1.6.0'
 }

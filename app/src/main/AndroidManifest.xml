@@ -45,14 +45,17 @@
             android:enabled="true"
             android:process=":remote" />
         <!--第三方-->
-        <activity android:name=".view.home.main.HomeActivity">
+        <activity android:name=".view.main.home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.home.city.SelectCityActivity" />
+        <activity android:name=".view.main.city.SelectCityActivity" />
+        <activity
+            android:name=".view.main.shopping.SearchActivity"
+            android:windowSoftInputMode="stateVisible" />
     </application>
 
 </manifest>

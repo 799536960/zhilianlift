@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal>
+    <dbname value="DianYuanDB" />
+
+    <version value="1" />
+    <list>
+        <mapping class="com.duma.ld.zhilianlift.model.CacheModel" />
+    </list>
+</litepal>

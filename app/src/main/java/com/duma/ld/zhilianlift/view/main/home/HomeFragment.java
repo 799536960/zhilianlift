@@ -1,4 +1,4 @@
-package com.duma.ld.zhilianlift.view.home.main;
+package com.duma.ld.zhilianlift.view.main.home;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -38,7 +38,8 @@ import com.duma.ld.zhilianlift.util.ImageLoader;
 import com.duma.ld.zhilianlift.util.LocalImageHolderView;
 import com.duma.ld.zhilianlift.util.LocationUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
-import com.duma.ld.zhilianlift.view.home.city.SelectCityActivity;
+import com.duma.ld.zhilianlift.view.main.city.SelectCityActivity;
+import com.duma.ld.zhilianlift.view.main.shopping.SearchActivity;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 
@@ -229,6 +230,7 @@ public class HomeFragment extends BaseMyFragment {
                 startActivity(new Intent(mActivity, SelectCityActivity.class));
                 break;
             case R.id.layout_search:
+                startActivity(new Intent(mActivity, SearchActivity.class));
                 break;
             case R.id.layout_scan:
                 break;

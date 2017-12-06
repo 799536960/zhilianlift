@@ -18,14 +18,14 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
     private boolean successIsHideLoading;
     private boolean isOpenCache;
 
-    public MyJsonCallback() {
-    }
 
     @Override
     public void onStart(Request<T, ? extends Request> request) {
         loadingShow();
     }
 
+    public MyJsonCallback() {
+    }
 
     public MyJsonCallback(PublicConfig config) {
         this(config, true);
