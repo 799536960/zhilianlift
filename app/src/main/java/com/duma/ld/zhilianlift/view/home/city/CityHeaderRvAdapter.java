@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.duma.ld.zhilianlift.R;
@@ -53,6 +54,7 @@ public class CityHeaderRvAdapter extends IndexableHeaderAdapter<CityHeaderModel>
     @Override
     public void onBindContentViewHolder(RecyclerView.ViewHolder holder, final CityHeaderModel entity) {
         final VH vh = (VH) holder;
+        vh.tv_city.setText("当前:" + SpDataUtil.getCity());
         vh.layout_switch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,12 +106,14 @@ public class CityHeaderRvAdapter extends IndexableHeaderAdapter<CityHeaderModel>
         private RecyclerView rv_list;
         private LinearLayout layout_switch;
         private ImageView img_arrow;
+        private TextView tv_city;
 
         public VH(View itemView) {
             super(itemView);
             rv_list = itemView.findViewById(R.id.rv_list);
             layout_switch = itemView.findViewById(R.id.layout_switch);
             img_arrow = itemView.findViewById(R.id.img_arrow);
+            tv_city = itemView.findViewById(R.id.tv_city);
         }
     }
 }

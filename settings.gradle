@@ -1,1 +1,1 @@
-include ':app', ':baselibrary', ':maplibrary', ':indexablerecyclerview'
+include ':app', ':baselibrary', ':maplibrary'

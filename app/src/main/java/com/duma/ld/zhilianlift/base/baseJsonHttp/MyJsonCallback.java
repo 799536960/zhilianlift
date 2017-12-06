@@ -14,8 +14,8 @@ import com.orhanobut.logger.Logger;
  */
 
 public abstract class MyJsonCallback<T> extends JsonCallback<T> {
-
     private PublicConfig config;
+    private boolean successIsHideLoading = true;
 
     public MyJsonCallback() {
     }
@@ -27,7 +27,12 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
 
 
     public MyJsonCallback(PublicConfig config) {
+        this(config, true);
+    }
+
+    public MyJsonCallback(PublicConfig config, boolean successIsHideLoading) {
         this.config = config;
+        this.successIsHideLoading = successIsHideLoading;
     }
 
     @Override
@@ -36,7 +41,9 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
         if (config != null) {
             config.setOneSuccess(true);
         }
-        loadingHide();
+        if (successIsHideLoading) {
+            loadingHide();
+        }
         onJsonSuccess(response, response.body());
     }
 

@@ -75,7 +75,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation project(':baselibrary')
     implementation project(':maplibrary')
-    implementation project(':indexablerecyclerview')
     implementation 'com.google.code.gson:gson:2.8.1'
     //权限
     implementation 'com.yanzhenjie:permission:1.1.2'
@@ -90,5 +89,5 @@ dependencies {
     //轮播
     implementation 'com.bigkoo:convenientbanner:2.0.5'
     //选择城市索引
-//    compile 'me.yokeyword:indexablerecyclerview:1.3.0'
+    compile 'me.yokeyword:indexablerecyclerview:1.3.0'
 }
