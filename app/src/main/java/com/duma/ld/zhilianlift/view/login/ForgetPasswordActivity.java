@@ -19,22 +19,20 @@ import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.DialogUtil;
 import com.duma.ld.zhilianlift.util.SendCodeUtil;
-import com.duma.ld.zhilianlift.util.SpDataUtil;
-import com.duma.ld.zhilianlift.util.UserModel;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static com.duma.ld.zhilianlift.util.HttpUrl.reg;
+import static com.duma.ld.zhilianlift.util.HttpUrl.forgetpassword;
 import static com.duma.ld.zhilianlift.util.HttpUrl.send_validate_code;
 
 /**
  * Created by liudong on 2017/12/7.
  */
 
-public class RegisterActivity extends BaseMyActivity {
+public class ForgetPasswordActivity extends BaseMyActivity {
     @BindView(R.id.edit_phone)
     EditText editPhone;
     @BindView(R.id.edit_code)
@@ -58,7 +56,7 @@ public class RegisterActivity extends BaseMyActivity {
 
     @Override
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig) {
-        return initConfig.setLayoutIdByActivity(R.layout.activity_register, false).setTopBar("注册");
+        return initConfig.setLayoutIdByActivity(R.layout.activity_forget_password, false).setTopBar("重设密码");
     }
 
     @Override
@@ -78,7 +76,6 @@ public class RegisterActivity extends BaseMyActivity {
         DialogUtil.getInstance().show_noBack(mActivity, "发送验证码中");
         OkGo.<HttpResModel<String>>get(send_validate_code)
                 .params("mobile", editPhone.getText().toString())
-                .params("type", "1")
                 .execute(new MyJsonCallback<HttpResModel<String>>() {
                     @Override
                     protected void onJsonSuccess(Response<HttpResModel<String>> respons, HttpResModel<String> stringHttpResModel) {
@@ -133,16 +130,16 @@ public class RegisterActivity extends BaseMyActivity {
                     return;
                 }
                 DialogUtil.getInstance().show_noBack(mActivity);
-                OkGo.<HttpResModel<UserModel>>post(reg)
+                OkGo.<HttpResModel<String>>post(forgetpassword)
                         .params("username", editPhone.getText().toString())
-                        .params("password1", editPassword.getText().toString())
-                        .params("password2", editPassword2.getText().toString())
+                        .params("old_password", editPassword.getText().toString())
+                        .params("new_password", editPassword2.getText().toString())
                         .params("code", editCode.getText().toString())
-                        .execute(new MyJsonCallback<HttpResModel<UserModel>>() {
+                        .execute(new MyJsonCallback<HttpResModel<String>>() {
                             @Override
-                            protected void onJsonSuccess(Response<HttpResModel<UserModel>> respons, HttpResModel<UserModel> stringHttpResModel) {
+                            protected void onJsonSuccess(Response<HttpResModel<String>> respons, HttpResModel<String> stringHttpResModel) {
+                                TsUtils.show(stringHttpResModel.getMsg());
                                 DialogUtil.getInstance().hide();
-                                SpDataUtil.setUser(stringHttpResModel.getResult());
                                 finish();
                             }
                         });

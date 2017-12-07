@@ -7,6 +7,8 @@ package com.duma.ld.zhilianlift.util;
 public class HttpUrl {
     public static String BaseUrl = "http://192.168.0.58:8081";
     //    public static String BaseUrl = "http://192.168.0.94:8080";
+
+
     public static String homePage = BaseUrl + "/index.php/api/index/homePage";
     public static String classMian = BaseUrl + "/index.php/api/goods/allCategoryList";
     public static String getcity = BaseUrl + "/index.php/api/index/getcity";
@@ -15,4 +17,5 @@ public class HttpUrl {
     public static String send_validate_code = BaseUrl + "/index.php/api/User/send_validate_code";
     public static String forgetpassword = BaseUrl + "/index.php/api/user/forgetpassword";
     public static String reg = BaseUrl + "/index.php/api/user/reg";
+    public static String login = BaseUrl + "/index.php/api/user/login";
 }

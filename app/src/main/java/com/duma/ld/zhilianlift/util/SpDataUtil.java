@@ -2,6 +2,7 @@ package com.duma.ld.zhilianlift.util;
 
 import com.baidu.location.BDLocation;
 import com.blankj.utilcode.util.SPUtils;
+import com.google.gson.Gson;
 
 import static com.duma.ld.zhilianlift.util.Constants.defaultCity;
 
@@ -49,8 +50,30 @@ public class SpDataUtil {
     }
 
     public static boolean isLogin() {
-        return false;
+        if (getUser() == null) {
+            return false;
+        }
+        return true;
     }
 
+    public static void setUser(UserModel userModel) {
+        SPUtils.getInstance().put(Constants.sp_User, new Gson().toJson(userModel));
+    }
+
+    public static void removeUser() {
+        SPUtils.getInstance().put(Constants.sp_User, "");
+    }
+
+    public static UserModel getUser() {
+        String string = SPUtils.getInstance().getString(Constants.sp_User, "");
+        if (string.isEmpty()) {
+            return null;
+        }
+        UserModel userModel = new Gson().fromJson(string, UserModel.class);
+        if (userModel.getToken() == null || userModel.getToken().isEmpty()) {
+            return null;
+        }
+        return userModel;
+    }
 
 }

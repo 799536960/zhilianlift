@@ -83,7 +83,7 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
                     Log.e("重新登陆400");
                     break;
                 default:
-                    TsUtils.show("code:" + response.getException().getMessage());
+                    TsUtils.show("" + response.getException().getMessage());
                     break;
             }
         } else {

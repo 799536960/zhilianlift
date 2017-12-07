@@ -35,6 +35,8 @@ public class Constants {
     public static final String sp_latitude = "sp_latitude"; //获取纬度信息
     public static final String sp_longitude = "sp_longitude"; //获取经度信息
 
+    public static final String sp_User = "sp_User"; //用户信息
+
     /**
      * 首页 type
      */

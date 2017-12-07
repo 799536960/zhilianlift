@@ -58,11 +58,16 @@
             android:windowSoftInputMode="stateVisible" />
         <activity android:name=".view.main.shopping.GoodsListActivity" />
         <activity android:name=".view.login.LoginOrRegisterActivity" />
-        <activity android:name=".view.login.RegisterActivity" />
+        <activity
+            android:name=".view.login.RegisterActivity"
+            android:windowSoftInputMode="stateVisible" />
         <activity
             android:name=".view.login.LoginActivity"
             android:windowSoftInputMode="stateVisible" />
         <activity android:name=".view.login.CodeBarActivity" />
+        <activity
+            android:name=".view.login.ForgetPasswordActivity"
+            android:windowSoftInputMode="stateVisible" />
     </application>
 
 </manifest>

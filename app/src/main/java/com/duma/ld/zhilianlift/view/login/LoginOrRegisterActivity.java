@@ -10,6 +10,7 @@ import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
+import com.duma.ld.zhilianlift.util.SpDataUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -31,6 +32,14 @@ public class LoginOrRegisterActivity extends BaseMyActivity {
         return initConfig
                 .setLayoutIdByActivity(R.layout.activity_login_or_register, false)
                 .setTopBar("");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (SpDataUtil.isLogin()) {
+            finish();
+        }
     }
 
     @OnClick({R.id.tv_login, R.id.tv_register})
