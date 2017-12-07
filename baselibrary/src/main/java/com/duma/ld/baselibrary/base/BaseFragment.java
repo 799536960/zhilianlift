@@ -45,6 +45,7 @@ public abstract class BaseFragment extends SupportFragment implements OnViewConf
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View mRootView = inflater.inflate(R.layout.activity_root, container, false);
         this.mFragmentConfig = setFragmentConfig(savedInstanceState, new InitConfig(mActivity, mRootView, this));
+        mFragmentConfig.end();
         if (isRegisterEventBus()) {
             EventBusUtil.register(this);
         }

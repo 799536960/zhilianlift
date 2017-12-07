@@ -3,6 +3,7 @@ package com.duma.ld.baselibrary.util.config;
 import android.support.annotation.LayoutRes;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.duma.ld.baselibrary.R;
@@ -25,12 +26,25 @@ public class FragmentConfig extends PublicConfig {
         //本体布局
         mViewContent = LayoutInflater.from(activity).inflate(layoutResID, (FrameLayout) rootView.findViewById(R.id.layout_boot_content));
         setmViewContent(mViewContent);
-        //初始化load error 页面
-        initLoadOrErrorView((FrameLayout) mRootView.findViewById(R.id.layout_boot_loading), (FrameLayout) mRootView.findViewById(R.id.layout_boot_error));
     }
 
-    public FragmentConfig setRefreshByFragment(int swId, int contentId) {
-        setRefresh(swId, contentId);
+    public FragmentConfig setRefreshByFragment(int id, int rootId, int contentId) {
+        setRefresh(id, rootId, contentId);
         return this;
+    }
+
+    public FragmentConfig setLoadingOrErrorViewByFragmen(int rootId, int contentId) {
+        setLoadingOrErrorViewByLinearlayout(rootId, contentId);
+        return this;
+    }
+
+    @Override
+    protected ViewGroup getBootErrorViewGroup() {
+        return (FrameLayout) mRootView.findViewById(R.id.layout_boot_error);
+    }
+
+    @Override
+    protected ViewGroup getBootLoadingViewGroup() {
+        return (FrameLayout) mRootView.findViewById(R.id.layout_boot_loading);
     }
 }

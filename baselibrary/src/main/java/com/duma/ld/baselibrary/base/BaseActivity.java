@@ -34,6 +34,7 @@ public abstract class BaseActivity extends SupportActivity implements OnViewConf
         super.onCreate(savedInstanceState);
         mActivity = this;
         this.mActivityConfig = setActivityConfig(savedInstanceState, new InitConfig(mActivity, this));
+        mActivityConfig.end();
         if (isRegisterEventBus()) {
             EventBusUtil.register(this);
         }

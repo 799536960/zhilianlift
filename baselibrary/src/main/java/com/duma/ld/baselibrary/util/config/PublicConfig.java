@@ -15,12 +15,12 @@ import com.duma.ld.baselibrary.R;
  * Created by liudong on 2017/11/28.
  */
 
-public class PublicConfig {
+public abstract class PublicConfig {
     //传过来的根content
     private Activity mActivity;
     //load error 的view
     private LinearLayout mLayoutLoading, mLayoutError;
-    private TextView mTvLoadingTitle, mTvErrorBtn;
+    private TextView mTvLoadingTitle;
 
     //是否已经有数据了
     private boolean isOneSuccess = false;
@@ -28,18 +28,20 @@ public class PublicConfig {
      * 配置的监听
      */
     private OnViewConfigListener onViewConfigListener;
-    //是否加载布局
+    //是否加载loadingOrError布局
     private boolean isOpen;
 
     /**
      * 刷新的配置
      */
+    //是否加入下拉swloading
     private boolean isRefresh = false;
     private SwipeRefreshLayout sw_loading;
     //下拉刷新包含的view
     private View contentView;
     //本体布局视图
     private View mViewContent;
+    private View loadingView, errorView;
 
     public void setmViewContent(View mViewContent) {
         this.mViewContent = mViewContent;
@@ -51,19 +53,11 @@ public class PublicConfig {
         this.isOpen = isOpen;
     }
 
-    public void initLoadOrErrorView(ViewGroup loadingViewGroup, ViewGroup errorViewGroup) {
-        if (!isOpen) {
-            return;
-        }
-        //loading
-        View loading = LayoutInflater.from(mActivity).inflate(R.layout.include_loading, loadingViewGroup);
-        //error
-        View error = LayoutInflater.from(mActivity).inflate(R.layout.include_error, errorViewGroup);
-
-        mLayoutLoading = loading.findViewById(R.id.layout_loading);
-        mTvLoadingTitle = loading.findViewById(R.id.tv_loadingTitle);
-        mLayoutError = error.findViewById(R.id.layout_error);
-        mTvErrorBtn = error.findViewById(R.id.tv_refresh);
+    public void initLoadOrErrorView() {
+        mLayoutLoading = loadingView.findViewById(R.id.layout_loading);
+        mTvLoadingTitle = loadingView.findViewById(R.id.tv_loadingTitle);
+        mLayoutError = errorView.findViewById(R.id.layout_error);
+        TextView mTvErrorBtn = errorView.findViewById(R.id.tv_refresh);
 
         //默认隐藏布局的
         hideLoadingView();
@@ -101,6 +95,9 @@ public class PublicConfig {
         }
         mLayoutError.setVisibility(View.VISIBLE);
         mLayoutLoading.setVisibility(View.GONE);
+        if (contentView != null) {
+            contentView.setVisibility(View.GONE);
+        }
         if (isRefresh) {
             sw_loading.setRefreshing(false);
         }
@@ -115,36 +112,37 @@ public class PublicConfig {
         if (!isOpen) {
             return;
         }
-        if (isRefresh) {
+        /**
+         * 有下拉刷新sw 同时 页面有数据了不是空白页面了
+         * 就启用sw自己的loading
+         */
+        if (isRefresh && isOneSuccess) {
             if (!sw_loading.isRefreshing()) {
                 sw_loading.setRefreshing(true);
             }
         } else {
+            if (contentView != null) {
+                contentView.setVisibility(View.GONE);
+            }
             mLayoutLoading.setVisibility(View.VISIBLE);
             if (!title.isEmpty()) {
                 mTvLoadingTitle.setText(title);
             }
         }
         mLayoutError.setVisibility(View.GONE);
-        //是否显示下拉刷新包含的view
-        if (contentView != null) {
-            if (isOneSuccess) {
-                contentView.setVisibility(View.VISIBLE);
-            } else {
-                contentView.setVisibility(View.GONE);
-            }
-        }
-
     }
 
 
     /**
      * 是否加入下拉swloading 加入后就会替代原来的loading
+     * rootId 必须是linearlayout
      *
-     * @param id        资源id
+     * @param id        下拉刷新view资源id
+     * @param rootId    根布局的id 会自动在这个布局后面添加loadingview 和 errorview
      * @param contentId 是内容的view 如果是第一次还没加载数据的话 这个view会隐藏 然后显示错误页面 有数据后就会显示
+     *                  只负责显示隐藏
      */
-    public void setRefresh(int id, int contentId) {
+    protected void setRefresh(int id, int rootId, int contentId) {
         isRefresh = true;
         sw_loading = mViewContent.findViewById(id);
         sw_loading.setColorSchemeColors(ContextCompat.getColor(mActivity, R.color.accent));
@@ -154,11 +152,52 @@ public class PublicConfig {
                 onViewConfigListener.onClickLoadingRefresh();
             }
         });
-
-        contentView = mViewContent.findViewById(contentId);
+        setLoadingOrErrorViewByLinearlayout(rootId, contentId);
     }
 
+    /**
+     * 在bootid 这个linearlayout的尾部添加 loading error
+     * rootId 必须是linearlayout
+     *
+     * @param rootId    根布局的id 会自动在这个布局后面添加loadingview 和 errorview
+     * @param contentId 是内容的view 如果是第一次还没加载数据的话 这个view会隐藏 然后显示错误页面 有数据后就会显示
+     *                  只负责显示隐藏
+     */
+    protected void setLoadingOrErrorViewByLinearlayout(int rootId, int contentId) {
+        contentView = mViewContent.findViewById(contentId);
+        LinearLayout linearLayout = mViewContent.findViewById(rootId);
+        loadingView = LayoutInflater.from(mActivity).inflate(R.layout.include_loading, linearLayout);
+        errorView = LayoutInflater.from(mActivity).inflate(R.layout.include_error, linearLayout);
+    }
+
+
+    /**
+     * 是否已经有数据了
+     *
+     * @param oneSuccess true 有数据
+     */
     public void setOneSuccess(boolean oneSuccess) {
         isOneSuccess = oneSuccess;
     }
+
+    /**
+     * 结束
+     */
+    public void end() {
+        if (!isOpen) {
+            return;
+        }
+        if (loadingView == null) {
+            loadingView = LayoutInflater.from(mActivity).inflate(R.layout.include_loading, getBootLoadingViewGroup());
+        }
+        if (errorView == null) {
+            errorView = LayoutInflater.from(mActivity).inflate(R.layout.include_error, getBootErrorViewGroup());
+        }
+        initLoadOrErrorView();
+    }
+
+    protected abstract ViewGroup getBootErrorViewGroup();
+
+    protected abstract ViewGroup getBootLoadingViewGroup();
+
 }
