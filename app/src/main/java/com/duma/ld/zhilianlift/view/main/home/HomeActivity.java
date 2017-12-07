@@ -10,6 +10,8 @@ import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
+import com.duma.ld.zhilianlift.util.IntentUtil;
+import com.duma.ld.zhilianlift.util.SpDataUtil;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import butterknife.BindView;
@@ -77,8 +79,13 @@ public class HomeActivity extends BaseMyActivity {
                         showHideFragment(mFragments[2]);
                         break;
                     case R.id.i_shoppingCart:
-                        showHideFragment(mFragments[3]);
-                        break;
+                        if (SpDataUtil.isLogin()) {
+                            showHideFragment(mFragments[3]);
+                            return true;
+                        } else {
+                            IntentUtil.goLogin(mActivity);
+                            return false;
+                        }
                     case R.id.i_my:
                         showHideFragment(mFragments[4]);
                         break;

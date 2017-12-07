@@ -47,4 +47,10 @@ public class SpDataUtil {
     public static String getCity() {
         return SPUtils.getInstance().getString(Constants.sp_city, defaultCity);
     }
+
+    public static boolean isLogin() {
+        return false;
+    }
+
+
 }

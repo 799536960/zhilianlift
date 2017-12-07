@@ -14,6 +14,7 @@ public class Constants {
     public static final int event_location_home = 1;
     public static final int event_location_city = 2;
     public static final int event_select_city = 3;
+    public static final int event_codeMax_success = 4;
     /**
      * intent
      */

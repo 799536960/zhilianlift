@@ -57,6 +57,12 @@
             android:name=".view.main.shopping.SearchActivity"
             android:windowSoftInputMode="stateVisible" />
         <activity android:name=".view.main.shopping.GoodsListActivity" />
+        <activity android:name=".view.login.LoginOrRegisterActivity" />
+        <activity android:name=".view.login.RegisterActivity" />
+        <activity
+            android:name=".view.login.LoginActivity"
+            android:windowSoftInputMode="stateVisible" />
+        <activity android:name=".view.login.CodeBarActivity" />
     </application>
 
 </manifest>

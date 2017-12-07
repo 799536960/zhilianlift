@@ -12,4 +12,7 @@ public class HttpUrl {
     public static String getcity = BaseUrl + "/index.php/api/index/getcity";
     public static String get_region = BaseUrl + "/index.php/api/index/get_region";
     public static String hot_keywords = BaseUrl + "/index.php/api/index/hot_keywords";
+    public static String send_validate_code = BaseUrl + "/index.php/api/User/send_validate_code";
+    public static String forgetpassword = BaseUrl + "/index.php/api/user/forgetpassword";
+    public static String reg = BaseUrl + "/index.php/api/user/reg";
 }

@@ -79,11 +79,11 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
             //前面返回的请求成功后 code==500 要读取message
             TsUtils.show(response.getException().getMessage());
             switch (response.getException().getMessage()) {
-                case "400":
+                case "100":
                     Log.e("重新登陆400");
                     break;
                 default:
-                    TsUtils.show(response.getException().getMessage());
+                    TsUtils.show("code:" + response.getException().getMessage());
                     break;
             }
         } else {
@@ -99,11 +99,11 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
     }
 
     private void loadingHide() {
+        DialogUtil.getInstance().hide();
         if (config == null) {
             return;
         }
         config.hideLoadingView();
-        DialogUtil.getInstance().hide();
     }
 
     private void loadingShow() {

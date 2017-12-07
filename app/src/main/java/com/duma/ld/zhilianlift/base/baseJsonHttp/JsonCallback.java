@@ -37,7 +37,7 @@ public abstract class JsonCallback<T> extends AbsCallback<T> {
             }
             String code = httpResModel.getStatus();
             /**
-             * 200成功 500失败 400重新登陆
+             * 200成功 100重新登陆 400读msg
              */
 //            if (code.equals("200")){
 //                return (T) httpResModel;
@@ -47,7 +47,7 @@ public abstract class JsonCallback<T> extends AbsCallback<T> {
             switch (code) {
                 case "200":
                     return (T) httpResModel;
-                case "500":
+                case "400":
                     throw new IllegalStateException(httpResModel.getMsg());
                 default:
                     throw new IllegalStateException(httpResModel.getStatus());

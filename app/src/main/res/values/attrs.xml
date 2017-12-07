@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DragSeekBarView">
+        <attr name="DragProgressBg" format="color" />
+        <attr name="DragViewBg" format="color" />
+        <attr name="DragSbBg" format="color" />
+        <attr name="DragTextColor" format="color" />
+        <attr name="DragViewDrawable" format="reference" />
+        <attr name="DragText" format="string" />
+        <attr name="DragViewWidth" format="dimension" />
+        <attr name="isCenter" format="boolean" />
+        <attr name="isAnimation" format="boolean" />
+    </declare-styleable>
+
+</resources>

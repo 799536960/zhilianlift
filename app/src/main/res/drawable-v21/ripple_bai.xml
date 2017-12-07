@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
-        <ripple android:color="@color/ripple_hui">
+        <ripple android:color="@color/primary">
             <item android:drawable="@color/white" />
         </ripple>
     </item>

@@ -24,11 +24,13 @@ import okhttp3.OkHttpClient;
 public abstract class BaseApplication extends Application {
     private static BaseApplication instance;
 
+    private String Tag = "liudong";
+
     public static BaseApplication getInstance() {
         return instance;
     }
 
-    public static final long DEFAULT_MILLISECONDS = 15000;
+    public static final long DEFAULT_MILLISECONDS = 10 * 1000;
 
     @Override
     public void onCreate() {
@@ -38,9 +40,9 @@ public abstract class BaseApplication extends Application {
          * okhttp
          */
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor("OkGo");
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(Tag);
         //log打印级别，决定了log显示的详细程度
-        loggingInterceptor.setPrintLevel(HttpLoggingInterceptor.Level.BASIC);
+        loggingInterceptor.setPrintLevel(HttpLoggingInterceptor.Level.BODY);
         //log颜色级别，决定了log在控制台显示的颜色
         loggingInterceptor.setColorLevel(Level.WARNING);
         builder.addInterceptor(loggingInterceptor);
@@ -68,7 +70,7 @@ public abstract class BaseApplication extends Application {
 //                .methodOffset(7)
                 //更改日志策略以打印输出。默认logcat的
 //                .logStrategy(customLog)
-                .tag("liudong")
+                .tag(Tag)
                 .build();
         AndroidLogAdapter adapter = new AndroidLogAdapter(formatStrategy) {
             @Override
