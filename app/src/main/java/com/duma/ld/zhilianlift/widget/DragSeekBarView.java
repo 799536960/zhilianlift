@@ -17,7 +17,6 @@ import android.widget.TextView;
 import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.baselibrary.util.ZhuanHuanUtil;
 import com.duma.ld.zhilianlift.R;
-import com.orhanobut.logger.Logger;
 
 import static com.blankj.utilcode.util.ConvertUtils.dp2px;
 
@@ -122,10 +121,10 @@ public class DragSeekBarView extends LinearLayout {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        Logger.e("w:" + w);
-        Logger.e("h:" + h);
-        Logger.e("oldw:" + oldw);
-        Logger.e("oldh:" + oldh);
+//        Logger.e("w:" + w);
+//        Logger.e("h:" + h);
+//        Logger.e("oldw:" + oldw);
+//        Logger.e("oldh:" + oldh);
     }
 
     private void initData() {

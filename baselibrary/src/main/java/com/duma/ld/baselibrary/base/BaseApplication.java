@@ -65,7 +65,7 @@ public abstract class BaseApplication extends Application {
                 //是否打印线程信息
                 .showThreadInfo(false)
                 //要显示多少个方法行。默认2
-                .methodCount(0)
+                .methodCount(1)
                 //隐藏内部方法调用直到偏移。默认5
 //                .methodOffset(7)
                 //更改日志策略以打印输出。默认logcat的
