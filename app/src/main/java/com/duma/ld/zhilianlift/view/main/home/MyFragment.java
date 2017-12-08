@@ -1,5 +1,6 @@
 package com.duma.ld.zhilianlift.view.main.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -9,6 +10,7 @@ import com.duma.ld.baselibrary.util.config.FragmentConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyFragment;
+import com.duma.ld.zhilianlift.view.main.wode.SettingActivity;
 import com.duma.ld.zhilianlift.widget.LinearImageLayout;
 
 import butterknife.BindView;
@@ -65,6 +67,7 @@ public class MyFragment extends BaseMyFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.layout_setting:
+                startActivity(new Intent(mActivity, SettingActivity.class));
                 break;
             case R.id.layout_messgae:
                 break;
