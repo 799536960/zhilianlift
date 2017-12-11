@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.duma.ld.zhilianlift.view.login.LoginOrRegisterActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.GoodsListActivity;
+import com.duma.ld.zhilianlift.view.main.wode.userdata.UserDataActivity;
 
 import static com.duma.ld.zhilianlift.util.Constants.ClassId;
 import static com.duma.ld.zhilianlift.util.Constants.Res;
@@ -33,6 +34,11 @@ public class IntentUtil {
 
     public static void goLogin(Activity activity) {
         Intent intent = new Intent(activity, LoginOrRegisterActivity.class);
+        activity.startActivity(intent);
+    }
+
+    public static void goUserData(Activity activity) {
+        Intent intent = new Intent(activity, UserDataActivity.class);
         activity.startActivity(intent);
     }
 }

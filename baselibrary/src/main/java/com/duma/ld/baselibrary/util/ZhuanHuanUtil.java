@@ -68,6 +68,9 @@ public class ZhuanHuanUtil {
     }
 
     public static String setPhoneXX(String phone) {
+        if (phone.length() != 11) {
+            return phone;
+        }
         String substring = phone.substring(3, 7);
         return phone.replace(substring, "****");
     }

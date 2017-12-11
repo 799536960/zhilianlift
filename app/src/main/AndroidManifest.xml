@@ -69,6 +69,7 @@
             android:name=".view.login.ForgetPasswordActivity"
             android:windowSoftInputMode="stateVisible" />
         <activity android:name=".view.main.wode.SettingActivity" />
+        <activity android:name=".view.main.wode.userdata.UserDataActivity" />
     </application>
 
 </manifest>

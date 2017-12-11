@@ -20,7 +20,7 @@ import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.DialogUtil;
 import com.duma.ld.zhilianlift.util.SendCodeUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
-import com.duma.ld.zhilianlift.util.UserModel;
+import com.duma.ld.zhilianlift.model.UserModel;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 

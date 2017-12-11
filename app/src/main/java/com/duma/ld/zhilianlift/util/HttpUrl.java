@@ -18,4 +18,7 @@ public class HttpUrl {
     public static String forgetpassword = BaseUrl + "/index.php/api/user/forgetpassword";
     public static String reg = BaseUrl + "/index.php/api/user/reg";
     public static String login = BaseUrl + "/index.php/api/user/login";
+    public static String userInfo = BaseUrl + "/index.php/api/user/userInfo";
+    public static String upload_headpic = BaseUrl + "/index.php/api/user/upload_headpic";
+    public static String updateUserInfo = BaseUrl + "/index.php/api/user/updateUserInfo";
 }

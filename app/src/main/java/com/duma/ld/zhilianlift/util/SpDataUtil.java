@@ -2,6 +2,7 @@ package com.duma.ld.zhilianlift.util;
 
 import com.baidu.location.BDLocation;
 import com.blankj.utilcode.util.SPUtils;
+import com.duma.ld.zhilianlift.model.UserModel;
 import com.google.gson.Gson;
 
 import static com.duma.ld.zhilianlift.util.Constants.defaultCity;
@@ -76,4 +77,59 @@ public class SpDataUtil {
         return userModel;
     }
 
+    //保存头像
+    public static void setImgHead(String url) {
+        UserModel user = getUser();
+        if (user != null) {
+            user.setHead_pic(url);
+        }
+        setUser(user);
+    }
+
+    //保存生日
+    public static void setBirthday(long time) {
+        UserModel user = getUser();
+        if (user != null) {
+            user.setBirthday(time);
+        }
+        setUser(user);
+    }
+
+    //保存性别
+    public static void setSex(int sex) {
+        UserModel user = getUser();
+        if (user != null) {
+            user.setSex(sex);
+        }
+        setUser(user);
+    }
+
+    //保存昵称
+    public static void setNiceName(String niceName) {
+        UserModel user = getUser();
+        if (user != null) {
+            user.setNickname(niceName);
+        }
+        setUser(user);
+    }
+
+    public static String getToken() {
+        UserModel user = getUser();
+        if (user == null || user.getToken() == null || user.getToken().isEmpty()) {
+            removeUser();
+            return "";
+        } else {
+            return user.getToken();
+        }
+    }
+
+    public static long getUserId() {
+        UserModel user = getUser();
+        if (user == null) {
+            removeUser();
+            return 0;
+        } else {
+            return user.getUser_id();
+        }
+    }
 }

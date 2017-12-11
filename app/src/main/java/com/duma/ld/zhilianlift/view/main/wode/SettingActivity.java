@@ -15,6 +15,7 @@ import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseAdapter.BaseAdapter;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
+import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
 
 import java.util.ArrayList;
@@ -53,7 +54,30 @@ public class SettingActivity extends BaseMyActivity {
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-
+                switch (position) {
+                    case 0:
+                        //个人资料
+                        IntentUtil.goUserData(mActivity);
+                        break;
+                    case 1:
+                        //实名认证
+                        break;
+                    case 2:
+                        //地址管理
+                        break;
+                    case 3:
+                        //账户与安全
+                        break;
+                    case 4:
+                        //建议反馈
+                        break;
+                    case 5:
+                        //清理缓存
+                        break;
+                    case 6:
+                        //关于我们
+                        break;
+                }
             }
         });
         tvList.setLayoutManager(new LinearLayoutManager(mActivity));

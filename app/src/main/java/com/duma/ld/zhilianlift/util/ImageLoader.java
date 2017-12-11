@@ -12,10 +12,16 @@ import com.duma.ld.zhilianlift.base.MyApplication;
  * Created by 79953 on 2016/7/29.
  */
 public class ImageLoader {
-    public static void with(Context context, String url, ImageView imageView) {
-        if (url != null && !url.contains("http")) {
-            url = HttpUrl.BaseUrl + url;
+    public static void with(Context context, Object url, ImageView imageView) {
+        if (url == null) {
+            return;
         }
+        if (url instanceof String) {
+            if (!((String) url).contains("http")) {
+                url = HttpUrl.BaseUrl + url;
+            }
+        }
+
         RequestOptions options = new RequestOptions();
         //options.placeholder(loadingRes)//加载中图片
         //options.error(errorRes)//加载错误的图片
@@ -27,7 +33,30 @@ public class ImageLoader {
                 .into(imageView);
     }
 
-    public static void with(String url, ImageView imageView) {
+    public static void with(Object url, ImageView imageView) {
         with(MyApplication.getInstance(), url, imageView);
+    }
+
+    public static void with_head(Context context, Object url, ImageView imageView) {
+        if (url == null) {
+            return;
+        }
+        if (url instanceof String) {
+            if (!((String) url).contains("http")) {
+                url = HttpUrl.BaseUrl + url;
+            }
+        }
+        RequestOptions options = new RequestOptions();
+        //options.placeholder(loadingRes)//加载中图片
+        options.error(R.drawable.img_60);//或者是个颜色值
+        options.circleCrop();
+        Glide.with(context)
+                .load(url)
+                .apply(options)
+                .into(imageView);
+    }
+
+    public static void with_head(Object url, ImageView imageView) {
+        with_head(MyApplication.getInstance(), url, imageView);
     }
 }

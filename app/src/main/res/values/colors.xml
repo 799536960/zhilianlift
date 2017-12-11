@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="hong">#fe2643</color>
+    <color name="primary_hong">#fe2643</color>
+    <color name="main_hong">#da3147</color>
     <color name="hui_bg">#f1f2f6</color>
     <color name="hui1">#a1a1a1</color>
     <color name="hui2">#999999</color>
@@ -10,8 +12,7 @@
 
     <color name="hei1">#222222</color>
     <color name="hei2">#666666</color>
-    <color name="hei3">#333333</color>
+    <color name="hei3">#222222</color>
     <color name="hei4">#6f6f6f</color>
-    <color name="primary_hong">#fe2643</color>
-    <color name="main_hong">#da3147</color>
+
 </resources>

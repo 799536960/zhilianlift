@@ -17,8 +17,8 @@ import com.duma.ld.zhilianlift.R;
  */
 
 public class LinearImageLayout extends LinearLayout {
-    private TextView tv_name, tv_number;
-    private ImageView img_icon;
+    private TextView view_tv_name, view_tv_number;
+    private ImageView view_img_icon;
     private Drawable imgDrawable;
     private String tvString;
     private float padding;
@@ -36,9 +36,9 @@ public class LinearImageLayout extends LinearLayout {
         super(context, attrs, defStyleAttr);
         View.inflate(context, R.layout.view_layout_image, this);
 
-        tv_name = findViewById(R.id.tv_name);
-        tv_number = findViewById(R.id.tv_number);
-        img_icon = findViewById(R.id.img_icon);
+        view_tv_name = findViewById(R.id.view_tv_name);
+        view_tv_number = findViewById(R.id.view_tv_number);
+        view_img_icon = findViewById(R.id.view_img_icon);
 
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.LinearImageLayout);
         imgDrawable = a.getDrawable(R.styleable.LinearImageLayout_LiIcon);
@@ -51,20 +51,21 @@ public class LinearImageLayout extends LinearLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        img_icon.setImageDrawable(imgDrawable);
+        view_img_icon.setImageDrawable(imgDrawable);
         if (tvString == null || tvString.isEmpty()) {
-            tv_name.setVisibility(GONE);
+            view_tv_name.setVisibility(GONE);
         }
-        tv_name.setText(tvString);
-        tv_name.setPadding(0, 0, 0, (int) padding);
+        view_tv_name.setText(tvString);
+        view_tv_name.setPadding(0, 0, 0, (int) padding);
         setNum(Num + "");
     }
 
     public void setNum(String num) {
         if (num == null || num.isEmpty() || num.equals("0")) {
-            tv_number.setVisibility(GONE);
+            view_tv_number.setVisibility(GONE);
         } else {
-            tv_number.setText(num);
+            view_tv_number.setVisibility(VISIBLE);
+            view_tv_number.setText(num);
         }
     }
 

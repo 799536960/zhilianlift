@@ -89,9 +89,13 @@ dependencies {
     //轮播
     implementation 'com.bigkoo:convenientbanner:2.0.5'
     //选择城市索引
-    compile 'me.yokeyword:indexablerecyclerview:1.3.0'
+    implementation 'me.yokeyword:indexablerecyclerview:1.3.0'
     //可伸缩布局
-    compile 'com.google.android:flexbox:0.3.1'
+    implementation 'com.google.android:flexbox:0.3.1'
     //数据库
-    compile 'org.litepal.android:core:1.6.0'
+    implementation 'org.litepal.android:core:1.6.0'
+    //图片拍照选择器
+    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.1.7'
+    //时间选择器
+    implementation 'com.contrarywind:Android-PickerView:3.2.7'
 }

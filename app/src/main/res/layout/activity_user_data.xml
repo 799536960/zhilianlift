@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/hui_bg"
+    android:orientation="vertical">
+
+    <View style="@style/henxian" />
+
+    <LinearLayout
+        android:id="@+id/layout_icon"
+        style="@style/layout_userdata_padding"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="@drawable/ripple_bai"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="头像" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/img_icon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@mipmap/ic_launcher_round" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/jiantou_r" />
+    </LinearLayout>
+
+    <View style="@style/henxian" />
+
+    <LinearLayout
+        style="@style/layout_userdata_padding"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="用户名" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="188888888"
+            android:textColor="@color/hui2" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/jiantou_r"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <View style="@style/henxian" />
+
+    <LinearLayout
+        android:id="@+id/layout_name"
+        style="@style/layout_userdata_padding"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@drawable/ripple_bai"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="昵称" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_Nick_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="牛奶"
+            android:textColor="@color/hui2" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/jiantou_r" />
+    </LinearLayout>
+
+    <View style="@style/henxian" />
+
+    <LinearLayout
+        android:id="@+id/layout_sex"
+        style="@style/layout_userdata_padding"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@drawable/ripple_bai"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="性别" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="保密"
+            android:textColor="@color/hui2" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/jiantou_r" />
+    </LinearLayout>
+
+    <View style="@style/henxian" />
+
+    <LinearLayout
+        android:id="@+id/layout_birthday"
+        style="@style/layout_userdata_padding"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@drawable/ripple_bai"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="出生日期" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_birthday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2014年1月1日"
+            android:textColor="@color/hui2" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/jiantou_r" />
+    </LinearLayout>
+</LinearLayout>

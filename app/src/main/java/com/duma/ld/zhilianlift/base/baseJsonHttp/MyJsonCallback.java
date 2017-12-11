@@ -4,7 +4,9 @@ import com.duma.ld.baselibrary.util.Log;
 import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.baselibrary.util.config.PublicConfig;
 import com.duma.ld.zhilianlift.util.DialogUtil;
+import com.duma.ld.zhilianlift.util.SpDataUtil;
 import com.google.gson.Gson;
+import com.lzy.okgo.model.HttpParams;
 import com.lzy.okgo.model.Response;
 import com.lzy.okgo.request.base.Request;
 import com.orhanobut.logger.Logger;
@@ -22,6 +24,9 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
     @Override
     public void onStart(Request<T, ? extends Request> request) {
         loadingShow();
+        HttpParams params = request.getParams();
+        params.put("token", SpDataUtil.getToken());
+        params.put("user_id", SpDataUtil.getUserId());
     }
 
     public MyJsonCallback() {
@@ -51,7 +56,7 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
     }
 
     private void httpSuccess(Response<T> response) {
-        Logger.json(new Gson().toJson(response.body()));
+        Logger.d(new Gson().toJson(response.body()));
         if (config != null) {
             config.setOneSuccess(true);
         }
