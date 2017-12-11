@@ -102,7 +102,11 @@ public class MyFragment extends BaseMyFragment {
         swLoading.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                getUserDataHttp();
+                if (SpDataUtil.isLogin()) {
+                    getUserDataHttp();
+                } else {
+                    swLoading.setRefreshing(false);
+                }
             }
         });
     }

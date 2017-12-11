@@ -104,7 +104,10 @@ public class UserDataActivity extends BaseMyActivity {
                 }
 
             }
-        }).build();
+        })
+                .setSubmitColor(ZhuanHuanUtil.getColor(R.color.primary_hong))
+                .setCancelColor(ZhuanHuanUtil.getColor(R.color.primary_hong))
+                .build();
         optionsPickerView.setNPicker(stringList, null, null);
         niChenDialog = new XiuGaiNiChengDialog(mActivity);
         niChenDialog.setClicklistener(new XiuGaiNiChengDialog.ClickListenerInterface() {
