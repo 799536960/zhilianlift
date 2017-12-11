@@ -64,6 +64,7 @@ public class SettingActivity extends BaseMyActivity {
                         break;
                     case 2:
                         //地址管理
+                        IntentUtil.goAddresList(mActivity);
                         break;
                     case 3:
                         //账户与安全

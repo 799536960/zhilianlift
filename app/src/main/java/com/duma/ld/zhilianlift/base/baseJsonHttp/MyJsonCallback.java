@@ -85,7 +85,7 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
             TsUtils.show(response.getException().getMessage());
             switch (response.getException().getMessage()) {
                 case "100":
-                    Log.e("重新登陆400");
+                    TsUtils.show("登录已失效!请重新登录");
                     break;
                 default:
                     TsUtils.show("" + response.getException().getMessage());
