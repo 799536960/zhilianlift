@@ -89,7 +89,7 @@ public class HomeFragment extends BaseMyFragment {
 
     @Override
     protected FragmentConfig setFragmentConfig(Bundle savedInstanceState, InitConfig initConfig) {
-        return initConfig.setLayoutIdByFragment(R.layout.fragment_home).setRefreshByFragment(R.id.sw_loading, R.id.layout_root, R.id.sw_loading);
+        return initConfig.setLayoutIdByFragment(R.layout.fragment_home).setRefresh_f(R.id.sw_loading, R.id.layout_root, R.id.sw_loading);
     }
 
     @Override

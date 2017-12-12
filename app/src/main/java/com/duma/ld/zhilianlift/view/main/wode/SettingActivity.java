@@ -39,7 +39,7 @@ public class SettingActivity extends BaseMyActivity {
 
     @Override
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig) {
-        return initConfig.setLayoutIdByActivity(R.layout.activity_setting, false).setTopBar("账户设置");
+        return initConfig.setLayoutIdByActivity(R.layout.activity_setting, false).setTopBar_A("账户设置");
     }
 
     @Override

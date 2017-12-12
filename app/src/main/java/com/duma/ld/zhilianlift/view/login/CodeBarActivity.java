@@ -22,7 +22,7 @@ public class CodeBarActivity extends BaseMyActivity {
 
     @Override
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig) {
-        return initConfig.setLayoutIdByActivity(R.layout.activity_codebar, false).setTopBar("仿盗刷校验");
+        return initConfig.setLayoutIdByActivity(R.layout.activity_codebar, false).setTopBar_A("仿盗刷校验");
     }
 
     @Override

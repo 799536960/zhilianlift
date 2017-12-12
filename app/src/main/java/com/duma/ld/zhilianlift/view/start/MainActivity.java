@@ -25,7 +25,7 @@ public class MainActivity extends BaseMyActivity {
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig) {
         return initConfig
                 .setLayoutIdByActivity(R.layout.activity_main)
-                .setTopBar("首页", new OnTopBarLeftListener() {
+                .setTopBar_A("首页", new OnTopBarLeftListener() {
                     @Override
                     public void onClick() {
                         TsUtils.show("点击返回键");

@@ -58,7 +58,7 @@ public class RegisterActivity extends BaseMyActivity {
 
     @Override
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig) {
-        return initConfig.setLayoutIdByActivity(R.layout.activity_register, false).setTopBar("注册");
+        return initConfig.setLayoutIdByActivity(R.layout.activity_register, false).setTopBar_A("注册");
     }
 
     @Override

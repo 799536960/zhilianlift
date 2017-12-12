@@ -52,7 +52,7 @@ public class ClassFragment extends BaseMyFragment {
 
     @Override
     protected FragmentConfig setFragmentConfig(Bundle savedInstanceState, InitConfig initConfig) {
-        return initConfig.setLayoutIdByFragment(R.layout.fragment_class).setLoadingOrErrorViewByFragmen(R.id.layout_root, R.id.layout_class);
+        return initConfig.setLayoutIdByFragment(R.layout.fragment_class).setLoadingOrErrorView_f(R.id.layout_root, R.id.layout_class);
     }
 
     @Override

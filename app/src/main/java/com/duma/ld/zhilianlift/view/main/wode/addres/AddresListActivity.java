@@ -28,7 +28,7 @@ public class AddresListActivity extends BaseMyActivity {
 
     @Override
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig) {
-        return initConfig.setLayoutIdByActivity(R.layout.activity_addres_list).setTopBar("地址管理");
+        return initConfig.setLayoutIdByActivity(R.layout.activity_addres_list).setTopBar_A("地址管理");
     }
 
 

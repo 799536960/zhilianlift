@@ -23,7 +23,7 @@ public class GoodsListActivity extends BaseMyActivity {
 
     @Override
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig) {
-        return initConfig.setLayoutIdByActivity(R.layout.activity_goodslist).setTopBar(null);
+        return initConfig.setLayoutIdByActivity(R.layout.activity_goodslist).setTopBar_A(null);
     }
 
     @Override

@@ -1,10 +1,12 @@
 package com.duma.ld.zhilianlift.view.main.wode.addres;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.duma.ld.baselibrary.util.Log;
 import com.duma.ld.baselibrary.util.config.FragmentConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
@@ -29,8 +31,8 @@ public class SelectAddresFragment extends BaseMyFragment {
 
     @BindView(R.id.tv_list)
     RecyclerView tvList;
-    private String url;
 
+    private String url;
     private BaseAdapter<ProvinceModel> adapter;
 
     public static SelectAddresFragment newInstance(String url) {
@@ -53,14 +55,20 @@ public class SelectAddresFragment extends BaseMyFragment {
     @Override
     protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
+        Log.e("SelectAddresFragment");
         adapter = new BaseAdapter<ProvinceModel>(R.layout.adapter_select_addres) {
             @Override
             protected void convert(BaseViewHolder helper, ProvinceModel item) {
-
+                helper.setText(R.id.tv_name, item.getName());
             }
         };
         tvList.setLayoutManager(new LinearLayoutManager(mActivity));
         tvList.setAdapter(adapter);
+    }
+
+    @Override
+    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
         onClickLoadingRefresh();
     }
 

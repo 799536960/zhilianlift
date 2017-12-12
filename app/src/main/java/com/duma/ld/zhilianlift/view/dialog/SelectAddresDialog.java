@@ -1,50 +1,57 @@
 package com.duma.ld.zhilianlift.view.dialog;
 
-import android.support.annotation.NonNull;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.view.View;
 import android.widget.FrameLayout;
 
-import com.duma.ld.baselibrary.base.BaseActivity;
+import com.duma.ld.baselibrary.util.Log;
+import com.duma.ld.baselibrary.util.config.FragmentConfig;
+import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.Adapter.MyViewPagerAdapter;
 import com.duma.ld.zhilianlift.R;
-import com.duma.ld.zhilianlift.base.baseView.BaseDownDialog;
+import com.duma.ld.zhilianlift.base.baseView.BaseMyFragment;
 import com.duma.ld.zhilianlift.view.main.wode.addres.SelectAddresFragment;
+
+import butterknife.BindView;
+import butterknife.OnClick;
+
+import static com.duma.ld.zhilianlift.util.HttpUrl.getprovince;
 
 /**
  * Created by liudong on 2017/12/12.
  */
 
-public class SelectAddresDialog extends BaseDownDialog {
-    private FrameLayout layout_back;
-    private TabLayout tabLayout_addres;
-    private ViewPager viewPager_addres;
+public class SelectAddresDialog extends BaseMyFragment {
+    @BindView(R.id.layout_back)
+    FrameLayout layoutBack;
+    @BindView(R.id.tabLayout)
+    TabLayout tabLayout;
+    @BindView(R.id.viewPager)
+    ViewPager viewPager;
 
-    public SelectAddresDialog(@NonNull BaseActivity context) {
-        super(context);
+    @Override
+    protected FragmentConfig setFragmentConfig(Bundle savedInstanceState, InitConfig initConfig) {
+        return initConfig.setLayoutIdByFragment(R.layout.dialog_select_addres, false);
+    }
+
+    @OnClick(R.id.layout_back)
+    public void onViewClicked() {
+        MyViewPagerAdapter viewPagerAdapter = new MyViewPagerAdapter(mActivity.getSupportFragmentManager());
+        viewPagerAdapter.addFragment(SelectAddresFragment.newInstance(getprovince), "请选择1");
+        viewPagerAdapter.addFragment(SelectAddresFragment.newInstance(getprovince), "请选择2");
+        viewPagerAdapter.addFragment(SelectAddresFragment.newInstance(getprovince), "请选择3");
+        viewPager.setAdapter(viewPagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     @Override
-    protected void initView() {
-        layout_back = findViewById(R.id.layout_back);
-        tabLayout_addres = findViewById(R.id.tabLayout_addres);
-        viewPager_addres = findViewById(R.id.viewPager_addres);
-        layout_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dismiss();
-            }
-        });
-
-        MyViewPagerAdapter viewPagerAdapter = new MyViewPagerAdapter(mBaseActivity.getSupportFragmentManager());
-        viewPagerAdapter.addFragment(new SelectAddresFragment(), "抢车位");
-        viewPager_addres.setAdapter(viewPagerAdapter);
-        tabLayout_addres.setupWithViewPager(viewPager_addres);
-    }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.dialog_select_addres;
+    protected void init(Bundle savedInstanceState) {
+        super.init(savedInstanceState);
+        Log.e("SelectAddresDialog");
+        MyViewPagerAdapter viewPagerAdapter = new MyViewPagerAdapter(this.getChildFragmentManager());
+        viewPagerAdapter.addFragment(SelectAddresFragment.newInstance(getprovince), "请选择");
+        viewPager.setAdapter(viewPagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
     }
 }

@@ -67,7 +67,7 @@ public class UserDataActivity extends BaseMyActivity {
 
     @Override
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig) {
-        return initConfig.setLayoutIdByActivity(R.layout.activity_user_data, false).setTopBar("个人资料");
+        return initConfig.setLayoutIdByActivity(R.layout.activity_user_data, false).setTopBar_A("个人资料");
     }
 
     @Override

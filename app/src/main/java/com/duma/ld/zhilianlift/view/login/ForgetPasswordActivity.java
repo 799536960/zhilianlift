@@ -56,7 +56,7 @@ public class ForgetPasswordActivity extends BaseMyActivity {
 
     @Override
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig) {
-        return initConfig.setLayoutIdByActivity(R.layout.activity_forget_password, false).setTopBar("重设密码");
+        return initConfig.setLayoutIdByActivity(R.layout.activity_forget_password, false).setTopBar_A("重设密码");
     }
 
     @Override
