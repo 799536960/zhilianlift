@@ -28,4 +28,16 @@
         <item name="android:paddingRight">4dp</item>
         <item name="android:textSize">14sp</item>
     </style>
+
+    <style name="PopupDialog" parent="android:Theme.Dialog">
+        <item name="android:windowAnimationStyle">@style/AnimBottom</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+
+    <style name="AnimBottom" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/push_buttom_out</item>
+    </style>
 </resources>

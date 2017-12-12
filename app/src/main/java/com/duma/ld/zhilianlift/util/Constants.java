@@ -24,6 +24,7 @@ public class Constants {
     public static final String Res = "Res";
     public static final String ClassId = "ClassId";
     public static final String SearchString = "SearchString";
+    public static final String Url = "Url";
     /**
      * sp
      */

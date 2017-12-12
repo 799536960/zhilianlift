@@ -1,5 +1,6 @@
 package com.duma.ld.zhilianlift.view.main.wode.addres;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
@@ -33,5 +34,6 @@ public class AddresListActivity extends BaseMyActivity {
 
     @OnClick(R.id.tv_addres)
     public void onViewClicked() {
+        startActivity(new Intent(mActivity, AddOrChangeActivity.class));
     }
 }

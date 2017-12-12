@@ -54,4 +54,16 @@ public class IntentUtil {
         Intent intent = new Intent(activity, AddresListActivity.class);
         activity.startActivity(intent);
     }
+
+    public static void goAdd_Addres(Activity activity) {
+    }
+
+    public static void goChange_Addres(Activity activity) {
+    }
+
+    private static void goAddOrChange(Activity activity, String type) {
+        Intent intent = new Intent(activity, GoodsListActivity.class);
+        intent.putExtra(Type, type);
+        activity.startActivity(intent);
+    }
 }

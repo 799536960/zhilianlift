@@ -71,6 +71,7 @@
         <activity android:name=".view.main.wode.SettingActivity" />
         <activity android:name=".view.main.wode.userdata.UserDataActivity" />
         <activity android:name=".view.main.wode.addres.AddresListActivity" />
+        <activity android:name=".view.main.wode.addres.AddOrChangeActivity" />
     </application>
 
 </manifest>
