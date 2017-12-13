@@ -15,6 +15,11 @@ public class Constants {
     public static final int event_location_city = 2;
     public static final int event_select_city = 3;
     public static final int event_codeMax_success = 4;
+    //更新收货地址的viewpager
+    public static final int event_addres_refresh = 5;
+    //添加收货地址的地区选择
+    public static final int event_addres_add = 6;
+
     /**
      * intent
      */
@@ -35,7 +40,6 @@ public class Constants {
     public static final String sp_street = "sp_street";//获取街道信息
     public static final String sp_latitude = "sp_latitude"; //获取纬度信息
     public static final String sp_longitude = "sp_longitude"; //获取经度信息
-
     public static final String sp_User = "sp_User"; //用户信息
 
     /**

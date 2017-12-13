@@ -1,10 +1,12 @@
 package com.duma.ld.zhilianlift.model;
 
+import java.io.Serializable;
+
 /**
  * Created by liudong on 2017/12/12.
  */
 
-public class ProvinceModel {
+public class ProvinceModel implements Serializable{
 
     /**
      * id : 1
