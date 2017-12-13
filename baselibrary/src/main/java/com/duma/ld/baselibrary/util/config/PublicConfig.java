@@ -139,7 +139,7 @@ public abstract class PublicConfig {
 
     /**
      * 是否加入下拉swloading 加入后就会替代原来的loading
-     * rootId 必须是linearlayout
+     * rootId 必须是ViewGroup
      *
      * @param id        下拉刷新view资源id
      * @param rootId    根布局的id 会自动在这个布局后面添加loadingview 和 errorview
@@ -161,7 +161,7 @@ public abstract class PublicConfig {
 
     /**
      * 在bootid 这个linearlayout的尾部添加 loading error
-     * rootId 必须是linearlayout
+     * rootId 必须是ViewGroup
      *
      * @param rootId    根布局的id 会自动在这个布局后面添加loadingview 和 errorview
      * @param contentId 是内容的view 如果是第一次还没加载数据的话 这个view会隐藏 然后显示错误页面 有数据后就会显示
@@ -169,9 +169,9 @@ public abstract class PublicConfig {
      */
     protected void setLoadingOrErrorViewByLinearlayout(int rootId, int contentId) {
         contentView = getBootContentViewGroup().findViewById(contentId);
-        LinearLayout linearLayout = getBootContentViewGroup().findViewById(rootId);
-        loadingView = LayoutInflater.from(mActivity).inflate(R.layout.include_loading, linearLayout);
-        errorView = LayoutInflater.from(mActivity).inflate(R.layout.include_error, linearLayout);
+        ViewGroup viewGroup = getBootContentViewGroup().findViewById(rootId);
+        loadingView = LayoutInflater.from(mActivity).inflate(R.layout.include_loading, viewGroup);
+        errorView = LayoutInflater.from(mActivity).inflate(R.layout.include_error, viewGroup);
     }
 
     /**
@@ -295,4 +295,7 @@ public abstract class PublicConfig {
         return this;
     }
 
+    public boolean isOneSuccess() {
+        return isOneSuccess;
+    }
 }

@@ -3,8 +3,10 @@ package com.duma.ld.zhilianlift.util;
 import android.app.Activity;
 import android.content.Intent;
 
+import com.duma.ld.zhilianlift.model.AddresModel;
 import com.duma.ld.zhilianlift.view.login.LoginOrRegisterActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.GoodsListActivity;
+import com.duma.ld.zhilianlift.view.main.wode.addres.AddOrChangeActivity;
 import com.duma.ld.zhilianlift.view.main.wode.addres.AddresListActivity;
 import com.duma.ld.zhilianlift.view.main.wode.userdata.UserDataActivity;
 
@@ -56,14 +58,12 @@ public class IntentUtil {
     }
 
     public static void goAdd_Addres(Activity activity) {
+        goAddOrChange(activity, null);
     }
 
-    public static void goChange_Addres(Activity activity) {
-    }
-
-    private static void goAddOrChange(Activity activity, String type) {
-        Intent intent = new Intent(activity, GoodsListActivity.class);
-        intent.putExtra(Type, type);
+    public static void goAddOrChange(Activity activity, AddresModel model) {
+        Intent intent = new Intent(activity, AddOrChangeActivity.class);
+        intent.putExtra(Constants.Model, model);
         activity.startActivity(intent);
     }
 }

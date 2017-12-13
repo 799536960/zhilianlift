@@ -30,6 +30,7 @@ public class ActivityConfig extends PublicConfig {
         mViewContent = LayoutInflater.from(mActivity).inflate(layoutResID, (FrameLayout) mActivity.findViewById(R.id.layout_boot_content));
     }
 
+    //---------------------------------------------------------------------------------------------------------
     public ActivityConfig setTopBar_A(String name) {
         setTopBar(name);
         return this;
@@ -40,6 +41,17 @@ public class ActivityConfig extends PublicConfig {
         return this;
     }
 
+    public ActivityConfig setRefresh_A(int id, int rootId, int contentId) {
+        setRefresh(id, rootId, contentId);
+        return this;
+    }
+
+    public ActivityConfig setLoadingOrErrorView_A(int rootId, int contentId) {
+        setLoadingOrErrorViewByLinearlayout(rootId, contentId);
+        return this;
+    }
+
+    //---------------------------------------------------------------------------------------------------------
     @Override
     protected ViewGroup getBootErrorViewGroup() {
         return (FrameLayout) mActivity.findViewById(R.id.layout_boot_error);

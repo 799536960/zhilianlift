@@ -3,6 +3,7 @@ package com.duma.ld.zhilianlift.base.baseJsonHttp;
 import com.duma.ld.baselibrary.util.Log;
 import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.baselibrary.util.config.PublicConfig;
+import com.duma.ld.zhilianlift.base.baseAdapter.BaseAdapter;
 import com.duma.ld.zhilianlift.util.DialogUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
 import com.google.gson.Gson;
@@ -19,6 +20,9 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
     private PublicConfig config;
     private boolean successIsHideLoading;
     private boolean isOpenCache;
+
+    //分页的适配器
+    private BaseAdapter adapter;
 
 
     @Override
@@ -40,6 +44,11 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
         this.config = config;
         this.successIsHideLoading = successIsHideLoading;
         isOpenCache = false;
+    }
+
+    public MyJsonCallback<T> setLoadAdapter(BaseAdapter adapter) {
+        this.adapter = adapter;
+        return this;
     }
 
     @Override
@@ -100,7 +109,11 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
         if (config == null) {
             return;
         }
+        if (adapter != null) {
+            adapter.loadMoreFail();
+        }
         config.showErrorView();
+
     }
 
     private void loadingHide() {
@@ -115,7 +128,13 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
         if (config == null) {
             return;
         }
-        config.showLoadingView();
+        if (adapter != null && config.isOneSuccess()) {
+            //在分页中 如果有数据了 分页会有自己的loading
+
+        } else {
+            config.showLoadingView();
+        }
+
     }
 
     protected abstract void onJsonSuccess(Response<T> respons, T t);

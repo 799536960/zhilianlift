@@ -5,6 +5,8 @@ package com.duma.ld.zhilianlift.util;
  */
 
 public class Constants {
+    public static final String Page = "p";
+
     //默认城市
     public static final String defaultCity = "湖州市";
     public static final String locationString = "加载中..";
@@ -30,6 +32,7 @@ public class Constants {
     public static final String ClassId = "ClassId";
     public static final String SearchString = "SearchString";
     public static final String Url = "Url";
+    public static final String Model = "model";
     /**
      * sp
      */

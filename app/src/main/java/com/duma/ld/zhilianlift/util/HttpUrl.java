@@ -22,4 +22,6 @@ public class HttpUrl {
     public static String upload_headpic = BaseUrl + "/index.php/api/user/upload_headpic";
     public static String updateUserInfo = BaseUrl + "/index.php/api/user/updateUserInfo";
     public static String getprovince = BaseUrl + "/index.php/api/index/getprovince";
+    public static String addAddress = BaseUrl + "/index.php/api/user/addAddress";
+    public static String getAddressList = BaseUrl + "/index.php/api/user/getAddressList";
 }

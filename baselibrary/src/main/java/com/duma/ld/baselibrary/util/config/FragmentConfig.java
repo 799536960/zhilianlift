@@ -27,6 +27,7 @@ public class FragmentConfig extends PublicConfig {
         mViewContent = LayoutInflater.from(activity).inflate(layoutResID, (FrameLayout) rootView.findViewById(R.id.layout_boot_content));
     }
 
+    //---------------------------------------------------------------------------------------------------------
     public FragmentConfig setRefresh_f(int id, int rootId, int contentId) {
         setRefresh(id, rootId, contentId);
         return this;
@@ -42,7 +43,7 @@ public class FragmentConfig extends PublicConfig {
         return this;
     }
 
-
+    //---------------------------------------------------------------------------------------------------------
     @Override
     protected ViewGroup getBootErrorViewGroup() {
         return (FrameLayout) mRootView.findViewById(R.id.layout_boot_error);
