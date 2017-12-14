@@ -28,4 +28,5 @@ public class HttpUrl {
     public static String setDefaultAddress = BaseUrl + "/index.php/api/user/setDefaultAddress";
     public static String getcertification = BaseUrl + "/index.php/api/user/getcertification";
     public static String check_sms = BaseUrl + "/index.php/api/user/check_sms";
+    public static String certification = BaseUrl + "/index.php/api/user/certification";
 }

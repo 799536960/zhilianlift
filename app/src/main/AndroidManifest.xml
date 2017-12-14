@@ -72,8 +72,12 @@
         <activity android:name=".view.main.wode.UserDataActivity" />
         <activity android:name=".view.main.wode.addres.AddresListActivity" />
         <activity android:name=".view.main.wode.addres.AddOrChangeActivity" />
-        <activity android:name=".view.main.wode.realName.RealNameEditActivity" />
+        <activity
+            android:name=".view.main.wode.realName.RealNameEditActivity"
+            android:windowSoftInputMode="stateVisible" />
         <activity android:name=".view.main.wode.VerifyPhoneActivity" />
+        <activity android:name=".view.main.wode.realName.RealNameSendSuccessActivity" />
+        <activity android:name=".view.main.wode.realName.RealNameMainActivity" />
     </application>
 
 </manifest>

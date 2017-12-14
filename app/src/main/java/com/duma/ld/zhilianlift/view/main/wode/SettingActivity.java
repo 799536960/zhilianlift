@@ -1,6 +1,7 @@
 package com.duma.ld.zhilianlift.view.main.wode;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,6 +23,8 @@ import com.duma.ld.zhilianlift.util.DialogUtil;
 import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.PublicUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
+import com.duma.ld.zhilianlift.view.main.wode.realName.RealNameMainActivity;
+import com.duma.ld.zhilianlift.view.main.wode.realName.RealNameSendSuccessActivity;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 
@@ -111,8 +114,10 @@ public class SettingActivity extends BaseMyActivity {
 //                        certification_is = 3  //没有提交实名信息
                         switch (realNameModelHttpResModel.getResult().getCertification_is()) {
                             case 0:
+                                startActivity(new Intent(mActivity, RealNameSendSuccessActivity.class));
                                 break;
                             case 1:
+                                startActivity(new Intent(mActivity, RealNameMainActivity.class));
                                 break;
                             case 2:
                                 break;

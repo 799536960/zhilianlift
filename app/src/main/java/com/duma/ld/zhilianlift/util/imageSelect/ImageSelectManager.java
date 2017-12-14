@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -14,11 +13,13 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.duma.ld.baselibrary.util.ZhuanHuanUtil;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.util.ImageLoader;
+import com.luck.picture.lib.PictureSelectionModel;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,8 +45,14 @@ public class ImageSelectManager implements PaiZhaoDialog.ClickListenerInterface 
     //---------------------------------
     //当前选中的图片
     private List<LocalMedia> mList;
-
     private PaiZhaoDialog mDialog;
+    private OnSelectFileListener onSelectFileListener;
+    private int code;
+    private boolean isSave;
+
+    public void setOnSelectFileListener(OnSelectFileListener onSelectFileListener) {
+        this.onSelectFileListener = onSelectFileListener;
+    }
 
     public static ImageSelectManager create(Activity mActivity) {
         return new ImageSelectManager(mActivity);
@@ -56,6 +63,7 @@ public class ImageSelectManager implements PaiZhaoDialog.ClickListenerInterface 
         mList = new ArrayList<>();
         mDialog = new PaiZhaoDialog(mActivity);
         mDialog.setClicklistener(this);
+        isSave = true;
     }
 
 
@@ -148,7 +156,6 @@ public class ImageSelectManager implements PaiZhaoDialog.ClickListenerInterface 
                 case PictureConfig.CHOOSE_REQUEST:
                     // 图片选择结果回调
                     mList = PictureSelector.obtainMultipleResult(data);
-                    Log.e("11", "onActivityResult: " + mList.toString());
                     // 例如 LocalMedia 里面返回三种path
                     // 1.media.getPath(); 为原图path
                     // 2.media.getCutPath();为裁剪后path，需判断media.isCut();是否为true
@@ -157,32 +164,58 @@ public class ImageSelectManager implements PaiZhaoDialog.ClickListenerInterface 
                     if (mAdapter != null) {
                         adapterRefresh();
                     }
+                    if (onSelectFileListener != null) {
+                        File file = null;
+                        if (getmList() != null && getmList().size() > 0) {
+                            if (getmList().get(0).isCompressed() || (getmList().get(0).isCut() && getmList().get(0).isCompressed())) {
+                                file = new File(getmList().get(0).getCompressPath());
+                            } else {
+                                file = new File(getmList().get(0).getPath());
+                            }
+                        }
+                        onSelectFileListener.getFile(file, code);
+                    }
                     break;
             }
         }
     }
 
     private void openGallery() {
-        PictureSelector.create(mActivity)
+        PictureSelectionModel pictureSelectionModel = PictureSelector.create(mActivity)
                 .openGallery(PictureMimeType.ofImage())
                 .maxSelectNum(maxNum)
                 .compress(isCompress)
-                .minimumCompressSize(100)
-                .selectionMedia(mList)
-                .forResult(PictureConfig.CHOOSE_REQUEST);
+                .minimumCompressSize(100);
+        if (isSave) {
+            pictureSelectionModel
+                    .selectionMedia(mList);
+        }
+        pictureSelectionModel.forResult(PictureConfig.CHOOSE_REQUEST);
     }
 
     private void openCamera() {
-        PictureSelector.create(mActivity)
+        PictureSelectionModel pictureSelectionModel = PictureSelector.create(mActivity)
                 .openCamera(PictureMimeType.ofImage())
                 .maxSelectNum(maxNum)
                 .compress(isCompress)
-                .minimumCompressSize(100)
-                .selectionMedia(mList)
-                .forResult(PictureConfig.CHOOSE_REQUEST);
+                .minimumCompressSize(100);
+        if (isSave) {
+            pictureSelectionModel
+                    .selectionMedia(mList);
+        }
+        pictureSelectionModel.forResult(PictureConfig.CHOOSE_REQUEST);
     }
 
     public void dialog_show() {
+        if (isDialog) {
+            mDialog.show();
+        } else {
+            xiangce();
+        }
+    }
+
+    public void dialog_show(int code) {
+        this.code = code;
         if (isDialog) {
             mDialog.show();
         } else {
@@ -215,8 +248,26 @@ public class ImageSelectManager implements PaiZhaoDialog.ClickListenerInterface 
         return this;
     }
 
+    public ImageSelectManager setIsSave(boolean isSave) {
+        this.isSave = isSave;
+        return this;
+    }
 
     public List<LocalMedia> getmList() {
         return mList;
+    }
+
+    public List<File> getFileList() {
+        List<File> fileList = new ArrayList<>();
+        for (int i = 0; i < getmList().size(); i++) {
+            File file;
+            if (getmList().get(i).isCompressed() || (getmList().get(i).isCut() && getmList().get(i).isCompressed())) {
+                file = new File(getmList().get(i).getCompressPath());
+            } else {
+                file = new File(getmList().get(i).getPath());
+            }
+            fileList.add(file);
+        }
+        return fileList;
     }
 }

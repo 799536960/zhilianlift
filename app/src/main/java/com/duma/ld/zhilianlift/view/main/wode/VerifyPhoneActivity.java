@@ -86,7 +86,7 @@ public class VerifyPhoneActivity extends BaseMyActivity {
         intentType = getIntent().getStringExtra(Type);
         tvPhone.setText(SpDataUtil.getUser().getMobile_xx());
         //初始化dialog
-        AlertDialog.Builder builder = PublicUtil.getAlertDialog(mActivity, "验证手机号", "");
+        AlertDialog.Builder builder = PublicUtil.getAlertDialog(mActivity, "验证手机号");
         //初始化自定义dialogview
         View dialog = getLayoutInflater().inflate(R.layout.dialog_verify_phone, (ViewGroup) findViewById(R.id.layout_dialog));
         tv_send = dialog.findViewById(R.id.tv_send);

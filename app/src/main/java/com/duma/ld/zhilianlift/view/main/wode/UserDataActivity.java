@@ -21,6 +21,7 @@ import com.duma.ld.zhilianlift.util.DialogUtil;
 import com.duma.ld.zhilianlift.util.ImageLoader;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
 import com.duma.ld.zhilianlift.util.imageSelect.ImageSelectManager;
+import com.duma.ld.zhilianlift.util.imageSelect.OnSelectFileListener;
 import com.duma.ld.zhilianlift.view.dialog.XiuGaiNiChengDialog;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
@@ -76,6 +77,12 @@ public class UserDataActivity extends BaseMyActivity {
     protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
         imageSelectManager = ImageSelectManager.create(mActivity).setMaxNum(1);
+        imageSelectManager.setOnSelectFileListener(new OnSelectFileListener() {
+            @Override
+            public void getFile(File file, int code) {
+                upLoadImgHead(file);
+            }
+        });
         UserModel user = SpDataUtil.getUser();
         tvNickName.setText(user.getNickname());
         tvBirthday.setText(ZhuanHuanUtil.Time2nian(user.getBirthday() * 1000));
@@ -185,15 +192,6 @@ public class UserDataActivity extends BaseMyActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         imageSelectManager.onActivityResult(requestCode, resultCode, data);
-        File file;
-        if (imageSelectManager.getmList() != null && imageSelectManager.getmList().size() > 0) {
-            if (imageSelectManager.getmList().get(0).isCompressed() || (imageSelectManager.getmList().get(0).isCut() && imageSelectManager.getmList().get(0).isCompressed())) {
-                file = new File(imageSelectManager.getmList().get(0).getCompressPath());
-            } else {
-                file = new File(imageSelectManager.getmList().get(0).getPath());
-            }
-            upLoadImgHead(file);
-        }
     }
 
 

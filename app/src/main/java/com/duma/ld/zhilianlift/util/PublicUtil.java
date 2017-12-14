@@ -15,4 +15,9 @@ public class PublicUtil {
                 .setTitle(title)
                 .setMessage(message);
     }
+
+    public static AlertDialog.Builder getAlertDialog(Activity activity, String title) {
+        return new AlertDialog.Builder(activity, R.style.AlertDialogTheme)
+                .setTitle(title);
+    }
 }
