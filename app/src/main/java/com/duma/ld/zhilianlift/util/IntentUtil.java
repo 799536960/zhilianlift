@@ -6,9 +6,11 @@ import android.content.Intent;
 import com.duma.ld.zhilianlift.model.AddresModel;
 import com.duma.ld.zhilianlift.view.login.LoginOrRegisterActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.GoodsListActivity;
+import com.duma.ld.zhilianlift.view.main.wode.VerifyPhoneActivity;
 import com.duma.ld.zhilianlift.view.main.wode.addres.AddOrChangeActivity;
 import com.duma.ld.zhilianlift.view.main.wode.addres.AddresListActivity;
-import com.duma.ld.zhilianlift.view.main.wode.userdata.UserDataActivity;
+import com.duma.ld.zhilianlift.view.main.wode.UserDataActivity;
+import com.duma.ld.zhilianlift.view.main.wode.realName.RealNameEditActivity;
 
 import static com.duma.ld.zhilianlift.util.Constants.ClassId;
 import static com.duma.ld.zhilianlift.util.Constants.Res;
@@ -64,6 +66,27 @@ public class IntentUtil {
     public static void goAddOrChange(Activity activity, AddresModel model) {
         Intent intent = new Intent(activity, AddOrChangeActivity.class);
         intent.putExtra(Constants.Model, model);
+        activity.startActivity(intent);
+    }
+
+    /**
+     * 跳转验证手机
+     *
+     * @param type 类型
+     */
+    private static void goVerifyPhone(Activity activity, String type) {
+        Intent intent = new Intent(activity, VerifyPhoneActivity.class);
+        intent.putExtra(Type, type);
+        activity.startActivity(intent);
+    }
+
+    //验证手机后 跳转实名认证
+    public static void goVerifyPhone_RealName(Activity activity) {
+        goVerifyPhone(activity, Constants.Verify_RealName);
+    }
+
+    public static void goRealName(Activity activity) {
+        Intent intent = new Intent(activity, RealNameEditActivity.class);
         activity.startActivity(intent);
     }
 }

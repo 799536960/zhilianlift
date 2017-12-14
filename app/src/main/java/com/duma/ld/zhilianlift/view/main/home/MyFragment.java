@@ -128,7 +128,7 @@ public class MyFragment extends BaseMyFragment {
             ImageLoader.with_head(mActivity, user.getHead_pic(), imgIcon);
             tvPhone.setVisibility(View.VISIBLE);
             tvName.setText(user.getNickname());
-            tvPhone.setText("用户名:" + user.getMobile());
+            tvPhone.setText("用户名:" + user.getMobile_xx());
 
             tvZhuangXiuZiJin.setText(user.getRenovation_money());
             tvYouHuiJuan.setText(user.getCoupon_count());

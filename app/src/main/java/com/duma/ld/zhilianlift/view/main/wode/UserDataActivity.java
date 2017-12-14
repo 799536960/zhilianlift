@@ -1,4 +1,4 @@
-package com.duma.ld.zhilianlift.view.main.wode.userdata;
+package com.duma.ld.zhilianlift.view.main.wode;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -37,6 +37,8 @@ import static com.duma.ld.zhilianlift.util.HttpUrl.updateUserInfo;
 import static com.duma.ld.zhilianlift.util.HttpUrl.upload_headpic;
 
 /**
+ * 修改个人信息
+ * 实名认证
  * Created by liudong on 2017/12/11.
  */
 
@@ -78,7 +80,7 @@ public class UserDataActivity extends BaseMyActivity {
         tvNickName.setText(user.getNickname());
         tvBirthday.setText(ZhuanHuanUtil.Time2nian(user.getBirthday() * 1000));
         tvSex.setText(user.getSex());
-        tvPhone.setText(user.getMobile());
+        tvPhone.setText(user.getMobile_xx());
         ImageLoader.with_head(mActivity, user.getHead_pic(), imgIcon);
         timePickerView = new TimePickerView.Builder(mActivity, new TimePickerView.OnTimeSelectListener() {
             @Override

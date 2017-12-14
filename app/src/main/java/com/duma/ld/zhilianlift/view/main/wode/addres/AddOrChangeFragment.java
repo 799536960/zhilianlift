@@ -34,6 +34,7 @@ import static com.duma.ld.zhilianlift.util.Constants.event_addresList_edit;
 import static com.duma.ld.zhilianlift.util.HttpUrl.addAddress;
 
 /**
+ * 添加或者编辑地址fragment
  * Created by liudong on 2017/12/12.
  */
 

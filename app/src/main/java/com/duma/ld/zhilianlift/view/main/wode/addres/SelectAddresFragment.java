@@ -32,6 +32,8 @@ import static com.duma.ld.zhilianlift.util.Constants.event_addres_refresh;
 import static com.duma.ld.zhilianlift.util.HttpUrl.getprovince;
 
 /**
+ * 选择和显示县市区的fragment
+ * 由选择地址dialog页面viewpager初始化
  * Created by liudong on 2017/12/12.
  */
 

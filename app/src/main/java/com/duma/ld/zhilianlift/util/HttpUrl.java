@@ -26,4 +26,6 @@ public class HttpUrl {
     public static String getAddressList = BaseUrl + "/index.php/api/user/getAddressList";
     public static String del_address = BaseUrl + "/index.php/api/user/del_address";
     public static String setDefaultAddress = BaseUrl + "/index.php/api/user/setDefaultAddress";
+    public static String getcertification = BaseUrl + "/index.php/api/user/getcertification";
+    public static String check_sms = BaseUrl + "/index.php/api/user/check_sms";
 }

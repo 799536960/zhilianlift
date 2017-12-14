@@ -8,6 +8,8 @@ import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
 
 /**
+ * 添加或者编辑地址页面
+ * 里面包含了一个编辑地址的fragment
  * Created by liudong on 2017/12/12.
  */
 

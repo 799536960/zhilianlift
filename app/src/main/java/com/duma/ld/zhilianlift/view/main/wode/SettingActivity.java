@@ -14,16 +14,24 @@ import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseAdapter.BaseAdapter;
+import com.duma.ld.zhilianlift.base.baseJsonHttp.MyJsonCallback;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
+import com.duma.ld.zhilianlift.model.HttpResModel;
+import com.duma.ld.zhilianlift.model.RealNameModel;
+import com.duma.ld.zhilianlift.util.DialogUtil;
 import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.PublicUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.model.Response;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static com.duma.ld.zhilianlift.util.HttpUrl.getcertification;
 
 /**
  * Created by liudong on 2017/12/8.
@@ -62,6 +70,7 @@ public class SettingActivity extends BaseMyActivity {
                         break;
                     case 1:
                         //实名认证
+                        QueryRealNameHttp();
                         break;
                     case 2:
                         //地址管理
@@ -85,6 +94,34 @@ public class SettingActivity extends BaseMyActivity {
         tvList.setLayoutManager(new LinearLayoutManager(mActivity));
         tvList.setAdapter(adapter);
         initData();
+    }
+
+    //查询实名认证情况
+    private void QueryRealNameHttp() {
+        DialogUtil.getInstance().show_noBack(mActivity);
+        OkGo.<HttpResModel<RealNameModel>>get(getcertification)
+                .execute(new MyJsonCallback<HttpResModel<RealNameModel>>() {
+                    @Override
+                    protected void onJsonSuccess(Response<HttpResModel<RealNameModel>> respons, HttpResModel<RealNameModel> realNameModelHttpResModel) {
+                        DialogUtil.getInstance().hide();
+//                        获取实名状态
+//                        certification_is = 0  //已提交 但是 未处理
+//                        certification_is = 1 //通过
+//                        certification_is = 2 //拒绝
+//                        certification_is = 3  //没有提交实名信息
+                        switch (realNameModelHttpResModel.getResult().getCertification_is()) {
+                            case 0:
+                                break;
+                            case 1:
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                IntentUtil.goVerifyPhone_RealName(mActivity);
+                                break;
+                        }
+                    }
+                });
     }
 
     private void initData() {

@@ -220,7 +220,7 @@ public abstract class PublicConfig {
      * @param onTopBarLeftListener  监听
      * @param onTopBarRightListener 监听
      */
-    public void setTopBar(String name, String rightText, @DrawableRes int liftImg, @DrawableRes int rightImg
+    protected void setTopBar(String name, String rightText, @DrawableRes int liftImg, @DrawableRes int rightImg
             , final OnTopBarLeftListener onTopBarLeftListener, final OnTopBarRightListener onTopBarRightListener) {
         FrameLayout viewById = (FrameLayout) getBootTopbarViewGroup();
         if (name == null) {
@@ -284,13 +284,13 @@ public abstract class PublicConfig {
      * @return
      */
     @NonNull
-    public PublicConfig setTopBar(String name) {
+    protected PublicConfig setTopBar(String name) {
         setTopBar(name, null, LiftImg_Default, 0, null, null);
         return this;
     }
 
     @NonNull
-    public PublicConfig setTopBar(String name, OnTopBarLeftListener onTopBarLeftListener) {
+    protected PublicConfig setTopBar(String name, OnTopBarLeftListener onTopBarLeftListener) {
         setTopBar(name, null, LiftImg_Default, 0, onTopBarLeftListener, null);
         return this;
     }

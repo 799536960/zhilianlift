@@ -14,6 +14,8 @@ import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.view.login.CodeBarActivity;
 
 /**
+ * 发送短信
+ * 如果没有电话号码输入框 就是对自己号码发送短信
  * Created by liudong on 2017/12/7.
  */
 
@@ -21,25 +23,22 @@ public class SendCodeUtil {
     private TextView textView;
     private String defaultString = "获取验证码";
     private CountDownTimer countDownTimer;
+    private Activity mActivity;
+    private EditText mEditText;
 
+    public SendCodeUtil(final TextView codeText, EditText editTextPhone, Activity activity) {
+        ininData(codeText, activity);
+        this.mEditText = editTextPhone;
+    }
 
-    public SendCodeUtil(final TextView codeText, final EditText editTextPhone, final Activity activity) {
+    public SendCodeUtil(final TextView codeText, final Activity activity) {
+        ininData(codeText, activity);
+    }
+
+    private void ininData(TextView codeText, Activity activity) {
         this.textView = codeText;
+        this.mActivity = activity;
         initTextView();
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!RegexUtils.isMobileExact(editTextPhone.getText().toString())) {
-                    TsUtils.show("请输入正确的手机号码!");
-                    return;
-                }
-                if (textView.getText().toString().equals(defaultString)) {
-                    activity.startActivity(new Intent(activity, CodeBarActivity.class));
-                } else {
-                    TsUtils.show("请稍后再试!");
-                }
-            }
-        });
         countDownTimer = new CountDownTimer(10 * 1000, 1 + 1000) {
             @Override
             public void onTick(long l) {
@@ -52,11 +51,36 @@ public class SendCodeUtil {
                 initTextView();
             }
         };
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendCode();
+            }
+        });
     }
+
 
     private void initTextView() {
         textView.setText(defaultString);
         textView.setTextColor(ZhuanHuanUtil.getColor(R.color.primary_hong));
+    }
+
+    public void sendCode() {
+        String editPhone;
+        if (mEditText != null) {
+            editPhone = mEditText.getText().toString();
+        } else {
+            editPhone = SpDataUtil.getUser().getMobile();
+        }
+        if (!RegexUtils.isMobileExact(editPhone)) {
+            TsUtils.show("请输入正确的手机号码!");
+            return;
+        }
+        if (textView.getText().toString().equals(defaultString)) {
+            mActivity.startActivity(new Intent(mActivity, CodeBarActivity.class));
+        } else {
+            TsUtils.show("请稍后再试!");
+        }
     }
 
     public void starTime() {

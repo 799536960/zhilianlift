@@ -36,6 +36,10 @@ public class Constants {
     public static final String SearchString = "SearchString";
     public static final String Url = "Url";
     public static final String Model = "model";
+
+    //验证手机后 跳转页面类型
+    //跳转实名认证
+    public static final String Verify_RealName = "Verify_RealName";
     /**
      * sp
      */

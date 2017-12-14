@@ -20,6 +20,8 @@ import butterknife.OnClick;
 import static com.duma.ld.zhilianlift.util.Constants.event_addres_refresh;
 
 /**
+ * 选择地址dialog
+ * 由添加和编辑地址页面初始化
  * Created by liudong on 2017/12/12.
  */
 
