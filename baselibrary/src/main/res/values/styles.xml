@@ -1,22 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="baseStyle" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/primary</item>
-        <!--导航栏颜色-->
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorAccent">@color/accent</item>
-        <item name="android:textColor">@color/textColor</item>
-        <item name="android:textColorSecondary">@color/textColorSecondary</item>
-        <item name="android:textColorHint">@color/textColorHint</item>
-    </style>
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="baseStyle">
-        <item name="android:windowBackground">@color/white</item>
-        <item name="android:windowSoftInputMode">stateAlwaysHidden</item>
-    </style>
-
-
     <style name="base_topbar">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>

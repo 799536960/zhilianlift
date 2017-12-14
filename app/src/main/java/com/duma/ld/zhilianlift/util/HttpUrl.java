@@ -24,4 +24,6 @@ public class HttpUrl {
     public static String getprovince = BaseUrl + "/index.php/api/index/getprovince";
     public static String addAddress = BaseUrl + "/index.php/api/user/addAddress";
     public static String getAddressList = BaseUrl + "/index.php/api/user/getAddressList";
+    public static String del_address = BaseUrl + "/index.php/api/user/del_address";
+    public static String setDefaultAddress = BaseUrl + "/index.php/api/user/setDefaultAddress";
 }

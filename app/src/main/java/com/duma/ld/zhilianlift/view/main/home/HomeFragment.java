@@ -37,6 +37,7 @@ import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.ImageLoader;
 import com.duma.ld.zhilianlift.util.LocalImageHolderView;
 import com.duma.ld.zhilianlift.util.LocationUtil;
+import com.duma.ld.zhilianlift.util.PublicUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
 import com.duma.ld.zhilianlift.view.main.city.SelectCityActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.SearchActivity;
@@ -102,9 +103,8 @@ public class HomeFragment extends BaseMyFragment {
         if (eventModel.getCode() == Constants.event_location_home) {
             final BDLocation bdLocation = (BDLocation) eventModel.getData();
             if (!SpDataUtil.isCity(bdLocation.getCity())) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(mActivity)
-                        .setTitle("切换城市")
-                        .setMessage("当前城市和您所在的城市不同,是否切换为 " + bdLocation.getCity() + "?")
+
+                AlertDialog.Builder builder = PublicUtil.getAlertDialog(mActivity, "切换城市", "当前城市和您所在的城市不同,是否切换为 " + bdLocation.getCity() + "?")
                         .setPositiveButton("是", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {

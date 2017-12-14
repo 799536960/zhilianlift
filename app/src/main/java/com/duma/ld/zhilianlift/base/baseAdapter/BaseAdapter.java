@@ -72,6 +72,9 @@ public class BaseAdapter<T> extends BaseQuickAdapter<T, BaseViewHolder> implemen
         mOldItemSize = 0;
         mRecyclerView.setLayoutManager(builder.layoutManager);
         mRecyclerView.setAdapter(this);
+        if (builder.isEmptyView) {
+            setEmptyLayout(builder.title, builder.drawableId);
+        }
     }
 
 

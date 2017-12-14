@@ -16,6 +16,7 @@ import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseAdapter.BaseAdapter;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
 import com.duma.ld.zhilianlift.util.IntentUtil;
+import com.duma.ld.zhilianlift.util.PublicUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
 
 import java.util.ArrayList;
@@ -100,9 +101,7 @@ public class SettingActivity extends BaseMyActivity {
 
     @OnClick(R.id.tv_remove_login)
     public void onViewClicked() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity)
-                .setTitle("退出登录")
-                .setMessage("您确定要退出登录嘛?")
+        AlertDialog.Builder builder = PublicUtil.getAlertDialog(mActivity, "退出登录", "您确定要退出登录嘛?")
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {

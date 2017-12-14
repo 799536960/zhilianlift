@@ -30,6 +30,7 @@ import com.duma.ld.zhilianlift.model.HotModel;
 import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.util.CacheUtil;
 import com.duma.ld.zhilianlift.util.IntentUtil;
+import com.duma.ld.zhilianlift.util.PublicUtil;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 
@@ -181,9 +182,7 @@ public class SearchActivity extends BaseMyActivity {
                 finish();
                 break;
             case R.id.layout_empty:
-                AlertDialog.Builder builder = new AlertDialog.Builder(mActivity)
-                        .setTitle("历史搜索")
-                        .setMessage("确定清空历史搜索吗?")
+                AlertDialog.Builder builder = PublicUtil.getAlertDialog(mActivity, "历史搜索", "确定清空历史搜索吗?")
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {

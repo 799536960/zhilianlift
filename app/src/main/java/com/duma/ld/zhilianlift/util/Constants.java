@@ -21,7 +21,10 @@ public class Constants {
     public static final int event_addres_refresh = 5;
     //添加收货地址的地区选择
     public static final int event_addres_add = 6;
-
+    //添加收货地址列表
+    public static final int event_addresList_add = 7;
+    //编辑收货地址列表
+    public static final int event_addresList_edit = 8;
     /**
      * intent
      */
