@@ -404,7 +404,7 @@ public class UserModel {
 
     public String getNickname() {
         if (nickname == null || nickname.isEmpty()) {
-            return "<点击设置昵称>";
+            return "<未设置>";
         }
         return nickname;
     }

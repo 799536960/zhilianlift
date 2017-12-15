@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 
 import com.duma.ld.zhilianlift.model.AddresModel;
+import com.duma.ld.zhilianlift.model.RealNameModel;
 import com.duma.ld.zhilianlift.view.login.LoginOrRegisterActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.GoodsListActivity;
 import com.duma.ld.zhilianlift.view.main.wode.VerifyPhoneActivity;
@@ -85,8 +86,19 @@ public class IntentUtil {
         goVerifyPhone(activity, Constants.Verify_RealName);
     }
 
-    public static void goRealName(Activity activity) {
+    //添加实名认证
+    public static void goRealName_add(Activity activity) {
+        goRealName(activity, null);
+    }
+
+    //修改实名认证
+    public static void goRealName_change(Activity activity, RealNameModel model) {
+        goRealName(activity, model);
+    }
+
+    private static void goRealName(Activity activity, RealNameModel model) {
         Intent intent = new Intent(activity, RealNameEditActivity.class);
+        intent.putExtra(Constants.Model, model);
         activity.startActivity(intent);
     }
 }

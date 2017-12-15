@@ -15,12 +15,15 @@ import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseJsonHttp.MyJsonCallback;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
 import com.duma.ld.zhilianlift.model.HttpResModel;
+import com.duma.ld.zhilianlift.model.RealNameModel;
+import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.DialogUtil;
 import com.duma.ld.zhilianlift.util.ImageLoader;
 import com.duma.ld.zhilianlift.util.imageSelect.ImageSelectManager;
 import com.duma.ld.zhilianlift.util.imageSelect.OnSelectFileListener;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
+import com.lzy.okgo.request.PostRequest;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -50,6 +53,7 @@ public class RealNameEditActivity extends BaseMyActivity {
     TextView tvOk;
     private ImageSelectManager imageSelectManager;
     private File file1, file2, file3;
+    private RealNameModel model;
 
     @Override
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig) {
@@ -59,6 +63,12 @@ public class RealNameEditActivity extends BaseMyActivity {
     @Override
     protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
+        model = (RealNameModel) getIntent().getSerializableExtra(Constants.Model);
+        if (model != null) {
+            editName.setText(model.getRealname());
+            editName.setSelection(editName.getText().toString().length());
+            editNum.setText(model.getIdcard());
+        }
         imageSelectManager = ImageSelectManager.create(mActivity).setMaxNum(1).setIsSave(false);
         imageSelectManager.setOnSelectFileListener(new OnSelectFileListener() {
             @Override
@@ -117,15 +127,18 @@ public class RealNameEditActivity extends BaseMyActivity {
         list.add(file1);
         list.add(file2);
         list.add(file3);
-        OkGo.<HttpResModel<String>>post(certification)
+        PostRequest<HttpResModel<String>> params = OkGo.<HttpResModel<String>>post(certification)
                 .params("realname", editName.getText().toString())
-                .params("idcard", editNum.getText().toString())
+                .params("idcard", editNum.getText().toString());
+        if (model != null) {
+            params.params("id", model.getId());
+        }
+        params
                 .addFileParams("idcard_img[]", list)
                 .execute(new MyJsonCallback<HttpResModel<String>>() {
                     @Override
                     protected void onJsonSuccess(Response<HttpResModel<String>> respons, HttpResModel<String> stringHttpResModel) {
                         DialogUtil.getInstance().hide();
-                        TsUtils.show(stringHttpResModel.getMsg());
                         finish();
                         startActivity(new Intent(mActivity, RealNameSendSuccessActivity.class));
                     }

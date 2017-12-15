@@ -74,4 +74,13 @@ public class ZhuanHuanUtil {
         String substring = phone.substring(3, 7);
         return phone.replace(substring, "****");
     }
+
+    public static String setIdCardXX(String idCard) {
+        int length = idCard.length();
+        if (length != 18) {
+            return idCard;
+        }
+        String substring = idCard.substring(1, 17);
+        return idCard.replace(substring, "****************");
+    }
 }

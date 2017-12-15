@@ -126,7 +126,7 @@ public class VerifyPhoneActivity extends BaseMyActivity {
                         finish();
                         switch (intentType) {
                             case Verify_RealName:
-                                IntentUtil.goRealName(mActivity);
+                                IntentUtil.goRealName_add(mActivity);
                                 break;
                         }
                     }

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
@@ -19,6 +20,7 @@ import com.duma.ld.zhilianlift.base.baseJsonHttp.MyJsonCallback;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
 import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.model.RealNameModel;
+import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.DialogUtil;
 import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.PublicUtil;
@@ -117,9 +119,13 @@ public class SettingActivity extends BaseMyActivity {
                                 startActivity(new Intent(mActivity, RealNameSendSuccessActivity.class));
                                 break;
                             case 1:
-                                startActivity(new Intent(mActivity, RealNameMainActivity.class));
+                                Intent intent = new Intent(mActivity, RealNameMainActivity.class);
+                                intent.putExtra(Constants.Model, realNameModelHttpResModel.getResult());
+                                startActivity(intent);
                                 break;
                             case 2:
+                                IntentUtil.goRealName_change(mActivity, realNameModelHttpResModel.getResult());
+                                TsUtils.show("审核未通过,请修改后再提交审核!");
                                 break;
                             case 3:
                                 IntentUtil.goVerifyPhone_RealName(mActivity);
