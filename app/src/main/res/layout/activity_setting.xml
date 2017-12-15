@@ -5,7 +5,6 @@
     android:background="@color/hui_bg"
     android:orientation="vertical">
 
-    <View style="@style/henxian" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/tv_list"

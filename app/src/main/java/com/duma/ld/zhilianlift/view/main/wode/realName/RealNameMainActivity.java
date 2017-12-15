@@ -30,7 +30,7 @@ public class RealNameMainActivity extends BaseMyActivity {
 
     @Override
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig) {
-        return initConfig.setLayoutIdByActivity(R.layout.activity_real_name_main, false).setTopBar_A("实名认证");
+        return initConfig.setLayoutIdByActivity(R.layout.activity_real_name_main, false).setTopBar_A("实名认证").setNoYinyin();
     }
 
     @Override

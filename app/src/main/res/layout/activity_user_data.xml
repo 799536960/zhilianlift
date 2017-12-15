@@ -5,7 +5,6 @@
     android:background="@color/hui_bg"
     android:orientation="vertical">
 
-    <View style="@style/henxian" />
 
     <LinearLayout
         android:id="@+id/layout_icon"

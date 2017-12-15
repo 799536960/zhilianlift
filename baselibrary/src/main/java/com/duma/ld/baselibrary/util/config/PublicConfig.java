@@ -18,6 +18,10 @@ import com.duma.ld.baselibrary.base.OnTopBarLeftListener;
 import com.duma.ld.baselibrary.base.OnTopBarRightListener;
 
 /**
+ * 负责activity上面一些公共的ui控制
+ * 控制显示loading error页面
+ * 控制显示常见的topbar功能
+ * <p>
  * Created by liudong on 2017/11/28.
  */
 
@@ -49,6 +53,9 @@ public abstract class PublicConfig {
     private View contentView;
     //本体布局视图
     private View loadingView, errorView;
+
+    //topbar 阴影效果
+    private View yinYinView;
 
 
     public PublicConfig(OnViewConfigListener onViewConfigListener, Activity activity, boolean isOpen) {
@@ -212,6 +219,7 @@ public abstract class PublicConfig {
      */
     /**
      * 设置topbar
+     * 默认带有阴影效果
      *
      * @param name                  topbar的标题
      * @param rightText             右边的文字
@@ -229,6 +237,8 @@ public abstract class PublicConfig {
         }
         //有topbar
         View inflate = LayoutInflater.from(mActivity).inflate(R.layout.activity_topbar, viewById);
+        yinYinView = inflate.findViewById(R.id.base_view);
+        setYinyin(true);
         if (liftImg == LiftImg_Default) {
             ((ImageView) inflate.findViewById(R.id.img_left)).setImageDrawable(ContextCompat.getDrawable(mActivity, R.mipmap.back));
         } else if (liftImg != 0) {
@@ -284,15 +294,23 @@ public abstract class PublicConfig {
      * @return
      */
     @NonNull
-    protected PublicConfig setTopBar(String name) {
+    protected void setTopBar(String name) {
         setTopBar(name, null, LiftImg_Default, 0, null, null);
-        return this;
     }
 
     @NonNull
-    protected PublicConfig setTopBar(String name, OnTopBarLeftListener onTopBarLeftListener) {
+    protected void setTopBar(String name, OnTopBarLeftListener onTopBarLeftListener) {
         setTopBar(name, null, LiftImg_Default, 0, onTopBarLeftListener, null);
-        return this;
+    }
+
+    protected void setYinyin(boolean isYinyin) {
+        if (yinYinView != null) {
+            if (isYinyin) {
+                yinYinView.setVisibility(View.VISIBLE);
+            } else {
+                yinYinView.setVisibility(View.GONE);
+            }
+        }
     }
 
     public boolean isOneSuccess() {

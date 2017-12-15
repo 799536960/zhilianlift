@@ -51,6 +51,11 @@ public class ActivityConfig extends PublicConfig {
         return this;
     }
 
+    public ActivityConfig setNoYinyin() {
+        setYinyin(false);
+        return this;
+    }
+
     //---------------------------------------------------------------------------------------------------------
     @Override
     protected ViewGroup getBootErrorViewGroup() {

@@ -2,7 +2,7 @@
 <resources>
     <style name="base_topbar">
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_height">48dp</item>
         <item name="android:background">@drawable/ripple_bai</item>
         <item name="android:gravity">center</item>
         <item name="android:paddingLeft">20dp</item>

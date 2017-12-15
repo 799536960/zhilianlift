@@ -31,7 +31,7 @@ public class LoginOrRegisterActivity extends BaseMyActivity {
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig) {
         return initConfig
                 .setLayoutIdByActivity(R.layout.activity_login_or_register, false)
-                .setTopBar_A("");
+                .setTopBar_A("").setNoYinyin();
     }
 
     @Override
