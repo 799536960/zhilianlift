@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -27,6 +28,7 @@ import com.duma.ld.zhilianlift.util.PublicUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
 import com.duma.ld.zhilianlift.view.main.wode.realName.RealNameMainActivity;
 import com.duma.ld.zhilianlift.view.main.wode.realName.RealNameSendSuccessActivity;
+import com.duma.ld.zhilianlift.view.main.wode.userSecuryty.UserSecurityActivity;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 
@@ -63,6 +65,12 @@ public class SettingActivity extends BaseMyActivity {
             @Override
             protected void convert(BaseViewHolder helper, String item) {
                 helper.setText(R.id.tv_name, item);
+                ImageView imageView = helper.getView(R.id.img_jiantou);
+                if (helper.getLayoutPosition() == 5) {
+                    imageView.setVisibility(View.INVISIBLE);
+                } else {
+                    imageView.setVisibility(View.VISIBLE);
+                }
             }
         };
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
@@ -83,6 +91,7 @@ public class SettingActivity extends BaseMyActivity {
                         break;
                     case 3:
                         //账户与安全
+                        startActivity(new Intent(mActivity, UserSecurityActivity.class));
                         break;
                     case 4:
                         //建议反馈
@@ -90,9 +99,11 @@ public class SettingActivity extends BaseMyActivity {
                         break;
                     case 5:
                         //清理缓存
+                        TsUtils.show("清除成功!");
                         break;
                     case 6:
                         //关于我们
+                        startActivity(new Intent(mActivity, GuanYuActivity.class));
                         break;
                 }
             }

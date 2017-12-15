@@ -5,6 +5,8 @@ package com.duma.ld.zhilianlift.util;
  */
 
 public class Constants {
+    public static final String kefu = "0571-28227987";
+    public static final String youxiang = "service@saibertron.com";
     public static final String Page = "p";
 
     //默认城市

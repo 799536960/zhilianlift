@@ -41,7 +41,6 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="24dp"
         android:lineSpacingExtra="4dp"
-        android:text="您的实名认证已提交成功，材料审核需一个工作日，请耐心等待审核，如有疑问，请拨打客服热线：400-888-8888"
         android:textColor="@color/hui6"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
