@@ -87,6 +87,9 @@ public class HomeFragment extends BaseMyFragment {
     private MyJsonCallback<HttpResModel<HomeModel>> callback;
     private BaseAdapter<AdBean> mFenleiAdapter;
     private BaseAdapter<GoodsAllBean> mAdClassAdapter;
+    private HomeClickTypeListener listener;
+    //轮播图
+    private CBViewHolderCreator<LocalImageHolderView> cbViewHolderCreator;
 
     @Override
     protected FragmentConfig setFragmentConfig(Bundle savedInstanceState, InitConfig initConfig) {
@@ -103,7 +106,6 @@ public class HomeFragment extends BaseMyFragment {
         if (eventModel.getCode() == Constants.event_location_home) {
             final BDLocation bdLocation = (BDLocation) eventModel.getData();
             if (!SpDataUtil.isCity(bdLocation.getCity())) {
-
                 AlertDialog.Builder builder = PublicUtil.getAlertDialog(mActivity, "切换城市", "当前城市和您所在的城市不同,是否切换为 " + bdLocation.getCity() + "?")
                         .setPositiveButton("是", new DialogInterface.OnClickListener() {
                             @Override
@@ -137,10 +139,28 @@ public class HomeFragment extends BaseMyFragment {
                 initData(homeModelHttpResModel.getResult());
             }
         };
+        initBanner();
         //初始哈adapter
         initAdapter();
         //请求数据
         onClickLoadingRefresh();
+    }
+
+    private void initBanner() {
+        //初始化home所有点击事件监听
+        listener = new HomeClickTypeListener();
+        bannerTop
+                //设置两个点图片作为翻页指示器，不设置则没有指示器，可以根据自己需求自行配合自己的指示器,不需要圆点指示器可用不设
+                .setPageIndicator(new int[]{R.drawable.lunbo_unselected, R.drawable.lunbo_selected})
+                //设置指示器的方向
+                .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
+                .setOnItemClickListener(listener);
+        cbViewHolderCreator = new CBViewHolderCreator<LocalImageHolderView>() {
+            @Override
+            public LocalImageHolderView createHolder() {
+                return new LocalImageHolderView();
+            }
+        };
     }
 
     private void initAdapter() {
@@ -181,20 +201,9 @@ public class HomeFragment extends BaseMyFragment {
     }
 
     private void initData(HomeModel result) {
-        HomeClickTypeListener listener = new HomeClickTypeListener(result);
+        listener.setResult(result);
         //轮播图数据
-        bannerTop.setPages(
-                new CBViewHolderCreator<LocalImageHolderView>() {
-                    @Override
-                    public LocalImageHolderView createHolder() {
-                        return new LocalImageHolderView();
-                    }
-                }, result.getLunbo())
-                //设置两个点图片作为翻页指示器，不设置则没有指示器，可以根据自己需求自行配合自己的指示器,不需要圆点指示器可用不设
-                .setPageIndicator(new int[]{R.drawable.lunbo_unselected, R.drawable.lunbo_selected})
-                //设置指示器的方向
-                .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
-                .setOnItemClickListener(listener);
+        bannerTop.setPages(cbViewHolderCreator, result.getLunbo());
         //分类的数据
         mFenleiAdapter.setNewData(result.getGoodsCategoryList());
         mFenleiAdapter.setOnItemClickListener(listener);

@@ -16,10 +16,9 @@ import com.duma.ld.zhilianlift.model.HomeModel;
 public class HomeClickTypeListener implements View.OnClickListener, OnItemClickListener, BaseQuickAdapter.OnItemClickListener {
     private HomeModel result;
 
-    public HomeClickTypeListener(HomeModel model) {
-        this.result = model;
+    public void setResult(HomeModel result) {
+        this.result = result;
     }
-
 
     /**
      * type=1 商品  goodsModel imgUrl不能为空

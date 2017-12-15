@@ -23,9 +23,9 @@ public class ImageLoader {
         }
 
         RequestOptions options = new RequestOptions();
-        //options.placeholder(loadingRes)//加载中图片
+        options.placeholder(R.color.hui3);//加载中图片
         //options.error(errorRes)//加载错误的图片
-        options.error(R.color.hui1);//或者是个颜色值
+//        options.error(R.color.hui1);//或者是个颜色值
         //options.circleCrop()设置成圆形头像<这个是V4.0新增的>
         Glide.with(context)
                 .load(url)
