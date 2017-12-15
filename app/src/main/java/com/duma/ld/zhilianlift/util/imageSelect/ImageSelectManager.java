@@ -8,11 +8,11 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.duma.ld.baselibrary.util.ZhuanHuanUtil;
 import com.duma.ld.zhilianlift.R;
-import com.duma.ld.zhilianlift.util.ImageLoader;
 import com.luck.picture.lib.PictureSelectionModel;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
@@ -112,11 +112,18 @@ public class ImageSelectManager implements PaiZhaoDialog.ClickListenerInterface 
 
                 if (localMedia.getPath().equals("0")) {
                     imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-                    imageView.setImageDrawable(ZhuanHuanUtil.getDrawable(R.drawable.img_19));
+//                    ImageLoader.with(mActivity,ZhuanHuanUtil.getDrawable(R.drawable.img_19), imageView);
+//                    imageView.setImageDrawable(ZhuanHuanUtil.getDrawable(R.drawable.img_19));
+                    Glide.with(mActivity)
+                            .load(ZhuanHuanUtil.getDrawable(R.drawable.img_19))
+                            .into(imageView);
                     layout.setVisibility(View.GONE);
                 } else {
                     imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                    ImageLoader.with(localMedia.getPath(), imageView);
+                    Glide.with(mActivity)
+                            .load(localMedia.getPath())
+                            .into(imageView);
+//                    ImageLoader.with(mActivity,localMedia.getPath(), imageView);
                     layout.setVisibility(View.VISIBLE);
                 }
 

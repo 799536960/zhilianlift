@@ -86,6 +86,7 @@ public class SettingActivity extends BaseMyActivity {
                         break;
                     case 4:
                         //建议反馈
+                        startActivity(new Intent(mActivity, YiJianFanKuiActivity.class));
                         break;
                     case 5:
                         //清理缓存

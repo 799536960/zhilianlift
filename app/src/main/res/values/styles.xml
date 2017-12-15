@@ -69,4 +69,24 @@
         <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
         <item name="android:windowExitAnimation">@anim/push_buttom_out</item>
     </style>
+
+    <style name="base_edittext">
+        <item name="android:textColor">@color/hei1</item>
+        <item name="android:textColorHint">@color/hui1</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:theme">@style/MyEditText</item>
+        <item name="android:maxLength">100</item>
+    </style>
+
+    <style name="MyEditText" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/hui2</item>
+        <item name="colorControlActivated">@color/hui2</item>
+    </style>
+
+    <style name="baseButton">
+        <item name="android:background">@drawable/button_shape</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/hei1</item>
+        <item name="android:textSize">18sp</item>
+    </style>
 </resources>

@@ -78,6 +78,7 @@
         <activity android:name=".view.main.wode.VerifyPhoneActivity" />
         <activity android:name=".view.main.wode.realName.RealNameSendSuccessActivity" />
         <activity android:name=".view.main.wode.realName.RealNameMainActivity" />
+        <activity android:name=".view.main.wode.YiJianFanKuiActivity" />
     </application>
 
 </manifest>

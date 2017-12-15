@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View
+            style="@style/henxian"
+            android:layout_height="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="12dp"
+            android:paddingLeft="19dp"
+            android:paddingRight="19dp"
+            android:paddingTop="12dp"
+            android:text="填写意见"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/edit_yijian"
+            style="@style/base_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:background="@null"
+            android:gravity="top"
+            android:hint="请您写下对我们的意见,我们将认真听取您的意见"
+            android:maxLength="100"
+            android:paddingLeft="19dp"
+            android:paddingRight="19dp" />
+
+        <TextView
+            android:id="@+id/tv_zishu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:paddingRight="19dp"
+            android:text="100"
+            android:textColor="@color/hui1" />
+
+        <EditText
+            android:id="@+id/edit_lianXiFangShi"
+            style="@style/base_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="19dp"
+            android:layout_marginRight="19dp"
+            android:layout_marginTop="47dp"
+            android:background="@drawable/bx_hui2_shape"
+            android:hint="手机/邮箱/QQ (选填)"
+            android:paddingLeft="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
+            android:paddingLeft="19dp"
+            android:paddingRight="19dp"
+            android:paddingTop="22dp"
+            android:text="上传照片 (最多6张)"
+            android:textSize="15sp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_zhaoPian"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_btn"
+            style="@style/baseButton"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginBottom="32dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="32dp"
+            android:text="发送"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</ScrollView>
