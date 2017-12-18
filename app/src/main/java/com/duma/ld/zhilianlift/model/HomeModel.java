@@ -17,6 +17,7 @@ public class HomeModel {
     private List<AdBean> lunbo;
     private List<AdBean> goodsCategoryList;
 
+
     public AdBean getAd1() {
         return ad1;
     }

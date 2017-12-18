@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layout_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -72,96 +71,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ScrollView
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
-                android:id="@+id/layout_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <com.bigkoo.convenientbanner.ConvenientBanner
-                    android:id="@+id/banner_top"
-                    android:layout_width="match_parent"
-                    android:layout_height="188dp"
-                    app:canLoop="true" />
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_class"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:background="@color/hui_bg" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="260dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/img_1"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" />
-
-                    <View style="@style/shuxian" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/img_2"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <View style="@style/henxian" />
-
-                        <ImageView
-                            android:id="@+id/img_4"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-                    </LinearLayout>
-
-                    <View style="@style/shuxian" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/img_3"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <View style="@style/henxian" />
-
-                        <ImageView
-                            android:id="@+id/img_5"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_class_goods"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-        </ScrollView>
+            android:layout_height="wrap_content" />
     </com.duma.ld.zhilianlift.widget.VerticalSwipeRefreshLayout>
 
 </LinearLayout>

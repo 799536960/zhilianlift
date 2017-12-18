@@ -8,6 +8,7 @@ import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.model.AdBean;
 import com.duma.ld.zhilianlift.model.HomeModel;
+import com.duma.ld.zhilianlift.model.HomeMultipleModel;
 
 /**
  * Created by liudong on 2017/12/4.
@@ -81,6 +82,13 @@ public class HomeClickTypeListener implements View.OnClickListener, OnItemClickL
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        clickItem(result.getGoodsCategoryList().get(position));
+        HomeMultipleModel multipleModel = (HomeMultipleModel) adapter.getData().get(position);
+        switch (multipleModel.getItemType()) {
+            case HomeMultipleModel.fenlei:
+                clickItem(multipleModel.getClassModel());
+                break;
+            case HomeMultipleModel.goodsHead:
+                break;
+        }
     }
 }
