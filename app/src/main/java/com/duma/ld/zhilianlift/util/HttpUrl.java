@@ -30,4 +30,6 @@ public class HttpUrl {
     public static String check_sms = BaseUrl + "/index.php/api/user/check_sms";
     public static String certification = BaseUrl + "/index.php/api/user/certification";
     public static String suggestion = BaseUrl + "/index.php/api/user/suggestion";
+    public static String password = BaseUrl + "/index.php/api/user/password";
+    public static String mobile = BaseUrl + "/index.php/api/user/mobile";
 }

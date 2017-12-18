@@ -95,6 +95,7 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
             switch (response.getException().getMessage()) {
                 case "100":
                     TsUtils.show("登录已失效!请重新登录");
+                    SpDataUtil.removeUser();
                     break;
                 default:
                     TsUtils.show("" + response.getException().getMessage());

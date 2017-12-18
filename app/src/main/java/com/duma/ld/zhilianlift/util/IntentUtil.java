@@ -6,6 +6,7 @@ import android.content.Intent;
 import com.duma.ld.zhilianlift.model.AddresModel;
 import com.duma.ld.zhilianlift.model.RealNameModel;
 import com.duma.ld.zhilianlift.view.login.LoginOrRegisterActivity;
+import com.duma.ld.zhilianlift.view.main.home.HomeActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.GoodsListActivity;
 import com.duma.ld.zhilianlift.view.main.wode.VerifyPhoneActivity;
 import com.duma.ld.zhilianlift.view.main.wode.addres.AddOrChangeActivity;
@@ -13,6 +14,7 @@ import com.duma.ld.zhilianlift.view.main.wode.addres.AddresListActivity;
 import com.duma.ld.zhilianlift.view.main.wode.UserDataActivity;
 import com.duma.ld.zhilianlift.view.main.wode.realName.RealNameEditActivity;
 
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static com.duma.ld.zhilianlift.util.Constants.ClassId;
 import static com.duma.ld.zhilianlift.util.Constants.Res;
 import static com.duma.ld.zhilianlift.util.Constants.SearchString;
@@ -99,6 +101,13 @@ public class IntentUtil {
     private static void goRealName(Activity activity, RealNameModel model) {
         Intent intent = new Intent(activity, RealNameEditActivity.class);
         intent.putExtra(Constants.Model, model);
+        activity.startActivity(intent);
+    }
+
+    public static void goMain(Activity activity) {
+        Intent intent = new Intent(activity, HomeActivity.class);
+        intent.setFlags(FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         activity.startActivity(intent);
     }
 }

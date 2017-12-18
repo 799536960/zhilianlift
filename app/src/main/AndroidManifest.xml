@@ -80,7 +80,10 @@
         <activity android:name=".view.main.wode.realName.RealNameMainActivity" />
         <activity android:name=".view.main.wode.YiJianFanKuiActivity" />
         <activity android:name=".view.main.wode.GuanYuActivity" />
-        <activity android:name=".view.main.wode.userSecuryty.UserSecurityActivity"/>
+        <activity android:name=".view.main.wode.userSecuryty.UserSecurityActivity" />
+        <activity android:name=".view.main.wode.userSecuryty.ChangeLoginPasswordActivity" />
+        <activity android:name=".view.main.wode.userSecuryty.ChangePhoneActivity" />
+        <activity android:name=".view.main.wode.userSecuryty.PaySettingActivity" />
     </application>
 
 </manifest>

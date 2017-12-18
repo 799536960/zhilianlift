@@ -26,9 +26,23 @@ public class SendCodeUtil {
     private Activity mActivity;
     private EditText mEditText;
 
+    private View.OnClickListener onClickListener;
+
     public SendCodeUtil(final TextView codeText, EditText editTextPhone, Activity activity) {
-        ininData(codeText, activity);
         this.mEditText = editTextPhone;
+        ininData(codeText, activity);
+    }
+
+    public SendCodeUtil(final TextView codeText, EditText editTextPhone, Activity activity, View.OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+        this.mEditText = editTextPhone;
+        ininData(codeText, activity);
+
+    }
+
+    public SendCodeUtil(final TextView codeText, final Activity activity, View.OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+        ininData(codeText, activity);
     }
 
     public SendCodeUtil(final TextView codeText, final Activity activity) {
@@ -51,12 +65,17 @@ public class SendCodeUtil {
                 initTextView();
             }
         };
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sendCode();
-            }
-        });
+        if (onClickListener == null) {
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    sendCode();
+                }
+            });
+        } else {
+            textView.setOnClickListener(onClickListener);
+        }
+
     }
 
 
