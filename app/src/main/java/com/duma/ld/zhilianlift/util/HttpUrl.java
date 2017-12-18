@@ -32,4 +32,5 @@ public class HttpUrl {
     public static String suggestion = BaseUrl + "/index.php/api/user/suggestion";
     public static String password = BaseUrl + "/index.php/api/user/password";
     public static String mobile = BaseUrl + "/index.php/api/user/mobile";
+    public static String paypwd_is = BaseUrl + "/index.php/api/user/paypwd_is";
 }

@@ -7,20 +7,19 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
 import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
+import com.duma.ld.zhilianlift.Adapter.SettingAdapter;
 import com.duma.ld.zhilianlift.R;
-import com.duma.ld.zhilianlift.base.baseAdapter.BaseAdapter;
 import com.duma.ld.zhilianlift.base.baseJsonHttp.MyJsonCallback;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
 import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.model.RealNameModel;
+import com.duma.ld.zhilianlift.model.SettingModel;
 import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.DialogUtil;
 import com.duma.ld.zhilianlift.util.IntentUtil;
@@ -50,8 +49,9 @@ public class SettingActivity extends BaseMyActivity {
     @BindView(R.id.tv_remove_login)
     TextView tvRemoveLogin;
 
-    private BaseAdapter<String> adapter;
-    private List<String> list;
+    //    private BaseAdapter<String> adapter;
+    private List<SettingModel> list;
+    private SettingAdapter settingAdapter;
 
     @Override
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig) {
@@ -61,19 +61,20 @@ public class SettingActivity extends BaseMyActivity {
     @Override
     protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
-        adapter = new BaseAdapter<String>(R.layout.adapter_setting) {
-            @Override
-            protected void convert(BaseViewHolder helper, String item) {
-                helper.setText(R.id.tv_name, item);
-                ImageView imageView = helper.getView(R.id.img_jiantou);
-                if (helper.getLayoutPosition() == 5) {
-                    imageView.setVisibility(View.INVISIBLE);
-                } else {
-                    imageView.setVisibility(View.VISIBLE);
-                }
-            }
-        };
-        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+//        adapter = new BaseAdapter<String>(R.layout.adapter_setting) {
+//            @Override
+//            protected void convert(BaseViewHolder helper, String item) {
+//                helper.setText(R.id.tv_name, item);
+//                ImageView imageView = helper.getView(R.id.img_jiantou);
+//                if (helper.getLayoutPosition() == 5) {
+//                    imageView.setVisibility(View.INVISIBLE);
+//                } else {
+//                    imageView.setVisibility(View.VISIBLE);
+//                }
+//            }
+//        };
+        settingAdapter = new SettingAdapter();
+        settingAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 switch (position) {
@@ -109,7 +110,7 @@ public class SettingActivity extends BaseMyActivity {
             }
         });
         tvList.setLayoutManager(new LinearLayoutManager(mActivity));
-        tvList.setAdapter(adapter);
+        tvList.setAdapter(settingAdapter);
         initData();
     }
 
@@ -149,14 +150,14 @@ public class SettingActivity extends BaseMyActivity {
 
     private void initData() {
         list = new ArrayList<>();
-        list.add("个人资料");
-        list.add("实名认证");
-        list.add("地址管理");
-        list.add("账户与安全");
-        list.add("建议反馈");
-        list.add("清理缓存");
-        list.add("关于我们");
-        adapter.setNewData(list);
+        list.add(new SettingModel("个人资料"));
+        list.add(new SettingModel("实名认证"));
+        list.add(new SettingModel("地址管理"));
+        list.add(new SettingModel("账户与安全"));
+        list.add(new SettingModel("建议反馈"));
+        list.add(new SettingModel("清理缓存", "", false));
+        list.add(new SettingModel("关于我们"));
+        settingAdapter.setNewData(list);
     }
 
     @OnClick(R.id.tv_remove_login)

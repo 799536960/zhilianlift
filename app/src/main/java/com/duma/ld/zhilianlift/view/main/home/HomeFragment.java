@@ -31,6 +31,7 @@ import com.duma.ld.zhilianlift.model.HomeModel;
 import com.duma.ld.zhilianlift.model.HomeMultipleModel;
 import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.util.Constants;
+import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.LocalImageHolderView;
 import com.duma.ld.zhilianlift.util.LocationUtil;
 import com.duma.ld.zhilianlift.util.PublicUtil;
@@ -205,6 +206,7 @@ public class HomeFragment extends BaseMyFragment {
                 startActivity(new Intent(mActivity, SearchActivity.class));
                 break;
             case R.id.layout_scan:
+                IntentUtil.goPayPassword(mActivity, Constants.type_new);
                 break;
         }
     }

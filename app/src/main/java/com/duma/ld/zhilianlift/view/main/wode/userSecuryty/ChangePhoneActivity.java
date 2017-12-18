@@ -130,7 +130,7 @@ public class ChangePhoneActivity extends BaseMyActivity {
                     TsUtils.show("请输入新手机号码正确的验证码!");
                     return;
                 }
-                if (RegexUtils.isMobileSimple(editNewPhone.getText().toString())) {
+                if (!RegexUtils.isMobileSimple(editNewPhone.getText().toString())) {
                     TsUtils.show("请输入正确的新手机号码!");
                     return;
                 }

@@ -13,6 +13,7 @@ import com.duma.ld.zhilianlift.view.main.wode.addres.AddOrChangeActivity;
 import com.duma.ld.zhilianlift.view.main.wode.addres.AddresListActivity;
 import com.duma.ld.zhilianlift.view.main.wode.UserDataActivity;
 import com.duma.ld.zhilianlift.view.main.wode.realName.RealNameEditActivity;
+import com.duma.ld.zhilianlift.view.main.wode.userSecuryty.PayPasswordActivity;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static com.duma.ld.zhilianlift.util.Constants.ClassId;
@@ -88,6 +89,16 @@ public class IntentUtil {
         goVerifyPhone(activity, Constants.Verify_RealName);
     }
 
+    //验证手机后 跳转设置支付密码
+    public static void goVerifyPhone_payPassword(Activity activity) {
+        goVerifyPhone(activity, Constants.Verify_payPassword);
+    }
+
+    //验证手机后 跳转忘记密码的设置支付密码
+    public static void goVerifyPhone_payPassword_forget(Activity activity) {
+        goVerifyPhone(activity, Constants.Verify_payPassword_forget);
+    }
+
     //添加实名认证
     public static void goRealName_add(Activity activity) {
         goRealName(activity, null);
@@ -108,6 +119,19 @@ public class IntentUtil {
         Intent intent = new Intent(activity, HomeActivity.class);
         intent.setFlags(FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        activity.startActivity(intent);
+    }
+
+    //支付密码页面
+    public static void goPayPassword(Activity activity, String type) {
+        /**
+         * //第一次设置支付密码 "type_new";
+         * //验证原支付密码 "type_verify";
+         * //验证后设置支付密码 "type_verify_new";
+         * //忘记支付密码 验证手机后设置新支付密码 "type_forget_verify_new";
+         */
+        Intent intent = new Intent(activity, PayPasswordActivity.class);
+        intent.putExtra(Constants.Type, type);
         activity.startActivity(intent);
     }
 }

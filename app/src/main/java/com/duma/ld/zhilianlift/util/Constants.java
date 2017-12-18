@@ -42,6 +42,18 @@ public class Constants {
     //验证手机后 跳转页面类型
     //跳转实名认证
     public static final String Verify_RealName = "Verify_RealName";
+    public static final String Verify_payPassword = "Verify_payPassword";
+    public static final String Verify_payPassword_forget = "Verify_payPassword_forget";
+
+    //支付密码
+    //第一次设置支付密码
+    public static final String type_new = "type_new";
+    //验证原支付密码
+    public static final String type_verify = "type_verify";
+    //验证后设置支付密码
+    public static final String type_verify_new = "type_verify_new";
+    //忘记支付密码 验证手机后设置新支付密码
+    public static final String type_forget_verify_new = "type_forget_verify_new";
     /**
      * sp
      */

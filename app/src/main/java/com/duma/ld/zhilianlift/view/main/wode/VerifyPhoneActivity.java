@@ -29,6 +29,10 @@ import butterknife.OnClick;
 
 import static com.duma.ld.zhilianlift.util.Constants.Type;
 import static com.duma.ld.zhilianlift.util.Constants.Verify_RealName;
+import static com.duma.ld.zhilianlift.util.Constants.Verify_payPassword;
+import static com.duma.ld.zhilianlift.util.Constants.Verify_payPassword_forget;
+import static com.duma.ld.zhilianlift.util.Constants.type_forget_verify_new;
+import static com.duma.ld.zhilianlift.util.Constants.type_new;
 import static com.duma.ld.zhilianlift.util.HttpUrl.check_sms;
 import static com.duma.ld.zhilianlift.util.HttpUrl.send_validate_code;
 
@@ -127,6 +131,12 @@ public class VerifyPhoneActivity extends BaseMyActivity {
                         switch (intentType) {
                             case Verify_RealName:
                                 IntentUtil.goRealName_add(mActivity);
+                                break;
+                            case Verify_payPassword:
+                                IntentUtil.goPayPassword(mActivity, type_new);
+                                break;
+                            case Verify_payPassword_forget:
+                                IntentUtil.goPayPassword(mActivity, type_forget_verify_new);
                                 break;
                         }
                     }
