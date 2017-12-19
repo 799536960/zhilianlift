@@ -6,10 +6,10 @@ import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
-import com.duma.ld.baselibrary.util.EventBusUtil;
 import com.duma.ld.zhilianlift.base.MyApplication;
 
 /**
+ * 定位权限=>定位(网络,gps)=>定位信息=>逆地理编码http请求=>获取有区划代码信息=>发送事件=>保存或者取消
  * Created by liudong on 2017/11/30.
  */
 
@@ -49,7 +49,7 @@ public class LocationUtil {
             @Override
             public void onReceiveLocation(BDLocation bdLocation) {
                 if (bdLocation.getCity() != null) {
-                    EventBusUtil.sendModel(type, bdLocation);
+                    SpDataUtil.setLocation(type, bdLocation);
                     mLocationClient.stop();
                 }
 

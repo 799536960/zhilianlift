@@ -2,52 +2,88 @@ package com.duma.ld.zhilianlift.util;
 
 import com.baidu.location.BDLocation;
 import com.blankj.utilcode.util.SPUtils;
+import com.duma.ld.baselibrary.util.EventBusUtil;
+import com.duma.ld.baselibrary.util.Log;
+import com.duma.ld.zhilianlift.model.BaiDuLocationModel;
+import com.duma.ld.zhilianlift.model.LocationModel;
 import com.duma.ld.zhilianlift.model.UserModel;
 import com.google.gson.Gson;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.Response;
 
-import static com.duma.ld.zhilianlift.util.Constants.defaultCity;
+import static com.duma.ld.zhilianlift.util.Constants.sp_Location;
 
 /**
  * Created by liudong on 2017/12/4.
  */
 
 public class SpDataUtil {
-    public static void setLocation(BDLocation bdLocation) {
-        SPUtils.getInstance().put(Constants.sp_latitude, bdLocation.getLatitude() + "");
-        SPUtils.getInstance().put(Constants.sp_longitude, bdLocation.getLongitude() + "");
-        SPUtils.getInstance().put(Constants.sp_addr, bdLocation.getAddress() + "");
-        SPUtils.getInstance().put(Constants.sp_province, bdLocation.getProvince() + "");
-        SPUtils.getInstance().put(Constants.sp_city, bdLocation.getCity() + "");
-        SPUtils.getInstance().put(Constants.sp_district, bdLocation.getDistrict() + "");
-        SPUtils.getInstance().put(Constants.sp_street, bdLocation.getStreet() + "");
+    //用定位信息获取有区划代码信息
+    public static void setLocation(final int type, BDLocation bdLocation) {
+        OkGo.getInstance().cancelTag("setLocation");
+        OkGo.<String>get("http://api.map.baidu.com/geocoder/v2/")
+                .tag("setLocation")
+                .params("pois", "0")
+                .params("latest_admin", "1")
+                .params("output", "json")
+                .params("ak", "qxNH2SKh5Vy2xNnGGgIIeqDg39uQZaCe")
+                .params("location", bdLocation.getLatitude() + "," + bdLocation.getLongitude())
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        BaiDuLocationModel model = new Gson().fromJson(response.body(), BaiDuLocationModel.class);
+                        if (model.getStatus() == 0) {
+                            EventBusUtil.sendModel(type, model);
+                        }
+                    }
+                });
     }
 
-    public static void setCity(String city) {
-        SPUtils.getInstance().put(Constants.sp_city, city + "");
-        SPUtils.getInstance().put(Constants.sp_latitude, "");
-        SPUtils.getInstance().put(Constants.sp_longitude, "");
-        SPUtils.getInstance().put(Constants.sp_addr, "");
-        SPUtils.getInstance().put(Constants.sp_province, "");
-        SPUtils.getInstance().put(Constants.sp_district, "");
-        SPUtils.getInstance().put(Constants.sp_street, "");
+    //缓存
+    public static void setLocationData(BaiDuLocationModel model) {
+        BaiDuLocationModel.ResultBean.AddressComponentBean addressComponent = model.getResult().getAddressComponent();
+        LocationModel locationModel = new LocationModel(addressComponent.getCity(), addressComponent.getDistrict(), addressComponent.getAdcode());
+        locationModel.setmLatitude(model.getResult().getLocation().getLat());
+        locationModel.setmLongitude(model.getResult().getLocation().getLng());
+        setData(locationModel);
     }
 
-    public static void setDistrict(String district) {
-        SPUtils.getInstance().put(Constants.sp_district, district);
-        SPUtils.getInstance().put(Constants.sp_latitude, "");
-        SPUtils.getInstance().put(Constants.sp_longitude, "");
-        SPUtils.getInstance().put(Constants.sp_addr, "");
-        SPUtils.getInstance().put(Constants.sp_province, "");
-        SPUtils.getInstance().put(Constants.sp_street, "");
+    public static void setData(LocationModel locationModel) {
+        Log.e(locationModel.toString());
+        SPUtils.getInstance().put(Constants.sp_Location, new Gson().toJson(locationModel));
+    }
+
+    public static void setCity(String city, String code) {
+        LocationModel location = new LocationModel(city, "", code);
+        setData(location);
+    }
+
+    public static void setDistrict(String district, String code) {
+        LocationModel location = getLocation();
+        location.setDistrict(district);
+        location.setCode(code);
+        setData(location);
     }
 
     public static boolean isCity(String city) {
         return getCity().equals(city);
     }
 
+    /**
+     * 返回位置信息
+     * 没有返回默认的
+     *
+     * @return 位置信息
+     */
+    public static LocationModel getLocation() {
+        String string = SPUtils.getInstance().getString(sp_Location, "");
+        return LocationModel.getJsonModel(string);
+    }
+
     //返回当前城市
     public static String getCity() {
-        return SPUtils.getInstance().getString(Constants.sp_city, defaultCity);
+        return getLocation().getCity();
     }
 
     public static boolean isLogin() {

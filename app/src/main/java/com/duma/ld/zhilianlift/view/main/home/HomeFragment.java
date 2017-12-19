@@ -12,7 +12,6 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.baidu.location.BDLocation;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -26,6 +25,7 @@ import com.duma.ld.zhilianlift.base.baseJsonHttp.MyJsonCallback;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyFragment;
 import com.duma.ld.zhilianlift.model.AdBean;
 import com.duma.ld.zhilianlift.model.AdModel;
+import com.duma.ld.zhilianlift.model.BaiDuLocationModel;
 import com.duma.ld.zhilianlift.model.GoodsAllBean;
 import com.duma.ld.zhilianlift.model.HomeModel;
 import com.duma.ld.zhilianlift.model.HomeMultipleModel;
@@ -91,13 +91,14 @@ public class HomeFragment extends BaseMyFragment {
     @Override
     protected void onReceiveEvent(EventModel eventModel) {
         if (eventModel.getCode() == Constants.event_location_home) {
-            final BDLocation bdLocation = (BDLocation) eventModel.getData();
-            if (!SpDataUtil.isCity(bdLocation.getCity())) {
-                AlertDialog.Builder builder = PublicUtil.getAlertDialog(mActivity, "切换城市", "当前城市和您所在的城市不同,是否切换为 " + bdLocation.getCity() + "?")
+            final BaiDuLocationModel model = (BaiDuLocationModel) eventModel.getData();
+            String city = model.getResult().getAddressComponent().getCity();
+            if (!SpDataUtil.isCity(city)) {
+                AlertDialog.Builder builder = PublicUtil.getAlertDialog(mActivity, "切换城市", "当前城市和您所在的城市不同,是否切换为 " + city + "?")
                         .setPositiveButton("是", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                SpDataUtil.setLocation(bdLocation);
+                                SpDataUtil.setLocationData(model);
                                 onClickLoadingRefresh();
                             }
                         })

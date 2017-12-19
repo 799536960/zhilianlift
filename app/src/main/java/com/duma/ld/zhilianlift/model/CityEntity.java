@@ -10,6 +10,7 @@ import me.yokeyword.indexablerv.IndexableEntity;
 public class CityEntity implements IndexableEntity, Serializable {
     private long id;
     private String name;
+    private String code;
     private String pinyin;
 
     public CityEntity() {
@@ -17,6 +18,19 @@ public class CityEntity implements IndexableEntity, Serializable {
 
     public CityEntity(String name) {
         this.name = name;
+    }
+
+    public CityEntity(String name, String code) {
+        this.name = name;
+        this.code = code;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public long getId() {

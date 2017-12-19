@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.duma.ld.baselibrary.util.EventBusUtil;
 import com.duma.ld.zhilianlift.R;
+import com.duma.ld.zhilianlift.model.CityEntity;
 import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
 
@@ -23,7 +24,7 @@ import static com.duma.ld.zhilianlift.util.Constants.locationString;
  * Created by liudong on 2017/12/4.
  */
 
-public class CityHeaderLocationAdapter extends IndexableHeaderAdapter<String> {
+public class CityHeaderLocationAdapter extends IndexableHeaderAdapter<CityEntity> {
     private static final int TYPE = 1;
     private Activity activity;
 
@@ -43,20 +44,20 @@ public class CityHeaderLocationAdapter extends IndexableHeaderAdapter<String> {
     }
 
     @Override
-    public void onBindContentViewHolder(RecyclerView.ViewHolder holder, final String entity) {
+    public void onBindContentViewHolder(RecyclerView.ViewHolder holder, final CityEntity entity) {
         VH vh = (VH) holder;
-        vh.tv.setText(entity);
+        vh.tv.setText(entity.getName());
         vh.layout_location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (entity.equals(locationString)) {
                     return;
                 }
-                if (SpDataUtil.isCity(entity)) {
+                if (SpDataUtil.isCity(entity.getName())) {
                     activity.finish();
                     return;
                 }
-                SpDataUtil.setCity(entity);
+                SpDataUtil.setCity(entity.getName(), entity.getCode());
                 EventBusUtil.sendModel(Constants.event_select_city);
                 activity.finish();
             }

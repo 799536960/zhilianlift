@@ -13,8 +13,17 @@ public class QuModel {
 
     private int id;
     private String name;
+    private String code;
 
-    public QuModel( String name) {
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public QuModel(String name) {
         this.name = name;
     }
 

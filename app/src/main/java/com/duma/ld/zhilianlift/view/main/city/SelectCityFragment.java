@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
-import com.baidu.location.BDLocation;
 import com.duma.ld.baselibrary.model.EventModel;
 import com.duma.ld.baselibrary.util.EventBusUtil;
 import com.duma.ld.baselibrary.util.ZhuanHuanUtil;
@@ -14,6 +13,7 @@ import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseJsonHttp.MyJsonCallback;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyFragment;
+import com.duma.ld.zhilianlift.model.BaiDuLocationModel;
 import com.duma.ld.zhilianlift.model.CityEntity;
 import com.duma.ld.zhilianlift.model.CityHeaderModel;
 import com.duma.ld.zhilianlift.model.HttpResModel;
@@ -51,6 +51,7 @@ public class SelectCityFragment extends BaseMyFragment {
     private CityHeaderLocationAdapter locationAdapter;
     private CityHeaderRvAdapter rvAdapter;
     private String locationString = Constants.locationString;
+    private CityEntity cityEntity;
 
     @Override
     protected boolean isRegisterEventBus() {
@@ -60,8 +61,9 @@ public class SelectCityFragment extends BaseMyFragment {
     @Override
     protected void onReceiveEvent(EventModel eventModel) {
         if (eventModel.getCode() == Constants.event_location_city) {
-            final BDLocation bdLocation = (BDLocation) eventModel.getData();
-            locationString = bdLocation.getCity();
+            final BaiDuLocationModel bdLocation = (BaiDuLocationModel) eventModel.getData();
+            locationString = bdLocation.getResult().getAddressComponent().getCity();
+            cityEntity = new CityEntity(bdLocation.getResult().getAddressComponent().getCity(), bdLocation.getResult().getAddressComponent().getAdcode());
             addHearder();
         }
     }
@@ -74,6 +76,7 @@ public class SelectCityFragment extends BaseMyFragment {
     @Override
     protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
+        cityEntity = new CityEntity(Constants.locationString);
         layoutIndex.setLayoutManager(new LinearLayoutManager(mActivity));
         // 多音字处理
         Pinyin.init(Pinyin.newConfig().with(CnCityDict.getInstance(mActivity)));
@@ -86,7 +89,7 @@ public class SelectCityFragment extends BaseMyFragment {
             @Override
             public void onItemClick(View v, int originalPosition, int currentPosition, CityEntity entity) {
                 if (originalPosition >= 0) {
-                    setCity(entity.getName());
+                    setCity(entity.getName(), entity.getCode());
                 }
             }
         });
@@ -94,12 +97,12 @@ public class SelectCityFragment extends BaseMyFragment {
         LocationUtil.getInstance().start(mActivity, event_location_city);
     }
 
-    private void setCity(String name) {
+    private void setCity(String name, String code) {
         if (SpDataUtil.isCity(name)) {
             mActivity.finish();
             return;
         }
-        SpDataUtil.setCity(name);
+        SpDataUtil.setCity(name, code);
         EventBusUtil.sendModel(Constants.event_select_city);
         mActivity.finish();
     }
@@ -125,8 +128,8 @@ public class SelectCityFragment extends BaseMyFragment {
             layoutIndex.removeHeaderAdapter(rvAdapter);
         }
         //加载定位
-        List<String> locationList = new ArrayList<>();
-        locationList.add(locationString);
+        List<CityEntity> locationList = new ArrayList<>();
+        locationList.add(cityEntity);
         locationAdapter = new CityHeaderLocationAdapter(mActivity, locationList);
         layoutIndex.addHeaderAdapter(locationAdapter);
         //加载rv
@@ -139,7 +142,7 @@ public class SelectCityFragment extends BaseMyFragment {
             public void httpRes() {
                 DialogUtil.getInstance().show_noBack(mActivity);
                 OkGo.<HttpResModel<List<QuModel>>>get(get_region)
-                        .params("name", SpDataUtil.getCity())
+                        .params("name", SpDataUtil.getLocation().getCity())
                         .tag(httpTag)
                         .execute(new MyJsonCallback<HttpResModel<List<QuModel>>>() {
                             @Override

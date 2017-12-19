@@ -88,7 +88,7 @@ public class CityHeaderRvAdapter extends IndexableHeaderAdapter<CityHeaderModel>
                     @Override
                     public void onClick(View view) {
                         activity.finish();
-                        SpDataUtil.setDistrict(item.getName());
+                        SpDataUtil.setDistrict(item.getName(), item.getCode());
                     }
                 });
             }
