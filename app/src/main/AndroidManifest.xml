@@ -84,7 +84,10 @@
         <activity android:name=".view.main.wode.userSecuryty.ChangeLoginPasswordActivity" />
         <activity android:name=".view.main.wode.userSecuryty.ChangePhoneActivity" />
         <activity android:name=".view.main.wode.userSecuryty.PaySettingActivity" />
-        <activity android:name=".view.main.wode.userSecuryty.PayPasswordActivity" />
+        <activity
+            android:name=".view.main.wode.userSecuryty.PayPasswordActivity"
+            android:windowSoftInputMode="stateVisible" />
+        <activity android:name=".view.main.wode.userSecuryty.PaySuccessActivity" />
     </application>
 
 </manifest>

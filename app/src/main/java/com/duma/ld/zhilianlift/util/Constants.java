@@ -27,6 +27,8 @@ public class Constants {
     public static final int event_addresList_add = 7;
     //编辑收货地址列表
     public static final int event_addresList_edit = 8;
+    //设置支付密码成功的回调
+    public static final int event_pay_success = 9;
     /**
      * intent
      */

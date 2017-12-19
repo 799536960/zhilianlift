@@ -28,7 +28,6 @@ import java.util.TimerTask;
  */
 
 public class PasswordView extends View {
-
     private Mode mode; //样式模式
     private int passwordLength;//密码个数
     private long cursorFlashTime;//光标闪动间隔时间
@@ -136,6 +135,7 @@ public class PasswordView extends View {
         MyKeyListener MyKeyListener = new MyKeyListener();
         setOnKeyListener(MyKeyListener);
         inputManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        showKey();
         paint = new Paint();
         paint_shuxian = new Paint();
         paint_shuxian.setAntiAlias(true);
@@ -285,7 +285,7 @@ public class PasswordView extends View {
     /**
      * 获取密码
      */
-    private String getPassword() {
+    public String getPassword() {
         StringBuffer stringBuffer = new StringBuffer();
         for (String c : password) {
             if (TextUtils.isEmpty(c)) {
@@ -398,8 +398,8 @@ public class PasswordView extends View {
         paint_shuxian.setStyle(Paint.Style.STROKE);
         for (int i = 0; i < passwordLength - 1; i++) {
             Path path = new Path(); //创建Path对象
-            path.moveTo(getPaddingLeft() + (passwordSize + passwordPadding) * i + passwordSize, 0);
-            path.lineTo(getPaddingLeft() + (passwordSize + passwordPadding) * i + passwordSize, getPaddingTop() + passwordSize);
+            path.moveTo(getPaddingLeft() + (passwordSize + passwordPadding) * i + passwordSize, width / 2);
+            path.lineTo(getPaddingLeft() + (passwordSize + passwordPadding) * i + passwordSize, getPaddingTop() + passwordSize - width / 2);
             canvas.drawPath(path, paint_shuxian);//画出路径
         }
 //        for (int i = 0; i < passwordLength; i++) {
@@ -432,19 +432,28 @@ public class PasswordView extends View {
             /**
              * 弹出软键盘
              */
-            requestFocus();
-            inputManager.showSoftInput(this, InputMethodManager.SHOW_FORCED);
+            showKey();
             return true;
         }
         return super.onTouchEvent(event);
+    }
+
+
+    public void showKey() {
+        requestFocus();
+        inputManager.showSoftInput(this, InputMethodManager.SHOW_FORCED);
     }
 
     @Override
     public void onWindowFocusChanged(boolean hasWindowFocus) {
         super.onWindowFocusChanged(hasWindowFocus);
         if (!hasWindowFocus) {
-            inputManager.hideSoftInputFromWindow(this.getWindowToken(), 0);
+            hideKey();
         }
+    }
+
+    public void hideKey() {
+        inputManager.hideSoftInputFromWindow(this.getWindowToken(), 0);
     }
 
     @Override

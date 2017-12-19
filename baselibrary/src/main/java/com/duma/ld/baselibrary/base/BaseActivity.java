@@ -78,5 +78,17 @@ public abstract class BaseActivity extends SupportActivity implements OnViewConf
         OkGo.getInstance().cancelTag(httpTag);
     }
 
+    @Override
+    public void onBackPressedSupport() {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
+            pop();
+        } else {
+            onBack();
+        }
+    }
+
+    protected void onBack() {
+        finish();
+    }
 
 }

@@ -10,6 +10,7 @@ import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
+import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
 
 import butterknife.BindView;
@@ -50,7 +51,7 @@ public class UserSecurityActivity extends BaseMyActivity {
                 startActivity(new Intent(mActivity, ChangeLoginPasswordActivity.class));
                 break;
             case R.id.layout_pay_password:
-                startActivity(new Intent(mActivity, PaySettingActivity.class));
+                IntentUtil.goPaySetting(mActivity);
                 break;
         }
     }

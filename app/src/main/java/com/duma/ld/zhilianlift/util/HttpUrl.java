@@ -33,4 +33,6 @@ public class HttpUrl {
     public static String password = BaseUrl + "/index.php/api/user/password";
     public static String mobile = BaseUrl + "/index.php/api/user/mobile";
     public static String paypwd_is = BaseUrl + "/index.php/api/user/paypwd_is";
+    public static String setpaypwd = BaseUrl + "/index.php/api/user/setpaypwd";
+    public static String paypwd = BaseUrl + "/index.php/api/user/paypwd";
 }

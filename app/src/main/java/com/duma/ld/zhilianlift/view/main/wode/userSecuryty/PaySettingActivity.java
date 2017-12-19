@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.duma.ld.baselibrary.model.EventModel;
 import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.Adapter.SettingAdapter;
@@ -14,6 +15,7 @@ import com.duma.ld.zhilianlift.base.baseJsonHttp.MyJsonCallback;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
 import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.model.SettingModel;
+import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
@@ -41,6 +43,18 @@ public class PaySettingActivity extends BaseMyActivity {
     @Override
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig) {
         return initConfig.setLayoutIdByActivity(R.layout.activity_pay_setting).setTopBar_A("支付密码");
+    }
+
+    @Override
+    protected boolean isRegisterEventBus() {
+        return true;
+    }
+
+    @Override
+    protected void onReceiveEvent(EventModel eventModel) {
+        if (eventModel.getCode() == Constants.event_pay_success) {
+            setSetting_true();
+        }
     }
 
     @Override
@@ -108,5 +122,10 @@ public class PaySettingActivity extends BaseMyActivity {
         } else {
             return false;
         }
+    }
+
+    public void setSetting_true() {
+        isSetting = "2";
+        initData();
     }
 }

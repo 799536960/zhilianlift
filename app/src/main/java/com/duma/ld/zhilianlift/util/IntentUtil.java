@@ -8,12 +8,14 @@ import com.duma.ld.zhilianlift.model.RealNameModel;
 import com.duma.ld.zhilianlift.view.login.LoginOrRegisterActivity;
 import com.duma.ld.zhilianlift.view.main.home.HomeActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.GoodsListActivity;
+import com.duma.ld.zhilianlift.view.main.wode.UserDataActivity;
 import com.duma.ld.zhilianlift.view.main.wode.VerifyPhoneActivity;
 import com.duma.ld.zhilianlift.view.main.wode.addres.AddOrChangeActivity;
 import com.duma.ld.zhilianlift.view.main.wode.addres.AddresListActivity;
-import com.duma.ld.zhilianlift.view.main.wode.UserDataActivity;
 import com.duma.ld.zhilianlift.view.main.wode.realName.RealNameEditActivity;
 import com.duma.ld.zhilianlift.view.main.wode.userSecuryty.PayPasswordActivity;
+import com.duma.ld.zhilianlift.view.main.wode.userSecuryty.PaySettingActivity;
+import com.duma.ld.zhilianlift.view.main.wode.userSecuryty.PaySuccessActivity;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static com.duma.ld.zhilianlift.util.Constants.ClassId;
@@ -122,6 +124,14 @@ public class IntentUtil {
         activity.startActivity(intent);
     }
 
+    //支付设置页面
+    public static void goPaySetting(Activity activity) {
+        Intent intent = new Intent(activity, PaySettingActivity.class);
+        intent.setFlags(FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        activity.startActivity(intent);
+    }
+
     //支付密码页面
     public static void goPayPassword(Activity activity, String type) {
         /**
@@ -131,6 +141,13 @@ public class IntentUtil {
          * //忘记支付密码 验证手机后设置新支付密码 "type_forget_verify_new";
          */
         Intent intent = new Intent(activity, PayPasswordActivity.class);
+        intent.putExtra(Constants.Type, type);
+        activity.startActivity(intent);
+    }
+
+    //支付密码成功页面
+    public static void goPaySuccess(Activity activity, String type) {
+        Intent intent = new Intent(activity, PaySuccessActivity.class);
         intent.putExtra(Constants.Type, type);
         activity.startActivity(intent);
     }
