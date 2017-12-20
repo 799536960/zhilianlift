@@ -77,7 +77,6 @@ public class PasswordView extends View {
          */
         RECT(1);
         private int mode;
-
         Mode(int mode) {
             this.mode = mode;
         }

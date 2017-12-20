@@ -37,7 +37,6 @@ import com.duma.ld.zhilianlift.util.LocationUtil;
 import com.duma.ld.zhilianlift.util.PublicUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
 import com.duma.ld.zhilianlift.view.main.city.SelectCityActivity;
-import com.duma.ld.zhilianlift.view.main.shopping.SearchActivity;
 import com.duma.ld.zhilianlift.widget.VerticalSwipeRefreshLayout;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
@@ -204,7 +203,7 @@ public class HomeFragment extends BaseMyFragment {
                 startActivity(new Intent(mActivity, SelectCityActivity.class));
                 break;
             case R.id.layout_search:
-                startActivity(new Intent(mActivity, SearchActivity.class));
+                IntentUtil.goSearch(mActivity);
                 break;
             case R.id.layout_scan:
                 IntentUtil.goPayPassword(mActivity, Constants.type_new);

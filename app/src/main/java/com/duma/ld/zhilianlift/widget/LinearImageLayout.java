@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.duma.ld.zhilianlift.R;
 
 /**
+ * 有小圆点的布局
  * Created by liudong on 2017/12/8.
  */
 

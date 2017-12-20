@@ -126,7 +126,6 @@ public class BaseAdapter<T> extends BaseQuickAdapter<T, BaseViewHolder> implemen
     }
 
     private void onRefresh(int page) {
-        load_show();
         OkGo.getInstance().cancelTag(-1);
         onBaseLoadAdapterListener.onLoadHttp(page, -1);
     }
@@ -165,8 +164,8 @@ public class BaseAdapter<T> extends BaseQuickAdapter<T, BaseViewHolder> implemen
         }
     }
 
-    private void load_show() {
-
+    public int getPage() {
+        return page;
     }
 
     //建造器
@@ -191,32 +190,32 @@ public class BaseAdapter<T> extends BaseQuickAdapter<T, BaseViewHolder> implemen
             layoutManager = new LinearLayoutManager(mActivity);
         }
 
-        public Builder setLayoutManager(RecyclerView.LayoutManager layoutManager) {
+        public Builder<T> setLayoutManager(RecyclerView.LayoutManager layoutManager) {
             this.layoutManager = layoutManager;
             return this;
         }
 
         //设置空页面的title
-        public Builder setTitle(String title) {
+        public Builder<T> setTitle(String title) {
             this.title = title;
             return this;
         }
 
         //设置空页面的图片
-        public Builder setrawableId(@DrawableRes int drawableId) {
+        public Builder<T> setrawableId(@DrawableRes int drawableId) {
             this.drawableId = drawableId;
             return this;
         }
 
         //设置空页面图片和title
-        public Builder setTitleOrDrawableId(String title, @DrawableRes int drawableId) {
+        public Builder<T> setTitleOrDrawableId(String title, @DrawableRes int drawableId) {
             this.title = title;
             this.drawableId = drawableId;
             return this;
         }
 
         //不需要空页面
-        public Builder setNoEnpty() {
+        public Builder<T> setNoEnpty() {
             return this;
         }
 

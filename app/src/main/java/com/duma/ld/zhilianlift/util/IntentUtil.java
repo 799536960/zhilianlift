@@ -8,6 +8,7 @@ import com.duma.ld.zhilianlift.model.RealNameModel;
 import com.duma.ld.zhilianlift.view.login.LoginOrRegisterActivity;
 import com.duma.ld.zhilianlift.view.main.home.HomeActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.GoodsListActivity;
+import com.duma.ld.zhilianlift.view.main.shopping.SearchActivity;
 import com.duma.ld.zhilianlift.view.main.wode.UserDataActivity;
 import com.duma.ld.zhilianlift.view.main.wode.VerifyPhoneActivity;
 import com.duma.ld.zhilianlift.view.main.wode.addres.AddOrChangeActivity;
@@ -149,6 +150,12 @@ public class IntentUtil {
     public static void goPaySuccess(Activity activity, String type) {
         Intent intent = new Intent(activity, PaySuccessActivity.class);
         intent.putExtra(Constants.Type, type);
+        activity.startActivity(intent);
+    }
+
+    //搜索页面
+    public static void goSearch(Activity activity) {
+        Intent intent = new Intent(activity, SearchActivity.class);
         activity.startActivity(intent);
     }
 }

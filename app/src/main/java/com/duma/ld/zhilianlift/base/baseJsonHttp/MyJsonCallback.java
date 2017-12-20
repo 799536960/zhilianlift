@@ -129,8 +129,8 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
         if (config == null) {
             return;
         }
-        if (adapter != null && config.isOneSuccess()) {
-            //在分页中 如果有数据了 分页会有自己的loading
+        if (adapter != null && config.isOneSuccess() && adapter.getPage() != 1) {
+            //在分页中 如果有数据了 分页会有自己的loading page==1的时候 说明是在次加载
 
         } else {
             config.showLoadingView();

@@ -18,4 +18,13 @@
         <attr name="LiPadding" format="dimension" />
         <attr name="LiNum" format="integer" />
     </declare-styleable>
+
+    <declare-styleable name="CheckBoxGoodsList">
+        <attr name="CbName" format="string" />
+        <attr name="CbTrueIcon" format="reference" />
+        <attr name="CbFalseIcon" format="reference" />
+        <attr name="CbTrueTvColor" format="color" />
+        <attr name="CbFalseTvColor" format="color" />
+        <attr name="CbIsMode" format="boolean"/>
+    </declare-styleable>
 </resources>
