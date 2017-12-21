@@ -54,6 +54,7 @@ import static com.duma.ld.zhilianlift.util.Constants.Res;
 import static com.duma.ld.zhilianlift.util.Constants.Type;
 import static com.duma.ld.zhilianlift.util.HttpUrl.get_region;
 import static com.duma.ld.zhilianlift.util.HttpUrl.goodsList;
+import static com.duma.ld.zhilianlift.util.HttpUrl.search;
 
 /**
  * 商品列表页
@@ -239,16 +240,19 @@ public class GoodsListActivity extends BaseMyActivity {
         adapter = builder.buildLoad(new OnBaseLoadAdapterListener<GoodsBean>() {
             @Override
             public void onLoadHttp(int page, int httpTag) {
-                GetRequest<HttpResModel<GoodsListModel>> request = OkGo.<HttpResModel<GoodsListModel>>get(goodsList)
-                        .tag(httpTag)
-                        .params(Constants.Page, page)
-                        .params("code", SpDataUtil.getLocation().getCode());
+                GetRequest<HttpResModel<GoodsListModel>> request;
                 if (type.equals(Constants.ClassId)) {
                     //分类进来的
-                    request.params("id", res);
+                    request = OkGo.<HttpResModel<GoodsListModel>>get(goodsList)
+                            .params("id", res);
                 } else {
-                    request.params("id", res);
+                    //条件
+                    request = OkGo.<HttpResModel<GoodsListModel>>get(search)
+                            .params("q", res);
                 }
+                request.tag(httpTag)
+                        .params(Constants.Page, page)
+                        .params("code", SpDataUtil.getLocation().getCode());
                 if (cbXiaoLiang.isChecked()) {
                     //销量排序 从大到小
                     request.params("sort", "sales_sum");
