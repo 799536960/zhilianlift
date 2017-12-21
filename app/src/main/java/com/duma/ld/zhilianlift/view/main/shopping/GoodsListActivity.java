@@ -22,10 +22,13 @@ import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
 import com.duma.ld.zhilianlift.model.GoodsBean;
 import com.duma.ld.zhilianlift.model.GoodsListModel;
 import com.duma.ld.zhilianlift.model.HttpResModel;
+import com.duma.ld.zhilianlift.model.QuModel;
 import com.duma.ld.zhilianlift.util.Constants;
+import com.duma.ld.zhilianlift.util.DialogUtil;
 import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.PublicUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
+import com.duma.ld.zhilianlift.view.popupWindow.ListPopupWindow;
 import com.duma.ld.zhilianlift.widget.CheckBoxGoodsList;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
@@ -39,6 +42,7 @@ import butterknife.OnClick;
 
 import static com.duma.ld.zhilianlift.util.Constants.Res;
 import static com.duma.ld.zhilianlift.util.Constants.Type;
+import static com.duma.ld.zhilianlift.util.HttpUrl.get_region;
 import static com.duma.ld.zhilianlift.util.HttpUrl.goodsList;
 
 /**
@@ -68,6 +72,8 @@ public class GoodsListActivity extends BaseMyActivity {
     TextView tvSearchName;
     @BindView(R.id.cb_tabList)
     CheckBox cbTabList;
+    @BindView(R.id.view_show)
+    View viewShow;
 
     private String type;
     private String res;
@@ -75,6 +81,9 @@ public class GoodsListActivity extends BaseMyActivity {
     private BaseAdapter<GoodsBean> adapter;
     //筛选的list
     private List<Integer> list_shaiXuan;
+
+    private ListPopupWindow listPopupWindow;
+    private List<QuModel> quModelList;
 
     @Override
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig) {
@@ -90,6 +99,8 @@ public class GoodsListActivity extends BaseMyActivity {
             tvSearchName.setText(res);
         }
         list_shaiXuan = new ArrayList<>();
+        //初始化pop
+        listPopupWindow = new ListPopupWindow(mActivity);
         //初始化top筛选
         topAllDefault();
         initAdapter();
@@ -183,7 +194,12 @@ public class GoodsListActivity extends BaseMyActivity {
                 initAdapter();
                 break;
             case R.id.cb_diQu:
-                cbDiQu.setChecked(!cbDiQu.isChecked());
+//                cbDiQu.setChecked(!cbDiQu.isChecked());
+                if (quModelList == null || quModelList.size() == 0) {
+                    getQuHttp();
+                } else {
+                    listPopupWindow.Show(viewShow);
+                }
                 break;
             case R.id.cb_xiaoLiang:
                 cbJiaGe.setChecked(false);
@@ -201,9 +217,26 @@ public class GoodsListActivity extends BaseMyActivity {
         }
     }
 
+    private void getQuHttp() {
+        DialogUtil.getInstance().show_noBack(mActivity);
+        OkGo.<HttpResModel<List<QuModel>>>get(get_region)
+                .params("name", SpDataUtil.getLocation().getCity())
+                .tag(httpTag)
+                .execute(new MyJsonCallback<HttpResModel<List<QuModel>>>() {
+                    @Override
+                    protected void onJsonSuccess(Response<HttpResModel<List<QuModel>>> respons, HttpResModel<List<QuModel>> listHttpResModel) {
+                        DialogUtil.getInstance().hide();
+                        quModelList = listHttpResModel.getResult();
+                        listPopupWindow.setList(quModelList);
+                        listPopupWindow.Show(viewShow);
+                    }
+                });
+    }
+
     @Override
     public void onClickLoadingRefresh() {
         super.onClickLoadingRefresh();
         adapter.onRefresh();
     }
+
 }
