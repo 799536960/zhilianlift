@@ -111,6 +111,10 @@ public class CheckBoxGoodsList extends LinearLayout {
         tv_name.setText(res);
     }
 
+    public String getText() {
+        return tv_name.getText().toString();
+    }
+
     public boolean isChecked() {
         return checked;
     }

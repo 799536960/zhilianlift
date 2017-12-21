@@ -39,6 +39,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import razerdp.basepopup.BasePopupWindow;
 
 import static com.duma.ld.zhilianlift.util.Constants.Res;
 import static com.duma.ld.zhilianlift.util.Constants.Type;
@@ -101,6 +102,24 @@ public class GoodsListActivity extends BaseMyActivity {
         list_shaiXuan = new ArrayList<>();
         //初始化pop
         listPopupWindow = new ListPopupWindow(mActivity);
+        listPopupWindow.setOnDismissListener(new BasePopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                cbDiQu.setChecked(false);
+                String res = "";
+                if (SpDataUtil.getLocation().getDistrict().isEmpty()) {
+                    //没有选择区
+                    res = SpDataUtil.getLocation().getCity();
+                } else {
+                    res = SpDataUtil.getLocation().getDistrict();
+                }
+                if (!cbDiQu.getText().equals(res)) {
+                    //不相同 说明换区了
+                    cbDiQu.setText(res);
+                    onClickLoadingRefresh();
+                }
+            }
+        });
         //初始化top筛选
         topAllDefault();
         initAdapter();
@@ -194,11 +213,10 @@ public class GoodsListActivity extends BaseMyActivity {
                 initAdapter();
                 break;
             case R.id.cb_diQu:
-//                cbDiQu.setChecked(!cbDiQu.isChecked());
                 if (quModelList == null || quModelList.size() == 0) {
                     getQuHttp();
                 } else {
-                    listPopupWindow.Show(viewShow);
+                    showPop();
                 }
                 break;
             case R.id.cb_xiaoLiang:
@@ -228,9 +246,14 @@ public class GoodsListActivity extends BaseMyActivity {
                         DialogUtil.getInstance().hide();
                         quModelList = listHttpResModel.getResult();
                         listPopupWindow.setList(quModelList);
-                        listPopupWindow.Show(viewShow);
+                        showPop();
                     }
                 });
+    }
+
+    private void showPop() {
+        cbDiQu.setChecked(true);
+        listPopupWindow.showPopupWindow(viewShow);
     }
 
     @Override

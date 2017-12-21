@@ -16,18 +16,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="TextView" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-        <com.duma.ld.zhilianlift.widget.CheckBoxNoOnClick
-            android:id="@+id/cb_checked"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical" />
+            android:text="TextView"
+            android:textSize="15sp" />
     </LinearLayout>
 
     <View
