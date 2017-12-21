@@ -129,6 +129,17 @@ public class GoodsListModel {
         }
 
         public static class ItemBean {
+            @Override
+            public String toString() {
+                return "ItemBean{" +
+                        "name='" + name + '\'' +
+                        ", href='" + href + '\'' +
+                        ", key='" + key + '\'' +
+                        ", value='" + value + '\'' +
+                        ", id=" + id +
+                        '}';
+            }
+
             /**
              * name : 64G
              * href : /index.php/api/Goods/goodsList/id/12/attr/68_64G

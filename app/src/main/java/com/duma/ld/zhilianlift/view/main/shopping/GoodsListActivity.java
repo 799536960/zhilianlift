@@ -1,6 +1,8 @@
 package com.duma.ld.zhilianlift.view.main.shopping;
 
 import android.os.Bundle;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,9 +13,14 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.duma.ld.baselibrary.util.Log;
+import com.duma.ld.baselibrary.util.TsUtils;
+import com.duma.ld.baselibrary.util.ZhuanHuanUtil;
 import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
+import com.duma.ld.zhilianlift.Adapter.ScreeningAdapter;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseAdapter.BaseAdapter;
 import com.duma.ld.zhilianlift.base.baseAdapter.OnBaseLoadAdapterListener;
@@ -23,6 +30,8 @@ import com.duma.ld.zhilianlift.model.GoodsBean;
 import com.duma.ld.zhilianlift.model.GoodsListModel;
 import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.model.QuModel;
+import com.duma.ld.zhilianlift.model.ScreeningModel;
+import com.duma.ld.zhilianlift.model.ScreeningSelectListModel;
 import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.DialogUtil;
 import com.duma.ld.zhilianlift.util.IntentUtil;
@@ -75,14 +84,25 @@ public class GoodsListActivity extends BaseMyActivity {
     CheckBox cbTabList;
     @BindView(R.id.view_show)
     View viewShow;
+    @BindView(R.id.rv_screen)
+    RecyclerView rvScreen;
+    @BindView(R.id.tv_cancel)
+    TextView tvCancel;
+    @BindView(R.id.tv_ok)
+    TextView tvOk;
+    @BindView(R.id.layout_drawerLayout)
+    DrawerLayout layoutDrawerLayout;
 
     private String type;
     private String res;
 
     private BaseAdapter<GoodsBean> adapter;
     //筛选的list
-    private List<Integer> list_shaiXuan;
-
+    private List<ScreeningSelectListModel> list_shaiXuan;
+    private ScreeningAdapter screeningAdapter;
+    private List<ScreeningModel> listScreen;
+    private boolean flag;
+    //pop
     private ListPopupWindow listPopupWindow;
     private List<QuModel> quModelList;
 
@@ -101,6 +121,71 @@ public class GoodsListActivity extends BaseMyActivity {
         }
         list_shaiXuan = new ArrayList<>();
         //初始化pop
+        initPop();
+        //初始化top筛选
+        initTopAllDefault();
+        //初始化商品列表适配器
+        initAdapter();
+        //初始化筛选适配器
+        initScreenAdapter();
+        //关闭手势滑动
+        flag = false;
+        layoutDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        layoutDrawerLayout.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                if (list_shaiXuan.size() == 0) {
+                    cbShaiXuan.setChecked(false);
+                } else {
+                    cbShaiXuan.setChecked(true);
+                }
+                if (flag) {
+                    flag = false;
+                    onClickLoadingRefresh();
+                }
+            }
+        });
+    }
+
+    //初始化筛选适配器
+    private void initScreenAdapter() {
+        listScreen = new ArrayList<>();
+        screeningAdapter = new ScreeningAdapter(listScreen);
+        screeningAdapter.setSpanSizeLookup(new BaseQuickAdapter.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(GridLayoutManager gridLayoutManager, int position) {
+                return listScreen.get(position).getSpanSize();
+            }
+        });
+        rvScreen.setLayoutManager(new GridLayoutManager(mActivity, 3));
+        rvScreen.setAdapter(screeningAdapter);
+        screeningAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                //筛选点击事件
+                ScreeningModel model = (ScreeningModel) adapter.getData().get(position);
+                if (model.getItemType() == ScreeningModel.content) {
+                    model.setChenked(!model.isChenked());
+                    TextView textView = (TextView) adapter.getViewByPosition(rvScreen, position, R.id.tv_content);
+                    flag = true;
+                    if (model.isChenked()) {
+                        //选中
+                        ScreeningSelectListModel.addModel(model.getItemBean(), list_shaiXuan);
+                        textView.setBackground(ZhuanHuanUtil.getDrawable(R.drawable.bx_4_hong));
+                        textView.setTextColor(ZhuanHuanUtil.getColor(R.color.hong));
+                    } else {
+                        //反选
+                        ScreeningSelectListModel.removeModel(model.getItemBean(), list_shaiXuan);
+                        textView.setBackground(ZhuanHuanUtil.getDrawable(R.drawable.lr_4_hui2));
+                        textView.setTextColor(ZhuanHuanUtil.getColor(R.color.hei1));
+                    }
+                }
+            }
+        });
+    }
+
+    //初始化pop
+    private void initPop() {
         listPopupWindow = new ListPopupWindow(mActivity);
         listPopupWindow.setOnDismissListener(new BasePopupWindow.OnDismissListener() {
             @Override
@@ -120,12 +205,10 @@ public class GoodsListActivity extends BaseMyActivity {
                 }
             }
         });
-        //初始化top筛选
-        topAllDefault();
-        initAdapter();
     }
 
-    private void topAllDefault() {
+    //初始化top筛选
+    private void initTopAllDefault() {
         cbXiaoLiang.setChecked(true);
         cbJiaGe.setChecked(false);
         cbDiQu.setChecked(false);
@@ -142,6 +225,7 @@ public class GoodsListActivity extends BaseMyActivity {
         }
     }
 
+    //初始化商品列表适配器
     private void initAdapter() {
         BaseAdapter.Builder<GoodsBean> builder;
         if (cbTabList.isChecked()) {
@@ -182,11 +266,27 @@ public class GoodsListActivity extends BaseMyActivity {
                 }
                 if (cbShaiXuan.isChecked()) {
                     //筛选
+                    for (int i = 0; i < list_shaiXuan.size(); i++) {
+                        String value = "";
+                        for (int i1 = 0; i1 < list_shaiXuan.get(i).getList().size(); i1++) {
+                            if (i1 == 0) {
+                                value = list_shaiXuan.get(i).getList().get(i1).getValue();
+                            } else {
+                                value = value + "," + list_shaiXuan.get(i).getList().get(i1).getValue();
+                            }
+                        }
+                        Log.e("Key: " + list_shaiXuan.get(i).getKey() + " value: " + value);
+                        request.params(list_shaiXuan.get(i).getKey(), value);
+                    }
                 }
                 request.execute(new MyJsonCallback<HttpResModel<GoodsListModel>>(mActivityConfig) {
                     @Override
                     protected void onJsonSuccess(Response<HttpResModel<GoodsListModel>> respons, HttpResModel<GoodsListModel> listHttpResModel) {
                         adapter.setLoadData(listHttpResModel.getResult().getGoods_list());
+                        //初始化筛选数据
+                        if (listScreen.size() == 0) {
+                            initScreening(listHttpResModel.getResult().getFilter_attr());
+                        }
                     }
                 }.setLoadAdapter(adapter));
             }
@@ -199,9 +299,41 @@ public class GoodsListActivity extends BaseMyActivity {
         onClickLoadingRefresh();
     }
 
-    @OnClick({R.id.layout_back, R.id.layout_search, R.id.cb_tabList, R.id.cb_diQu, R.id.cb_xiaoLiang, R.id.cb_jiaGe, R.id.cb_shaiXuan})
+    //初始化筛选数据
+    private void initScreening(List<GoodsListModel.FilterAttrBean> filter_attr) {
+        if (filter_attr == null) {
+            return;
+        }
+        for (int i = 0; i < filter_attr.size(); i++) {
+            //添加head
+            listScreen.add(ScreeningModel.newHeadModel(filter_attr.get(i).getName()));
+            for (int i1 = 0; i1 < filter_attr.get(i).getItem().size(); i1++) {
+                //添加content
+                listScreen.add(ScreeningModel.newContentModel(filter_attr.get(i).getItem().get(i1)));
+            }
+            //添加线
+            listScreen.add(ScreeningModel.newViewModel());
+        }
+        screeningAdapter.notifyDataSetChanged();
+    }
+
+    @OnClick({R.id.tv_cancel, R.id.tv_ok, R.id.layout_back, R.id.layout_search, R.id.cb_tabList, R.id.cb_diQu, R.id.cb_xiaoLiang, R.id.cb_jiaGe, R.id.cb_shaiXuan})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.tv_cancel:
+                //列表所有未选中
+                for (int i = 0; i < listScreen.size(); i++) {
+                    listScreen.get(i).setChenked(false);
+                }
+                screeningAdapter.notifyDataSetChanged();
+                //当前记录清空
+                list_shaiXuan.clear();
+                flag = true;
+                layoutDrawerLayout.closeDrawer(GravityCompat.END);
+                break;
+            case R.id.tv_ok:
+                layoutDrawerLayout.closeDrawer(GravityCompat.END);
+                break;
             case R.id.layout_back:
                 finish();
                 break;
@@ -231,6 +363,11 @@ public class GoodsListActivity extends BaseMyActivity {
                 break;
             case R.id.cb_shaiXuan:
                 //筛选开关
+                if (listScreen == null || listScreen.size() == 0) {
+                    TsUtils.show("暂无筛选数据!");
+                } else {
+                    layoutDrawerLayout.openDrawer(GravityCompat.END);
+                }
                 break;
         }
     }
@@ -262,4 +399,13 @@ public class GoodsListActivity extends BaseMyActivity {
         adapter.onRefresh();
     }
 
+    @Override
+    protected void onBack() {
+        if (layoutDrawerLayout.isDrawerOpen(GravityCompat.END)) {
+            layoutDrawerLayout.closeDrawer(GravityCompat.END);
+        } else {
+            finish();
+        }
+
+    }
 }
