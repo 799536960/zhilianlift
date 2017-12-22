@@ -37,4 +37,5 @@ public class HttpUrl {
     public static String paypwd = BaseUrl + "/index.php/api/user/paypwd";
     public static String goodsList = BaseUrl + "/index.php/api/Goods/goodsList";
     public static String search = BaseUrl + "/index.php/api/goods/search ";
+    public static String goodsInfo = BaseUrl + "/index.php/api/Goods/goodsInfo ";
 }

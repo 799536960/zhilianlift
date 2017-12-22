@@ -31,7 +31,8 @@ android {
             zipAlignEnabled true
             minifyEnabled true
             //只优化不混淆
-            useProguard false
+//            useProguard false
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
@@ -102,4 +103,6 @@ dependencies {
     implementation 'com.contrarywind:Android-PickerView:3.2.7'
     //popupWindow
     implementation 'com.github.razerdp:BasePopup:1.8.5.1'
+    //banner
+    implementation 'com.youth.banner:banner:1.4.10'
 }

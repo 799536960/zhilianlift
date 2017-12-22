@@ -8,8 +8,11 @@ import android.widget.ImageView;
 import com.blankj.utilcode.util.ConvertUtils;
 import com.blankj.utilcode.util.SpanUtils;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.duma.ld.zhilianlift.Adapter.GlideImageLoader;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.model.GoodsBean;
+import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
 
 /**
  * Created by liudong on 2017/12/14.
@@ -39,5 +42,12 @@ public class PublicUtil {
                 .setFontSize(ConvertUtils.sp2px(18))
                 .create();
         helper.setText(R.id.tv_price, spannableStringBuilder);
+    }
+
+    public static Banner initBanner(Banner banner) {
+        return banner.setImageLoader(new GlideImageLoader())
+                .setDelayTime(3000)
+                .setIndicatorGravity(BannerConfig.RIGHT)
+                .setBannerStyle(BannerConfig.NUM_INDICATOR);
     }
 }

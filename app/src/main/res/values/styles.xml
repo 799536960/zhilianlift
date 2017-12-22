@@ -89,4 +89,10 @@
         <item name="android:textColor">@color/hei1</item>
         <item name="android:textSize">18sp</item>
     </style>
+
+    <style name="goods_style">
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:paddingStart">10dp</item>
+    </style>
+
 </resources>

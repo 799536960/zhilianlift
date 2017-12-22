@@ -111,8 +111,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/ripple_bai"
+                android:gravity="center"
                 app:LiIcon="@drawable/wode13"
                 app:LiName="待付款"
+                app:LiNum="2222"
                 app:LiPadding="17dp" />
 
             <com.duma.ld.zhilianlift.widget.LinearImageLayout
@@ -121,6 +123,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/ripple_bai"
+                android:gravity="center"
                 app:LiIcon="@drawable/wode12"
                 app:LiName="待收货"
                 app:LiPadding="17dp" />
@@ -131,6 +134,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/ripple_bai"
+                android:gravity="center"
                 app:LiIcon="@drawable/wode11"
                 app:LiName="待评价"
                 app:LiPadding="17dp" />
@@ -141,6 +145,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/ripple_bai"
+                android:gravity="center"
                 app:LiIcon="@drawable/wode10"
                 app:LiName="退换/售后"
                 app:LiPadding="17dp" />
@@ -157,6 +162,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/ripple_bai"
+                android:gravity="center"
                 app:LiIcon="@drawable/wode4"
                 app:LiName="我的订单"
                 app:LiPadding="17dp" />
@@ -196,7 +202,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="17dp"
+                    android:layout_marginBottom="13dp"
                     android:text="装修资金"
                     android:textColor="@color/hei3"
                     android:textSize="11sp" />
@@ -229,7 +235,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="17dp"
+                    android:layout_marginBottom="13dp"
                     android:text="优惠券"
                     android:textColor="@color/hei3"
                     android:textSize="11sp" />
@@ -262,7 +268,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="17dp"
+                    android:layout_marginBottom="13dp"
                     android:text="余额"
                     android:textColor="@color/hei3"
                     android:textSize="11sp" />
@@ -295,7 +301,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="17dp"
+                    android:layout_marginBottom="13dp"
                     android:text="补贴积分"
                     android:textColor="@color/hei3"
                     android:textSize="11sp" />
@@ -311,6 +317,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:gravity="center"
                 app:LiIcon="@drawable/wode5"
                 app:LiName="我的钱包"
                 app:LiPadding="17dp" />

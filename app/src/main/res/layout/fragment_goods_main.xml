@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.youth.banner.Banner
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="375dp" />
+
+        <TextView
+            android:id="@+id/tv_goods_name"
+            style="@style/goods_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="标题标题标题"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_goods_title"
+            style="@style/goods_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="描述"
+            android:textColor="@color/hong"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_goods_money"
+            style="@style/goods_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="1099"
+            android:textColor="@color/hong"
+            android:textSize="13sp" />
+
+        <View
+            style="@style/henxian"
+            android:layout_marginTop="8dp" />
+
+        <LinearLayout
+            style="@style/goods_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="供应"
+                android:textColor="@color/hui2"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_goods_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:gravity="center"
+                android:text="仅限湖州吴兴区,长兴县"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/goods_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="供应"
+                android:textColor="@color/hui2"
+                android:textSize="13sp"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/tv_goods_store"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:gravity="center"
+                android:text="由 长兴家之窗 TOTO专卖店 提供"
+                android:textColor="@color/hui2"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <View
+            style="@style/henxian"
+            android:layout_height="10dp"
+            android:layout_marginTop="17dp"
+            android:background="#eff2f5" />
+
+        <LinearLayout
+            style="@style/goods_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="已选"
+                android:textColor="@color/hui2"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_goods_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:gravity="center"
+                android:text="美式香浓挂耳咖啡5袋/盒，1件"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/goods_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="供应"
+                android:textColor="@color/hui2"
+                android:textSize="13sp"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/tv_goods_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:gravity="center"
+                android:text="仅剩2件"
+                android:textColor="@color/hong"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <View
+            style="@style/henxian"
+            android:layout_height="10dp"
+            android:layout_marginTop="17dp"
+            android:background="#eff2f5" />
+
+        <LinearLayout
+            style="@style/goods_style"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_goods_commentNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="评价(224)"
+                android:textColor="@color/hei2"
+                android:textSize="13sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="好评度"
+                android:textColor="@color/hei2"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_goods_commentJilv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="6dp"
+                android:text="99%"
+                android:textColor="@color/hong"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/tv_goods_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_goods_AllComment"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/bx_4_hui2"
+            android:gravity="center"
+            android:text="查看全部评价"
+            android:textColor="@color/hei2"
+            android:textSize="13sp" />
+
+        <View
+            style="@style/henxian"
+            android:layout_height="10dp"
+            android:layout_marginTop="17dp"
+            android:background="#eff2f5" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/goods10"
+                android:text="上拉查看图文详情"
+                android:textColor="@color/hei2"
+                android:textSize="16sp" />
+        </FrameLayout>
+    </LinearLayout>
+</ScrollView>

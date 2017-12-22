@@ -57,7 +57,7 @@ public class LinearImageLayout extends LinearLayout {
             view_tv_name.setVisibility(GONE);
         }
         view_tv_name.setText(tvString);
-        view_tv_name.setPadding(0, 0, 0, (int) padding);
+        view_tv_name.setPadding(0, (int) padding, 0, 0);
         setNum(Num + "");
     }
 

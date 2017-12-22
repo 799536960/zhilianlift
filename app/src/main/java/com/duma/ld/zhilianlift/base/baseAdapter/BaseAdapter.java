@@ -218,6 +218,7 @@ public class BaseAdapter<T> extends BaseQuickAdapter<T, BaseViewHolder> implemen
 
         //不需要空页面
         public Builder<T> setNoEnpty() {
+            isEmptyView = false;
             return this;
         }
 
