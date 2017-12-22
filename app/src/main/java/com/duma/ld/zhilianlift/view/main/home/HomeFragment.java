@@ -120,7 +120,7 @@ public class HomeFragment extends BaseMyFragment {
         //获取权限 和定位
         LocationUtil.getInstance().start(mActivity, event_location_home);
         //初始化home所有的监听
-        listener = new HomeClickTypeListener();
+        listener = new HomeClickTypeListener(mActivity);
         //初始adapter
         mList = new ArrayList<>();
         mAdapter = new HomeAdapter(mList, listener);

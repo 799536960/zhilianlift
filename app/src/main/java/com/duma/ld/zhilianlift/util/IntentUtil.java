@@ -7,6 +7,7 @@ import com.duma.ld.zhilianlift.model.AddresModel;
 import com.duma.ld.zhilianlift.model.RealNameModel;
 import com.duma.ld.zhilianlift.view.login.LoginOrRegisterActivity;
 import com.duma.ld.zhilianlift.view.main.home.HomeActivity;
+import com.duma.ld.zhilianlift.view.main.shopping.GoodsDetailsActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.GoodsListActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.SearchActivity;
 import com.duma.ld.zhilianlift.view.main.wode.UserDataActivity;
@@ -156,6 +157,13 @@ public class IntentUtil {
     //搜索页面
     public static void goSearch(Activity activity) {
         Intent intent = new Intent(activity, SearchActivity.class);
+        activity.startActivity(intent);
+    }
+
+    //商品详情页
+    public static void goGoodsDetails(Activity activity, int goodsId) {
+        Intent intent = new Intent(activity, GoodsDetailsActivity.class);
+        intent.putExtra(Constants.id, goodsId + "");
         activity.startActivity(intent);
     }
 }

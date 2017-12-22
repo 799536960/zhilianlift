@@ -300,6 +300,13 @@ public class GoodsListActivity extends BaseMyActivity {
                 PublicUtil.goodsGetView(helper, item);
             }
         });
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                GoodsBean bean = (GoodsBean) adapter.getData().get(position);
+                IntentUtil.goGoodsDetails(mActivity, bean.getGoods_id());
+            }
+        });
         onClickLoadingRefresh();
     }
 

@@ -1,5 +1,6 @@
 package com.duma.ld.zhilianlift.Adapter;
 
+import android.app.Activity;
 import android.view.View;
 
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
@@ -9,6 +10,7 @@ import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.model.AdBean;
 import com.duma.ld.zhilianlift.model.HomeModel;
 import com.duma.ld.zhilianlift.model.HomeMultipleModel;
+import com.duma.ld.zhilianlift.util.IntentUtil;
 
 /**
  * Created by liudong on 2017/12/4.
@@ -16,6 +18,11 @@ import com.duma.ld.zhilianlift.model.HomeMultipleModel;
 
 public class HomeClickTypeListener implements View.OnClickListener, OnItemClickListener, BaseQuickAdapter.OnItemClickListener {
     private HomeModel result;
+    private Activity mActivity;
+
+    public HomeClickTypeListener(Activity mActivity) {
+        this.mActivity = mActivity;
+    }
 
     public void setResult(HomeModel result) {
         this.result = result;
@@ -31,6 +38,7 @@ public class HomeClickTypeListener implements View.OnClickListener, OnItemClickL
         TsUtils.show("name:" + adBean.getTitle() + " type:" + adBean.getType());
         switch (adBean.getType()) {
             case 1:
+                IntentUtil.goGoodsDetails(mActivity, adBean.getGoods().getGoods_id());
                 break;
             case 2:
                 break;
@@ -88,6 +96,9 @@ public class HomeClickTypeListener implements View.OnClickListener, OnItemClickL
                 clickItem(multipleModel.getClassModel());
                 break;
             case HomeMultipleModel.goodsHead:
+                break;
+            case HomeMultipleModel.goods:
+                IntentUtil.goGoodsDetails(mActivity, multipleModel.getGoodsModel().getGoods_id());
                 break;
         }
     }

@@ -33,6 +33,7 @@ public class Constants {
     /**
      * intent
      */
+    public static final String id = "id";
     public static final String key = "key";
     public static final String Name = "name";
     public static final String Type = "Type";
