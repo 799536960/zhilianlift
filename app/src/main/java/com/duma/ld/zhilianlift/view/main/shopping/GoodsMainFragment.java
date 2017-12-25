@@ -7,10 +7,12 @@ import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.ConvertUtils;
 import com.blankj.utilcode.util.SpanUtils;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.baselibrary.util.config.FragmentConfig;
@@ -25,16 +27,19 @@ import com.duma.ld.zhilianlift.model.GoodsMainModel;
 import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.ImageLoader;
+import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.PublicUtil;
 import com.duma.ld.zhilianlift.widget.SimpleRatingBar;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 import com.youth.banner.Banner;
+import com.youth.banner.listener.OnBannerListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 import static com.duma.ld.zhilianlift.util.HttpUrl.goodsInfo;
 
@@ -68,9 +73,12 @@ public class GoodsMainFragment extends BaseMyFragment {
     RecyclerView tvGoodsRv;
     @BindView(R.id.tv_goods_AllComment)
     TextView tvGoodsAllComment;
+    @BindView(R.id.layout_type)
+    LinearLayout layoutType;
 
     private String id;
     private BaseAdapter<CommentModel> adapter;
+    private GoodsDetailsActivity activity;
 
     public static GoodsMainFragment newInstance(String id) {
         GoodsMainFragment fragment = new GoodsMainFragment();
@@ -95,6 +103,7 @@ public class GoodsMainFragment extends BaseMyFragment {
             TsUtils.show("商品id获取失败!");
             mActivity.finish();
         }
+        activity = (GoodsDetailsActivity) mActivity;
         initCommentAdapter();
         onClickLoadingRefresh();
     }
@@ -118,6 +127,10 @@ public class GoodsMainFragment extends BaseMyFragment {
                         img_2 = helper.getView(R.id.img_2);
                         img_3 = helper.getView(R.id.img_3);
                         img_4 = helper.getView(R.id.img_4);
+                        helper.addOnClickListener(R.id.img_1)
+                                .addOnClickListener(R.id.img_2)
+                                .addOnClickListener(R.id.img_3)
+                                .addOnClickListener(R.id.img_4);
                         img_icon = helper.getView(R.id.img_icon);
                         layout_img4 = helper.getView(R.id.layout_img4);
                         layout_imageList = helper.getView(R.id.layout_imageList);
@@ -170,6 +183,28 @@ public class GoodsMainFragment extends BaseMyFragment {
 
                     }
                 });
+        adapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                int onclick = 0;
+                switch (view.getId()) {
+                    case R.id.img_1:
+                        onclick = 0;
+                        break;
+                    case R.id.img_2:
+                        onclick = 1;
+                        break;
+                    case R.id.img_3:
+                        onclick = 2;
+                        break;
+                    case R.id.img_4:
+                        onclick = 3;
+                        break;
+                }
+                CommentModel model = (CommentModel) adapter.getData().get(position);
+                IntentUtil.goPhoto(mActivity, model.getImg(), onclick);
+            }
+        });
         tvGoodsRv.setFocusable(false);
         tvGoodsRv.setNestedScrollingEnabled(false);
         tvGoodsRv.setLayoutManager(new LinearLayoutManager(mActivity));
@@ -191,13 +226,20 @@ public class GoodsMainFragment extends BaseMyFragment {
 
     private void initData(GoodsMainModel result) {
         //banner
-        List<String> list = new ArrayList<>();
+        final List<String> list = new ArrayList<>();
         for (int i = 0; i < result.getGallery().size(); i++) {
             list.add(result.getGallery().get(i).getImage_url());
         }
+        banner.setOnBannerListener(new OnBannerListener() {
+            @Override
+            public void OnBannerClick(int position) {
+                IntentUtil.goPhoto(mActivity, list, position);
+            }
+        });
         banner = PublicUtil.initBanner(banner)
                 .setImages(list)
                 .start();
+
         //标题
         tvGoodsName.setText(result.getGoods().getGoods_name());
         //价格
@@ -231,4 +273,17 @@ public class GoodsMainFragment extends BaseMyFragment {
         adapter.setNewData(result.getComment());
     }
 
+
+    @OnClick({R.id.layout_type, R.id.tv_goods_AllComment})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.layout_type:
+                TsUtils.show("选择类型");
+                break;
+            case R.id.tv_goods_AllComment:
+                //跳转到评论
+                activity.tabComment();
+                break;
+        }
+    }
 }

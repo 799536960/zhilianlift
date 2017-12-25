@@ -50,6 +50,14 @@ public class GoodsDetailsActivity extends BaseMyActivity {
         layoutTablayout.setupWithViewPager(viewPagerContent);
     }
 
+    public void tabComment() {
+        viewPagerContent.setCurrentItem(2, true);
+    }
+
+    public void tabInfo() {
+        viewPagerContent.setCurrentItem(1, true);
+    }
+
     @OnClick({R.id.layout_back, R.id.layout_share, R.id.layout_menu})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -62,4 +70,5 @@ public class GoodsDetailsActivity extends BaseMyActivity {
                 break;
         }
     }
+
 }
