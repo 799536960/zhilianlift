@@ -89,6 +89,9 @@
             android:windowSoftInputMode="stateVisible" />
         <activity android:name=".view.main.wode.userSecuryty.PaySuccessActivity" />
         <activity android:name=".view.main.shopping.GoodsDetailsActivity" />
+        <activity
+            android:name=".view.start.PhotoQueryActivity"
+            android:theme="@style/AppTheme_tm" />
     </application>
 
 </manifest>

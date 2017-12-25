@@ -57,7 +57,7 @@ public class GoodsInfoFragment extends BaseMyFragment {
             TsUtils.show("商品id获取失败!");
             mActivity.finish();
         }
-
+        mFragmentConfig.showLoadingView();
         webViewContent.getSettings().setJavaScriptEnabled(false);
         webViewContent.getSettings().setSupportZoom(false);
         webViewContent.getSettings().setBuiltInZoomControls(false);

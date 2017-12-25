@@ -15,6 +15,11 @@
         <item name="android:windowSoftInputMode">stateAlwaysHidden</item>
     </style>
 
+    <style name="AppTheme_tm" parent="AppTheme">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
     <style name="AlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
         <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
@@ -93,6 +98,13 @@
     <style name="goods_style">
         <item name="android:paddingEnd">10dp</item>
         <item name="android:paddingStart">10dp</item>
+    </style>
+
+    <style name="view_grid_layout_img">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:scaleType">centerCrop</item>
     </style>
 
 </resources>

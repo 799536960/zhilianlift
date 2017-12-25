@@ -3,6 +3,7 @@ package com.duma.ld.zhilianlift.util;
 import android.app.Activity;
 import android.content.Intent;
 
+import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.model.AddresModel;
 import com.duma.ld.zhilianlift.model.RealNameModel;
 import com.duma.ld.zhilianlift.view.login.LoginOrRegisterActivity;
@@ -18,6 +19,10 @@ import com.duma.ld.zhilianlift.view.main.wode.realName.RealNameEditActivity;
 import com.duma.ld.zhilianlift.view.main.wode.userSecuryty.PayPasswordActivity;
 import com.duma.ld.zhilianlift.view.main.wode.userSecuryty.PaySettingActivity;
 import com.duma.ld.zhilianlift.view.main.wode.userSecuryty.PaySuccessActivity;
+import com.duma.ld.zhilianlift.view.start.PhotoQueryActivity;
+
+import java.io.Serializable;
+import java.util.List;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static com.duma.ld.zhilianlift.util.Constants.ClassId;
@@ -165,5 +170,14 @@ public class IntentUtil {
         Intent intent = new Intent(activity, GoodsDetailsActivity.class);
         intent.putExtra(Constants.id, goodsId + "");
         activity.startActivity(intent);
+    }
+
+    //图片查看页面
+    public static void goPhoto(Activity activity, List<String> list, int position) {
+        Intent intent = new Intent(activity, PhotoQueryActivity.class);
+        intent.putExtra(Constants.Model, (Serializable) list);
+        intent.putExtra(Constants.key, position + "");
+        activity.startActivity(intent);
+        activity.overridePendingTransition(R.anim.a5, 0);
     }
 }

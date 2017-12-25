@@ -197,11 +197,19 @@ public class BaseAdapter<T> extends BaseQuickAdapter<T, BaseViewHolder> implemen
             return this;
         }
 
+        //是否嵌套
+        public Builder<T> isNested() {
+            mRecyclerView.setFocusable(false);
+            mRecyclerView.setNestedScrollingEnabled(false);
+            return this;
+        }
+
         //设置空页面的title
         public Builder<T> setTitle(String title) {
             this.title = title;
             return this;
         }
+
 
         //设置空页面的图片
         public Builder<T> setrawableId(@DrawableRes int drawableId) {

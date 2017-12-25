@@ -27,7 +27,9 @@
         <attr name="CbFalseTvColor" format="color" />
         <attr name="CbIsMode" format="boolean" />
     </declare-styleable>
-
+    <declare-styleable name="CheckBoxComment">
+        <attr name="CbC_Name" format="string" />
+    </declare-styleable>
     <declare-styleable name="SimpleRatingBar">
         <attr name="srb_borderColor" format="color" />
         <attr name="srb_fillColor" format="color" />
