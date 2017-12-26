@@ -29,6 +29,7 @@ import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.ImageLoader;
 import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.PublicUtil;
+import com.duma.ld.zhilianlift.widget.MyScrollview;
 import com.duma.ld.zhilianlift.widget.SimpleRatingBar;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
@@ -75,6 +76,12 @@ public class GoodsMainFragment extends BaseMyFragment {
     TextView tvGoodsAllComment;
     @BindView(R.id.layout_type)
     LinearLayout layoutType;
+    @BindView(R.id.scrollView)
+    MyScrollview scrollView;
+    @BindView(R.id.img_jantou)
+    ImageView imgJantou;
+    @BindView(R.id.tv_refresh)
+    TextView tvRefresh;
 
     private String id;
     private BaseAdapter<CommentModel> adapter;
@@ -104,6 +111,20 @@ public class GoodsMainFragment extends BaseMyFragment {
             mActivity.finish();
         }
         activity = (GoodsDetailsActivity) mActivity;
+        scrollView.setOnScrollEnd(new MyScrollview.OnScrollEnd() {
+            @Override
+            public void onEnd() {
+//                if (tvRefresh.getText().equals("松开后查看详情")) {
+//                    tvRefresh.setText("上拉查看图文详情");
+                activity.tabInfo();
+//                }
+            }
+
+            @Override
+            public void onSuccess() {
+//                tvRefresh.setText("松开后查看详情");
+            }
+        });
         initCommentAdapter();
         onClickLoadingRefresh();
     }
@@ -286,4 +307,5 @@ public class GoodsMainFragment extends BaseMyFragment {
                 break;
         }
     }
+
 }

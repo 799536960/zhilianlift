@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.duma.ld.zhilianlift.widget.MyScrollview xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -233,19 +234,27 @@
             android:layout_marginTop="17dp"
             android:background="#eff2f5" />
 
-        <FrameLayout
+        <LinearLayout
+            android:id="@+id/view_scrollView"
             android:layout_width="match_parent"
-            android:layout_height="55dp">
+            android:layout_height="55dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-            <TextView
+            <ImageView
+                android:id="@+id/img_jantou"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:drawablePadding="5dp"
-                android:drawableStart="@drawable/goods10"
+                android:src="@drawable/goods10" />
+
+            <TextView
+                android:id="@+id/tv_refresh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:text="上拉查看图文详情"
                 android:textColor="@color/hei2"
                 android:textSize="16sp" />
-        </FrameLayout>
+        </LinearLayout>
     </LinearLayout>
-</ScrollView>
+</com.duma.ld.zhilianlift.widget.MyScrollview>
