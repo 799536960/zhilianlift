@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.duma.ld.baselibrary.util.Log;
 import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.baselibrary.util.ZhuanHuanUtil;
 import com.duma.ld.baselibrary.util.config.ActivityConfig;
@@ -42,6 +41,7 @@ import com.duma.ld.zhilianlift.widget.CheckBoxGoodsList;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 import com.lzy.okgo.request.GetRequest;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -279,7 +279,7 @@ public class GoodsListActivity extends BaseMyActivity {
                                 value = value + "," + list_shaiXuan.get(i).getList().get(i1).getValue();
                             }
                         }
-                        Log.e("Key: " + list_shaiXuan.get(i).getKey() + " value: " + value);
+                        Logger.e("Key: " + list_shaiXuan.get(i).getKey() + " value: " + value);
                         request.params(list_shaiXuan.get(i).getKey(), value);
                     }
                 }

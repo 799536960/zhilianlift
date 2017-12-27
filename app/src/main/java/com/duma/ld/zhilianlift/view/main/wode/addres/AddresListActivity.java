@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.duma.ld.baselibrary.model.EventModel;
-import com.duma.ld.baselibrary.util.Log;
 import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
@@ -28,6 +27,7 @@ import com.duma.ld.zhilianlift.util.PublicUtil;
 import com.duma.ld.zhilianlift.widget.CheckBoxNoOnClick;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
+import com.orhanobut.logger.Logger;
 
 import java.util.List;
 
@@ -179,7 +179,7 @@ public class AddresListActivity extends BaseMyActivity {
                         checkBoxNoOnClick.setChecked(true);
                         adapter.getData().get(layoutPosition).setIs_default(1);
                         positionDefault = layoutPosition;
-                        Log.e(adapter.getData().get(layoutPosition).getIs_default() + "");
+                        Logger.e(adapter.getData().get(layoutPosition).getIs_default() + "");
                     }
                 });
     }

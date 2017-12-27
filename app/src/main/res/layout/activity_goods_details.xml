@@ -104,6 +104,7 @@
             android:orientation="horizontal">
 
             <com.duma.ld.zhilianlift.widget.LinearImageLayout
+                android:id="@+id/layout_collect"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -114,6 +115,7 @@
                 app:LiPadding="2dp" />
 
             <com.duma.ld.zhilianlift.widget.LinearImageLayout
+                android:id="@+id/layout_servicePhone"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -124,6 +126,7 @@
                 app:LiPadding="2dp" />
 
             <com.duma.ld.zhilianlift.widget.LinearImageLayout
+                android:id="@+id/layout_shopCart"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -136,6 +139,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/layout_AddShopCart"
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:background="#ff5b70"
@@ -145,6 +149,7 @@
             android:textSize="17sp" />
 
         <TextView
+            android:id="@+id/layout_shop"
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:background="#fe2643"

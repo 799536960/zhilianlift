@@ -3,7 +3,6 @@ package com.duma.ld.zhilianlift.util;
 import com.baidu.location.BDLocation;
 import com.blankj.utilcode.util.SPUtils;
 import com.duma.ld.baselibrary.util.EventBusUtil;
-import com.duma.ld.baselibrary.util.Log;
 import com.duma.ld.zhilianlift.model.BaiDuLocationModel;
 import com.duma.ld.zhilianlift.model.LocationModel;
 import com.duma.ld.zhilianlift.model.UserModel;
@@ -11,6 +10,7 @@ import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
+import com.orhanobut.logger.Logger;
 
 import static com.duma.ld.zhilianlift.util.Constants.sp_Location;
 
@@ -50,7 +50,7 @@ public class SpDataUtil {
     }
 
     public static void setData(LocationModel locationModel) {
-        Log.e(locationModel.toString());
+        Logger.e(locationModel.toString());
         SPUtils.getInstance().put(Constants.sp_Location, new Gson().toJson(locationModel));
     }
 

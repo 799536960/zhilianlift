@@ -29,6 +29,7 @@ import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.ImageLoader;
 import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.PublicUtil;
+import com.duma.ld.zhilianlift.util.SpDataUtil;
 import com.duma.ld.zhilianlift.widget.MyScrollview;
 import com.duma.ld.zhilianlift.widget.SimpleRatingBar;
 import com.lzy.okgo.OkGo;
@@ -246,6 +247,8 @@ public class GoodsMainFragment extends BaseMyFragment {
     }
 
     private void initData(GoodsMainModel result) {
+        //初始化dialog
+        activity.setGoodsModel(result);
         //banner
         final List<String> list = new ArrayList<>();
         for (int i = 0; i < result.getGallery().size(); i++) {
@@ -283,7 +286,20 @@ public class GoodsMainFragment extends BaseMyFragment {
         //店铺名字
         tvGoodsStore.setText("由 " + result.getStore().getStore_name() + " 提供");
         //默认规格
-        tvGoodsSize.setText("请选择");
+        if (result.getGoods_spec_list() == null || result.getGoods_spec_list().size() == 0) {
+            tvGoodsSize.setText("1件");
+        } else {
+            StringBuilder res = new StringBuilder("请选择");
+            for (int i = 0; i < result.getGoods_spec_list().size(); i++) {
+                if (i == 0) {
+                    res.append(result.getGoods_spec_list().get(i).getSpec_name());
+                } else {
+                    res.append(",").append(result.getGoods_spec_list().get(i).getSpec_name());
+                }
+            }
+            res.append(",").append("1件");
+            tvGoodsSize.setText(res);
+        }
         //库存
         tvGoodsNum.setText("仅剩" + result.getGoods().getStore_count() + "件");
         //评价数量
@@ -299,7 +315,11 @@ public class GoodsMainFragment extends BaseMyFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.layout_type:
-                TsUtils.show("选择类型");
+                if (!SpDataUtil.isLogin()) {
+                    IntentUtil.goLogin(mActivity);
+                    return;
+                }
+                activity.showAll();
                 break;
             case R.id.tv_goods_AllComment:
                 //跳转到评论

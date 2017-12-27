@@ -52,13 +52,17 @@ public class LinearImageLayout extends LinearLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        view_img_icon.setImageDrawable(imgDrawable);
+        setIcon(imgDrawable);
         if (tvString == null || tvString.isEmpty()) {
             view_tv_name.setVisibility(GONE);
         }
         view_tv_name.setText(tvString);
         view_tv_name.setPadding(0, (int) padding, 0, 0);
         setNum(Num + "");
+    }
+
+    public void setIcon(Drawable imgDrawable) {
+        view_img_icon.setImageDrawable(imgDrawable);
     }
 
     public void setNum(String num) {

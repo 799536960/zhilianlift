@@ -8,8 +8,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ScrollView;
 
-import com.duma.ld.baselibrary.util.Log;
-
 public class MyScrollview extends ScrollView {
     //要操作的布局
     private View innerView;
@@ -89,7 +87,7 @@ public class MyScrollview extends ScrollView {
                             normal.set(innerView.getLeft(), innerView.getTop(), innerView.getRight(), innerView.getBottom());
                         }
                         innerView.layout(innerView.getLeft(), innerView.getTop() - detailY / 2, innerView.getRight(), innerView.getBottom() - detailY / 2);
-                        Log.e("t:" + innerView.getTop() + " b:" + innerView.getBottom());
+//                        Log.e("t:" + innerView.getTop() + " b:" + innerView.getBottom());
                         if (-innerView.getTop() > 150 && !isSuccess) {
                             isSuccess = true;
                             if (onScrollEnd != null) {

@@ -1,6 +1,5 @@
 package com.duma.ld.zhilianlift.base.baseJsonHttp;
 
-import com.duma.ld.baselibrary.util.Log;
 import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.baselibrary.util.config.PublicConfig;
 import com.duma.ld.zhilianlift.base.baseAdapter.BaseAdapter;
@@ -79,7 +78,7 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
     public void onCacheSuccess(Response<T> response) {
         super.onCacheSuccess(response);
         //回调了这里 说明启动了缓存
-        Log.e("读取的缓存");
+        Logger.e("读取的缓存");
         isOpenCache = true;
         httpSuccess(response);
     }
