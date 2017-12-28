@@ -12,6 +12,11 @@ public class GoodsSpecListBean {
     private String spec_name;
     private List<SpecListBean> spec_list;
 
+    public GoodsSpecListBean() {
+        //默认未选中
+        select = -1;
+    }
+
     public int getSelect() {
         return select;
     }

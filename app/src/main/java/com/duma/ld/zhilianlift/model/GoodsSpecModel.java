@@ -16,6 +16,7 @@ public class GoodsSpecModel implements MultiItemEntity {
     private int spanSize;
     private String name;
     private GoodsSpecListBean.SpecListBean specListBean;
+    private int goodsCount;//库存
 
     public static GoodsSpecModel newHead(String name) {
         GoodsSpecModel model = new GoodsSpecModel(head, 4);
@@ -37,6 +38,13 @@ public class GoodsSpecModel implements MultiItemEntity {
         return model;
     }
 
+    public int getGoodsCount() {
+        return goodsCount;
+    }
+
+    public void setGoodsCount(int goodsCount) {
+        this.goodsCount = goodsCount;
+    }
 
     public String getName() {
         return name;

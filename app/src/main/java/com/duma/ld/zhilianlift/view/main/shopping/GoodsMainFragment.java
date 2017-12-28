@@ -287,7 +287,7 @@ public class GoodsMainFragment extends BaseMyFragment {
         tvGoodsStore.setText("由 " + result.getStore().getStore_name() + " 提供");
         //默认规格
         if (result.getGoods_spec_list() == null || result.getGoods_spec_list().size() == 0) {
-            tvGoodsSize.setText("1件");
+            activity.setSpecString("");
         } else {
             StringBuilder res = new StringBuilder("请选择");
             for (int i = 0; i < result.getGoods_spec_list().size(); i++) {
@@ -297,9 +297,9 @@ public class GoodsMainFragment extends BaseMyFragment {
                     res.append(",").append(result.getGoods_spec_list().get(i).getSpec_name());
                 }
             }
-            res.append(",").append("1件");
-            tvGoodsSize.setText(res);
+            activity.setSpecString(res.toString());
         }
+        refreshSpecString();
         //库存
         tvGoodsNum.setText("仅剩" + result.getGoods().getStore_count() + "件");
         //评价数量
@@ -308,6 +308,16 @@ public class GoodsMainFragment extends BaseMyFragment {
         tvGoodsCommentJilv.setText(result.getGoods().getGood_comment_rate() + "%");
 
         adapter.setNewData(result.getComment());
+    }
+
+    public void refreshSpecString() {
+        String specString = activity.getSpecString();
+        if (specString == null || specString.isEmpty()) {
+            tvGoodsSize.setText(activity.getCount() + "件");
+        } else {
+            tvGoodsSize.setText(specString + "," + activity.getCount() + "件");
+        }
+
     }
 
 

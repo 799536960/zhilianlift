@@ -20,6 +20,7 @@ import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
 import com.duma.ld.zhilianlift.model.GoodsMainModel;
 import com.duma.ld.zhilianlift.model.GoodsNumModel;
 import com.duma.ld.zhilianlift.model.HttpResModel;
+import com.duma.ld.zhilianlift.model.SpecGoodsPriceBean;
 import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.PublicUtil;
@@ -64,6 +65,9 @@ public class GoodsDetailsActivity extends BaseMyActivity {
     private GoodsNumModel goodsNumModel;
     private String id;
     private GoodsSpecDialog goodsSpecDialog;
+    private SpecGoodsPriceBean mSpecGoodsPriceBean;
+    private int count;//商品数量
+    private String SpecString;//规格语句
 
     @Override
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig) {
@@ -74,6 +78,7 @@ public class GoodsDetailsActivity extends BaseMyActivity {
     protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
         id = getIntent().getStringExtra(Constants.id);
+        count = 1;
         MyViewPagerAdapter viewPagerAdapter = new MyViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFragment(GoodsMainFragment.newInstance(id), "商品");
         viewPagerAdapter.addFragment(GoodsInfoFragment.newInstance(id), "详情");
@@ -91,7 +96,41 @@ public class GoodsDetailsActivity extends BaseMyActivity {
                 .setNegativeButton("否", null)
                 .setCancelable(false)
                 .create();
-        goodsSpecDialog = new GoodsSpecDialog(mActivity);
+        goodsSpecDialog = new GoodsSpecDialog(mActivity, new GoodsSpecDialog.OnDialogListener() {
+            @Override
+            public void onSpecString(StringBuffer stringBuffer) {
+                setSpecString(stringBuffer.toString());
+                getGoodsMainFragment().refreshSpecString();
+            }
+
+            @Override
+            public void onSelectNum(int num) {
+                count = num;
+                getGoodsMainFragment().refreshSpecString();
+            }
+
+            @Override
+            public void onSpec(SpecGoodsPriceBean specGoodsPriceBean) {
+                mSpecGoodsPriceBean = specGoodsPriceBean;
+            }
+        });
+
+    }
+
+    public GoodsMainFragment getGoodsMainFragment() {
+        return findFragment(GoodsMainFragment.class);
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public String getSpecString() {
+        return SpecString;
+    }
+
+    public void setSpecString(String specString) {
+        SpecString = specString;
     }
 
     @Override
@@ -165,11 +204,15 @@ public class GoodsDetailsActivity extends BaseMyActivity {
                 return;
             case R.id.layout_AddShopCart:
                 //添加购物车
-                goodsSpecDialog.showShopCart();
+                if (mSpecGoodsPriceBean == null) {
+                    goodsSpecDialog.showShopCart();
+                }
                 return;
             case R.id.layout_shop:
                 //立即购买
-                goodsSpecDialog.showShop();
+                if (mSpecGoodsPriceBean == null) {
+                    goodsSpecDialog.showShop();
+                }
                 return;
         }
     }

@@ -7,6 +7,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.duma.ld.baselibrary.util.ZhuanHuanUtil;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.model.GoodsSpecModel;
+import com.duma.ld.zhilianlift.widget.NumInputLayout;
 
 import java.util.List;
 
@@ -16,6 +17,21 @@ import java.util.List;
  */
 
 public class SpecAdapter extends BaseMultiItemQuickAdapter<GoodsSpecModel, BaseViewHolder> {
+    private int count;
+    private NumInputLayout.OnInputListener onInputListener;
+
+    public void setOnInputListener(NumInputLayout.OnInputListener onInputListener) {
+        this.onInputListener = onInputListener;
+    }
+
+    public int getCount() {
+        if (count == 0) {
+            return 1;
+        }
+        return count;
+    }
+
+
     /**
      * Same as QuickAdapter#QuickAdapter(Context,int) but with
      * some initialization data.
@@ -45,6 +61,12 @@ public class SpecAdapter extends BaseMultiItemQuickAdapter<GoodsSpecModel, BaseV
                     tv_content.setBackground(ZhuanHuanUtil.getDrawable(R.drawable.bx_hei));
                     tv_content.setTextColor(ZhuanHuanUtil.getColor(R.color.hei1));
                 }
+                break;
+            case GoodsSpecModel.footer:
+                NumInputLayout numInputLayout = helper.getView(R.id.numInput);
+                numInputLayout.setMaxNum(item.getGoodsCount());
+                numInputLayout.setNum(count);
+                numInputLayout.setOnInputListener(onInputListener);
                 break;
         }
     }

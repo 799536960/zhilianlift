@@ -18,6 +18,7 @@ import com.duma.ld.zhilianlift.model.GoodsSpecListBean;
 import com.duma.ld.zhilianlift.model.GoodsSpecModel;
 import com.duma.ld.zhilianlift.model.SpecGoodsPriceBean;
 import com.duma.ld.zhilianlift.util.ImageLoader;
+import com.duma.ld.zhilianlift.widget.NumInputLayout;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.orhanobut.logger.Logger;
 
@@ -39,9 +40,38 @@ public class GoodsSpecDialog extends BaseDownDialog implements View.OnClickListe
     private int type;
     private List<GoodsSpecModel> mList;
     private SpecAdapter specAdapter;
+    private int goodsCount;//库存
+    private StringBuffer stringBuffer;//返回的规格选中
+    private SpecGoodsPriceBean specGoodsPriceBean;
 
-    public GoodsSpecDialog(@NonNull Activity context) {
+    private OnDialogListener onDialogListener;
+
+
+    public SpecAdapter getSpecAdapter() {
+        return specAdapter;
+    }
+
+    /**
+     * 选择规格监听
+     * 按钮监听
+     * 选择规格监听 选择规格后把选择的规格列表拼接后的字符串 数目 规格model返回
+     * 按钮监听 把按钮类型返回就好了
+     */
+    public interface OnDialogListener {
+        //选择规格的语句监听
+        void onSpecString(StringBuffer stringBuffer);
+
+        //选择的规格数量
+        void onSelectNum(int num);
+
+        //选择的规格
+        void onSpec(SpecGoodsPriceBean specGoodsPriceBean);
+
+    }
+
+    public GoodsSpecDialog(@NonNull Activity context, OnDialogListener onDialogListener) {
         super(context);
+        this.onDialogListener = onDialogListener;
     }
 
     @Override
@@ -66,6 +96,12 @@ public class GoodsSpecDialog extends BaseDownDialog implements View.OnClickListe
 
     private void initAdapter() {
         specAdapter = new SpecAdapter(mList);
+        specAdapter.setOnInputListener(new NumInputLayout.OnInputListener() {
+            @Override
+            public void onInput(int num) {
+                onDialogListener.onSelectNum(num);
+            }
+        });
         specAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -86,17 +122,16 @@ public class GoodsSpecDialog extends BaseDownDialog implements View.OnClickListe
                     }
                 }
                 goodsSpecModel.getSpecListBean().setSelect(true);
-                specAdapter.notifyDataSetChanged();
 
                 //改变model刷新价格
                 int upPosition = goodsSpecModel.getSpecListBean().getUpPosition();
                 int thisPosition = goodsSpecModel.getSpecListBean().getThisPosition();
                 model.getGoods_spec_list().get(upPosition).setSelect(thisPosition);
                 refreshSpec();
+                adapterRefresh();
 
             }
         });
-//        specAdapter.setFooterView(mActivity.getLayoutInflater().inflate(R.layout.adapter_head_spec, (ViewGroup) rv_spec.getParent(), false));
         FlexboxLayoutManager manager = new FlexboxLayoutManager(mActivity);
         rv_spec.setLayoutManager(manager);
         rv_spec.setAdapter(specAdapter);
@@ -105,9 +140,17 @@ public class GoodsSpecDialog extends BaseDownDialog implements View.OnClickListe
     private void setData() {
         ImageLoader.with(mActivity, model.getGoods().getOriginal_img(), img_icon);
         tv_num.setText("商品编号：" + model.getGoods().getGoods_sn());
-        tv_store.setText("库存" + model.getGoods().getStore_count() + "件");
+        //没有规格的库存
+        goodsCount = model.getGoods().getStore_count();
+        tv_store.setText("库存" + goodsCount + "件");
         tv_price.setText("¥" + model.getGoods().getShop_price());
         refreshSpec();
+        adapterRefresh();
+    }
+
+    private void adapterRefresh() {
+        mList.get(mList.size() - 1).setGoodsCount(goodsCount);
+        specAdapter.notifyDataSetChanged();
     }
 
     //刷新当前选中的规格 价格 库存
@@ -117,21 +160,66 @@ public class GoodsSpecDialog extends BaseDownDialog implements View.OnClickListe
             tv_spec_list.setVisibility(View.INVISIBLE);
             return;
         }
-        //获取已选规格名字
-        StringBuffer stringBuffer = new StringBuffer("已选");
+        //判断规格有没有选择完成
+        if (!isSelect()) {
+            //规格未选择完成的语句
+            StringBuffer dialogString = new StringBuffer("请选择");
+            stringBuffer = new StringBuffer("请选择");
+            for (int i = 0; i < model.getGoods_spec_list().size(); i++) {
+                GoodsSpecListBean goodsSpecListBean = model.getGoods_spec_list().get(i);
+                if (goodsSpecListBean.getSelect() == -1) {
+                    dialogString.append(" ").append(goodsSpecListBean.getSpec_name());
+                    //给页面返回的语句
+                    if (stringBuffer.toString().equals("请选择")) {
+                        stringBuffer.append(goodsSpecListBean.getSpec_name());
+                    } else {
+                        stringBuffer.append(",").append(goodsSpecListBean.getSpec_name());
+                    }
+                }
+            }
+            tv_spec_list.setText(dialogString);
+            onDialogListener.onSpecString(stringBuffer);
+            return;
+        }
+        /**
+         * 已经选择完成的
+         * 需要查询价格和库存
+         * 语句也改变了
+         */
+        //选择完成的语句
+        StringBuffer dialogString = new StringBuffer("已选:");
+        stringBuffer = new StringBuffer("已选择");
         for (int i = 0; i < model.getGoods_spec_list().size(); i++) {
             GoodsSpecListBean goodsSpecListBean = model.getGoods_spec_list().get(i);
-            stringBuffer.append("“").append(goodsSpecListBean.getSpec_list().get(goodsSpecListBean.getSelect()).getItem()).append("“");
+            dialogString.append("“").append(goodsSpecListBean.getSpec_list().get(goodsSpecListBean.getSelect()).getItem()).append("”");
+            stringBuffer.append("“").append(goodsSpecListBean.getSpec_list().get(goodsSpecListBean.getSelect()).getItem()).append("”");
         }
-        tv_spec_list.setText(stringBuffer);
+        tv_spec_list.setText(dialogString);
+
         //获取价格和库存
         String selectSpecKey = getSelectSpecKey();
-        SpecGoodsPriceBean specGoodsPriceBean = queryBySpecKey(selectSpecKey);
+        specGoodsPriceBean = queryBySpecKey(selectSpecKey);
+        onDialogListener.onSpecString(stringBuffer);
         if (specGoodsPriceBean == null) {
             return;
         }
-        tv_store.setText("库存" + specGoodsPriceBean.getStore_count() + "件");
+        onDialogListener.onSpec(specGoodsPriceBean);
+        goodsCount = specGoodsPriceBean.getStore_count();
+        tv_store.setText("库存" + goodsCount + "件");
         tv_price.setText("¥" + specGoodsPriceBean.getPrice());
+    }
+
+    //判断规格有没有选择完成
+    private boolean isSelect() {
+        boolean isSelect = true;
+        for (int i = 0; i < model.getGoods_spec_list().size(); i++) {
+            GoodsSpecListBean goodsSpecListBean = model.getGoods_spec_list().get(i);
+            if (goodsSpecListBean.getSelect() == -1) {
+                isSelect = false;
+                break;
+            }
+        }
+        return isSelect;
     }
 
     //根据规格key来查询当前商品信息
@@ -166,9 +254,39 @@ public class GoodsSpecDialog extends BaseDownDialog implements View.OnClickListe
         return key;
     }
 
+    /**
+     * 在这个方法之前是没有show的
+     * 当类型数组只有一个时默认选中
+     *
+     * @param model 商品的model
+     */
+    public void setModel(GoodsMainModel model) {
+        //一个是上一级的 positiong 和 他在这一级的positiong
+//        model.getGoods_spec_list().get( ?).setSelect( ?);
+        mList = new ArrayList<>();
+        for (int i = 0; i < model.getGoods_spec_list().size(); i++) {
+            GoodsSpecListBean goodsSpecListBean = model.getGoods_spec_list().get(i);
+            //添加head
+            mList.add(GoodsSpecModel.newHead(goodsSpecListBean.getSpec_name()));
+            for (int i1 = 0; i1 < goodsSpecListBean.getSpec_list().size(); i1++) {
+                //添加选择规格的内容
+                if (goodsSpecListBean.getSpec_list().size() == 1) {
+                    //说明就一个默认选中
+                    goodsSpecListBean.setSelect(0);
+                }
+                int select = goodsSpecListBean.getSelect();
+                GoodsSpecModel e = GoodsSpecModel.newContent(goodsSpecListBean.getSpec_list().get(i1), select == i1, i, i1);
+                mList.add(e);
+            }
+        }
+        //添加footer
+        mList.add(GoodsSpecModel.newFooter());
+        this.model = model;
+    }
 
     @Override
     public void onClick(View v) {
+        Logger.e(specAdapter.getCount() + " num");
         switch (v.getId()) {
             case R.id.layout_back:
                 dismiss();
@@ -228,23 +346,6 @@ public class GoodsSpecDialog extends BaseDownDialog implements View.OnClickListe
         } else {
             super.show();
         }
-    }
-
-    public void setModel(GoodsMainModel model) {
-        //一个是上一级的 positiong 和 他在这一级的positiong
-//        model.getGoods_spec_list().get( ?).setSelect( ?);
-        mList = new ArrayList<>();
-        for (int i = 0; i < model.getGoods_spec_list().size(); i++) {
-            GoodsSpecListBean goodsSpecListBean = model.getGoods_spec_list().get(i);
-            mList.add(GoodsSpecModel.newHead(goodsSpecListBean.getSpec_name()));
-            for (int i1 = 0; i1 < goodsSpecListBean.getSpec_list().size(); i1++) {
-                int select = goodsSpecListBean.getSelect();
-                GoodsSpecModel e = GoodsSpecModel.newContent(goodsSpecListBean.getSpec_list().get(i1), select == i1, i, i1);
-                mList.add(e);
-            }
-        }
-        mList.add(GoodsSpecModel.newFooter());
-        this.model = model;
     }
 
 

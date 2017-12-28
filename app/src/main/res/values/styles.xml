@@ -12,7 +12,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="baseStyle">
         <item name="android:windowBackground">@color/white</item>
-        <item name="android:windowSoftInputMode">stateAlwaysHidden</item>
+        <!--<item name="android:windowSoftInputMode">stateAlwaysHidden</item>-->
     </style>
 
     <style name="AppTheme_tm" parent="AppTheme">
