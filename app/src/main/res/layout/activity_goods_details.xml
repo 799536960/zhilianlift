@@ -7,6 +7,7 @@
     android:orientation="vertical">
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/layout_tobBar"
         style="@style/topbar_h"
         android:layout_width="match_parent"
         android:background="@color/white"
@@ -81,6 +82,7 @@
             app:tabIndicatorHeight="2dp"
             app:tabMode="fixed"
             app:tabSelectedTextColor="#555558"
+            app:tabTextAppearance="@style/TabLayoutTextSizeStyle"
             app:tabTextColor="@color/hei2" />
     </android.support.constraint.ConstraintLayout>
 
@@ -134,7 +136,6 @@
                 android:gravity="center"
                 app:LiIcon="@drawable/goods3"
                 app:LiName="购物车"
-                app:LiNum="2"
                 app:LiPadding="2dp" />
         </LinearLayout>
 

@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.PhoneUtils;
+import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.baselibrary.util.ZhuanHuanUtil;
 import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
@@ -20,19 +21,27 @@ import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
 import com.duma.ld.zhilianlift.model.GoodsMainModel;
 import com.duma.ld.zhilianlift.model.GoodsNumModel;
 import com.duma.ld.zhilianlift.model.HttpResModel;
+import com.duma.ld.zhilianlift.model.ShopCartNumModel;
 import com.duma.ld.zhilianlift.model.SpecGoodsPriceBean;
 import com.duma.ld.zhilianlift.util.Constants;
+import com.duma.ld.zhilianlift.util.DialogUtil;
 import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.PublicUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
 import com.duma.ld.zhilianlift.view.dialog.GoodsSpecDialog;
+import com.duma.ld.zhilianlift.view.popupWindow.GoodsInfoPopupWindow;
 import com.duma.ld.zhilianlift.widget.LinearImageLayout;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
+import com.lzy.okgo.request.GetRequest;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.duma.ld.zhilianlift.util.Constants.addShopCart;
+import static com.duma.ld.zhilianlift.util.Constants.shop;
+import static com.duma.ld.zhilianlift.util.HttpUrl.addCart;
+import static com.duma.ld.zhilianlift.util.HttpUrl.collectGoodsOrNo;
 import static com.duma.ld.zhilianlift.util.HttpUrl.getInfo;
 
 /**
@@ -68,6 +77,7 @@ public class GoodsDetailsActivity extends BaseMyActivity {
     private SpecGoodsPriceBean mSpecGoodsPriceBean;
     private int count;//商品数量
     private String SpecString;//规格语句
+    private GoodsInfoPopupWindow goodsInfoPopupWindow;
 
     @Override
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig) {
@@ -79,6 +89,7 @@ public class GoodsDetailsActivity extends BaseMyActivity {
         super.init(savedInstanceState);
         id = getIntent().getStringExtra(Constants.id);
         count = 1;
+        goodsInfoPopupWindow = new GoodsInfoPopupWindow(mActivity);
         MyViewPagerAdapter viewPagerAdapter = new MyViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFragment(GoodsMainFragment.newInstance(id), "商品");
         viewPagerAdapter.addFragment(GoodsInfoFragment.newInstance(id), "详情");
@@ -112,6 +123,19 @@ public class GoodsDetailsActivity extends BaseMyActivity {
             @Override
             public void onSpec(SpecGoodsPriceBean specGoodsPriceBean) {
                 mSpecGoodsPriceBean = specGoodsPriceBean;
+            }
+
+            @Override
+            public void onClickBtn(String type) {
+                switch (type) {
+                    case addShopCart:
+                        //添加购物车
+                        addShopCart();
+                        break;
+                    case shop:
+                        newShop();
+                        break;
+                }
             }
         });
 
@@ -156,6 +180,7 @@ public class GoodsDetailsActivity extends BaseMyActivity {
         } else {
             layoutCollect.setIcon(ZhuanHuanUtil.getDrawable(R.drawable.shoucang));
         }
+        goodsInfoPopupWindow.setMessageNum(goodsNumModel.getNews());
     }
 
     public void tabComment() {
@@ -182,9 +207,10 @@ public class GoodsDetailsActivity extends BaseMyActivity {
                 return;
             case R.id.layout_share:
                 // TODO: 2017/12/26 分享
+                TsUtils.show("分享商品 id=" + id);
                 return;
             case R.id.layout_menu:
-                // TODO: 2017/12/26 菜单
+                goodsInfoPopupWindow.showPopupWindow(R.id.layout_tobBar);
                 return;
             case R.id.layout_servicePhone:
                 //客服 写死的
@@ -198,6 +224,7 @@ public class GoodsDetailsActivity extends BaseMyActivity {
         switch (view.getId()) {
             case R.id.layout_collect:
                 //收藏商品
+                collectGoods();
                 return;
             case R.id.layout_shopCart:
                 //跳转购物车
@@ -206,15 +233,66 @@ public class GoodsDetailsActivity extends BaseMyActivity {
                 //添加购物车
                 if (mSpecGoodsPriceBean == null) {
                     goodsSpecDialog.showShopCart();
+                } else {
+                    addShopCart();
                 }
                 return;
             case R.id.layout_shop:
                 //立即购买
                 if (mSpecGoodsPriceBean == null) {
                     goodsSpecDialog.showShop();
+                } else {
+                    newShop();
                 }
                 return;
         }
+    }
+
+    //立即购买
+    private void newShop() {
+        // TODO: 2017/12/28  直接购买
+        TsUtils.show("直接购买 数量:" + count);
+    }
+
+    //收藏商品
+    private void collectGoods() {
+        OkGo.getInstance().cancelTag(httpTag);
+        OkGo.<HttpResModel<String>>get(collectGoodsOrNo)
+                .tag(httpTag)
+                .params("goods_id", id)
+                .execute(new MyJsonCallback<HttpResModel<String>>() {
+                    @Override
+                    protected void onJsonSuccess(Response<HttpResModel<String>> respons, HttpResModel<String> stringHttpResModel) {
+                        DialogUtil.getInstance().hide();
+                        TsUtils.show(stringHttpResModel.getMsg());
+                        if (stringHttpResModel.getResult().equals("1")) {
+                            layoutCollect.setIcon(ZhuanHuanUtil.getDrawable(R.drawable.shoucang2));
+                        } else {
+                            layoutCollect.setIcon(ZhuanHuanUtil.getDrawable(R.drawable.shoucang));
+                        }
+                    }
+                });
+    }
+
+    //添加购物车
+    private void addShopCart() {
+        DialogUtil.getInstance().show(mActivity);
+        GetRequest<HttpResModel<ShopCartNumModel>> params = OkGo.<HttpResModel<ShopCartNumModel>>get(addCart)
+                .tag(httpTag)
+                .params("goods_id", id)
+                .params("goods_num", count);
+        if (mSpecGoodsPriceBean != null) {
+            params.params("item_id", mSpecGoodsPriceBean.getItem_id());
+        }
+        params.execute(new MyJsonCallback<HttpResModel<ShopCartNumModel>>() {
+            @Override
+            protected void onJsonSuccess(Response<HttpResModel<ShopCartNumModel>> respons, HttpResModel<ShopCartNumModel> stringHttpResModel) {
+                TsUtils.show("添加成功!");
+                DialogUtil.getInstance().hide();
+                layoutShopCart.setNum(stringHttpResModel.getResult().getUserCartGoodsNum() + "");
+            }
+        });
+
     }
 
 }

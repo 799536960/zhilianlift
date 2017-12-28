@@ -26,7 +26,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.duma.ld.zhilianlift.util.Constants.addShopCart;
+import static com.duma.ld.zhilianlift.util.Constants.shop;
+
 /**
+ * 选择规格的dialog
+ * 没有规格的时候是必须弹的 因为不知道数量是否选好
  * Created by liudong on 2017/12/26.
  */
 
@@ -43,9 +48,8 @@ public class GoodsSpecDialog extends BaseDownDialog implements View.OnClickListe
     private int goodsCount;//库存
     private StringBuffer stringBuffer;//返回的规格选中
     private SpecGoodsPriceBean specGoodsPriceBean;
-
+    private boolean isSpec;//又没有规格
     private OnDialogListener onDialogListener;
-
 
     public SpecAdapter getSpecAdapter() {
         return specAdapter;
@@ -67,6 +71,7 @@ public class GoodsSpecDialog extends BaseDownDialog implements View.OnClickListe
         //选择的规格
         void onSpec(SpecGoodsPriceBean specGoodsPriceBean);
 
+        void onClickBtn(String type);
     }
 
     public GoodsSpecDialog(@NonNull Activity context, OnDialogListener onDialogListener) {
@@ -76,6 +81,7 @@ public class GoodsSpecDialog extends BaseDownDialog implements View.OnClickListe
 
     @Override
     protected void initData() {
+        isSpec = true;
         tv_price = findViewById(R.id.tv_price);
         tv_num = findViewById(R.id.tv_num);
         tv_store = findViewById(R.id.tv_store);
@@ -158,6 +164,7 @@ public class GoodsSpecDialog extends BaseDownDialog implements View.OnClickListe
         //没有规格
         if (model.getGoods_spec_list() == null || model.getGoods_spec_list().size() == 0) {
             tv_spec_list.setVisibility(View.INVISIBLE);
+            isSpec = false;
             return;
         }
         //判断规格有没有选择完成
@@ -292,10 +299,22 @@ public class GoodsSpecDialog extends BaseDownDialog implements View.OnClickListe
                 dismiss();
                 break;
             case R.id.tv_btn1:
-                dismiss();
+                //加入购物车
+                //只有没有规格或者已经选择好了规格才可以下一步
+                if (!isSpec || specGoodsPriceBean != null) {
+                    dismiss();
+                    onDialogListener.onClickBtn(addShopCart);
+                } else {
+                    TsUtils.show("请选择规格!");
+                }
                 break;
             case R.id.tv_btn2:
-                dismiss();
+                if (!isSpec || specGoodsPriceBean != null) {
+                    dismiss();
+                    onDialogListener.onClickBtn(shop);
+                } else {
+                    TsUtils.show("请选择规格!");
+                }
                 break;
         }
     }

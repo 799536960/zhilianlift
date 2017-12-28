@@ -8,6 +8,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ScrollView;
 
+import com.orhanobut.logger.Logger;
+
 public class MyScrollview extends ScrollView {
     //要操作的布局
     private View innerView;
@@ -87,7 +89,7 @@ public class MyScrollview extends ScrollView {
                             normal.set(innerView.getLeft(), innerView.getTop(), innerView.getRight(), innerView.getBottom());
                         }
                         innerView.layout(innerView.getLeft(), innerView.getTop() - detailY / 2, innerView.getRight(), innerView.getBottom() - detailY / 2);
-//                        Log.e("t:" + innerView.getTop() + " b:" + innerView.getBottom());
+                        Logger.e("t:" + innerView.getTop() + " b:" + innerView.getBottom());
                         if (-innerView.getTop() > 150 && !isSuccess) {
                             isSuccess = true;
                             if (onScrollEnd != null) {
@@ -155,7 +157,9 @@ public class MyScrollview extends ScrollView {
                             normal.setEmpty();
                             animationFinish = true;
                             if (onScrollEnd != null) {
-                                onScrollEnd.onEnd();
+                                if (value > 150) {
+                                    onScrollEnd.onEnd();
+                                }
                             }
                         }
                     }

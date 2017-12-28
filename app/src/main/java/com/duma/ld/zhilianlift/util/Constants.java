@@ -13,6 +13,11 @@ public class Constants {
     public static final String defaultCity = "湖州市";
     public static final String defaultCity_code = "330500";
     public static final String locationString = "加载中..";
+
+    //dialog 选择规格类型
+    public static final String addShopCart = "addShopCart";
+    public static final String shop = "shop";
+    public static final String ok = "ok";
     /**
      * event
      */
