@@ -110,4 +110,9 @@
     <style name="TabLayoutTextSizeStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
         <item name="android:textSize">16sp</item>
     </style>
+
+    <style name="shopping_cart_cb">
+        <item name="android:layout_marginLeft">6dp</item>
+    </style>
+
 </resources>

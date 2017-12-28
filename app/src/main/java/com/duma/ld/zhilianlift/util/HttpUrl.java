@@ -43,4 +43,5 @@ public class HttpUrl {
     public static String getInfo = BaseUrl + "/index.php/api/Cart/getInfo";
     public static String addCart = BaseUrl + "/index.php/api/Cart/addCart";
     public static String collectGoodsOrNo = BaseUrl + "/index.php/api/goods/collectGoodsOrNo";
+    public static String cartList = BaseUrl + "/index.php/api/Cart/cartList";
 }

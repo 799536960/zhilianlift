@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import com.duma.ld.zhilianlift.R;
 
+import static android.util.TypedValue.COMPLEX_UNIT_PX;
+
 /**
  * 用于筛选的chenkbox
  * isMode false 文字加设定的图片  只有这种model的时候设置的图片才有效  0
@@ -21,6 +23,7 @@ import com.duma.ld.zhilianlift.R;
  */
 
 public class CheckBoxGoodsList extends LinearLayout {
+    private Context context;
     private boolean typeTop;
 
     private TextView tv_name;
@@ -36,6 +39,8 @@ public class CheckBoxGoodsList extends LinearLayout {
     //mode
     private boolean isMode;
 
+    private float CbTextSize;
+
     public CheckBoxGoodsList(Context context) {
         this(context, null);
     }
@@ -46,6 +51,7 @@ public class CheckBoxGoodsList extends LinearLayout {
 
     public CheckBoxGoodsList(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        this.context = context;
         View.inflate(context, R.layout.view_check_box_goodslist, this);
         tv_name = findViewById(R.id.tv_name);
         img_icon = findViewById(R.id.img_icon);
@@ -58,6 +64,7 @@ public class CheckBoxGoodsList extends LinearLayout {
             isMode = a.getBoolean(R.styleable.CheckBoxGoodsList_CbIsMode, false);
             cbTrueTvColor = a.getColor(R.styleable.CheckBoxGoodsList_CbTrueTvColor, ContextCompat.getColor(context, R.color.hong));
             cbFalseTvColor = a.getColor(R.styleable.CheckBoxGoodsList_CbFalseTvColor, ContextCompat.getColor(context, R.color.hei1));
+            CbTextSize = a.getDimension(R.styleable.CheckBoxGoodsList_CbTextSize, 0);
             a.recycle();
         }
         if (cbName == null) {
@@ -66,7 +73,11 @@ public class CheckBoxGoodsList extends LinearLayout {
         initData();
     }
 
+
     private void initData() {
+        if (CbTextSize != 0) {
+            tv_name.setTextSize(COMPLEX_UNIT_PX, CbTextSize);
+        }
         setText(cbName);
         setChecked(false);
     }

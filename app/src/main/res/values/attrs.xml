@@ -26,6 +26,7 @@
         <attr name="CbTrueTvColor" format="color" />
         <attr name="CbFalseTvColor" format="color" />
         <attr name="CbIsMode" format="boolean" />
+        <attr name="CbTextSize" format="dimension" />
     </declare-styleable>
     <declare-styleable name="CheckBoxComment">
         <attr name="CbC_Name" format="string" />

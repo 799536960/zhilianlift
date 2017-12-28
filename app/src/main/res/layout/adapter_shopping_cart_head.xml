@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="45dp"
+    android:background="@color/white">
+
+    <com.duma.ld.zhilianlift.widget.CheckBoxNoOnClick
+        android:id="@+id/cb_Select_All"
+        style="@style/shopping_cart_cb"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:padding="3dp"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/tv_store_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/house"
+        android:drawablePadding="6dp"
+        android:text="智联生活商城" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="8dp"
+        android:src="@drawable/jiantou_r" />
+</LinearLayout>
