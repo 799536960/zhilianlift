@@ -77,7 +77,6 @@ public class HomeActivity extends BaseMyActivity {
                         break;
                     case R.id.i_finance:
                         showHideFragment(mFragments[2]);
-                        SpDataUtil.removeUser();
                         break;
                     case R.id.i_shoppingCart:
                         if (SpDataUtil.isLogin()) {

@@ -23,7 +23,7 @@
     <View
         style="@style/shuxian"
         android:layout_width="0.5dp"
-        android:background="@color/hei1" />
+        android:background="@color/hui2" />
 
     <EditText
         android:id="@+id/edit_num"
@@ -35,12 +35,13 @@
         android:inputType="number"
         android:maxLength="4"
         android:text="1232"
+        android:textColor="@color/hei1"
         android:textSize="13sp" />
 
     <View
         style="@style/shuxian"
         android:layout_width="0.5dp"
-        android:background="@color/hei1" />
+        android:background="@color/hui2" />
 
     <FrameLayout
         android:id="@+id/layout_jia"

@@ -53,6 +53,7 @@ public class ShoppingCartStoreGoodsModel {
     private int store_count;
     private String original_img;
 
+
     public String getOriginal_img() {
         return original_img;
     }
@@ -167,6 +168,14 @@ public class ShoppingCartStoreGoodsModel {
 
     public int getSelected() {
         return selected;
+    }
+
+    public boolean isSelected() {
+        if (selected == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void setSelected(int selected) {
