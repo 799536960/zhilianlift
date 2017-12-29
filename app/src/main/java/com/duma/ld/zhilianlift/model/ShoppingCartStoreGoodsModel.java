@@ -52,7 +52,19 @@ public class ShoppingCartStoreGoodsModel {
     private String prom_goods;
     private int store_count;
     private String original_img;
+    private boolean selectDelete;
 
+    public ShoppingCartStoreGoodsModel() {
+        this.selectDelete = false;
+    }
+
+    public boolean isSelectDelete() {
+        return selectDelete;
+    }
+
+    public void setSelectDelete(boolean selectDelete) {
+        this.selectDelete = selectDelete;
+    }
 
     public String getOriginal_img() {
         return original_img;

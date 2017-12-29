@@ -11,10 +11,12 @@ public class ShoppingCartListModel implements MultiItemEntity {
     public static final int goods = 2;
     //必要参数
     private int itemType;
+    private int id;
     //head
     private String storeName;
     private int storeId;
     private boolean isAllSelect;
+    private boolean isAllDelectSelect;
 
     //goods
     private ShoppingCartStoreGoodsModel shoppingCartStoreGoodsModel;
@@ -23,7 +25,6 @@ public class ShoppingCartListModel implements MultiItemEntity {
         ShoppingCartListModel model1 = new ShoppingCartListModel(head);
         model1.setStoreId(shoppingCartStoreModel.getStore_id());
         model1.setStoreName(shoppingCartStoreModel.getStore_name());
-        model1.setStoreId(shoppingCartStoreModel.getStore_id());
         return model1;
     }
 
@@ -77,5 +78,21 @@ public class ShoppingCartListModel implements MultiItemEntity {
 
     public void setAllSelect(boolean allSelect) {
         isAllSelect = allSelect;
+    }
+
+    public boolean isAllDelectSelect() {
+        return isAllDelectSelect;
+    }
+
+    public void setAllDelectSelect(boolean allDelectSelect) {
+        isAllDelectSelect = allDelectSelect;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
