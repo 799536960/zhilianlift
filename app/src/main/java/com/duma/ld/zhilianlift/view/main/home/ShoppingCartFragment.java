@@ -9,20 +9,26 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.duma.ld.baselibrary.util.config.FragmentConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.Adapter.ShoppingCartAdapter;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseJsonHttp.MyJsonCallback;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyFragment;
+import com.duma.ld.zhilianlift.model.GoodsMainModel;
 import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.model.ShoppingCartListModel;
 import com.duma.ld.zhilianlift.model.ShoppingCartModel;
 import com.duma.ld.zhilianlift.model.ShoppingCartSelectModel;
 import com.duma.ld.zhilianlift.model.ShoppingCartStoreGoodsModel;
 import com.duma.ld.zhilianlift.model.ShoppingCartStoreModel;
+import com.duma.ld.zhilianlift.model.ShoppingChangeNumModel;
+import com.duma.ld.zhilianlift.model.SpecGoodsPriceBean;
 import com.duma.ld.zhilianlift.util.DialogUtil;
+import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.PublicUtil;
+import com.duma.ld.zhilianlift.view.dialog.GoodsSpecDialog;
 import com.duma.ld.zhilianlift.widget.CheckBoxGoodsList;
 import com.duma.ld.zhilianlift.widget.CheckBoxNoOnClick;
 import com.duma.ld.zhilianlift.widget.LinearImageLayout;
@@ -38,8 +44,12 @@ import butterknife.OnClick;
 
 import static com.duma.ld.zhilianlift.model.ShoppingCartListModel.goods;
 import static com.duma.ld.zhilianlift.model.ShoppingCartListModel.head;
+import static com.duma.ld.zhilianlift.util.Constants.ok;
 import static com.duma.ld.zhilianlift.util.HttpUrl.cartList;
+import static com.duma.ld.zhilianlift.util.HttpUrl.change;
+import static com.duma.ld.zhilianlift.util.HttpUrl.changeGoodsNum;
 import static com.duma.ld.zhilianlift.util.HttpUrl.changeNum;
+import static com.duma.ld.zhilianlift.util.HttpUrl.goodsInfo;
 
 /**
  * 购物车
@@ -72,6 +82,7 @@ public class ShoppingCartFragment extends BaseMyFragment {
     private List<ShoppingCartListModel> mList;
     private List<ShoppingCartSelectModel> mSelectList;
     private boolean isShoppingAllSelect;
+    private GoodsSpecDialog goodsSpecDialog;
 
     @Override
     protected FragmentConfig setFragmentConfig(Bundle savedInstanceState, InitConfig initConfig) {
@@ -81,11 +92,15 @@ public class ShoppingCartFragment extends BaseMyFragment {
     @Override
     protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
+        if (mActivity instanceof HomeActivity) {
+            layoutBack.setVisibility(View.GONE);
+        }
         isShoppingAllSelect = false;
         mList = new ArrayList<>();
         mSelectList = new ArrayList<>();
         initAdapter();
-        rvList.setLayoutManager(new LinearLayoutManager(mActivity));
+        LinearLayoutManager layout = new LinearLayoutManager(mActivity);
+        rvList.setLayoutManager(layout);
         rvList.setAdapter(mAdapter);
         mAdapter.setEmptyLayout("您现在的购物车是空的哦～", R.drawable.shoppingcard1, rvList);
         mFragmentConfig.showLoadingView();
@@ -157,6 +172,70 @@ public class ShoppingCartFragment extends BaseMyFragment {
                 }
 
             }
+
+            @Override
+            public void changeNum(final int position, int num) {
+                OkGo.getInstance().cancelTag("changeNum");
+                OkGo.<HttpResModel<ShoppingChangeNumModel>>get(changeGoodsNum)
+                        .tag("changeNum")
+                        .params("id", mList.get(position).getShoppingCartStoreGoodsModel().getId())
+                        .params("goods_num", num)
+                        .execute(new MyJsonCallback<HttpResModel<ShoppingChangeNumModel>>(mFragmentConfig) {
+                            @Override
+                            protected void onJsonSuccess(Response<HttpResModel<ShoppingChangeNumModel>> respons, HttpResModel<ShoppingChangeNumModel> stringHttpResModel) {
+                                mList.get(position).getShoppingCartStoreGoodsModel().setGoods_num(stringHttpResModel.getResult().getCart().getGoods_num());
+                                mAdapter.notifyItemChanged(position);
+                                refreshNum(stringHttpResModel.getResult().getTotal_price());
+                            }
+                        });
+            }
+        }, mActivity);
+        mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, final int position) {
+                switch (view.getId()) {
+                    case R.id.tv_goods_type2:
+                        //修改规格
+                        DialogUtil.getInstance().show_noBack(mActivity);
+                        OkGo.<HttpResModel<GoodsMainModel>>get(goodsInfo)
+                                .params("id", mList.get(position).getShoppingCartStoreGoodsModel().getGoods_id())
+                                .execute(new MyJsonCallback<HttpResModel<GoodsMainModel>>() {
+                                    @Override
+                                    protected void onJsonSuccess(Response<HttpResModel<GoodsMainModel>> respons, HttpResModel<GoodsMainModel> goodsMainModelHttpResModel) {
+                                        goodsSpecDialog = new GoodsSpecDialog(mActivity, new GoodsSpecDialog.OnDialogListener() {
+                                            @Override
+                                            public void onSpecString(StringBuffer stringBuffer) {
+
+                                            }
+
+                                            @Override
+                                            public void onSelectNum(int num) {
+
+                                            }
+
+                                            @Override
+                                            public void onSpec(SpecGoodsPriceBean specGoodsPriceBean) {
+
+                                            }
+
+                                            @Override
+                                            public void onClickBtn(String type) {
+                                                if (type.equals(ok)) {
+                                                    changeSpec(goodsSpecDialog.getSpecGoodsPriceBean(), position);
+                                                }
+                                            }
+                                        });
+                                        goodsSpecDialog.setModel_noFooter(goodsMainModelHttpResModel.getResult());
+                                        DialogUtil.getInstance().hide();
+                                        goodsSpecDialog.showOk();
+                                    }
+                                });
+                        break;
+                    default:
+                        IntentUtil.goGoodsDetails(mActivity, mList.get(position).getShoppingCartStoreGoodsModel().getGoods_id());
+                        break;
+                }
+            }
         });
         cbSelectAll.setOnNewClickListener(new CheckBoxNoOnClick.OnNewClickListener() {
             @Override
@@ -185,6 +264,31 @@ public class ShoppingCartFragment extends BaseMyFragment {
                 }
             }
         });
+    }
+
+    /**
+     * 修改规格
+     *
+     * @param specGoodsPriceBean
+     * @param position
+     */
+    private void changeSpec(SpecGoodsPriceBean specGoodsPriceBean, final int position) {
+        if (specGoodsPriceBean.getKey().equals(mList.get(position).getShoppingCartStoreGoodsModel().getSpec_key())) {
+            return;
+        }
+        DialogUtil.getInstance().show_noBack(mActivity);
+        OkGo.<HttpResModel<ShoppingChangeNumModel>>get(change)
+                .params("id", mList.get(position).getShoppingCartStoreGoodsModel().getId())
+                .params("item_id", specGoodsPriceBean.getItem_id())
+                .execute(new MyJsonCallback<HttpResModel<ShoppingChangeNumModel>>() {
+                    @Override
+                    protected void onJsonSuccess(Response<HttpResModel<ShoppingChangeNumModel>> respons, HttpResModel<ShoppingChangeNumModel> stringHttpResModel) {
+                        DialogUtil.getInstance().hide();
+                        mList.get(position).setShoppingCartStoreGoodsModel(stringHttpResModel.getResult().getCart());
+                        mAdapter.notifyItemChanged(position);
+                        refreshNum(stringHttpResModel.getResult().getTotal_price());
+                    }
+                });
     }
 
     /**
@@ -318,13 +422,17 @@ public class ShoppingCartFragment extends BaseMyFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.layout_back:
+                mActivity.finish();
                 break;
             case R.id.cb_type:
                 setEdit(!mAdapter.isEdit());
                 break;
             case R.id.layout_messgae:
+                // TODO: 2018/1/2 消息
+
                 break;
             case R.id.tv_settlement:
+                // TODO: 2018/1/2 结算
                 break;
             case R.id.tv_delete:
                 PublicUtil.getAlertDialog(mActivity, "删除商品", "确认要删除此商品吗?")

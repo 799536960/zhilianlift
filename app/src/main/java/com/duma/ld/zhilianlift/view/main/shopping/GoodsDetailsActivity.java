@@ -1,6 +1,7 @@
 package com.duma.ld.zhilianlift.view.main.shopping;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -228,6 +229,7 @@ public class GoodsDetailsActivity extends BaseMyActivity {
                 return;
             case R.id.layout_shopCart:
                 //跳转购物车
+                startActivity(new Intent(mActivity, ShoppingCartActivity.class));
                 return;
             case R.id.layout_AddShopCart:
                 //添加购物车

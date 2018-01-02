@@ -1,7 +1,11 @@
 package com.duma.ld.zhilianlift.Adapter;
 
+import android.app.Activity;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.text.SpannableStringBuilder;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,6 +17,7 @@ import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseAdapter.BaseMultiItemAdapter;
 import com.duma.ld.zhilianlift.model.ShoppingCartListModel;
 import com.duma.ld.zhilianlift.util.ImageLoader;
+import com.duma.ld.zhilianlift.util.PublicUtil;
 import com.duma.ld.zhilianlift.widget.CheckBoxNoOnClick;
 import com.duma.ld.zhilianlift.widget.NumInputLayout;
 
@@ -28,6 +33,9 @@ public class ShoppingCartAdapter extends BaseMultiItemAdapter<ShoppingCartListMo
     //是否编辑
     private boolean isEdit;
     private OnSelectClickListener onSelectClickListener;
+    private AlertDialog alertDialog;
+    private NumInputLayout numInputLayout;
+    private int position;
 
     public boolean isEdit() {
         return isEdit;
@@ -55,6 +63,8 @@ public class ShoppingCartAdapter extends BaseMultiItemAdapter<ShoppingCartListMo
 
         //商品下标为position的商品选中为isSelect状态
         void selectGoods(int position, boolean isSelect);
+
+        void changeNum(int position, int num);
     }
 
     /**
@@ -63,12 +73,31 @@ public class ShoppingCartAdapter extends BaseMultiItemAdapter<ShoppingCartListMo
      *
      * @param data A new list is created out of this one to avoid mutable list
      */
-    public ShoppingCartAdapter(List<ShoppingCartListModel> data, OnSelectClickListener onSelectClickListener) {
+    public ShoppingCartAdapter(List<ShoppingCartListModel> data, OnSelectClickListener onSelectClickListener, Activity activity) {
         super(data);
         this.onSelectClickListener = onSelectClickListener;
         isEdit = false;
         addItemType(head, R.layout.adapter_shopping_cart_head);
         addItemType(ShoppingCartListModel.goods, R.layout.adapter_shopping_cart_goods);
+        initDialog(activity);
+    }
+
+    private void initDialog(Activity activity) {
+        //初始化dialog
+        AlertDialog.Builder builder = PublicUtil.getAlertDialog(activity, "修改购买数量");
+        //初始化自定义dialogview
+        View dialog = activity.getLayoutInflater().inflate(R.layout.dialog_shop_num, (ViewGroup) activity.findViewById(R.id.layout_dialog));
+        numInputLayout = dialog.findViewById(R.id.numInput);
+        alertDialog = builder.setView(dialog)
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        onSelectClickListener.changeNum(position, numInputLayout.getNum());
+                    }
+                })
+                .setNegativeButton("取消", null)
+                .setCancelable(false)
+                .create();
     }
 
     @Override
@@ -86,7 +115,6 @@ public class ShoppingCartAdapter extends BaseMultiItemAdapter<ShoppingCartListMo
                             item.setAllDelectSelect(checked);
                             cb_Select_All.setChecked(checked);
                             onSelectClickListener.allSelect(item.getStoreId(), checked);
-
                         } else {
                             onSelectClickListener.allSelect(item.getStoreId(), !item.isAllSelect());
                         }
@@ -113,7 +141,10 @@ public class ShoppingCartAdapter extends BaseMultiItemAdapter<ShoppingCartListMo
         ImageLoader.with(item.getShoppingCartStoreGoodsModel().getOriginal_img(), (ImageView) helper.getView(R.id.img_icon), 6);
         helper.setText(R.id.tv_goods_name, item.getShoppingCartStoreGoodsModel().getGoods_name())
                 .setText(R.id.tv_goods_type2, item.getShoppingCartStoreGoodsModel().getSpec_key_name())
-                .setText(R.id.tv_goods_type, item.getShoppingCartStoreGoodsModel().getSpec_key_name());
+                .setText(R.id.tv_goods_type, item.getShoppingCartStoreGoodsModel().getSpec_key_name())
+                .addOnClickListener(R.id.tv_goods_type2)
+                .addOnClickListener(R.id.tv_goods_name)
+                .addOnClickListener(R.id.img_icon);
         SpannableStringBuilder spannableStringBuilder = new SpanUtils()
                 .append("¥")
                 .setFontSize(ConvertUtils.sp2px(13))
@@ -123,6 +154,20 @@ public class ShoppingCartAdapter extends BaseMultiItemAdapter<ShoppingCartListMo
         helper.setText(R.id.tv_goods_money, spannableStringBuilder);
         numInput.setNum(item.getShoppingCartStoreGoodsModel().getGoods_num());
         numInput.setNoInput();
+        numInput.getEdit_num().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                position = helper.getLayoutPosition();
+                numInputLayout.setNum(item.getShoppingCartStoreGoodsModel().getGoods_num());
+                alertDialog.show();
+            }
+        });
+        numInput.setOnTextClickListener(new NumInputLayout.OnTextClickListener() {
+            @Override
+            public void onClick(int num) {
+                onSelectClickListener.changeNum(helper.getLayoutPosition(), num);
+            }
+        });
         if (isEdit) {
             //编辑状态
             cb_Select.setChecked(item.getShoppingCartStoreGoodsModel().isSelectDelete());
@@ -151,4 +196,5 @@ public class ShoppingCartAdapter extends BaseMultiItemAdapter<ShoppingCartListMo
             }
         });
     }
+
 }

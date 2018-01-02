@@ -27,6 +27,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.duma.ld.zhilianlift.util.Constants.addShopCart;
+import static com.duma.ld.zhilianlift.util.Constants.ok;
 import static com.duma.ld.zhilianlift.util.Constants.shop;
 
 /**
@@ -53,6 +54,11 @@ public class GoodsSpecDialog extends BaseDownDialog implements View.OnClickListe
 
     public SpecAdapter getSpecAdapter() {
         return specAdapter;
+    }
+
+
+    public SpecGoodsPriceBean getSpecGoodsPriceBean() {
+        return specGoodsPriceBean;
     }
 
     /**
@@ -105,7 +111,9 @@ public class GoodsSpecDialog extends BaseDownDialog implements View.OnClickListe
         specAdapter.setOnInputListener(new NumInputLayout.OnInputListener() {
             @Override
             public void onInput(int num) {
-                onDialogListener.onSelectNum(num);
+                if (onDialogListener != null) {
+                    onDialogListener.onSelectNum(num);
+                }
             }
         });
         specAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
@@ -185,7 +193,9 @@ public class GoodsSpecDialog extends BaseDownDialog implements View.OnClickListe
                 }
             }
             tv_spec_list.setText(dialogString);
-            onDialogListener.onSpecString(stringBuffer);
+            if (onDialogListener != null) {
+                onDialogListener.onSpecString(stringBuffer);
+            }
             return;
         }
         /**
@@ -206,11 +216,15 @@ public class GoodsSpecDialog extends BaseDownDialog implements View.OnClickListe
         //获取价格和库存
         String selectSpecKey = getSelectSpecKey();
         specGoodsPriceBean = queryBySpecKey(selectSpecKey);
-        onDialogListener.onSpecString(stringBuffer);
+        if (onDialogListener != null) {
+            onDialogListener.onSpecString(stringBuffer);
+        }
         if (specGoodsPriceBean == null) {
             return;
         }
-        onDialogListener.onSpec(specGoodsPriceBean);
+        if (onDialogListener != null) {
+            onDialogListener.onSpec(specGoodsPriceBean);
+        }
         goodsCount = specGoodsPriceBean.getStore_count();
         tv_store.setText("库存" + goodsCount + "件");
         tv_price.setText("¥" + specGoodsPriceBean.getPrice());
@@ -268,6 +282,12 @@ public class GoodsSpecDialog extends BaseDownDialog implements View.OnClickListe
      * @param model 商品的model
      */
     public void setModel(GoodsMainModel model) {
+        setModel_noFooter(model);
+        //添加footer
+        mList.add(GoodsSpecModel.newFooter());
+    }
+
+    public void setModel_noFooter(GoodsMainModel model) {
         //一个是上一级的 positiong 和 他在这一级的positiong
 //        model.getGoods_spec_list().get( ?).setSelect( ?);
         mList = new ArrayList<>();
@@ -286,8 +306,6 @@ public class GoodsSpecDialog extends BaseDownDialog implements View.OnClickListe
                 mList.add(e);
             }
         }
-        //添加footer
-        mList.add(GoodsSpecModel.newFooter());
         this.model = model;
     }
 
@@ -303,7 +321,9 @@ public class GoodsSpecDialog extends BaseDownDialog implements View.OnClickListe
                 //只有没有规格或者已经选择好了规格才可以下一步
                 if (!isSpec || specGoodsPriceBean != null) {
                     dismiss();
-                    onDialogListener.onClickBtn(addShopCart);
+                    if (onDialogListener != null) {
+                        onDialogListener.onClickBtn(addShopCart);
+                    }
                 } else {
                     TsUtils.show("请选择规格!");
                 }
@@ -311,7 +331,14 @@ public class GoodsSpecDialog extends BaseDownDialog implements View.OnClickListe
             case R.id.tv_btn2:
                 if (!isSpec || specGoodsPriceBean != null) {
                     dismiss();
-                    onDialogListener.onClickBtn(shop);
+                    if (onDialogListener != null) {
+                        if (type == 4) {
+                            onDialogListener.onClickBtn(ok);
+                        } else {
+                            onDialogListener.onClickBtn(shop);
+                        }
+
+                    }
                 } else {
                     TsUtils.show("请选择规格!");
                 }
@@ -336,6 +363,11 @@ public class GoodsSpecDialog extends BaseDownDialog implements View.OnClickListe
                 tv_btn1.setVisibility(View.VISIBLE);
                 tv_btn2.setVisibility(View.VISIBLE);
                 break;
+            case 4:
+                tv_btn1.setVisibility(View.GONE);
+                tv_btn2.setVisibility(View.VISIBLE);
+                tv_btn2.setText("确定");
+                break;
         }
     }
 
@@ -354,6 +386,12 @@ public class GoodsSpecDialog extends BaseDownDialog implements View.OnClickListe
 
     public void showAll() {
         type = 3;
+        initType();
+        show();
+    }
+
+    public void showOk() {
+        type = 4;
         initType();
         show();
     }

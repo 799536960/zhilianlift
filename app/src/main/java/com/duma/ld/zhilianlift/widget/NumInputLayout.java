@@ -29,6 +29,11 @@ public class NumInputLayout extends LinearLayout implements TextWatcher {
 
     private Context mContext;
     private OnInputListener onInputListener;
+    private OnTextClickListener onTextClickListener;
+
+    public void setOnTextClickListener(OnTextClickListener onTextClickListener) {
+        this.onTextClickListener = onTextClickListener;
+    }
 
     public void setOnInputListener(OnInputListener onInputListener) {
         this.onInputListener = onInputListener;
@@ -36,6 +41,14 @@ public class NumInputLayout extends LinearLayout implements TextWatcher {
 
     public interface OnInputListener {
         void onInput(int num);
+    }
+
+    public interface OnTextClickListener {
+        void onClick(int num);
+    }
+
+    public int getNum() {
+        return num;
     }
 
     public NumInputLayout(Context context) {
@@ -58,13 +71,28 @@ public class NumInputLayout extends LinearLayout implements TextWatcher {
         layout_jian.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                setNum(num - 1);
+                if (onTextClickListener != null) {
+                    int readNum = getReadNum(num - 1);
+                    if (readNum != num) {
+                        onTextClickListener.onClick(readNum);
+                    }
+                } else {
+                    setNum(num - 1);
+                }
+
             }
         });
         layout_jia.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                setNum(num + 1);
+                if (onTextClickListener != null) {
+                    int readNum = getReadNum(num + 1);
+                    if (readNum != num) {
+                        onTextClickListener.onClick(readNum);
+                    }
+                } else {
+                    setNum(num + 1);
+                }
             }
         });
         edit_num.addTextChangedListener(this);
@@ -90,13 +118,7 @@ public class NumInputLayout extends LinearLayout implements TextWatcher {
     }
 
     public void setNum(int num) {
-        if (num < 1) {
-            this.num = 1;
-        } else if (num > maxNum) {
-            this.num = maxNum;
-        } else {
-            this.num = num;
-        }
+        this.num = getReadNum(num);
         if (this.num == 1) {
             img_jian.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.jian_hui));
             img_jia.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.jia_hei));
@@ -113,6 +135,16 @@ public class NumInputLayout extends LinearLayout implements TextWatcher {
             if (onInputListener != null) {
                 onInputListener.onInput(this.num);
             }
+        }
+    }
+
+    public int getReadNum(int num) {
+        if (num < 1) {
+            return 1;
+        } else if (num > maxNum) {
+            return maxNum;
+        } else {
+            return num;
         }
     }
 
@@ -147,5 +179,9 @@ public class NumInputLayout extends LinearLayout implements TextWatcher {
         if (!s1.equals(num + "") || edit_num.getText().toString().isEmpty()) {
             setNum(Integer.parseInt(s1));
         }
+    }
+
+    public EditText getEdit_num() {
+        return edit_num;
     }
 }
