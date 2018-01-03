@@ -47,4 +47,10 @@ public class HttpUrl {
     public static String changeNum = BaseUrl + "/index.php/api/Cart/changeNum";
     public static String changeGoodsNum = BaseUrl + "/index.php/api/Cart/changeGoodsNum";
     public static String change = BaseUrl + "/index.php/api/Cart/change";
+    public static String visit_log = BaseUrl + "/index.php/api/user/visit_log";
+    public static String del_visit_log = BaseUrl + "/index.php/api/user/del_visit_log";
+    public static String clear_visit_log = BaseUrl + "/index.php/api/user/clear_visit_log";
+    public static String collectgoodall = BaseUrl + "/index.php/api/user/collectgoodall";
+    public static String collectgoodlist = BaseUrl + "/index.php/api/user/collectgoodlist";
+    public static String collectgoodNo = BaseUrl + "/index.php/api/user/collectgoodNo";
 }

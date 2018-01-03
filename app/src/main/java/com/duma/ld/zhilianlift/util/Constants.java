@@ -8,6 +8,7 @@ public class Constants {
     public static final String kefu = "0571-28227987";
     public static final String youxiang = "service@saibertron.com";
     public static final String Page = "p";
+    public static final String Size = "size";
 
     //默认城市
     public static final String defaultCity = "湖州市";

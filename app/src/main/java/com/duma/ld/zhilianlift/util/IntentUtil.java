@@ -11,6 +11,8 @@ import com.duma.ld.zhilianlift.view.main.home.HomeActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.GoodsDetailsActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.GoodsListActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.SearchActivity;
+import com.duma.ld.zhilianlift.view.main.wode.MyCollectActivity;
+import com.duma.ld.zhilianlift.view.main.wode.MyRecordActivity;
 import com.duma.ld.zhilianlift.view.main.wode.UserDataActivity;
 import com.duma.ld.zhilianlift.view.main.wode.VerifyPhoneActivity;
 import com.duma.ld.zhilianlift.view.main.wode.addres.AddOrChangeActivity;
@@ -169,6 +171,18 @@ public class IntentUtil {
     public static void goGoodsDetails(Activity activity, int goodsId) {
         Intent intent = new Intent(activity, GoodsDetailsActivity.class);
         intent.putExtra(Constants.id, goodsId + "");
+        activity.startActivity(intent);
+    }
+
+    //我的收藏
+    public static void goMyCollect(Activity activity) {
+        Intent intent = new Intent(activity, MyCollectActivity.class);
+        activity.startActivity(intent);
+    }
+
+    //我的记录
+    public static void goMyRecord(Activity activity) {
+        Intent intent = new Intent(activity, MyRecordActivity.class);
         activity.startActivity(intent);
     }
 

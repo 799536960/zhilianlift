@@ -1,5 +1,7 @@
 package com.duma.ld.zhilianlift.base.baseJsonHttp;
 
+import android.app.Activity;
+
 import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.baselibrary.util.config.PublicConfig;
 import com.duma.ld.zhilianlift.base.baseAdapter.BaseAdapter;
@@ -23,6 +25,9 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
     //分页的适配器
     private BaseAdapter adapter;
 
+    //是否开启dialog
+    private boolean isDialog = false;
+    private Activity mActivity;
 
     @Override
     public void onStart(Request<T, ? extends Request> request) {
@@ -50,6 +55,12 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
         return this;
     }
 
+    public MyJsonCallback<T> isDialog(Activity activity) {
+        isDialog = true;
+        mActivity = activity;
+        return this;
+    }
+
     @Override
     public void onSuccess(Response<T> response) {
         if (isOpenCache) {
@@ -69,6 +80,9 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
             config.setOneSuccess(true);
         }
         if (successIsHideLoading) {
+            loadingHide();
+        }
+        if (isDialog) {
             loadingHide();
         }
         onJsonSuccess(response, response.body());
@@ -125,6 +139,10 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
     }
 
     private void loadingShow() {
+        if (isDialog) {
+            DialogUtil.getInstance().show(mActivity);
+            return;
+        }
         if (config == null) {
             return;
         }
