@@ -33,6 +33,7 @@ import butterknife.OnClick;
 import static com.duma.ld.zhilianlift.util.HttpUrl.userInfo;
 
 /**
+ * 我的
  * Created by liudong on 2017/11/29.
  */
 
@@ -202,6 +203,7 @@ public class MyFragment extends BaseMyFragment {
             case R.id.layout_money_zhuangxiuzijin:
                 break;
             case R.id.layout_money_youhuijuan:
+                IntentUtil.goCoupons(mActivity);
                 break;
             case R.id.layout_money_yu_e:
                 break;

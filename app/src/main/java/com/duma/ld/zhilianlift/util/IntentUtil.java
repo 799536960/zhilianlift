@@ -8,6 +8,7 @@ import com.duma.ld.zhilianlift.model.AddresModel;
 import com.duma.ld.zhilianlift.model.RealNameModel;
 import com.duma.ld.zhilianlift.model.ShoppingSpacModel;
 import com.duma.ld.zhilianlift.view.login.LoginOrRegisterActivity;
+import com.duma.ld.zhilianlift.view.main.CouponsActivity;
 import com.duma.ld.zhilianlift.view.main.home.HomeActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.ConfirmOrderActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.GoodsDetailsActivity;
@@ -213,6 +214,19 @@ public class IntentUtil {
     //确认订单_购物车进入
     public static void goConfirmOrder(Activity activity) {
         Intent intent = new Intent(activity, ConfirmOrderActivity.class);
+        activity.startActivity(intent);
+    }
+
+    //去优惠券列表
+    public static void goCoupons(Activity activity) {
+        Intent intent = new Intent(activity, CouponsActivity.class);
+        activity.startActivity(intent);
+    }
+
+    //去优惠券列表
+    public static void goCoupons(Activity activity, String money) {
+        Intent intent = new Intent(activity, CouponsActivity.class);
+        intent.putExtra(Constants.key, money);
         activity.startActivity(intent);
     }
 }

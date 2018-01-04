@@ -217,19 +217,15 @@ public class ConfirmOrderActivity extends BaseMyActivity {
                 }
             }
         };
-        GetRequest<HttpResModel<ConfirmOrderModel>> params;
-        if (isType()) {
-            TsUtils.show("购物车进入");
-            params = OkGo.<HttpResModel<ConfirmOrderModel>>get("https://www.baidu.com/");
-        } else {
-            params = OkGo.<HttpResModel<ConfirmOrderModel>>get(Cart2);
-        }
-        params.params("goods_id", model.getGoods_id())
-                .params("action", "buy_now")
-                .params("goods_num", model.getGoods_num());
-        //是否有规格
-        if (model.getItem_id() != 0) {
-            params.params("item_id", model.getItem_id());
+        GetRequest<HttpResModel<ConfirmOrderModel>> params = OkGo.<HttpResModel<ConfirmOrderModel>>get(Cart2);
+        if (!isType()) {
+            params.params("goods_id", model.getGoods_id())
+                    .params("action", "buy_now")
+                    .params("goods_num", model.getGoods_num());
+            //是否有规格
+            if (model.getItem_id() != 0) {
+                params.params("item_id", model.getItem_id());
+            }
         }
         //是否选择地址
         if (addressId != null) {
@@ -363,6 +359,7 @@ public class ConfirmOrderActivity extends BaseMyActivity {
                 break;
             case R.id.layout_coupons:
                 //选择优惠券
+                IntentUtil.goCoupons(mActivity, orderModel.getLast_order_amount());
                 break;
             case R.id.switch_walletPay:
                 switchWalletPay.setChecked(!switchWalletPay.isChecked());
