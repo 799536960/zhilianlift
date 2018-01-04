@@ -432,7 +432,7 @@ public class ShoppingCartFragment extends BaseMyFragment {
 
                 break;
             case R.id.tv_settlement:
-                // TODO: 2018/1/2 结算
+                IntentUtil.goConfirmOrder(mActivity);
                 break;
             case R.id.tv_delete:
                 PublicUtil.getAlertDialog(mActivity, "删除商品", "确认要删除此商品吗?")

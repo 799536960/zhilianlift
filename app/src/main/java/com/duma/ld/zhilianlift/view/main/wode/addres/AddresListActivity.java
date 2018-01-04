@@ -10,7 +10,10 @@ import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.duma.ld.baselibrary.base.OnTopBarLeftListener;
 import com.duma.ld.baselibrary.model.EventModel;
+import com.duma.ld.baselibrary.util.EventBusUtil;
+import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
@@ -36,6 +39,7 @@ import butterknife.OnClick;
 
 import static com.duma.ld.zhilianlift.util.Constants.event_addresList_add;
 import static com.duma.ld.zhilianlift.util.Constants.event_addresList_edit;
+import static com.duma.ld.zhilianlift.util.Constants.event_address;
 import static com.duma.ld.zhilianlift.util.HttpUrl.del_address;
 import static com.duma.ld.zhilianlift.util.HttpUrl.getAddressList;
 import static com.duma.ld.zhilianlift.util.HttpUrl.setDefaultAddress;
@@ -57,6 +61,9 @@ public class AddresListActivity extends BaseMyActivity {
     //当前是默认地址的position;
     private int positionDefault;
 
+    //传过来的 如果不为null 就把id传过去
+    private String keyId;
+
     @Override
     protected boolean isRegisterEventBus() {
         return true;
@@ -77,8 +84,22 @@ public class AddresListActivity extends BaseMyActivity {
     @Override
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig) {
         return initConfig.setLayoutIdByActivity(R.layout.activity_addres_list)
-                .setTopBar_A("地址管理")
+                .setTopBar_A("地址管理", new OnTopBarLeftListener() {
+                    @Override
+                    public void onClick() {
+                        onBack();
+                    }
+                })
                 .setRefresh_A(R.id.sw_loading, R.id.layout_content, R.id.rv_list);
+    }
+
+    @Override
+    protected void onBack() {
+        if (keyId != null) {
+            TsUtils.show("请点击选择一个收货地址,或者新建一个收货地址!");
+        } else {
+            finish();
+        }
     }
 
     @OnClick(R.id.tv_addres)
@@ -89,6 +110,7 @@ public class AddresListActivity extends BaseMyActivity {
     @Override
     protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
+        keyId = getIntent().getStringExtra(Constants.key);
         adapter = new BaseAdapter.Builder<AddresModel>(rvList, mActivity, R.layout.rv_dizhi_list)
                 .buildLoad(new OnBaseLoadAdapterListener<AddresModel>() {
                     @Override
@@ -133,7 +155,10 @@ public class AddresListActivity extends BaseMyActivity {
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-
+                if (keyId != null) {
+                    EventBusUtil.sendModel(event_address, AddresListActivity.this.adapter.getData().get(position).getAddress_id() + "");
+                    mActivity.finish();
+                }
             }
         });
         adapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {

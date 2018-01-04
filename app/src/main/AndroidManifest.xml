@@ -95,6 +95,7 @@
         <activity android:name=".view.main.shopping.ShoppingCartActivity" />
         <activity android:name=".view.main.wode.MyCollectActivity" />
         <activity android:name=".view.main.wode.MyRecordActivity" />
+        <activity android:name=".view.main.shopping.ConfirmOrderActivity" />
     </application>
 
 </manifest>

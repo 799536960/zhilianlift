@@ -36,6 +36,10 @@ public class Constants {
     public static final int event_addresList_edit = 8;
     //设置支付密码成功的回调
     public static final int event_pay_success = 9;
+    //在确认订单也选择地址后回调
+    public static final int event_address = 10;
+    //在确认订单也选择优惠券
+    public static final int event_conpons = 11;
     /**
      * intent
      */

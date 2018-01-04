@@ -25,6 +25,11 @@ public class PublicUtil {
                 .setMessage(message);
     }
 
+    public static AlertDialog.Builder getAlertDialog_nessage(Activity activity, String message) {
+        return new AlertDialog.Builder(activity, R.style.AlertDialogTheme)
+                .setMessage(message);
+    }
+
     public static AlertDialog.Builder getAlertDialog(Activity activity, String title) {
         return new AlertDialog.Builder(activity, R.style.AlertDialogTheme)
                 .setTitle(title);

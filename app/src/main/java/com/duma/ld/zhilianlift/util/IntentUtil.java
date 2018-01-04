@@ -6,8 +6,10 @@ import android.content.Intent;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.model.AddresModel;
 import com.duma.ld.zhilianlift.model.RealNameModel;
+import com.duma.ld.zhilianlift.model.ShoppingSpacModel;
 import com.duma.ld.zhilianlift.view.login.LoginOrRegisterActivity;
 import com.duma.ld.zhilianlift.view.main.home.HomeActivity;
+import com.duma.ld.zhilianlift.view.main.shopping.ConfirmOrderActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.GoodsDetailsActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.GoodsListActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.SearchActivity;
@@ -71,6 +73,12 @@ public class IntentUtil {
 
     public static void goAddresList(Activity activity) {
         Intent intent = new Intent(activity, AddresListActivity.class);
+        activity.startActivity(intent);
+    }
+
+    public static void goAddresListById(Activity activity) {
+        Intent intent = new Intent(activity, AddresListActivity.class);
+        intent.putExtra(Constants.key, Constants.key);
         activity.startActivity(intent);
     }
 
@@ -193,5 +201,18 @@ public class IntentUtil {
         intent.putExtra(Constants.key, position + "");
         activity.startActivity(intent);
         activity.overridePendingTransition(R.anim.a5, 0);
+    }
+
+    //确认订单_直接购买
+    public static void goConfirmOrder(Activity activity, ShoppingSpacModel model) {
+        Intent intent = new Intent(activity, ConfirmOrderActivity.class);
+        intent.putExtra(Constants.Model, model);
+        activity.startActivity(intent);
+    }
+
+    //确认订单_购物车进入
+    public static void goConfirmOrder(Activity activity) {
+        Intent intent = new Intent(activity, ConfirmOrderActivity.class);
+        activity.startActivity(intent);
     }
 }

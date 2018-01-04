@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/layout_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/sw_loading"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/layout_select_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="72dp"
+                        android:orientation="horizontal">
+
+                        <android.support.constraint.ConstraintLayout
+                            android:id="@+id/layout_address"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:visibility="visible">
+
+                            <TextView
+                                android:id="@+id/tv_address_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginTop="12dp"
+                                android:text="名字"
+                                android:textSize="16sp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tv_address_phone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="32dp"
+                                android:layout_marginTop="12dp"
+                                android:text="188888888"
+                                android:textSize="16sp"
+                                app:layout_constraintStart_toEndOf="@+id/tv_address_name"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tv_address_info"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="12dp"
+                                android:layout_marginLeft="16dp"
+                                android:drawablePadding="8dp"
+                                android:drawableStart="@drawable/confirm3"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:text="地址地址"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent" />
+                        </android.support.constraint.ConstraintLayout>
+
+                        <TextView
+                            android:id="@+id/tv_Null_address"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:paddingStart="15dp"
+                            android:text="请填写收货信息"
+                            android:textColor="#95979a"
+                            android:textSize="15sp"
+                            android:visibility="gone" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="11dp"
+                            android:layout_marginStart="11dp"
+                            android:src="@drawable/jiantou_r" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/confirm1" />
+
+                    <View
+                        style="@style/henxian"
+                        android:layout_height="10dp" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_goods"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <View
+                        style="@style/henxian"
+                        android:layout_height="10dp" />
+
+                    <LinearLayout
+                        android:id="@+id/layout_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:orientation="horizontal"
+                        android:paddingEnd="11dp"
+                        android:paddingStart="11dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="配送时间"
+                            android:textSize="15sp" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/tv_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:drawableEnd="@drawable/jiantou_r"
+                            android:drawablePadding="8dp"
+                            android:text="请选择配送时间" />
+                    </LinearLayout>
+
+                    <View style="@style/henxian" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:orientation="horizontal"
+                        android:paddingEnd="11dp"
+                        android:paddingStart="11dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="买家留言"
+                            android:textSize="15sp" />
+
+                        <EditText
+                            android:id="@+id/edit_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:background="@null"
+                            android:hint="选填，可填写您期望的一些要求"
+                            android:inputType="text"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <View
+                        style="@style/henxian"
+                        android:layout_height="10dp" />
+
+                    <LinearLayout
+                        android:id="@+id/layout_coupons"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:orientation="horizontal"
+                        android:paddingEnd="11dp"
+                        android:paddingStart="11dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="优惠券"
+                            android:textSize="15sp" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/tv_coupons"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:drawableEnd="@drawable/jiantou_r"
+                            android:drawablePadding="8dp"
+                            android:text="无可用" />
+                    </LinearLayout>
+
+                    <View style="@style/henxian" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:orientation="horizontal"
+                        android:paddingEnd="11dp"
+                        android:paddingStart="11dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="钱包支付"
+                            android:textSize="15sp" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <Switch
+                            android:id="@+id/switch_walletPay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:paddingStart="20dp" />
+
+                    </LinearLayout>
+
+                    <View style="@style/henxian" />
+
+                    <com.duma.ld.zhilianlift.widget.RedioLayout
+                        android:id="@+id/redio_zhuangxiu"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        app:redio_text="装修资金" />
+
+
+                    <View style="@style/henxian" />
+
+                    <com.duma.ld.zhilianlift.widget.RedioLayout
+                        android:id="@+id/redio_jifen"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        app:redio_text="补贴积分(0)" />
+
+                    <View style="@style/henxian" />
+
+                    <com.duma.ld.zhilianlift.widget.RedioLayout
+                        android:id="@+id/redio_yuE"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        app:redio_text="余额(0元)" />
+
+
+                    <View
+                        style="@style/henxian"
+                        android:layout_height="10dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:orientation="horizontal"
+                        android:paddingEnd="11dp"
+                        android:paddingStart="11dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="商品金额"
+                            android:textSize="15sp" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/tv_goods_money"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="¥1099"
+                            android:textColor="@color/hong"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:orientation="horizontal"
+                        android:paddingEnd="11dp"
+                        android:paddingStart="11dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="运费"
+                            android:textSize="15sp" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/tv_freight_money"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="¥1099"
+                            android:textColor="@color/hong"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+
+        <TextView
+            android:id="@+id/tv_address_info2"
+            android:layout_width="match_parent"
+            android:layout_height="33dp"
+            android:background="#fff3dc"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="请填写收货信息"
+            android:textSize="13sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_pay_money"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center|right"
+                android:paddingEnd="10dp"
+                android:text="实付款:$111"
+                android:textColor="@color/hong"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_send_order"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:background="@color/hong"
+                android:gravity="center"
+                android:text="提交订单"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

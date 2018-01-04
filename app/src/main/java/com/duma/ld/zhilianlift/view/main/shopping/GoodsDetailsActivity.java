@@ -23,6 +23,7 @@ import com.duma.ld.zhilianlift.model.GoodsMainModel;
 import com.duma.ld.zhilianlift.model.GoodsNumModel;
 import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.model.ShopCartNumModel;
+import com.duma.ld.zhilianlift.model.ShoppingSpacModel;
 import com.duma.ld.zhilianlift.model.SpecGoodsPriceBean;
 import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.DialogUtil;
@@ -252,8 +253,11 @@ public class GoodsDetailsActivity extends BaseMyActivity {
 
     //立即购买
     private void newShop() {
-        // TODO: 2017/12/28  直接购买
-        TsUtils.show("直接购买 数量:" + count);
+        ShoppingSpacModel model = new ShoppingSpacModel(id, count);
+        if (mSpecGoodsPriceBean != null) {
+            model.setItem_id(mSpecGoodsPriceBean.getItem_id());
+        }
+        IntentUtil.goConfirmOrder(mActivity, model);
     }
 
     //收藏商品
