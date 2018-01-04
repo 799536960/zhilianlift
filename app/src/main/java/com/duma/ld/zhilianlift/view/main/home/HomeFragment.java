@@ -137,9 +137,9 @@ public class HomeFragment extends BaseMyFragment {
         rvList.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(listener);
         //初始化banner
-        mBanner.setPageIndicator(new int[]{R.drawable.lunbo_unselected, R.drawable.lunbo_selected})
-                //设置指示器的方向
-                .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
+//        .setPageIndicator(new int[]{R.drawable.lunbo_unselected, R.drawable.lunbo_selected})
+        //设置指示器的方向
+        mBanner.setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
                 .setOnItemClickListener(listener)
                 .startTurning(3 * 1000);
         cbViewHolderCreator = new CBViewHolderCreator<LocalImageHolderView>() {

@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.blankj.utilcode.util.ConvertUtils;
 import com.blankj.utilcode.util.SpanUtils;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.duma.ld.baselibrary.util.ZhuanHuanUtil;
 import com.duma.ld.baselibrary.util.config.PublicConfig;
@@ -21,6 +22,7 @@ import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.model.MyRecordModel;
 import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.ImageLoader;
+import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.widget.CheckBoxNoOnClick;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
@@ -33,7 +35,7 @@ import static com.duma.ld.zhilianlift.util.HttpUrl.collectgoodlist;
  * Created by liudong on 2018/1/3.
  */
 
-public class GoodsTypeAdapter {
+public class GoodsTypeAdapter implements BaseQuickAdapter.OnItemClickListener {
     private BaseAdapter<MyRecordModel.VisitBean> mAdapter;
     private RecyclerView mRecyclerView;
     private Activity mActivity;
@@ -59,6 +61,7 @@ public class GoodsTypeAdapter {
                         getView(helper, item);
                     }
                 });
+        mAdapter.setOnItemClickListener(this);
         return this;
     }
 
@@ -84,6 +87,7 @@ public class GoodsTypeAdapter {
                         getView(helper, item);
                     }
                 });
+        mAdapter.setOnItemClickListener(this);
         return this;
     }
 
@@ -123,5 +127,22 @@ public class GoodsTypeAdapter {
 
     public BaseAdapter<MyRecordModel.VisitBean> getmAdapter() {
         return mAdapter;
+    }
+
+    @Override
+    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+//        type = 0 是商品  goods_id
+//
+//        type = 1 是新房  house_id
+//
+//        type = 2 是二手房 house_id
+//
+//        type = 3 是住房   house_id
+        MyRecordModel.VisitBean visitBean = mAdapter.getData().get(position);
+        switch (visitBean.getType()) {
+            case 0:
+                IntentUtil.goGoodsDetails(mActivity, visitBean.getGoods_id());
+                break;
+        }
     }
 }

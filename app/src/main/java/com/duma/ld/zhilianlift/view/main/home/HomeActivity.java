@@ -13,6 +13,7 @@ import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
 import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
+import com.jaeger.library.StatusBarUtil;
 
 import butterknife.BindView;
 import me.yokeyword.fragmentation.SupportFragment;
@@ -38,7 +39,11 @@ public class HomeActivity extends BaseMyActivity {
     protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
         initFragment();
+    }
 
+    @Override
+    protected void setStatusBar() {
+        StatusBarUtil.setTranslucentForImageViewInFragment(HomeActivity.this, null);
     }
 
     private void initFragment() {

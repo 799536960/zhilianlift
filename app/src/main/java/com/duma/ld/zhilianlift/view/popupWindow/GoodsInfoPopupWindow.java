@@ -82,10 +82,10 @@ public class GoodsInfoPopupWindow extends BasePopupWindow implements View.OnClic
                 IntentUtil.goSearch(activity);
                 break;
             case R.id.layout_collect:
-                // TODO: 2017/12/28 跳转收藏
+                IntentUtil.goMyCollect(activity);
                 break;
             case R.id.layout_jilu:
-                // TODO: 2017/12/28 跳转浏览记录
+                IntentUtil.goMyRecord(activity);
                 break;
         }
     }

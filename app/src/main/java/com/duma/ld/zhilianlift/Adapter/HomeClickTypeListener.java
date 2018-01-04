@@ -8,6 +8,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.model.AdBean;
+import com.duma.ld.zhilianlift.model.GoodsBean;
 import com.duma.ld.zhilianlift.model.HomeModel;
 import com.duma.ld.zhilianlift.model.HomeMultipleModel;
 import com.duma.ld.zhilianlift.util.IntentUtil;
@@ -38,7 +39,12 @@ public class HomeClickTypeListener implements View.OnClickListener, OnItemClickL
         TsUtils.show("name:" + adBean.getTitle() + " type:" + adBean.getType());
         switch (adBean.getType()) {
             case 1:
-                IntentUtil.goGoodsDetails(mActivity, adBean.getGoods().getGoods_id());
+                GoodsBean goods = adBean.getGoods();
+                if (goods == null) {
+                    TsUtils.show("没有该商品");
+                    return;
+                }
+                IntentUtil.goGoodsDetails(mActivity, goods.getGoods_id());
                 break;
             case 2:
                 break;

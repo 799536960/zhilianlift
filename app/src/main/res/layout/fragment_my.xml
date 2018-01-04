@@ -11,7 +11,7 @@
         android:orientation="vertical">
 
         <LinearLayout
-            style="@style/topbar_h"
+            style="@style/topbar_h_fragment"
             android:layout_width="match_parent"
             android:background="@color/primary"
             android:gravity="right|center"
