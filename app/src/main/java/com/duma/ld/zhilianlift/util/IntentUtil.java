@@ -10,6 +10,7 @@ import com.duma.ld.zhilianlift.model.ShoppingSpacModel;
 import com.duma.ld.zhilianlift.view.login.LoginOrRegisterActivity;
 import com.duma.ld.zhilianlift.view.main.CouponsActivity;
 import com.duma.ld.zhilianlift.view.main.home.HomeActivity;
+import com.duma.ld.zhilianlift.view.main.pay.PayInputPasswordActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.ConfirmOrderActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.GoodsDetailsActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.GoodsListActivity;
@@ -65,6 +66,7 @@ public class IntentUtil {
     public static void goLogin(Activity activity) {
         Intent intent = new Intent(activity, LoginOrRegisterActivity.class);
         activity.startActivity(intent);
+        activity.overridePendingTransition(R.anim.out_to_left2, R.anim.in_from_right);
     }
 
     public static void goUserData(Activity activity) {
@@ -228,5 +230,12 @@ public class IntentUtil {
         Intent intent = new Intent(activity, CouponsActivity.class);
         intent.putExtra(Constants.key, money);
         activity.startActivity(intent);
+    }
+
+    //去支付密码
+    public static void goPayInputPassword(Activity activity) {
+        Intent intent = new Intent(activity, PayInputPasswordActivity.class);
+        activity.startActivity(intent);
+        activity.overridePendingTransition(R.anim.out_to_left2, R.anim.in_from_right);
     }
 }

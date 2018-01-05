@@ -20,8 +20,8 @@ public class CouponsModel {
     private int id;
     private int uid;
     private int cid;
-    private int use_start_time;
-    private int use_end_time;
+    private long use_start_time;
+    private long use_end_time;
     private String name;
     private String money;
     private String condition;
@@ -60,19 +60,27 @@ public class CouponsModel {
         this.cid = cid;
     }
 
-    public int getUse_start_time() {
+    public long getUse_start_time() {
         return use_start_time;
     }
 
-    public void setUse_start_time(int use_start_time) {
+    public long getUse_start_time_j() {
+        return use_start_time * 1000;
+    }
+
+    public void setUse_start_time(long use_start_time) {
         this.use_start_time = use_start_time;
     }
 
-    public int getUse_end_time() {
+    public long getUse_end_time() {
         return use_end_time;
     }
 
-    public void setUse_end_time(int use_end_time) {
+    public long getUse_end_time_j() {
+        return use_end_time * 1000;
+    }
+
+    public void setUse_end_time(long use_end_time) {
         this.use_end_time = use_end_time;
     }
 

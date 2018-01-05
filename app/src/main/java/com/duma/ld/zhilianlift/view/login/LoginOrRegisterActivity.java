@@ -53,4 +53,10 @@ public class LoginOrRegisterActivity extends BaseMyActivity {
                 break;
         }
     }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+    }
 }

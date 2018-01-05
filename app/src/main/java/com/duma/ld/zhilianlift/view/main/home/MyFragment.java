@@ -17,10 +17,10 @@ import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseJsonHttp.MyJsonCallback;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyFragment;
 import com.duma.ld.zhilianlift.model.HttpResModel;
+import com.duma.ld.zhilianlift.model.UserModel;
 import com.duma.ld.zhilianlift.util.ImageLoader;
 import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
-import com.duma.ld.zhilianlift.model.UserModel;
 import com.duma.ld.zhilianlift.view.main.wode.SettingActivity;
 import com.duma.ld.zhilianlift.widget.LinearImageLayout;
 import com.lzy.okgo.OkGo;
@@ -191,6 +191,7 @@ public class MyFragment extends BaseMyFragment {
             case R.id.layout_messgae:
                 break;
             case R.id.layout_order_daifukuan:
+                IntentUtil.goPayInputPassword(mActivity);
                 break;
             case R.id.layout_order_daishouhuo:
                 break;

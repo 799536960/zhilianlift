@@ -97,7 +97,6 @@ public class ConfirmOrderActivity extends BaseMyActivity {
     //传过来的 用于判断是不是直接购买
     private ShoppingSpacModel model;
     private BaseAdapter<ConfirmOrderModel.ListBean.CartListBean> adapter;
-    private boolean isPay;
 
     private ConfirmOrderModel orderModel;
     private String addressId;
@@ -231,6 +230,10 @@ public class ConfirmOrderActivity extends BaseMyActivity {
         if (addressId != null) {
             params.params("address_id", addressId);
         }
+        //是否选择优惠券
+        if (conponsId != null) {
+            params.params("coupon_id", conponsId);
+        }
         //钱包选择
         if (typeModel != null) {
             switch (typeModel.getRedio()) {
@@ -265,6 +268,12 @@ public class ConfirmOrderActivity extends BaseMyActivity {
             tvAddressInfo2.setText(addressList.getTotal_address());
             tvAddressName.setText(addressList.getConsignee());
             tvAddressPhone.setText(addressList.getMobile());
+        }
+        //优惠券
+        if (result.getCouponNum() == null || result.getCouponNum().size() == 0) {
+            tvCoupons.setText("请选择");
+        } else {
+            tvCoupons.setText("减" + result.getCouponNum().get(0).getMoney());
         }
 
         //加载商品列表
@@ -359,7 +368,7 @@ public class ConfirmOrderActivity extends BaseMyActivity {
                 break;
             case R.id.layout_coupons:
                 //选择优惠券
-                IntentUtil.goCoupons(mActivity, orderModel.getLast_order_amount());
+                IntentUtil.goCoupons(mActivity, orderModel.getStoreCartTotalPrice());
                 break;
             case R.id.switch_walletPay:
                 switchWalletPay.setChecked(!switchWalletPay.isChecked());
@@ -381,7 +390,26 @@ public class ConfirmOrderActivity extends BaseMyActivity {
                 break;
             case R.id.tv_send_order:
                 //提交订单
+                commitOrder();
                 break;
+        }
+    }
+
+    /**
+     * 提交订单
+     */
+    private void commitOrder() {
+        if (mTypeModel.getRedio() != 0) {
+            //说明已经选择了钱包支付 需要输入支付密码
+            if (orderModel.getUserInfo().getPaypwd() == null || orderModel.getUserInfo().getPaypwd().isEmpty()) {
+                //没有设置支付密码 指引去设置
+
+            } else {
+                //已经设置了 指引去输入
+            }
+        } else {
+            //不需要密码
+
         }
     }
 

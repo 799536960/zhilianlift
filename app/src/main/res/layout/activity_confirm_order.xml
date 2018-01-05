@@ -172,6 +172,7 @@
                             android:background="@null"
                             android:hint="选填，可填写您期望的一些要求"
                             android:inputType="text"
+                            android:maxLength="50"
                             android:textSize="14sp" />
                     </LinearLayout>
 
@@ -206,7 +207,7 @@
                             android:layout_gravity="center_vertical"
                             android:drawableEnd="@drawable/jiantou_r"
                             android:drawablePadding="8dp"
-                            android:text="无可用" />
+                            android:text="请选择" />
                     </LinearLayout>
 
                     <View style="@style/henxian" />

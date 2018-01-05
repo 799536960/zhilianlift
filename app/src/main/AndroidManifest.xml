@@ -97,6 +97,9 @@
         <activity android:name=".view.main.wode.MyRecordActivity" />
         <activity android:name=".view.main.shopping.ConfirmOrderActivity" />
         <activity android:name=".view.main.CouponsActivity" />
+        <activity
+            android:name=".view.main.pay.PayInputPasswordActivity"
+            android:theme="@style/AppTheme_tm_hei" />
     </application>
 
 </manifest>
