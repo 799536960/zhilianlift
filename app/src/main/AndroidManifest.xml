@@ -102,6 +102,7 @@
             android:theme="@style/AppTheme_tm_hei" />
         <activity android:name=".view.main.pay.PaySuccessActivity" />
         <activity android:name=".view.main.pay.PayActivity" />
+        <activity android:name=".view.main.order.OrderListActivity" />
     </application>
 
 </manifest>

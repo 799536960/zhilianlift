@@ -11,6 +11,7 @@ import com.duma.ld.zhilianlift.model.ShoppingSpacModel;
 import com.duma.ld.zhilianlift.view.login.LoginOrRegisterActivity;
 import com.duma.ld.zhilianlift.view.main.CouponsActivity;
 import com.duma.ld.zhilianlift.view.main.home.HomeActivity;
+import com.duma.ld.zhilianlift.view.main.order.OrderListActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PayActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PayInputPasswordActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PaySuccessActivity;
@@ -211,6 +212,9 @@ public class IntentUtil {
 
     //图片查看页面
     public static void goPhoto(Activity activity, List<String> list, int position) {
+        if (list == null || list.size() == 0) {
+            return;
+        }
         Intent intent = new Intent(activity, PhotoQueryActivity.class);
         intent.putExtra(Constants.Model, (Serializable) list);
         intent.putExtra(Constants.key, position + "");
@@ -261,6 +265,12 @@ public class IntentUtil {
     public static void goPay(Activity activity, CommitOrderModel model) {
         Intent intent = new Intent(activity, PayActivity.class);
         intent.putExtra(Constants.Model, model);
+        activity.startActivity(intent);
+    }
+
+    //订单列表
+    public static void goOrderList(Activity activity) {
+        Intent intent = new Intent(activity, OrderListActivity.class);
         activity.startActivity(intent);
     }
 }

@@ -9,6 +9,7 @@ import android.widget.FrameLayout;
 import com.duma.ld.baselibrary.R;
 import com.duma.ld.baselibrary.base.BaseActivity;
 import com.duma.ld.baselibrary.base.OnTopBarLeftListener;
+import com.duma.ld.baselibrary.base.OnTopBarRightListener;
 
 /**
  * Created by liudong on 2017/11/10.
@@ -38,6 +39,11 @@ public class ActivityConfig extends PublicConfig {
 
     public ActivityConfig setTopBar_A(String name, OnTopBarLeftListener onTopBarLeftListener) {
         setTopBar(name, onTopBarLeftListener);
+        return this;
+    }
+
+    public ActivityConfig setTopBar_A(String name, OnTopBarLeftListener onTopBarLeftListener, String rightString, OnTopBarRightListener onTopBarRightListener) {
+        setTopBar(name, onTopBarLeftListener, rightString, onTopBarRightListener);
         return this;
     }
 

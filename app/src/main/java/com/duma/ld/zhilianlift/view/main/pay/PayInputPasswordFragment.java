@@ -10,6 +10,7 @@ import com.duma.ld.baselibrary.util.config.FragmentConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyFragment;
+import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.widget.PayInputLayout;
 import com.duma.ld.zhilianlift.widget.PayPasswordLayout;
 
@@ -63,7 +64,7 @@ public class PayInputPasswordFragment extends BaseMyFragment {
                 mActivity.finish();
                 break;
             case R.id.tv_forget_password:
-                // TODO: 2018/1/8 忘记密码
+                IntentUtil.goPaySetting(mActivity);
                 break;
         }
     }
