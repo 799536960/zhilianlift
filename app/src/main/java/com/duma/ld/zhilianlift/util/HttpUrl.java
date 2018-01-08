@@ -55,4 +55,5 @@ public class HttpUrl {
     public static String collectgoodNo = BaseUrl + "/index.php/api/user/collectgoodNo";
     public static String Cart2 = BaseUrl + "/index.php/api/Cart/Cart2";
     public static String getCouponList = BaseUrl + "/index.php/api/Cart/getCouponList";
+    public static String Cart3 = BaseUrl + "/index.php/api/Cart/Cart3";
 }

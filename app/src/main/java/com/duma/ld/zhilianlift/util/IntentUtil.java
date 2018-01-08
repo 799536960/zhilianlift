@@ -5,12 +5,15 @@ import android.content.Intent;
 
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.model.AddresModel;
+import com.duma.ld.zhilianlift.model.CommitOrderModel;
 import com.duma.ld.zhilianlift.model.RealNameModel;
 import com.duma.ld.zhilianlift.model.ShoppingSpacModel;
 import com.duma.ld.zhilianlift.view.login.LoginOrRegisterActivity;
 import com.duma.ld.zhilianlift.view.main.CouponsActivity;
 import com.duma.ld.zhilianlift.view.main.home.HomeActivity;
+import com.duma.ld.zhilianlift.view.main.pay.PayActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PayInputPasswordActivity;
+import com.duma.ld.zhilianlift.view.main.pay.PaySuccessActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.ConfirmOrderActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.GoodsDetailsActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.GoodsListActivity;
@@ -23,8 +26,8 @@ import com.duma.ld.zhilianlift.view.main.wode.addres.AddOrChangeActivity;
 import com.duma.ld.zhilianlift.view.main.wode.addres.AddresListActivity;
 import com.duma.ld.zhilianlift.view.main.wode.realName.RealNameEditActivity;
 import com.duma.ld.zhilianlift.view.main.wode.userSecuryty.PayPasswordActivity;
+import com.duma.ld.zhilianlift.view.main.wode.userSecuryty.PayPasswordSuccessActivity;
 import com.duma.ld.zhilianlift.view.main.wode.userSecuryty.PaySettingActivity;
-import com.duma.ld.zhilianlift.view.main.wode.userSecuryty.PaySuccessActivity;
 import com.duma.ld.zhilianlift.view.start.PhotoQueryActivity;
 
 import java.io.Serializable;
@@ -147,8 +150,17 @@ public class IntentUtil {
     //支付设置页面
     public static void goPaySetting(Activity activity) {
         Intent intent = new Intent(activity, PaySettingActivity.class);
-        intent.setFlags(FLAG_ACTIVITY_CLEAR_TOP);
-        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//        intent.setFlags(FLAG_ACTIVITY_CLEAR_TOP);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        activity.startActivity(intent);
+    }
+
+    //支付设置页面 从订单页面进入的 设置成功后就退出
+    public static void goPaySetting_order(Activity activity) {
+        Intent intent = new Intent(activity, PaySettingActivity.class);
+        intent.putExtra(Constants.key, Constants.key);
+//        intent.setFlags(FLAG_ACTIVITY_CLEAR_TOP);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         activity.startActivity(intent);
     }
 
@@ -166,8 +178,8 @@ public class IntentUtil {
     }
 
     //支付密码成功页面
-    public static void goPaySuccess(Activity activity, String type) {
-        Intent intent = new Intent(activity, PaySuccessActivity.class);
+    public static void goPayPasswordSuccess(Activity activity, String type) {
+        Intent intent = new Intent(activity, PayPasswordSuccessActivity.class);
         intent.putExtra(Constants.Type, type);
         activity.startActivity(intent);
     }
@@ -237,5 +249,18 @@ public class IntentUtil {
         Intent intent = new Intent(activity, PayInputPasswordActivity.class);
         activity.startActivity(intent);
         activity.overridePendingTransition(R.anim.out_to_left2, R.anim.in_from_right);
+    }
+
+    //去支付成功
+    public static void goPaySuccess(Activity activity) {
+        Intent intent = new Intent(activity, PaySuccessActivity.class);
+        activity.startActivity(intent);
+    }
+
+    //收银台
+    public static void goPay(Activity activity, CommitOrderModel model) {
+        Intent intent = new Intent(activity, PayActivity.class);
+        intent.putExtra(Constants.Model, model);
+        activity.startActivity(intent);
     }
 }

@@ -6,6 +6,7 @@ import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
+import com.jaeger.library.StatusBarUtil;
 
 /**
  * 支付密码输入
@@ -22,5 +23,10 @@ public class PayInputPasswordActivity extends BaseMyActivity {
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+    }
+
+    @Override
+    protected void setStatusBar() {
+        StatusBarUtil.setTransparent(mActivity);
     }
 }

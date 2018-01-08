@@ -136,14 +136,14 @@ public class UserModel {
     private String user_money;
     private String frozen_money;
     private String distribut_money;
-    private long pay_points;
+    private String pay_points;
     private String paypwd;
     private long reg_time;
     private long last_login;
     private String last_ip;
     private String qq;
     private String mobile;
-    private int mobile_validated;
+    private String mobile_validated;
     private String oauth;
     private String openid;
     private String unionid;
@@ -152,19 +152,19 @@ public class UserModel {
     private String bank_card;
     private String realname;
     private String idcard;
-    private int email_validated;
+    private String email_validated;
     private String nickname;
-    private int level;
+    private String level;
     private String discount;
     private String total_amount;
-    private int is_lock;
-    private int is_distribut;
-    private int first_leader;
-    private int second_leader;
-    private int third_leader;
+    private String is_lock;
+    private String is_distribut;
+    private String first_leader;
+    private String second_leader;
+    private String third_leader;
     private String token;
-    private int underling_number;
-    private int message_mask;
+    private String underling_number;
+    private String message_mask;
     private String push_id;
     //装修资金
     private String renovation_money;
@@ -259,13 +259,6 @@ public class UserModel {
         this.distribut_money = distribut_money;
     }
 
-    public long getPay_points() {
-        return pay_points;
-    }
-
-    public void setPay_points(long pay_points) {
-        this.pay_points = pay_points;
-    }
 
     public String getPaypwd() {
         return paypwd;
@@ -322,13 +315,6 @@ public class UserModel {
         this.mobile = mobile;
     }
 
-    public int getMobile_validated() {
-        return mobile_validated;
-    }
-
-    public void setMobile_validated(int mobile_validated) {
-        this.mobile_validated = mobile_validated;
-    }
 
     public String getOauth() {
         return oauth;
@@ -394,13 +380,6 @@ public class UserModel {
         this.idcard = idcard;
     }
 
-    public int getEmail_validated() {
-        return email_validated;
-    }
-
-    public void setEmail_validated(int email_validated) {
-        this.email_validated = email_validated;
-    }
 
     public String getNickname() {
         if (nickname == null || nickname.isEmpty()) {
@@ -413,13 +392,6 @@ public class UserModel {
         this.nickname = nickname;
     }
 
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
 
     public String getDiscount() {
         return discount;
@@ -437,45 +409,6 @@ public class UserModel {
         this.total_amount = total_amount;
     }
 
-    public int getIs_lock() {
-        return is_lock;
-    }
-
-    public void setIs_lock(int is_lock) {
-        this.is_lock = is_lock;
-    }
-
-    public int getIs_distribut() {
-        return is_distribut;
-    }
-
-    public void setIs_distribut(int is_distribut) {
-        this.is_distribut = is_distribut;
-    }
-
-    public int getFirst_leader() {
-        return first_leader;
-    }
-
-    public void setFirst_leader(int first_leader) {
-        this.first_leader = first_leader;
-    }
-
-    public int getSecond_leader() {
-        return second_leader;
-    }
-
-    public void setSecond_leader(int second_leader) {
-        this.second_leader = second_leader;
-    }
-
-    public int getThird_leader() {
-        return third_leader;
-    }
-
-    public void setThird_leader(int third_leader) {
-        this.third_leader = third_leader;
-    }
 
     public String getToken() {
         return token;
@@ -485,21 +418,6 @@ public class UserModel {
         this.token = token;
     }
 
-    public int getUnderling_number() {
-        return underling_number;
-    }
-
-    public void setUnderling_number(int underling_number) {
-        this.underling_number = underling_number;
-    }
-
-    public int getMessage_mask() {
-        return message_mask;
-    }
-
-    public void setMessage_mask(int message_mask) {
-        this.message_mask = message_mask;
-    }
 
     public String getPush_id() {
         return push_id;
@@ -664,6 +582,94 @@ public class UserModel {
 
     public void setNews(String news) {
         this.news = news;
+    }
+
+    public String getPay_points() {
+        return pay_points;
+    }
+
+    public void setPay_points(String pay_points) {
+        this.pay_points = pay_points;
+    }
+
+    public String getMobile_validated() {
+        return mobile_validated;
+    }
+
+    public void setMobile_validated(String mobile_validated) {
+        this.mobile_validated = mobile_validated;
+    }
+
+    public String getEmail_validated() {
+        return email_validated;
+    }
+
+    public void setEmail_validated(String email_validated) {
+        this.email_validated = email_validated;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
+    public String getIs_lock() {
+        return is_lock;
+    }
+
+    public void setIs_lock(String is_lock) {
+        this.is_lock = is_lock;
+    }
+
+    public String getIs_distribut() {
+        return is_distribut;
+    }
+
+    public void setIs_distribut(String is_distribut) {
+        this.is_distribut = is_distribut;
+    }
+
+    public String getFirst_leader() {
+        return first_leader;
+    }
+
+    public void setFirst_leader(String first_leader) {
+        this.first_leader = first_leader;
+    }
+
+    public String getSecond_leader() {
+        return second_leader;
+    }
+
+    public void setSecond_leader(String second_leader) {
+        this.second_leader = second_leader;
+    }
+
+    public String getThird_leader() {
+        return third_leader;
+    }
+
+    public void setThird_leader(String third_leader) {
+        this.third_leader = third_leader;
+    }
+
+    public String getUnderling_number() {
+        return underling_number;
+    }
+
+    public void setUnderling_number(String underling_number) {
+        this.underling_number = underling_number;
+    }
+
+    public String getMessage_mask() {
+        return message_mask;
+    }
+
+    public void setMessage_mask(String message_mask) {
+        this.message_mask = message_mask;
     }
 }
 

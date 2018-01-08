@@ -1,1 +1,1 @@
-include ':app', ':baselibrary', ':maplibrary', ':passwordview'
+include ':app', ':baselibrary', ':maplibrary'

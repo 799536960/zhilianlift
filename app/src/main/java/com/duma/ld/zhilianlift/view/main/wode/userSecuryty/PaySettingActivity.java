@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.duma.ld.baselibrary.model.EventModel;
+import com.duma.ld.baselibrary.util.EventBusUtil;
 import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.Adapter.SettingAdapter;
@@ -25,6 +26,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
+import static com.duma.ld.zhilianlift.util.Constants.event_pay_success_order;
 import static com.duma.ld.zhilianlift.util.Constants.type_verify;
 import static com.duma.ld.zhilianlift.util.HttpUrl.paypwd_is;
 
@@ -39,6 +41,7 @@ public class PaySettingActivity extends BaseMyActivity {
     private SettingAdapter settingAdapter;
     private List<SettingModel> list;
     private String isSetting;
+    private String key;
 
     @Override
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig) {
@@ -58,8 +61,19 @@ public class PaySettingActivity extends BaseMyActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        if (isOrder() && !isSetting()) {
+            EventBusUtil.sendModel(event_pay_success_order);
+            finish();
+        }
+    }
+
+    @Override
     protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
+        key = getIntent().getStringExtra(Constants.key);
+        isSetting = "1";
         settingAdapter = new SettingAdapter();
         rvList.setLayoutManager(new LinearLayoutManager(mActivity));
         rvList.setAdapter(settingAdapter);
@@ -85,6 +99,13 @@ public class PaySettingActivity extends BaseMyActivity {
         });
         list = new ArrayList<>();
         onClickLoadingRefresh();
+    }
+
+    private boolean isOrder() {
+        if (key == null || key.isEmpty()) {
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -115,6 +136,8 @@ public class PaySettingActivity extends BaseMyActivity {
     /**
      * result: 1   没有设置支付密码
      * result: 2   有设置支付密码
+     * <p>
+     * true 咩有
      */
     public boolean isSetting() {
         if (isSetting.equals("1")) {

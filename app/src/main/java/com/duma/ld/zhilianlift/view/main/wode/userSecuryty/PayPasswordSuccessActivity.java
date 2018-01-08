@@ -14,13 +14,14 @@ import com.duma.ld.zhilianlift.util.IntentUtil;
 import static com.duma.ld.zhilianlift.util.Constants.event_pay_success;
 
 /**
+ * 支付密码设置成功
  * Created by liudong on 2017/12/19.
  */
 
-public class PaySuccessActivity extends BaseMyActivity {
+public class PayPasswordSuccessActivity extends BaseMyActivity {
     @Override
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig) {
-        return initConfig.setLayoutIdByActivity(R.layout.activity_pay_success, false);
+        return initConfig.setLayoutIdByActivity(R.layout.activity_pay_password_success, false);
     }
 
     @Override

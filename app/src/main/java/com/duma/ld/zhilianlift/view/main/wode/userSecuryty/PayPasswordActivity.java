@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.widget.TextView;
 
-import com.arron.passwordview.PasswordView;
-import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.baselibrary.util.ZhuanHuanUtil;
 import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
@@ -18,6 +16,8 @@ import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.DialogUtil;
 import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.PublicUtil;
+import com.duma.ld.zhilianlift.widget.PayInputLayout;
+import com.duma.ld.zhilianlift.widget.PayPasswordLayout;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 
@@ -36,10 +36,12 @@ import static com.duma.ld.zhilianlift.util.HttpUrl.setpaypwd;
 public class PayPasswordActivity extends BaseMyActivity {
     @BindView(R.id.tv_title)
     TextView tvTitle;
-    @BindView(R.id.passwordView)
-    PasswordView passwordView;
     @BindView(R.id.tv_ok)
     TextView tvOk;
+    @BindView(R.id.layout_password)
+    PayPasswordLayout layoutPassword;
+    @BindView(R.id.layout_input)
+    PayInputLayout layoutInput;
     private String type;
     private boolean isOk;
 
@@ -88,31 +90,18 @@ public class PayPasswordActivity extends BaseMyActivity {
         }
 
         tvOk.setBackground(ZhuanHuanUtil.getDrawable(R.drawable.lr_4_hui));
-        passwordView.setPasswordListener(new PasswordView.PasswordListener() {
+        layoutPassword.setPayInputLayout(layoutInput);
+        layoutPassword.setOnPasswordType(new PayPasswordLayout.OnPasswordType() {
             @Override
-            public void passwordChange(String changeText) {
-                if (passwordView.getPassword().length() != 6) {
-                    isOk = false;
-                    tvOk.setBackground(ZhuanHuanUtil.getDrawable(R.drawable.lr_4_hui));
-                } else {
-                    isOk = true;
-                    tvOk.setBackground(ZhuanHuanUtil.getDrawable(R.drawable.lr_4_hong));
-                }
+            public void onEnd(String password) {
+                isOk = true;
+                tvOk.setBackground(ZhuanHuanUtil.getDrawable(R.drawable.lr_4_hong));
             }
 
             @Override
-            public void passwordComplete() {
-                //输入完成
-            }
-
-            @Override
-            public void keyEnterPress(String password, boolean isComplete) {
-                if (isComplete) {
-                    passwordView.hideKey();
-                } else {
-                    TsUtils.show("请输入正确的支付密码");
-                }
-
+            public void onDelete() {
+                isOk = false;
+                tvOk.setBackground(ZhuanHuanUtil.getDrawable(R.drawable.lr_4_hui));
             }
         });
     }
@@ -121,7 +110,6 @@ public class PayPasswordActivity extends BaseMyActivity {
     @OnClick(R.id.tv_ok)
     public void onViewClicked() {
         if (isOk) {
-            passwordView.hideKey();
             switch (type) {
                 case Constants.type_new:
                     //第一次设置支付密码
@@ -156,7 +144,7 @@ public class PayPasswordActivity extends BaseMyActivity {
     private void verifyPayPassword() {
         DialogUtil.getInstance().show_noBack(mActivity);
         OkGo.<HttpResModel<String>>post(paypwd)
-                .params("paypwd", passwordView.getPassword())
+                .params("paypwd", layoutPassword.getPassword())
                 .execute(new MyJsonCallback<HttpResModel<String>>() {
                     @Override
                     protected void onJsonSuccess(Response<HttpResModel<String>> respons, HttpResModel<String> stringHttpResModel) {
@@ -183,12 +171,12 @@ public class PayPasswordActivity extends BaseMyActivity {
     private void setPay() {
         DialogUtil.getInstance().show_noBack(mActivity);
         OkGo.<HttpResModel<String>>post(setpaypwd)
-                .params("paypwd", passwordView.getPassword())
+                .params("paypwd", layoutPassword.getPassword())
                 .execute(new MyJsonCallback<HttpResModel<String>>() {
                     @Override
                     protected void onJsonSuccess(Response<HttpResModel<String>> respons, HttpResModel<String> stringHttpResModel) {
                         DialogUtil.getInstance().hide();
-                        IntentUtil.goPaySuccess(mActivity, type);
+                        IntentUtil.goPayPasswordSuccess(mActivity, type);
                     }
                 });
     }

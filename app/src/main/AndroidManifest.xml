@@ -83,11 +83,11 @@
         <activity android:name=".view.main.wode.userSecuryty.UserSecurityActivity" />
         <activity android:name=".view.main.wode.userSecuryty.ChangeLoginPasswordActivity" />
         <activity android:name=".view.main.wode.userSecuryty.ChangePhoneActivity" />
-        <activity android:name=".view.main.wode.userSecuryty.PaySettingActivity" />
         <activity
-            android:name=".view.main.wode.userSecuryty.PayPasswordActivity"
-            android:windowSoftInputMode="stateVisible" />
-        <activity android:name=".view.main.wode.userSecuryty.PaySuccessActivity" />
+            android:name=".view.main.wode.userSecuryty.PaySettingActivity"
+            android:launchMode="singleTask" />
+        <activity android:name=".view.main.wode.userSecuryty.PayPasswordActivity" />
+        <activity android:name=".view.main.wode.userSecuryty.PayPasswordSuccessActivity" />
         <activity android:name=".view.main.shopping.GoodsDetailsActivity" />
         <activity
             android:name=".view.start.PhotoQueryActivity"
@@ -100,6 +100,8 @@
         <activity
             android:name=".view.main.pay.PayInputPasswordActivity"
             android:theme="@style/AppTheme_tm_hei" />
+        <activity android:name=".view.main.pay.PaySuccessActivity" />
+        <activity android:name=".view.main.pay.PayActivity" />
     </application>
 
 </manifest>

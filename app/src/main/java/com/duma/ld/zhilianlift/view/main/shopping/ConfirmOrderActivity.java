@@ -13,10 +13,12 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.bigkoo.pickerview.TimePickerView;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.duma.ld.baselibrary.base.OnTopBarLeftListener;
 import com.duma.ld.baselibrary.model.EventModel;
 import com.duma.ld.baselibrary.util.TsUtils;
+import com.duma.ld.baselibrary.util.ZhuanHuanUtil;
 import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
@@ -24,6 +26,7 @@ import com.duma.ld.zhilianlift.base.baseAdapter.BaseAdapter;
 import com.duma.ld.zhilianlift.base.baseAdapter.OnBaseAdapterListener;
 import com.duma.ld.zhilianlift.base.baseJsonHttp.MyJsonCallback;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
+import com.duma.ld.zhilianlift.model.CommitOrderModel;
 import com.duma.ld.zhilianlift.model.ConfirmOrderModel;
 import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.model.ShoppingSpacModel;
@@ -35,11 +38,16 @@ import com.duma.ld.zhilianlift.widget.RedioLayout;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 import com.lzy.okgo.request.GetRequest;
+import com.lzy.okgo.request.PostRequest;
+
+import java.util.Calendar;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
 import static com.duma.ld.zhilianlift.util.HttpUrl.Cart2;
+import static com.duma.ld.zhilianlift.util.HttpUrl.Cart3;
 
 /**
  * 确认订单页面
@@ -106,6 +114,10 @@ public class ConfirmOrderActivity extends BaseMyActivity {
     private final int JiFen = 2;
     private final int YuE = 3;
     private typeModel mTypeModel;
+    private long orderTime;//配送时间
+    private TimePickerView timePickerView;
+
+    private boolean isCommitOrder = false;
 
     @Override
     protected boolean isRegisterEventBus() {
@@ -123,6 +135,25 @@ public class ConfirmOrderActivity extends BaseMyActivity {
                 conponsId = eventModel.getMessage();
                 onClickLoadingRefresh();
                 break;
+            case Constants.event_pay_password:
+                String password = eventModel.getMessage();
+                commitOrderHttp(password);
+                break;
+            case Constants.event_pay_success_order:
+                //设置支付密码成功的回调
+                orderModel.getUserInfo().setPaypwd("111");
+                isCommitOrder = true;
+                break;
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (isCommitOrder) {
+            TsUtils.show("请输入支付密码!");
+            isCommitOrder = false;
+            commitOrder();
         }
     }
 
@@ -166,6 +197,20 @@ public class ConfirmOrderActivity extends BaseMyActivity {
                 return true;
             }
         });
+        Calendar instance = Calendar.getInstance();
+        instance.set(2018, 11, 31);
+        timePickerView = new TimePickerView.Builder(mActivity, new TimePickerView.OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                orderTime = date.getTime();
+                tvTime.setText(ZhuanHuanUtil.Time2nian(orderTime));
+            }
+        })
+                .setType(new boolean[]{true, true, true, false, false, false})
+                .setSubmitColor(ZhuanHuanUtil.getColor(R.color.primary_hong))
+                .setCancelColor(ZhuanHuanUtil.getColor(R.color.primary_hong))
+                .setRangDate(Calendar.getInstance(), instance)
+                .build();
         closeSwitch();
         onClickLoadingRefresh();
     }
@@ -268,6 +313,7 @@ public class ConfirmOrderActivity extends BaseMyActivity {
             tvAddressInfo2.setText(addressList.getTotal_address());
             tvAddressName.setText(addressList.getConsignee());
             tvAddressPhone.setText(addressList.getMobile());
+            addressId = addressList.getAddress_id() + "";
         }
         //优惠券
         if (result.getCouponNum() == null || result.getCouponNum().size() == 0) {
@@ -365,6 +411,7 @@ public class ConfirmOrderActivity extends BaseMyActivity {
                 break;
             case R.id.layout_time:
                 //选择配送时间
+                timePickerView.show();
                 break;
             case R.id.layout_coupons:
                 //选择优惠券
@@ -396,21 +443,82 @@ public class ConfirmOrderActivity extends BaseMyActivity {
     }
 
     /**
-     * 提交订单
+     * 验证提交订单
      */
     private void commitOrder() {
         if (mTypeModel.getRedio() != 0) {
             //说明已经选择了钱包支付 需要输入支付密码
             if (orderModel.getUserInfo().getPaypwd() == null || orderModel.getUserInfo().getPaypwd().isEmpty()) {
                 //没有设置支付密码 指引去设置
-
+                //跳转设置支付密码
+                TsUtils.show("钱包支付,请设置支付密码~");
+                IntentUtil.goPaySetting_order(mActivity);
             } else {
                 //已经设置了 指引去输入
+                IntentUtil.goPayInputPassword(mActivity);
             }
         } else {
             //不需要密码
-
+            commitOrderHttp("");
         }
+    }
+
+    //提交订单请求
+    private void commitOrderHttp(String password) {
+        PostRequest<HttpResModel<CommitOrderModel>> params = OkGo.<HttpResModel<CommitOrderModel>>post(Cart3)
+                .params("act", "submit_order")
+                .params("user_note", editText.getText().toString());
+        if (orderTime != 0) {
+            params.params("dispatching", orderTime);
+        }
+        if (!password.isEmpty()) {
+            params.params("paypwd", password);
+        }
+        //是否选择地址
+        if (addressId != null) {
+            params.params("address_id", addressId);
+        }
+        //是否选择优惠券
+        if (conponsId != null) {
+            params.params("coupon_id", conponsId);
+        }
+        //钱包选择
+        if (mTypeModel != null) {
+            switch (mTypeModel.getRedio()) {
+                case ZhuangXiu:
+                    params.params("renovation_money", orderModel.getLast_order_amount());
+                    break;
+                case JiFen:
+                    params.params("pay_points", orderModel.getLast_order_amount());
+                    break;
+                case YuE:
+                    params.params("user_money", orderModel.getLast_order_amount());
+                    break;
+            }
+        }
+        if (!isType()) {
+            params.params("goods_id", model.getGoods_id())
+                    .params("action", "buy_now")
+                    .params("goods_num", model.getGoods_num());
+            //是否有规格
+            if (model.getItem_id() != 0) {
+                params.params("item_id", model.getItem_id());
+            }
+        }
+        params.execute(new MyJsonCallback<HttpResModel<CommitOrderModel>>() {
+            @Override
+            protected void onJsonSuccess(Response<HttpResModel<CommitOrderModel>> respons, HttpResModel<CommitOrderModel> stringHttpResModel) {
+                if (stringHttpResModel.getResult().getOrder_amount() == 0) {
+                    //跳转支付成功页面
+                    IntentUtil.goPaySuccess(mActivity);
+                    finish();
+                } else {
+                    //去收银台
+                    IntentUtil.goPay(mActivity, stringHttpResModel.getResult());
+                    finish();
+                }
+            }
+        }.isDialog(mActivity));
     }
 
     private boolean isYuE() {

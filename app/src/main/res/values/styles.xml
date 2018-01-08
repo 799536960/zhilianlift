@@ -71,9 +71,21 @@
         <item name="android:layout_height">1dp</item>
         <item name="android:background">@color/hui4</item>
     </style>
+
+    <style name="henxian_0">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">@color/hui4</item>
+    </style>
     <!--竖线-->
     <style name="shuxian">
         <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/hui4</item>
+    </style>
+
+    <style name="shuxian_0">
+        <item name="android:layout_width">0.5dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:background">@color/hui4</item>
     </style>
@@ -142,5 +154,17 @@
     <style name="shopping_cart_cb">
         <item name="android:layout_marginLeft">6dp</item>
     </style>
+
+    <style name="view_pay_password">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
+    <style name="view_pay_input">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:background">@drawable/ripple_bai</item>
+    </style>
+
 
 </resources>

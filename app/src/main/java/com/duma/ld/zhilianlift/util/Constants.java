@@ -40,6 +40,10 @@ public class Constants {
     public static final int event_address = 10;
     //在确认订单也选择优惠券
     public static final int event_conpons = 11;
+    //输入支付密码页面 输入完成
+    public static final int event_pay_password = 12;
+    //设置支付密码成功的回调 在确认订单页面
+    public static final int event_pay_success_order = 13;
     /**
      * intent
      */
