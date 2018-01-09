@@ -738,6 +738,15 @@ public class OrderModel {
         private int is_checkout;
         private int deleted;
         private String distribut;
+        private String original_img;
+
+        public String getOriginal_img() {
+            return original_img;
+        }
+
+        public void setOriginal_img(String original_img) {
+            this.original_img = original_img;
+        }
 
         public int getRec_id() {
             return rec_id;

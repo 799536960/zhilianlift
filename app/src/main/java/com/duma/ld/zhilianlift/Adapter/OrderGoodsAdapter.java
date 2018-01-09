@@ -9,6 +9,7 @@ import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseAdapter.BaseAdapter;
 import com.duma.ld.zhilianlift.base.baseAdapter.OnBaseAdapterListener;
 import com.duma.ld.zhilianlift.model.OrderModel;
+import com.duma.ld.zhilianlift.util.ImageLoader;
 
 /**
  * 订单页面的商品展示页面
@@ -32,7 +33,7 @@ public class OrderGoodsAdapter {
                                 .setText(R.id.tv_price, "¥" + item.getGoods_price())
                                 .setText(R.id.tv_num, "x" + item.getGoods_num());
                         ImageView img_icon = helper.getView(R.id.img_icon);
-//                        ImageLoader.with(activity, item.get(), img_icon);
+                        ImageLoader.with(activity, item.getOriginal_img(), img_icon);
                     }
                 });
     }
