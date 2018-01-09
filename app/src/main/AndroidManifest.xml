@@ -96,13 +96,16 @@
         <activity android:name=".view.main.wode.MyCollectActivity" />
         <activity android:name=".view.main.wode.MyRecordActivity" />
         <activity android:name=".view.main.shopping.ConfirmOrderActivity" />
-        <activity android:name=".view.main.CouponsActivity" />
+        <activity android:name=".view.main.wode.CouponsActivity" />
         <activity
             android:name=".view.main.pay.PayInputPasswordActivity"
             android:theme="@style/AppTheme_tm_hei" />
         <activity android:name=".view.main.pay.PaySuccessActivity" />
         <activity android:name=".view.main.pay.PayActivity" />
         <activity android:name=".view.main.order.OrderListActivity" />
+        <activity android:name=".view.main.house.MySecondHouseActivity" />
+        <activity android:name=".view.main.house.MyRentalHouseActivity" />
+        <activity android:name=".view.main.house.AddHouseActivity" />
     </application>
 
 </manifest>

@@ -218,8 +218,10 @@ public class MyFragment extends BaseMyFragment {
             case R.id.layout_wode_baobei:
                 break;
             case R.id.layout_wode_chuzu:
+                IntentUtil.goRental(mActivity);
                 break;
             case R.id.layout_wode_ershoufang:
+                IntentUtil.goSecondHouse(mActivity);
                 break;
             case R.id.layout_wode_shoucang:
                 IntentUtil.goMyCollect(mActivity);

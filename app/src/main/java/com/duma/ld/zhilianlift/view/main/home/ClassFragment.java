@@ -32,6 +32,7 @@ import static com.duma.ld.zhilianlift.util.HttpUrl.classMian;
 import static com.lzy.okgo.cache.CacheMode.FIRST_CACHE_THEN_REQUEST;
 
 /**
+ * 分类
  * Created by liudong on 2017/11/29.
  */
 

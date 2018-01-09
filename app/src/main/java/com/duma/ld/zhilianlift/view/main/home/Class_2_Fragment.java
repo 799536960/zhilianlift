@@ -23,6 +23,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
+ * 分类的右边商品列表 里面是 二级和三级 分类
  * Created by liudong on 2017/12/4.
  */
 
@@ -59,6 +60,8 @@ public class Class_2_Fragment extends BaseMyFragment {
                     @Override
                     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                         IntentUtil.goGoodsList_class(mActivity, adapter_3.getData().get(position).getId() + "");
+                        // TODO: 2018/1/9 房产跳转
+
                     }
                 });
                 RecyclerView rv_class_3 = helper.getView(R.id.rv_class_3);

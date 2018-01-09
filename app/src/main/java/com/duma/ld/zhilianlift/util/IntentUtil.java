@@ -9,7 +9,10 @@ import com.duma.ld.zhilianlift.model.CommitOrderModel;
 import com.duma.ld.zhilianlift.model.RealNameModel;
 import com.duma.ld.zhilianlift.model.ShoppingSpacModel;
 import com.duma.ld.zhilianlift.view.login.LoginOrRegisterActivity;
-import com.duma.ld.zhilianlift.view.main.CouponsActivity;
+import com.duma.ld.zhilianlift.view.main.house.AddHouseActivity;
+import com.duma.ld.zhilianlift.view.main.house.MyRentalHouseActivity;
+import com.duma.ld.zhilianlift.view.main.house.MySecondHouseActivity;
+import com.duma.ld.zhilianlift.view.main.wode.CouponsActivity;
 import com.duma.ld.zhilianlift.view.main.home.HomeActivity;
 import com.duma.ld.zhilianlift.view.main.order.OrderListActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PayActivity;
@@ -278,6 +281,31 @@ public class IntentUtil {
     public static void goOrderList(Activity activity, int position) {
         Intent intent = new Intent(activity, OrderListActivity.class);
         intent.putExtra(Constants.key, position);
+        activity.startActivity(intent);
+    }
+
+    //我的出租
+    public static void goRental(Activity activity) {
+        Intent intent = new Intent(activity, MyRentalHouseActivity.class);
+        activity.startActivity(intent);
+    }
+
+    //我的二手房
+    public static void goSecondHouse(Activity activity) {
+        Intent intent = new Intent(activity, MySecondHouseActivity.class);
+        activity.startActivity(intent);
+    }
+
+    //添加二手房
+    public static void goAddSecondHouse(Activity activity) {
+        Intent intent = new Intent(activity, AddHouseActivity.class);
+        intent.putExtra(Constants.key, Constants.key);
+        activity.startActivity(intent);
+    }
+
+    //添加出租
+    public static void goAddRentalHouse(Activity activity) {
+        Intent intent = new Intent(activity, AddHouseActivity.class);
         activity.startActivity(intent);
     }
 }

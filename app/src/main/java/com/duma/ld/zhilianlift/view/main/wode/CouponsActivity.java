@@ -1,4 +1,4 @@
-package com.duma.ld.zhilianlift.view.main;
+package com.duma.ld.zhilianlift.view.main.wode;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
