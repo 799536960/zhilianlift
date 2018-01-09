@@ -191,15 +191,18 @@ public class MyFragment extends BaseMyFragment {
             case R.id.layout_messgae:
                 break;
             case R.id.layout_order_daifukuan:
-                IntentUtil.goPayInputPassword(mActivity);
+                IntentUtil.goOrderList(mActivity, 1);
                 break;
             case R.id.layout_order_daishouhuo:
+                IntentUtil.goOrderList(mActivity, 3);
                 break;
             case R.id.layout_order_daipinjia:
+                IntentUtil.goOrderList(mActivity, 4);
                 break;
             case R.id.layout_order_shouhou:
                 break;
             case R.id.layout_order:
+                IntentUtil.goOrderList(mActivity);
                 break;
             case R.id.layout_money_zhuangxiuzijin:
                 break;

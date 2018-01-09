@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <View
+        style="@style/henxian"
+        android:layout_height="10dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="13dp"
+            android:drawablePadding="6dp"
+            android:drawableStart="@drawable/orderlist1"
+            android:text="智联生活商城" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_orderType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="10dp"
+            android:text="订单状态"
+            android:textColor="@color/hong" />
+    </LinearLayout>
+
+    <View style="@style/henxian" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_goodsList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_orderMoney"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="end|center_vertical"
+        android:paddingEnd="13dp"
+        android:text="共2件商品,合计付款:¥498.00(含运费¥0.00) " />
+
+    <View style="@style/henxian" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:gravity="end|center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bx_15_hei"
+            android:paddingBottom="4dp"
+            android:paddingEnd="17dp"
+            android:paddingStart="17dp"
+            android:paddingTop="4dp"
+            android:text="取消订单"
+            android:textColor="@color/hei2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bx_15_hong"
+            android:paddingBottom="4dp"
+            android:paddingEnd="17dp"
+            android:paddingStart="17dp"
+            android:paddingTop="4dp"
+            android:text="去支付"
+            android:textColor="@color/hong" />
+    </LinearLayout>
+</LinearLayout>

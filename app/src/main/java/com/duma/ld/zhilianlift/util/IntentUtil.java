@@ -273,4 +273,11 @@ public class IntentUtil {
         Intent intent = new Intent(activity, OrderListActivity.class);
         activity.startActivity(intent);
     }
+
+    //订单列表_跳转各个tab
+    public static void goOrderList(Activity activity, int position) {
+        Intent intent = new Intent(activity, OrderListActivity.class);
+        intent.putExtra(Constants.key, position);
+        activity.startActivity(intent);
+    }
 }

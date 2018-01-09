@@ -75,7 +75,7 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
     }
 
     private void httpSuccess(Response<T> response) {
-        Logger.d(new Gson().toJson(response.body()));
+        Logger.json(new Gson().toJson(response.body()));
         if (config != null) {
             config.setOneSuccess(true);
         }

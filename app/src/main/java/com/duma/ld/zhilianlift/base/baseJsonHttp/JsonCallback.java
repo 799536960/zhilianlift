@@ -48,7 +48,13 @@ public abstract class JsonCallback<T> extends AbsCallback<T> {
                 case "200":
                     return (T) httpResModel;
                 case "400":
-                    throw new IllegalStateException(httpResModel.getMsg());
+                    String msg = httpResModel.getMsg();
+                    if (msg == null) {
+                        throw new IllegalStateException("服务器异常!");
+                    } else {
+                        throw new IllegalStateException(msg);
+                    }
+
                 default:
                     throw new IllegalStateException(httpResModel.getStatus());
             }
