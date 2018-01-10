@@ -7,9 +7,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by 晓勇 on 2015/7/12 0012.
- */
 public class MyViewPagerAdapter extends FragmentPagerAdapter {
     public List<Fragment> mFragments = new ArrayList<>();//添加的Fragment的集合
     public List<String> mFragmentsTitles = new ArrayList<>();//每个Fragment对应的title的集合
@@ -45,7 +42,6 @@ public class MyViewPagerAdapter extends FragmentPagerAdapter {
         //得到对应position的Fragment的title
         return mFragmentsTitles.get(position);
     }
-
 
 
 }

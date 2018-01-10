@@ -12,6 +12,7 @@ import com.duma.ld.zhilianlift.view.login.LoginOrRegisterActivity;
 import com.duma.ld.zhilianlift.view.main.house.AddHouseActivity;
 import com.duma.ld.zhilianlift.view.main.house.MyRentalHouseActivity;
 import com.duma.ld.zhilianlift.view.main.house.MySecondHouseActivity;
+import com.duma.ld.zhilianlift.view.main.order.OrderInfoActivity;
 import com.duma.ld.zhilianlift.view.main.wode.CouponsActivity;
 import com.duma.ld.zhilianlift.view.main.home.HomeActivity;
 import com.duma.ld.zhilianlift.view.main.order.OrderListActivity;
@@ -271,6 +272,10 @@ public class IntentUtil {
         activity.startActivity(intent);
     }
 
+    public static void goPay(Activity activity, String master_order_sn, double order_amount) {
+        goPay(activity, new CommitOrderModel(master_order_sn, order_amount));
+    }
+
     //订单列表
     public static void goOrderList(Activity activity) {
         Intent intent = new Intent(activity, OrderListActivity.class);
@@ -306,6 +311,23 @@ public class IntentUtil {
     //添加出租
     public static void goAddRentalHouse(Activity activity) {
         Intent intent = new Intent(activity, AddHouseActivity.class);
+        activity.startActivity(intent);
+    }
+
+
+    /**
+     * 跳转商品详情页
+     *
+     * @param activity 不解释
+     * @param position rv中的位置 用于修改和更新
+     * @param sn       订单号
+     * @param type     是那个分类跳转过来的 用于eventbus发消息
+     */
+    public static void goOrderInfo(Activity activity, int position, String sn, String type) {
+        Intent intent = new Intent(activity, OrderInfoActivity.class);
+        intent.putExtra(Constants.position, position);
+        intent.putExtra(Constants.key, sn);
+        intent.putExtra(Constants.Type, type);
         activity.startActivity(intent);
     }
 }

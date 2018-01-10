@@ -15,6 +15,14 @@ public class CommitOrderModel implements Serializable{
     private String master_order_sn;
     private double order_amount;
 
+    public CommitOrderModel() {
+    }
+
+    public CommitOrderModel(String master_order_sn, double order_amount) {
+        this.master_order_sn = master_order_sn;
+        this.order_amount = order_amount;
+    }
+
     public String getMaster_order_sn() {
         return master_order_sn;
     }

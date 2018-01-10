@@ -1,5 +1,7 @@
 package com.duma.ld.zhilianlift.model;
 
+import com.blankj.utilcode.util.StringUtils;
+
 import java.util.List;
 
 /**
@@ -87,15 +89,15 @@ public class OrderModel {
     private String invoice_title;
     private String goods_price;
     private String shipping_price;
-    private String user_money;
+    private double user_money;
     private Object coupon_price;
     private int integral;
-    private String integral_money;
-    private String order_amount;
-    private String total_amount;
-    private int add_time;
-    private int confirm_time;
-    private int pay_time;
+    private double integral_money;
+    private double order_amount;
+    private double total_amount;
+    private long add_time;
+    private long confirm_time;
+    private long pay_time;
     private Object transaction_id;
     private int shipping_time;
     private int order_prom_id;
@@ -109,12 +111,26 @@ public class OrderModel {
     private int is_comment;
     private int deleted;
     private int order_statis_id;
-    private String renovation_money;
+    private double renovation_money;
     private Object dispatching;
     private String order_status_detail;
     private OrderButtonBean order_button;
     private StoreBean store;
     private List<OrderGoodsBean> order_goods;
+    private String order_status_code;
+    private String allgoodsNum;
+    private double pay_money;
+    private String total_address;
+    private double daFuKuan;
+
+    public double getDaFuKuan() {
+        com.orhanobut.logger.Logger.e(pay_code);
+        if (StringUtils.isEmpty(pay_code)) {
+            com.orhanobut.logger.Logger.e(pay_code);
+            return order_amount;
+        }
+        return pay_money;
+    }
 
     public int getOrder_id() {
         return order_id;
@@ -308,11 +324,11 @@ public class OrderModel {
         this.shipping_price = shipping_price;
     }
 
-    public String getUser_money() {
+    public double getUser_money() {
         return user_money;
     }
 
-    public void setUser_money(String user_money) {
+    public void setUser_money(double user_money) {
         this.user_money = user_money;
     }
 
@@ -332,51 +348,51 @@ public class OrderModel {
         this.integral = integral;
     }
 
-    public String getIntegral_money() {
+    public double getIntegral_money() {
         return integral_money;
     }
 
-    public void setIntegral_money(String integral_money) {
+    public void setIntegral_money(double integral_money) {
         this.integral_money = integral_money;
     }
 
-    public String getOrder_amount() {
+    public double getOrder_amount() {
         return order_amount;
     }
 
-    public void setOrder_amount(String order_amount) {
+    public void setOrder_amount(double order_amount) {
         this.order_amount = order_amount;
     }
 
-    public String getTotal_amount() {
+    public double getTotal_amount() {
         return total_amount;
     }
 
-    public void setTotal_amount(String total_amount) {
+    public void setTotal_amount(double total_amount) {
         this.total_amount = total_amount;
     }
 
-    public int getAdd_time() {
+    public long getAdd_time() {
         return add_time;
     }
 
-    public void setAdd_time(int add_time) {
+    public void setAdd_time(long add_time) {
         this.add_time = add_time;
     }
 
-    public int getConfirm_time() {
+    public long getConfirm_time() {
         return confirm_time;
     }
 
-    public void setConfirm_time(int confirm_time) {
+    public void setConfirm_time(long confirm_time) {
         this.confirm_time = confirm_time;
     }
 
-    public int getPay_time() {
+    public long getPay_time() {
         return pay_time;
     }
 
-    public void setPay_time(int pay_time) {
+    public void setPay_time(long pay_time) {
         this.pay_time = pay_time;
     }
 
@@ -484,11 +500,11 @@ public class OrderModel {
         this.order_statis_id = order_statis_id;
     }
 
-    public String getRenovation_money() {
+    public double getRenovation_money() {
         return renovation_money;
     }
 
-    public void setRenovation_money(String renovation_money) {
+    public void setRenovation_money(double renovation_money) {
         this.renovation_money = renovation_money;
     }
 
@@ -530,6 +546,42 @@ public class OrderModel {
 
     public void setOrder_goods(List<OrderGoodsBean> order_goods) {
         this.order_goods = order_goods;
+    }
+
+    public String getOrder_status_code() {
+        return order_status_code;
+    }
+
+    public void setOrder_status_code(String order_status_code) {
+        this.order_status_code = order_status_code;
+    }
+
+    public String getAllgoodsNum() {
+        return allgoodsNum;
+    }
+
+    public void setAllgoodsNum(String allgoodsNum) {
+        this.allgoodsNum = allgoodsNum;
+    }
+
+    public double getPay_money() {
+        return pay_money;
+    }
+
+    public void setPay_money(double pay_money) {
+        this.pay_money = pay_money;
+    }
+
+    public String getTotal_address() {
+        return total_address;
+    }
+
+    public void setTotal_address(String total_address) {
+        this.total_address = total_address;
+    }
+
+    public void setDaFuKuan(double daFuKuan) {
+        this.daFuKuan = daFuKuan;
     }
 
     public static class OrderButtonBean {
@@ -847,6 +899,14 @@ public class OrderModel {
         public String getSpec_key_name() {
             return spec_key_name;
         }
+
+        public String getSpec_key_name_noNull() {
+            if (spec_key_name == null) {
+                return "";
+            }
+            return spec_key_name;
+        }
+
 
         public void setSpec_key_name(String spec_key_name) {
             this.spec_key_name = spec_key_name;

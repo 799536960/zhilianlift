@@ -57,4 +57,9 @@ public class HttpUrl {
     public static String getCouponList = BaseUrl + "/index.php/api/Cart/getCouponList";
     public static String Cart3 = BaseUrl + "/index.php/api/Cart/Cart3";
     public static String getOrderList = BaseUrl + "/index.php/api/user/getOrderList";
+    public static String order_detail = BaseUrl + "/index.php/api/order/order_detail";
+    public static String cancelOrder = BaseUrl + "/index.php/api/user/cancelOrder";
+    public static String orderConfirm = BaseUrl + "/index.php/api/user/orderConfirm";
+    public static String buy = BaseUrl + "/index.php/api/user/buy";
+    public static String del_order = BaseUrl + "/index.php/api/order/del_order";
 }

@@ -166,5 +166,12 @@
         <item name="android:background">@drawable/ripple_bai</item>
     </style>
 
+    <style name="order_info">
+        <item name="android:background">@color/white</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="android:paddingEnd">13dp</item>
+        <item name="android:paddingStart">13dp</item>
+        <item name="android:paddingTop">14dp</item>
+    </style>
 
 </resources>

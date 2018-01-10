@@ -102,10 +102,15 @@
             android:theme="@style/AppTheme_tm_hei" />
         <activity android:name=".view.main.pay.PaySuccessActivity" />
         <activity android:name=".view.main.pay.PayActivity" />
-        <activity android:name=".view.main.order.OrderListActivity" />
+        <activity
+            android:name=".view.main.order.OrderListActivity"
+            android:launchMode="singleTask" />
         <activity android:name=".view.main.house.MySecondHouseActivity" />
         <activity android:name=".view.main.house.MyRentalHouseActivity" />
         <activity android:name=".view.main.house.AddHouseActivity" />
+        <activity
+            android:name=".view.main.order.OrderInfoActivity"
+            android:launchMode="singleTask" />
     </application>
 
 </manifest>

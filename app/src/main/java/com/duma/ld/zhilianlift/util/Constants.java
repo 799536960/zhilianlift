@@ -44,10 +44,13 @@ public class Constants {
     public static final int event_pay_password = 12;
     //设置支付密码成功的回调 在确认订单页面
     public static final int event_pay_success_order = 13;
+    //订单详情页向订单列表页发送的页面更改事件
+    public static final int event_refresh_order = 14;
     /**
      * intent
      */
     public static final String id = "id";
+    public static final String position = "position";
     public static final String key = "key";
     public static final String Name = "name";
     public static final String Type = "Type";
@@ -92,4 +95,29 @@ public class Constants {
     public static final int type_2 = 2; //分类 id title imgUrl
     public static final int type_3 = 3; //网页 h5 url title  imgUrl不能为空
     public static final int type_4 = 4; //搜索 title  imgUrl不能为空
+
+    /**
+     * 订单
+     * 待付款->取消订单 去支付
+     * 待发货->  --     查看详情
+     * 待收货->查看物流 确认收货
+     * 待评价->再次购买 评价
+     * 已取消->删除订单 再次购买
+     * 已完成->删除订单 再次购买
+     */
+    public static final String Order_Type_DaiFuKuan = "WAITPAY";
+    public static final String Order_Type_DaiFaHuo = "WAITSEND";
+    public static final String Order_Type_DaiShouHuo = "WAITRECEIVE";
+    public static final String Order_Type_DaiPinJia = "WAITCCOMMENT";
+    public static final String Order_Type_YiQuXiao = "CANCEL";
+    public static final String Order_Type_YiWanChen = "FINISH";
+
+    public static final String Order_Text_QuXiaoDinDan = "取消订单";
+    public static final String Order_Text_QuZhiFu = "去支付";
+    public static final String Order_Text_ChaKanXiangQin = "查看详情";
+    public static final String Order_Text_ChaKanWuLiu = "查看物流";
+    public static final String Order_Text_QueRenShouHuo = "确认收货";
+    public static final String Order_Text_ZaiCiGouMai = "再次购买";
+    public static final String Order_Text_PinJia = "评价";
+    public static final String Order_Text_ShanChuDinDan = "删除订单";
 }
