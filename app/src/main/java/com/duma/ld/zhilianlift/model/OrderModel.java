@@ -124,9 +124,7 @@ public class OrderModel {
     private double daFuKuan;
 
     public double getDaFuKuan() {
-        com.orhanobut.logger.Logger.e(pay_code);
         if (StringUtils.isEmpty(pay_code)) {
-            com.orhanobut.logger.Logger.e(pay_code);
             return order_amount;
         }
         return pay_money;

@@ -111,6 +111,7 @@
         <activity
             android:name=".view.main.order.OrderInfoActivity"
             android:launchMode="singleTask" />
+        <activity android:name=".view.start.WebViewActivity" />
     </application>
 
 </manifest>

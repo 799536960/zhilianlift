@@ -88,24 +88,23 @@ public class PublicUtil {
                 .setBannerStyle(BannerConfig.NUM_INDICATOR);
     }
 
-    public static void getView_OrderGoods(final Activity mActivity, final BaseViewHolder helper, final OrderModel item, final boolean isShouHou, final String type) {
+    //这个eventType 只是订单详情回到订单列表的时候eventbus发的事件用的
+    public static void getView_OrderGoods(final Activity mActivity, final BaseViewHolder helper,
+                                          final OrderModel item, final boolean isOrderInfo, BaseQuickAdapter.OnItemClickListener itemClickListener) {
         RecyclerView rv_goodsList = helper.getView(R.id.rv_goodsList);
+        //默认没有售后按钮 除非在订单详情中
+        boolean isShouHou = false;
+        String type = item.getOrder_status_code();
+        if (isOrderInfo) {
+            if (type.equals(Order_Type_DaiFaHuo) || type.equals(Order_Type_DaiPinJia) || type.equals(Order_Type_YiWanChen)) {
+                isShouHou = true;
+            }
+        }
         final OrderGoodsAdapter orderGoodsAdapter = new OrderGoodsAdapter(rv_goodsList, mActivity, isShouHou);
         orderGoodsAdapter.getmAdapter().setNewData(item.getOrder_goods());
-        orderGoodsAdapter.getmAdapter().setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                if (isShouHou) {
-                    //开启售后后 点击商品跳转商品详情页
-                    IntentUtil.goGoodsDetails(mActivity, orderGoodsAdapter.getmAdapter().getData().get(position).getGoods_id());
-                } else {
-                    //没有开启 则跳转到订单详情
-                    IntentUtil.goOrderInfo(mActivity, helper.getLayoutPosition(), item.getMaster_order_sn(), type);
-                }
-            }
-        });
-        if (isShouHou) {
-            //开启售后后 按钮消失
+        orderGoodsAdapter.getmAdapter().setOnItemClickListener(itemClickListener);
+        if (isOrderInfo) {
+            //订单详情 按钮消失
             helper.setGone(R.id.layout_btn, false);
         } else {
             helper.setGone(R.id.layout_btn, true);
@@ -116,7 +115,7 @@ public class PublicUtil {
                 .setText(R.id.tv_orderMoney, "共" + item.getAllgoodsNum() + "件商品,合计付款:¥" + item.getDaFuKuan() + "(含运费¥" + item.getShipping_price() + ")");
         TextView tv_hui = helper.getView(R.id.tv_hui);
         TextView tv_hong = helper.getView(R.id.tv_hong);
-        PublicUtil.refreshOrderBut(tv_hui, tv_hong, item.getOrder_status_code(), true);
+        PublicUtil.refreshOrderBut(tv_hui, tv_hong, type, true);
     }
 
     /**

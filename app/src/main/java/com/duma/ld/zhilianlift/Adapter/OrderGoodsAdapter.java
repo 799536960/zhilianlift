@@ -6,14 +6,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseAdapter.BaseAdapter;
 import com.duma.ld.zhilianlift.base.baseAdapter.OnBaseAdapterListener;
 import com.duma.ld.zhilianlift.model.OrderModel;
 import com.duma.ld.zhilianlift.util.ImageLoader;
-import com.duma.ld.zhilianlift.util.IntentUtil;
 
 /**
  * 订单页面的商品展示页面
@@ -50,14 +48,6 @@ public class OrderGoodsAdapter {
                         });
                     }
                 });
-        if (isShouHou) {
-            mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-                @Override
-                public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                    IntentUtil.goGoodsDetails(activity, mAdapter.getData().get(position).getGoods_id());
-                }
-            });
-        }
     }
 
     public BaseAdapter<OrderModel.OrderGoodsBean> getmAdapter() {

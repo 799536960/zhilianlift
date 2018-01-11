@@ -58,6 +58,15 @@ public abstract class PublicConfig {
     private View yinYinView;
 
 
+    private TextView tv_topBar_title;
+
+
+    public void setTitle(String title) {
+        if (tv_topBar_title != null) {
+            tv_topBar_title.setText(title);
+        }
+    }
+
     public PublicConfig(OnViewConfigListener onViewConfigListener, Activity activity, boolean isOpen) {
         this.onViewConfigListener = onViewConfigListener;
         this.mActivity = activity;
@@ -250,7 +259,8 @@ public abstract class PublicConfig {
         if (rightText != null) {
             ((TextView) inflate.findViewById(R.id.tv_right)).setText(rightText);
         }
-        ((TextView) inflate.findViewById(R.id.tv_title)).setText(name);
+        tv_topBar_title = inflate.findViewById(R.id.tv_title);
+        tv_topBar_title.setText(name);
         //设置点击事件
         LinearLayout liftLayout = inflate.findViewById(R.id.layout_left);
         if (liftImg != 0) {

@@ -39,6 +39,7 @@ import static com.duma.ld.zhilianlift.util.Constants.Order_Text_QueRenShouHuo;
 import static com.duma.ld.zhilianlift.util.Constants.Order_Text_ShanChuDinDan;
 import static com.duma.ld.zhilianlift.util.Constants.Order_Text_ZaiCiGouMai;
 import static com.duma.ld.zhilianlift.util.HttpUrl.getOrderList;
+import static com.duma.ld.zhilianlift.util.HttpUrl.logistics;
 
 /**
  * 订单列表
@@ -120,7 +121,13 @@ public class OrderListFragment extends BaseMyFragment {
 
                     @Override
                     public void convert(final BaseViewHolder helper, final OrderModel item) {
-                        PublicUtil.getView_OrderGoods(mActivity, helper, item, false, type);
+                        PublicUtil.getView_OrderGoods(mActivity, helper, item, false, new BaseQuickAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                                // 跳转到订单详情
+                                IntentUtil.goOrderInfo(mActivity, helper.getLayoutPosition(), item.getMaster_order_sn(), type);
+                            }
+                        });
                     }
                 });
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
@@ -143,7 +150,7 @@ public class OrderListFragment extends BaseMyFragment {
                         break;
                     case Order_Text_ChaKanWuLiu:
                         //跳转
-                        TsUtils.show(textView.getText().toString());
+                        IntentUtil.goWebView(mActivity, logistics + orderModel.getOrder_id(), "订单跟踪");
                         break;
                     case Order_Text_QueRenShouHuo:
                         quRenShouHuo(position, orderModel.getOrder_id());

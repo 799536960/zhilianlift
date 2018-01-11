@@ -34,6 +34,7 @@ import com.duma.ld.zhilianlift.view.main.wode.userSecuryty.PayPasswordActivity;
 import com.duma.ld.zhilianlift.view.main.wode.userSecuryty.PayPasswordSuccessActivity;
 import com.duma.ld.zhilianlift.view.main.wode.userSecuryty.PaySettingActivity;
 import com.duma.ld.zhilianlift.view.start.PhotoQueryActivity;
+import com.duma.ld.zhilianlift.view.start.WebViewActivity;
 
 import java.io.Serializable;
 import java.util.List;
@@ -318,16 +319,27 @@ public class IntentUtil {
     /**
      * 跳转商品详情页
      *
-     * @param activity 不解释
-     * @param position rv中的位置 用于修改和更新
-     * @param sn       订单号
-     * @param type     是那个分类跳转过来的 用于eventbus发消息
+     * @param activity  不解释
+     * @param position  rv中的位置 用于修改和更新
+     * @param sn        订单号
+     * @param eventType 是那个分类跳转过来的 用于eventbus发消息
      */
-    public static void goOrderInfo(Activity activity, int position, String sn, String type) {
+    public static void goOrderInfo(Activity activity, int position, String sn, String eventType) {
         Intent intent = new Intent(activity, OrderInfoActivity.class);
         intent.putExtra(Constants.position, position);
         intent.putExtra(Constants.key, sn);
-        intent.putExtra(Constants.Type, type);
+        intent.putExtra(Constants.Type, eventType);
         activity.startActivity(intent);
+    }
+
+    public static void goWebView(Activity activity, String url, String title) {
+        Intent intent = new Intent(activity, WebViewActivity.class);
+        intent.putExtra(Constants.Url, url);
+        intent.putExtra(Constants.Name, title);
+        activity.startActivity(intent);
+    }
+
+    public static void goWebView(Activity activity, String url) {
+        goWebView(activity, url, "");
     }
 }

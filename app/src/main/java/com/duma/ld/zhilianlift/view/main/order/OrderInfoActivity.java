@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.StringUtils;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.duma.ld.baselibrary.util.EventBusUtil;
 import com.duma.ld.baselibrary.util.TsUtils;
@@ -51,6 +52,7 @@ import static com.duma.ld.zhilianlift.util.Constants.Order_Type_DaiPinJia;
 import static com.duma.ld.zhilianlift.util.Constants.Order_Type_DaiShouHuo;
 import static com.duma.ld.zhilianlift.util.Constants.Order_Type_YiQuXiao;
 import static com.duma.ld.zhilianlift.util.Constants.Order_Type_YiWanChen;
+import static com.duma.ld.zhilianlift.util.HttpUrl.logistics;
 import static com.duma.ld.zhilianlift.util.HttpUrl.order_detail;
 
 /**
@@ -138,7 +140,14 @@ public class OrderInfoActivity extends BaseMyActivity {
                 .build(new OnBaseAdapterListener<OrderModel>() {
                     @Override
                     public void convert(BaseViewHolder helper, OrderModel item) {
-                        PublicUtil.getView_OrderGoods(mActivity, helper, item, true, "");
+                        PublicUtil.getView_OrderGoods(mActivity, helper, item, true, new BaseQuickAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                                //点击商品跳转商品详情页
+                                OrderModel.OrderGoodsBean item = (OrderModel.OrderGoodsBean) adapter.getData().get(position);
+                                IntentUtil.goGoodsDetails(mActivity, item.getGoods_id());
+                            }
+                        });
                     }
                 });
         onClickLoadingRefresh();
@@ -260,7 +269,7 @@ public class OrderInfoActivity extends BaseMyActivity {
                 break;
             case Order_Text_ChaKanWuLiu:
                 //跳转
-                TsUtils.show(textView.getText().toString());
+                IntentUtil.goWebView(mActivity, logistics + model.getOrder_id(), "订单跟踪");
                 break;
             case Order_Text_QueRenShouHuo:
                 quRenShouHuo();

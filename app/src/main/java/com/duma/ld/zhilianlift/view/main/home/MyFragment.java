@@ -216,6 +216,7 @@ public class MyFragment extends BaseMyFragment {
             case R.id.layout_wode_daikuan:
                 break;
             case R.id.layout_wode_baobei:
+                IntentUtil.goWebView(mActivity, "https://www.jd.com");
                 break;
             case R.id.layout_wode_chuzu:
                 IntentUtil.goRental(mActivity);

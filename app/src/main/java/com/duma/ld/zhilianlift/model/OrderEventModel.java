@@ -1,6 +1,7 @@
 package com.duma.ld.zhilianlift.model;
 
 /**
+ * 订单详情想订单列表发送的事件
  * Created by liudong on 2018/1/10.
  */
 
@@ -19,7 +20,21 @@ public class OrderEventModel {
     public OrderEventModel(int position, String type) {
         this.position = position;
         this.type = type;
+        //默认不发送
         isSend = false;
+    }
+
+    //发送删除
+    public void setDelete(boolean delete) {
+        isSend = true;
+        isDelete = delete;
+    }
+
+    //发送更新
+    public void setModel(OrderModel model) {
+        this.model = model;
+        isDelete = false;
+        isSend = true;
     }
 
     public boolean isSend() {
@@ -53,20 +68,10 @@ public class OrderEventModel {
         return isDelete;
     }
 
-    //删除
-    public void setDelete(boolean delete) {
-        isSend = true;
-        isDelete = delete;
-    }
 
     public OrderModel getModel() {
         return model;
     }
 
-    //更新
-    public void setModel(OrderModel model) {
-        this.model = model;
-        isDelete = false;
-        isSend = true;
-    }
+
 }
