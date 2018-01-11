@@ -40,6 +40,7 @@ import butterknife.OnClick;
 import static com.duma.ld.zhilianlift.util.HttpUrl.getcertification;
 
 /**
+ * 账户设置
  * Created by liudong on 2017/12/8.
  */
 
@@ -61,18 +62,6 @@ public class SettingActivity extends BaseMyActivity {
     @Override
     protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
-//        adapter = new BaseAdapter<String>(R.layout.adapter_setting) {
-//            @Override
-//            protected void convert(BaseViewHolder helper, String item) {
-//                helper.setText(R.id.tv_name, item);
-//                ImageView imageView = helper.getView(R.id.img_jiantou);
-//                if (helper.getLayoutPosition() == 5) {
-//                    imageView.setVisibility(View.INVISIBLE);
-//                } else {
-//                    imageView.setVisibility(View.VISIBLE);
-//                }
-//            }
-//        };
         settingAdapter = new SettingAdapter();
         settingAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override

@@ -112,6 +112,7 @@
             android:name=".view.main.order.OrderInfoActivity"
             android:launchMode="singleTask" />
         <activity android:name=".view.start.WebViewActivity" />
+        <activity android:name=".view.main.shopping.AddCommentActivity" />
     </application>
 
 </manifest>

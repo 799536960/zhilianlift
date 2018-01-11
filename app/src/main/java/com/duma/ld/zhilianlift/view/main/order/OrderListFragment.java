@@ -160,7 +160,7 @@ public class OrderListFragment extends BaseMyFragment {
                         break;
                     case Order_Text_PinJia:
                         //跳转
-                        TsUtils.show(textView.getText().toString());
+                        IntentUtil.goAddComment(mActivity, position, orderModel.getOrder_id() + "", type);
                         break;
                     case Order_Text_ShanChuDinDan:
                         deleteOrder(position, orderModel.getOrder_id());
@@ -218,6 +218,10 @@ public class OrderListFragment extends BaseMyFragment {
     }
 
     private void refreshModel(OrderModel model, int position) {
+        if (mAdapter.getData().get(position).getOrder_id() != model.getOrder_id()) {
+            //说明不是该订单 不做任何动作
+            return;
+        }
         if (type.isEmpty()) {
             mAdapter.setData(position, model);
         } else {
@@ -227,7 +231,7 @@ public class OrderListFragment extends BaseMyFragment {
 
     @Override
     protected void onReceiveEvent(EventModel eventModel) {
-        if (eventModel.getCode() == Constants.event_refresh_order) {
+        if (eventModel.getCode() == Constants.event_refresh_order || eventModel.getCode() == Constants.event_refresh_order_comment) {
             OrderEventModel model = (OrderEventModel) eventModel.getData();
             if (model.getType().equals(type)) {
                 if (model.isDelete()) {

@@ -13,6 +13,7 @@ import com.duma.ld.zhilianlift.view.main.house.AddHouseActivity;
 import com.duma.ld.zhilianlift.view.main.house.MyRentalHouseActivity;
 import com.duma.ld.zhilianlift.view.main.house.MySecondHouseActivity;
 import com.duma.ld.zhilianlift.view.main.order.OrderInfoActivity;
+import com.duma.ld.zhilianlift.view.main.shopping.AddCommentActivity;
 import com.duma.ld.zhilianlift.view.main.wode.CouponsActivity;
 import com.duma.ld.zhilianlift.view.main.home.HomeActivity;
 import com.duma.ld.zhilianlift.view.main.order.OrderListActivity;
@@ -328,6 +329,22 @@ public class IntentUtil {
         Intent intent = new Intent(activity, OrderInfoActivity.class);
         intent.putExtra(Constants.position, position);
         intent.putExtra(Constants.key, sn);
+        intent.putExtra(Constants.Type, eventType);
+        activity.startActivity(intent);
+    }
+
+    /**
+     * 跳转评论页面
+     *
+     * @param activity  不解释
+     * @param position  rv中的位置 用于修改和更新
+     * @param order_id  order_id
+     * @param eventType 是那个分类跳转过来的 用于eventbus发消息
+     */
+    public static void goAddComment(Activity activity, int position, String order_id, String eventType) {
+        Intent intent = new Intent(activity, AddCommentActivity.class);
+        intent.putExtra(Constants.position, position);
+        intent.putExtra(Constants.key, order_id);
         intent.putExtra(Constants.Type, eventType);
         activity.startActivity(intent);
     }

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.blankj.utilcode.util.StringUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.duma.ld.baselibrary.model.EventModel;
 import com.duma.ld.baselibrary.util.EventBusUtil;
 import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.baselibrary.util.ZhuanHuanUtil;
@@ -268,7 +269,6 @@ public class OrderInfoActivity extends BaseMyActivity {
                 IntentUtil.goPay(mActivity, model.getMaster_order_sn(), model.getDaFuKuan());
                 break;
             case Order_Text_ChaKanWuLiu:
-                //跳转
                 IntentUtil.goWebView(mActivity, logistics + model.getOrder_id(), "订单跟踪");
                 break;
             case Order_Text_QueRenShouHuo:
@@ -278,8 +278,7 @@ public class OrderInfoActivity extends BaseMyActivity {
                 zaiCiGouMai();
                 break;
             case Order_Text_PinJia:
-                //跳转
-                TsUtils.show(textView.getText().toString());
+                IntentUtil.goAddComment(mActivity, position, model.getOrder_id() + "", type);
                 break;
             case Order_Text_ShanChuDinDan:
                 deleteOrder();
@@ -342,5 +341,19 @@ public class OrderInfoActivity extends BaseMyActivity {
      */
     private void zaiCiGouMai() {
         PublicUtil.HttpZaiCiGouMai(model.getMaster_order_sn(), mActivity);
+    }
+
+    @Override
+    protected boolean isRegisterEventBus() {
+        return true;
+    }
+
+    @Override
+    protected void onReceiveEvent(EventModel eventModel) {
+        if (eventModel.getCode() == Constants.event_refresh_order_comment) {
+            OrderEventModel model = (OrderEventModel) eventModel.getData();
+            OrderInfoActivity.this.eventModel.setModel(model.getModel());
+            initData(model.getModel());
+        }
     }
 }

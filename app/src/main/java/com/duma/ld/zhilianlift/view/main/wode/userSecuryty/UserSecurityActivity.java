@@ -17,6 +17,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
+ * 账户与安全
  * Created by liudong on 2017/12/15.
  */
 public class UserSecurityActivity extends BaseMyActivity {

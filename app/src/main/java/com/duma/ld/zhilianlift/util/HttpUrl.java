@@ -68,4 +68,7 @@ public class HttpUrl {
     public static String orderConfirm = BaseUrl + "/index.php/api/user/orderConfirm";
     public static String buy = BaseUrl + "/index.php/api/user/buy";
     public static String del_order = BaseUrl + "/index.php/api/order/del_order";
+    public static String comment_list = BaseUrl + "/index.php/api/user/comment_list";
+    public static String upload_comment_img = BaseUrl + "/index.php/api/user/upload_comment_img";
+    public static String addComment = BaseUrl + "/index.php/api/user/addComment";
 }

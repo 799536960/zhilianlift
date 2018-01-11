@@ -46,6 +46,8 @@ public class Constants {
     public static final int event_pay_success_order = 13;
     //订单详情页向订单列表页发送的页面更改事件
     public static final int event_refresh_order = 14;
+    //评论像订单详情和列表发更新事件
+    public static final int event_refresh_order_comment = 15;
     /**
      * intent
      */

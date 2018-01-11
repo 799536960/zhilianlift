@@ -49,6 +49,19 @@ public class ImageSelectManager implements PaiZhaoDialog.ClickListenerInterface 
     private OnSelectFileListener onSelectFileListener;
     private int code;
     private boolean isSave;
+    private OnClickAdapterListener onClickAdapterListener;
+
+    public void setOnClickAdapterListener(OnClickAdapterListener onClickAdapterListener) {
+        this.onClickAdapterListener = onClickAdapterListener;
+    }
+
+    public interface OnClickAdapterListener {
+        void onClick();
+    }
+
+    public interface OnActivityListener {
+        void onFileList(List<LocalMedia> mList);
+    }
 
     public void setOnSelectFileListener(OnSelectFileListener onSelectFileListener) {
         this.onSelectFileListener = onSelectFileListener;
@@ -115,7 +128,7 @@ public class ImageSelectManager implements PaiZhaoDialog.ClickListenerInterface 
 //                    ImageLoader.with(mActivity,ZhuanHuanUtil.getDrawable(R.drawable.img_19), imageView);
 //                    imageView.setImageDrawable(ZhuanHuanUtil.getDrawable(R.drawable.img_19));
                     Glide.with(mActivity)
-                            .load(ZhuanHuanUtil.getDrawable(R.drawable.img_19))
+                            .load(ZhuanHuanUtil.getDrawable(R.drawable.imagephoto1))
                             .into(imageView);
                     layout.setVisibility(View.GONE);
                 } else {
@@ -139,6 +152,9 @@ public class ImageSelectManager implements PaiZhaoDialog.ClickListenerInterface 
                     @Override
                     public void onClick(View v) {
                         if (localMedia.getPath().equals("0")) {
+                            if (onClickAdapterListener != null) {
+                                onClickAdapterListener.onClick();
+                            }
                             dialog_show();
                         } else {
                             PictureSelector.create(mActivity).externalPicturePreview(holder.getLayoutPosition(), mList);
@@ -182,6 +198,32 @@ public class ImageSelectManager implements PaiZhaoDialog.ClickListenerInterface 
                         }
                         onSelectFileListener.getFile(file, code);
                     }
+                    break;
+            }
+        }
+    }
+
+    public void setListImg(List<LocalMedia> list) {
+        if (mAdapter != null) {
+            mList = list;
+            adapterRefresh();
+        }
+    }
+
+    public void onActivityResultLister(int requestCode, int resultCode, Intent data, OnActivityListener onActivityListener) {
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case PictureConfig.CHOOSE_REQUEST:
+                    // 图片选择结果回调
+                    onActivityListener.onFileList(PictureSelector.obtainMultipleResult(data));
+                    // 例如 LocalMedia 里面返回三种path
+                    // 1.media.getPath(); 为原图path
+                    // 2.media.getCutPath();为裁剪后path，需判断media.isCut();是否为true
+                    // 3.media.getCompressPath();为压缩后path，需判断media.isCompressed();是否为true
+                    // 如果裁剪并压缩了，以取压缩路径为准，因为是先裁剪后压缩的
+//                    if (mAdapter != null) {
+//                        adapterRefresh();
+//                    }
                     break;
             }
         }
@@ -272,6 +314,20 @@ public class ImageSelectManager implements PaiZhaoDialog.ClickListenerInterface 
                 file = new File(getmList().get(i).getCompressPath());
             } else {
                 file = new File(getmList().get(i).getPath());
+            }
+            fileList.add(file);
+        }
+        return fileList;
+    }
+
+    public static List<File> getFileList(List<LocalMedia> mList) {
+        List<File> fileList = new ArrayList<>();
+        for (int i = 0; i < mList.size(); i++) {
+            File file;
+            if (mList.get(i).isCompressed() || (mList.get(i).isCut() && mList.get(i).isCompressed())) {
+                file = new File(mList.get(i).getCompressPath());
+            } else {
+                file = new File(mList.get(i).getPath());
             }
             fileList.add(file);
         }
