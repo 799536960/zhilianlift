@@ -75,8 +75,11 @@ public class GridLayout extends LinearLayout implements View.OnClickListener {
         if (size > 0 && size <= 3) {
             layout_imgs1.setVisibility(VISIBLE);
         } else if (size > 3 && size <= 6) {
+            layout_imgs1.setVisibility(VISIBLE);
             layout_imgs2.setVisibility(VISIBLE);
         } else if (size > 6) {
+            layout_imgs1.setVisibility(VISIBLE);
+            layout_imgs2.setVisibility(VISIBLE);
             layout_imgs3.setVisibility(VISIBLE);
         }
         img_view_img1.setVisibility(INVISIBLE);

@@ -125,8 +125,7 @@ public class ImageSelectManager implements PaiZhaoDialog.ClickListenerInterface 
 
                 if (localMedia.getPath().equals("0")) {
                     imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-//                    ImageLoader.with(mActivity,ZhuanHuanUtil.getDrawable(R.drawable.img_19), imageView);
-//                    imageView.setImageDrawable(ZhuanHuanUtil.getDrawable(R.drawable.img_19));
+//                    imageView.setImageDrawable(ZhuanHuanUtil.getDrawable(R.drawable.imagephoto1));
                     Glide.with(mActivity)
                             .load(ZhuanHuanUtil.getDrawable(R.drawable.imagephoto1))
                             .into(imageView);

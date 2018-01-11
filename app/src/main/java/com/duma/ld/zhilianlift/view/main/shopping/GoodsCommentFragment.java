@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.duma.ld.baselibrary.util.TsUtils;
+import com.duma.ld.baselibrary.util.ZhuanHuanUtil;
 import com.duma.ld.baselibrary.util.config.FragmentConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
@@ -22,6 +23,7 @@ import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.ImageLoader;
 import com.duma.ld.zhilianlift.widget.CheckBoxComment;
 import com.duma.ld.zhilianlift.widget.GridLayout;
+import com.duma.ld.zhilianlift.widget.SimpleRatingBar;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 
@@ -98,9 +100,9 @@ public class GoodsCommentFragment extends BaseMyFragment implements View.OnClick
                     public void convert(BaseViewHolder helper, CommentModel item) {
                         String nickname = item.getNickname() == null || item.getNickname().isEmpty() ? "<未设置>" : item.getNickname();
                         helper.setText(R.id.tv_Nick_name, nickname)
-                                .setText(R.id.tv_commentTime, "2017-1-1")
+                                .setText(R.id.tv_commentTime, ZhuanHuanUtil.Time2nian2(item.getAdd_time() * 1000))
                                 .setText(R.id.tv_content, item.getContent())
-                                .setText(R.id.tv_shopTime, "2017-1-1")
+                                .setText(R.id.tv_shopTime, "购买日期：" + ZhuanHuanUtil.Time2nian2(item.getBuy_time() * 1000))
                                 .setText(R.id.tv_type, item.getSpec_key_name());
                         if (item.getSpec_key_name() == null || item.getSpec_key_name().isEmpty()) {
                             helper.setGone(R.id.tv_type, false);
@@ -110,6 +112,8 @@ public class GoodsCommentFragment extends BaseMyFragment implements View.OnClick
                         ImageLoader.with_head(mActivity, item.getHead_pic(), (ImageView) helper.getView(R.id.imageView3));
                         GridLayout gridLayout = helper.getView(R.id.gridLayout_imgs);
                         gridLayout.setmList(item.getImg(), mActivity);
+                        SimpleRatingBar rating_rank = helper.getView(R.id.rating_rank);
+                        rating_rank.setRating(item.getGoods_rank());
                     }
                 });
         View view = adapter.getView(R.layout.head_comment_top);

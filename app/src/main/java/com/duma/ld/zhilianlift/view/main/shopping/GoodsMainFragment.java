@@ -157,7 +157,7 @@ public class GoodsMainFragment extends BaseMyFragment {
                         layout_img4 = helper.getView(R.id.layout_img4);
                         layout_imageList = helper.getView(R.id.layout_imageList);
                         //设置
-                        rating_rank.setRating(Float.parseFloat(item.getGoods_rank()));
+                        rating_rank.setRating(item.getGoods_rank());
                         ImageLoader.with_head(mActivity, item.getHead_pic(), img_icon);
                         if (item.getNickname() == null || item.getNickname().isEmpty()) {
                             tv_Nick_name.setText("<未设置>");
@@ -174,10 +174,10 @@ public class GoodsMainFragment extends BaseMyFragment {
                             layout_imageList.setVisibility(View.GONE);
                         } else {
                             layout_imageList.setVisibility(View.VISIBLE);
-                            img_1.setVisibility(View.GONE);
-                            img_2.setVisibility(View.GONE);
-                            img_3.setVisibility(View.GONE);
-                            layout_img4.setVisibility(View.GONE);
+                            img_1.setVisibility(View.INVISIBLE);
+                            img_2.setVisibility(View.INVISIBLE);
+                            img_3.setVisibility(View.INVISIBLE);
+                            layout_img4.setVisibility(View.INVISIBLE);
 
                             tv_image_num.setText("共" + item.getImg().size() + "张");
                             for (int i = 0; i < item.getImg().size(); i++) {

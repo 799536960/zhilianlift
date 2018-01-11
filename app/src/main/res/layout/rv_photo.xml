@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="5dp"
-        android:scaleType="centerInside" />
+        android:scaleType="centerCrop" />
 
     <FrameLayout
         android:id="@+id/layout_finsh"

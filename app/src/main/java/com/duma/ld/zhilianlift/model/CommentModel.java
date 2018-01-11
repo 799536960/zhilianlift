@@ -15,11 +15,11 @@ public class CommentModel {
     private int store_id;
     private int user_id;
     private String content;
-    private int add_time;
+    private long add_time;
     private String ip_address;
     private int is_show;
     private String spec_key_name;
-    private String goods_rank;
+    private float goods_rank;
     private int zan_num;
     private String zan_userid;
     private int reply_num;
@@ -30,6 +30,32 @@ public class CommentModel {
     private String head_pic;
     private String nickname;
     private List<String> img;
+    private long buy_time;
+
+
+    public long getAdd_time() {
+        return add_time;
+    }
+
+    public float getGoods_rank() {
+        return goods_rank;
+    }
+
+    public void setGoods_rank(float goods_rank) {
+        this.goods_rank = goods_rank;
+    }
+
+    public void setAdd_time(long add_time) {
+        this.add_time = add_time;
+    }
+
+    public long getBuy_time() {
+        return buy_time;
+    }
+
+    public void setBuy_time(long buy_time) {
+        this.buy_time = buy_time;
+    }
 
     public int getComment_id() {
         return comment_id;
@@ -87,13 +113,6 @@ public class CommentModel {
         this.content = content;
     }
 
-    public int getAdd_time() {
-        return add_time;
-    }
-
-    public void setAdd_time(int add_time) {
-        this.add_time = add_time;
-    }
 
     public String getIp_address() {
         return ip_address;
@@ -119,13 +138,6 @@ public class CommentModel {
         this.spec_key_name = spec_key_name;
     }
 
-    public String getGoods_rank() {
-        return goods_rank;
-    }
-
-    public void setGoods_rank(String goods_rank) {
-        this.goods_rank = goods_rank;
-    }
 
     public int getZan_num() {
         return zan_num;

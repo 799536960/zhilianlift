@@ -1,5 +1,6 @@
 package com.duma.ld.zhilianlift.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -178,17 +179,20 @@ public class OrderCommentModel {
             private String goods_name;
             private String spec_key_name;
             private String goods_price;
+            private String original_img;
+            //下面都是评价的
             private String comment;
             private int comment_star;
             private List<String> mImageList;
             //是否匿名 默认是 true
             private boolean isUser;
-            private String original_img;
 
             //默认
             public NoCommentGoodsListBean() {
                 isUser = true;
                 comment_star = 5;
+                comment = "";
+                mImageList = new ArrayList<>();
             }
 
             public int getComment_star() {

@@ -69,6 +69,7 @@
             android:layout_width="0dp"
             android:layout_height="86dp"
             android:layout_weight="1"
+            android:scaleType="centerCrop"
             android:src="@mipmap/ic_launcher" />
 
         <ImageView
@@ -77,6 +78,7 @@
             android:layout_height="86dp"
             android:layout_marginLeft="4dp"
             android:layout_weight="1"
+            android:scaleType="centerCrop"
             android:src="@mipmap/ic_launcher" />
 
         <ImageView
@@ -85,6 +87,7 @@
             android:layout_height="86dp"
             android:layout_marginLeft="4dp"
             android:layout_weight="1"
+            android:scaleType="centerCrop"
             android:src="@mipmap/ic_launcher" />
 
         <FrameLayout
@@ -98,6 +101,7 @@
                 android:id="@+id/img_4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:scaleType="centerCrop"
                 android:src="@mipmap/ic_launcher" />
 
             <TextView

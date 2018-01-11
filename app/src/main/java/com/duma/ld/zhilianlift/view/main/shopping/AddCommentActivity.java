@@ -96,6 +96,7 @@ public class AddCommentActivity extends BaseMyActivity {
             model.setSpec_key_name(bean.getSpec_key_name());
             model.setImgList(bean.getmImageList());
             model.setHide_username(bean.getUser());
+            model.setRec_id(bean.getRec_id());
             upDataList.add(model);
         }
         Logger.e(new Gson().toJson(upDataList));
@@ -203,7 +204,6 @@ public class AddCommentActivity extends BaseMyActivity {
                         mList.get(position).setListImg(list);
                     }
                 });
-
     }
 
 
@@ -215,7 +215,13 @@ public class AddCommentActivity extends BaseMyActivity {
                 .execute(new MyJsonCallback<HttpResModel<OrderCommentModel>>(mActivityConfig) {
                     @Override
                     protected void onJsonSuccess(Response<HttpResModel<OrderCommentModel>> respons, HttpResModel<OrderCommentModel> orderCommentModelHttpResModel) {
-                        mAdapter.setNewData(orderCommentModelHttpResModel.getResult().getOrder_info().getNo_comment_goods_list());
+                        List<OrderCommentModel.OrderInfoBean.NoCommentGoodsListBean> no_comment_goods_list = orderCommentModelHttpResModel.getResult().getOrder_info().getNo_comment_goods_list();
+                        if (no_comment_goods_list == null || no_comment_goods_list.size() == 0) {
+                            TsUtils.show("该订单已评价请刷新最新订单信息!");
+                            finish();
+                            return;
+                        }
+                        mAdapter.setNewData(no_comment_goods_list);
                     }
                 });
     }
