@@ -15,6 +15,7 @@ import com.duma.ld.zhilianlift.view.main.home.HomeActivity;
 import com.duma.ld.zhilianlift.view.main.house.AddHouseActivity;
 import com.duma.ld.zhilianlift.view.main.house.MyRentalHouseActivity;
 import com.duma.ld.zhilianlift.view.main.house.MySecondHouseActivity;
+import com.duma.ld.zhilianlift.view.main.shopping.afterSales.AfterSalesInfoActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.order.OrderInfoActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.order.OrderListActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PayActivity;
@@ -369,17 +370,17 @@ public class IntentUtil {
     /**
      * 跳转申请售后列表页面
      */
-    public static void goAddAfterSalesList(Activity activity, List<OrderModel.OrderGoodsBean> list, String sn) {
+    public static void goAddAfterSalesList(Activity activity, List<OrderModel.OrderGoodsBean> list, String order_id) {
         Intent intent = new Intent(activity, ApplyAfterSalesListActivity.class);
         intent.putExtra(Constants.Model, (Serializable) list);
-        intent.putExtra(Constants.key, sn);
+        intent.putExtra(Constants.id, order_id);
         activity.startActivity(intent);
     }
 
-    public static void goAddAfterSalesList(Activity activity, OrderModel.OrderGoodsBean order_goods, String sn) {
+    public static void goAddAfterSalesList(Activity activity, OrderModel.OrderGoodsBean order_goods, String order_id) {
         List<OrderModel.OrderGoodsBean> list = new ArrayList<>();
         list.add(order_goods);
-        goAddAfterSalesList(activity, list, sn);
+        goAddAfterSalesList(activity, list, order_id);
     }
 
     /**
@@ -404,10 +405,9 @@ public class IntentUtil {
     /**
      * 跳转售后详情
      */
-    public static void goAfterSalesInfo(Activity activity, OrderModel.OrderGoodsBean order_goods) {
-//        Intent intent = new Intent(activity, ApplyRefundActivity.class);
-//        intent.putExtra(Constants.Model, order_goods);
-//        activity.startActivity(intent);
-        TsUtils.show("跳转售后详情");
+    public static void goAfterSalesInfo(Activity activity, String asId) {
+        Intent intent = new Intent(activity, AfterSalesInfoActivity.class);
+        intent.putExtra(Constants.id, asId);
+        activity.startActivity(intent);
     }
 }

@@ -102,12 +102,19 @@
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="PopupDialog" parent="android:Theme.Dialog">
+    <style name="PopupDialog" parent="Theme.AppCompat.Light.Dialog">
+        <!--<style name="PopupDialog" parent="android:Theme.Dialog">-->
         <item name="android:windowAnimationStyle">@style/AnimBottom</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowBackground">@color/transparent</item>
         <item name="android:textColor">@color/textColor</item>
+        <item name="colorPrimary">@color/primary</item>
+        <!--导航栏颜色-->
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:textColorSecondary">@color/textColorSecondary</item>
+        <item name="android:textColorHint">@color/textColorHint</item>
     </style>
 
     <style name="AnimBottom" parent="@android:style/Animation">

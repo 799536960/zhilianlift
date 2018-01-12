@@ -116,6 +116,7 @@
         <activity android:name=".view.main.shopping.afterSales.AfterSalesListActivity" />
         <activity android:name=".view.main.shopping.afterSales.ApplyAfterSalesListActivity" />
         <activity android:name=".view.main.shopping.afterSales.ApplyRefundActivity" />
+        <activity android:name=".view.main.shopping.afterSales.AfterSalesInfoActivity" />
     </application>
 
 </manifest>

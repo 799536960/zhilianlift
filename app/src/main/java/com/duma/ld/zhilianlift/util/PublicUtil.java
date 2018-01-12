@@ -19,6 +19,7 @@ import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseAdapter.BaseAdapter;
 import com.duma.ld.zhilianlift.base.baseAdapter.OnBaseAdapterListener;
 import com.duma.ld.zhilianlift.base.baseJsonHttp.MyJsonCallback;
+import com.duma.ld.zhilianlift.model.AfterSalesModel;
 import com.duma.ld.zhilianlift.model.GoodsBean;
 import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.model.OrderModel;
@@ -118,7 +119,7 @@ public class PublicUtil {
                         tv_afterSales.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                IntentUtil.goAddAfterSalesList(mActivity, goodsBean, item.getMaster_order_sn());
+                                IntentUtil.goAddAfterSalesList(mActivity, goodsBean, item.getOrder_id() + "");
                             }
                         });
                     }
@@ -142,6 +143,14 @@ public class PublicUtil {
     }
 
     public static void getViewOrderGoods(BaseViewHolder helper, OrderModel.OrderGoodsBean item, Activity activity) {
+        helper.setText(R.id.tv_title, item.getGoods_name())
+                .setText(R.id.tv_spec, "数量:" + item.getGoods_num() + " " + item.getSpec_key_name_noNull())
+                .setText(R.id.tv_price, "¥" + item.getGoods_price());
+        ImageView img_icon = helper.getView(R.id.img_icon);
+        ImageLoader.with(activity, item.getOriginal_img(), img_icon);
+    }
+
+    public static void getViewOrderGoods(BaseViewHolder helper, AfterSalesModel item, Activity activity) {
         helper.setText(R.id.tv_title, item.getGoods_name())
                 .setText(R.id.tv_spec, "数量:" + item.getGoods_num() + " " + item.getSpec_key_name_noNull())
                 .setText(R.id.tv_price, "¥" + item.getGoods_price());

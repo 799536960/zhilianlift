@@ -771,7 +771,7 @@ public class OrderModel {
         private String goods_sn;
         private int goods_num;
         private String market_price;
-        private String goods_price;
+        private double goods_price;
         private String cost_price;
         private String member_goods_price;
         private int give_integral;
@@ -855,11 +855,11 @@ public class OrderModel {
             this.market_price = market_price;
         }
 
-        public String getGoods_price() {
+        public double getGoods_price() {
             return goods_price;
         }
 
-        public void setGoods_price(String goods_price) {
+        public void setGoods_price(double goods_price) {
             this.goods_price = goods_price;
         }
 

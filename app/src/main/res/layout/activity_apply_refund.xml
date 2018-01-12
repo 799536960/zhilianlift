@@ -34,9 +34,12 @@
                 android:layout_weight="1" />
 
             <TextView
+                android:id="@+id/tv_other"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="其他" />
+                android:drawablePadding="5dp"
+                android:drawableRight="@drawable/jiantou_r"
+                android:text="请选择" />
         </LinearLayout>
 
         <FrameLayout
@@ -73,6 +76,7 @@
                 android:layout_marginLeft="12dp"
                 android:background="@null"
                 android:hint="最多111"
+                android:inputType="numberDecimal"
                 android:textSize="14sp" />
         </LinearLayout>
 

@@ -38,7 +38,7 @@ public class ApplyAfterSalesListActivity extends BaseMyActivity {
     RecyclerView rvList;
 
     private List<OrderModel.OrderGoodsBean> mList;
-    private String master_order_sn;
+    private String order_id;
 
     @Override
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig) {
@@ -48,7 +48,7 @@ public class ApplyAfterSalesListActivity extends BaseMyActivity {
     @Override
     protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
-        master_order_sn = getIntent().getStringExtra(Constants.key);
+        order_id = getIntent().getStringExtra(Constants.id);
         mList = (List<OrderModel.OrderGoodsBean>) getIntent().getSerializableExtra(Constants.Model);
         if (mList == null || mList.size() == 0) {
             finish();
@@ -75,16 +75,17 @@ public class ApplyAfterSalesListActivity extends BaseMyActivity {
     }
 
     private void afterSalesHttp(final OrderModel.OrderGoodsBean orderGoodsBean) {
-        OkGo.<HttpResModel<String>>get(get_return_goods_status)
-                .params("master_order_sn", master_order_sn)
+        OkGo.<HttpResModel<AfterSalesType>>get(get_return_goods_status)
+                .params("goods_id", orderGoodsBean.getGoods_id())
+                .params("order_id", order_id)
                 .params("rec_id", orderGoodsBean.getRec_id())
-                .execute(new MyJsonCallback<HttpResModel<String>>() {
+                .execute(new MyJsonCallback<HttpResModel<AfterSalesType>>() {
                     @Override
-                    protected void onJsonSuccess(Response<HttpResModel<String>> respons, HttpResModel<String> stringHttpResModel) {
-                        switch (stringHttpResModel.getResult()) {
+                    protected void onJsonSuccess(Response<HttpResModel<AfterSalesType>> respons, HttpResModel<AfterSalesType> stringHttpResModel) {
+                        switch (stringHttpResModel.getResult().getType()) {
                             case "1":
                                 //售后详情
-                                IntentUtil.goAfterSalesInfo(mActivity, orderGoodsBean);
+                                IntentUtil.goAfterSalesInfo(mActivity, stringHttpResModel.getResult().getId());
                                 break;
                             case "2":
                                 //申请退款页面
@@ -100,5 +101,32 @@ public class ApplyAfterSalesListActivity extends BaseMyActivity {
                         }
                     }
                 }.isDialog(mActivity));
+    }
+
+    class AfterSalesType {
+
+        /**
+         * id : null
+         * type : 2
+         */
+
+        private String id;
+        private String type;
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
     }
 }

@@ -248,7 +248,7 @@ public class OrderInfoActivity extends BaseMyActivity {
                 TsUtils.show("复制订单编号成功!");
                 break;
             case R.id.tv_shouhou:
-                IntentUtil.goAddAfterSalesList(mActivity, model.getOrder_goods(), model.getMaster_order_sn());
+                IntentUtil.goAddAfterSalesList(mActivity, model.getOrder_goods(), model.getOrder_id() + "");
                 break;
             case R.id.tv_hui:
                 clickBtn(tvHui);
