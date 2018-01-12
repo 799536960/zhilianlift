@@ -74,6 +74,7 @@ public class ApplyRefundActivity extends BaseMyActivity {
         super.init(savedInstanceState);
         order_goods = (OrderModel.OrderGoodsBean) getIntent().getSerializableExtra(Constants.Model);
         mAdapter = new BaseAdapter.Builder<AfterSalesModel>(rvList, mActivity, R.layout.adapter_order_goods3)
+                .setNoEnpty()
                 .build(new OnBaseAdapterListener<AfterSalesModel>() {
                     @Override
                     public void convert(BaseViewHolder helper, AfterSalesModel item) {
@@ -168,7 +169,7 @@ public class ApplyRefundActivity extends BaseMyActivity {
                         finish();
 
                     }
-                });
+                }.isDialog(mActivity));
     }
 
     @Override
