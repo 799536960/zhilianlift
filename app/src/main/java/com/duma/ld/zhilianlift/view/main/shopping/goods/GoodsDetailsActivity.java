@@ -1,4 +1,4 @@
-package com.duma.ld.zhilianlift.view.main.shopping;
+package com.duma.ld.zhilianlift.view.main.shopping.goods;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -31,6 +31,7 @@ import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.PublicUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
 import com.duma.ld.zhilianlift.view.dialog.GoodsSpecDialog;
+import com.duma.ld.zhilianlift.view.main.shopping.ShoppingCartActivity;
 import com.duma.ld.zhilianlift.view.popupWindow.GoodsInfoPopupWindow;
 import com.duma.ld.zhilianlift.widget.LinearImageLayout;
 import com.lzy.okgo.OkGo;

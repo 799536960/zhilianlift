@@ -1,4 +1,4 @@
-package com.duma.ld.zhilianlift.view.main.shopping;
+package com.duma.ld.zhilianlift.view.main.shopping.order;
 
 import android.content.DialogInterface;
 import android.os.Bundle;

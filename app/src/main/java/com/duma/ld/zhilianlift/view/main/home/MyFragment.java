@@ -21,7 +21,7 @@ import com.duma.ld.zhilianlift.model.UserModel;
 import com.duma.ld.zhilianlift.util.ImageLoader;
 import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
-import com.duma.ld.zhilianlift.view.main.shopping.AfterSalesListActivity;
+import com.duma.ld.zhilianlift.view.main.shopping.afterSales.AfterSalesListActivity;
 import com.duma.ld.zhilianlift.view.main.wode.SettingActivity;
 import com.duma.ld.zhilianlift.widget.LinearImageLayout;
 import com.lzy.okgo.OkGo;

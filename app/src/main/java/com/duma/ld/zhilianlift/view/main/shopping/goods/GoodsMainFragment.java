@@ -1,4 +1,4 @@
-package com.duma.ld.zhilianlift.view.main.shopping;
+package com.duma.ld.zhilianlift.view.main.shopping.goods;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;

@@ -43,6 +43,7 @@ import static com.duma.ld.zhilianlift.util.HttpUrl.hot_keywords;
 import static com.lzy.okgo.cache.CacheMode.FIRST_CACHE_THEN_REQUEST;
 
 /**
+ * 商品搜索
  * Created by liudong on 2017/12/6.
  */
 

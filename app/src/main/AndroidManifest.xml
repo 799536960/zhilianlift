@@ -56,7 +56,7 @@
         <activity
             android:name=".view.main.shopping.SearchActivity"
             android:windowSoftInputMode="stateVisible" />
-        <activity android:name=".view.main.shopping.GoodsListActivity" />
+        <activity android:name=".view.main.shopping.goods.GoodsListActivity" />
         <activity android:name=".view.login.LoginOrRegisterActivity" />
         <activity
             android:name=".view.login.RegisterActivity"
@@ -88,14 +88,14 @@
             android:launchMode="singleTask" />
         <activity android:name=".view.main.wode.userSecuryty.PayPasswordActivity" />
         <activity android:name=".view.main.wode.userSecuryty.PayPasswordSuccessActivity" />
-        <activity android:name=".view.main.shopping.GoodsDetailsActivity" />
+        <activity android:name=".view.main.shopping.goods.GoodsDetailsActivity" />
         <activity
             android:name=".view.start.PhotoQueryActivity"
             android:theme="@style/AppTheme_tm" />
         <activity android:name=".view.main.shopping.ShoppingCartActivity" />
         <activity android:name=".view.main.wode.MyCollectActivity" />
         <activity android:name=".view.main.wode.MyRecordActivity" />
-        <activity android:name=".view.main.shopping.ConfirmOrderActivity" />
+        <activity android:name=".view.main.shopping.order.ConfirmOrderActivity" />
         <activity android:name=".view.main.wode.CouponsActivity" />
         <activity
             android:name=".view.main.pay.PayInputPasswordActivity"
@@ -113,9 +113,9 @@
             android:launchMode="singleTask" />
         <activity android:name=".view.start.WebViewActivity" />
         <activity android:name=".view.main.shopping.AddCommentActivity" />
-        <activity android:name=".view.main.shopping.AfterSalesListActivity" />
-        <activity android:name=".view.main.shopping.ApplyAfterSalesListActivity" />
-        <activity android:name=".view.main.shopping.ApplyRefundActivity" />
+        <activity android:name=".view.main.shopping.afterSales.AfterSalesListActivity" />
+        <activity android:name=".view.main.shopping.afterSales.ApplyAfterSalesListActivity" />
+        <activity android:name=".view.main.shopping.afterSales.ApplyRefundActivity" />
     </application>
 
 </manifest>
