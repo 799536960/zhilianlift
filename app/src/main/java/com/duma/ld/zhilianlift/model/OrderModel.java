@@ -2,6 +2,7 @@ package com.duma.ld.zhilianlift.model;
 
 import com.blankj.utilcode.util.StringUtils;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -734,7 +735,7 @@ public class OrderModel {
         }
     }
 
-    public static class OrderGoodsBean {
+    public static class OrderGoodsBean implements Serializable {
         /**
          * rec_id : 513
          * order_id : 413

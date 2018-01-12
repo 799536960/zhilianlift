@@ -3,27 +3,31 @@ package com.duma.ld.zhilianlift.util;
 import android.app.Activity;
 import android.content.Intent;
 
+import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.model.AddresModel;
 import com.duma.ld.zhilianlift.model.CommitOrderModel;
+import com.duma.ld.zhilianlift.model.OrderModel;
 import com.duma.ld.zhilianlift.model.RealNameModel;
 import com.duma.ld.zhilianlift.model.ShoppingSpacModel;
 import com.duma.ld.zhilianlift.view.login.LoginOrRegisterActivity;
+import com.duma.ld.zhilianlift.view.main.home.HomeActivity;
 import com.duma.ld.zhilianlift.view.main.house.AddHouseActivity;
 import com.duma.ld.zhilianlift.view.main.house.MyRentalHouseActivity;
 import com.duma.ld.zhilianlift.view.main.house.MySecondHouseActivity;
-import com.duma.ld.zhilianlift.view.main.order.OrderInfoActivity;
-import com.duma.ld.zhilianlift.view.main.shopping.AddCommentActivity;
-import com.duma.ld.zhilianlift.view.main.wode.CouponsActivity;
-import com.duma.ld.zhilianlift.view.main.home.HomeActivity;
-import com.duma.ld.zhilianlift.view.main.order.OrderListActivity;
+import com.duma.ld.zhilianlift.view.main.shopping.order.OrderInfoActivity;
+import com.duma.ld.zhilianlift.view.main.shopping.order.OrderListActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PayActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PayInputPasswordActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PaySuccessActivity;
+import com.duma.ld.zhilianlift.view.main.shopping.ApplyAfterSalesListActivity;
+import com.duma.ld.zhilianlift.view.main.shopping.AddCommentActivity;
+import com.duma.ld.zhilianlift.view.main.shopping.ApplyRefundActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.ConfirmOrderActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.GoodsDetailsActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.GoodsListActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.SearchActivity;
+import com.duma.ld.zhilianlift.view.main.wode.CouponsActivity;
 import com.duma.ld.zhilianlift.view.main.wode.MyCollectActivity;
 import com.duma.ld.zhilianlift.view.main.wode.MyRecordActivity;
 import com.duma.ld.zhilianlift.view.main.wode.UserDataActivity;
@@ -38,6 +42,7 @@ import com.duma.ld.zhilianlift.view.start.PhotoQueryActivity;
 import com.duma.ld.zhilianlift.view.start.WebViewActivity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
@@ -358,5 +363,51 @@ public class IntentUtil {
 
     public static void goWebView(Activity activity, String url) {
         goWebView(activity, url, "");
+    }
+
+
+    /**
+     * 跳转申请售后列表页面
+     */
+    public static void goAddAfterSalesList(Activity activity, List<OrderModel.OrderGoodsBean> list, String sn) {
+        Intent intent = new Intent(activity, ApplyAfterSalesListActivity.class);
+        intent.putExtra(Constants.Model, (Serializable) list);
+        intent.putExtra(Constants.key, sn);
+        activity.startActivity(intent);
+    }
+
+    public static void goAddAfterSalesList(Activity activity, OrderModel.OrderGoodsBean order_goods, String sn) {
+        List<OrderModel.OrderGoodsBean> list = new ArrayList<>();
+        list.add(order_goods);
+        goAddAfterSalesList(activity, list, sn);
+    }
+
+    /**
+     * 跳转申请退款
+     */
+    public static void goApplyRefund(Activity activity, OrderModel.OrderGoodsBean order_goods) {
+        Intent intent = new Intent(activity, ApplyRefundActivity.class);
+        intent.putExtra(Constants.Model, order_goods);
+        activity.startActivity(intent);
+    }
+
+    /**
+     * 跳转申请退换货 申请售后页面
+     */
+    public static void goApplyAfterSales(Activity activity, OrderModel.OrderGoodsBean order_goods) {
+//        Intent intent = new Intent(activity, ApplyRefundActivity.class);
+//        intent.putExtra(Constants.Model, order_goods);
+//        activity.startActivity(intent);
+        TsUtils.show("跳转申请退换货 申请售后页面");
+    }
+
+    /**
+     * 跳转售后详情
+     */
+    public static void goAfterSalesInfo(Activity activity, OrderModel.OrderGoodsBean order_goods) {
+//        Intent intent = new Intent(activity, ApplyRefundActivity.class);
+//        intent.putExtra(Constants.Model, order_goods);
+//        activity.startActivity(intent);
+        TsUtils.show("跳转售后详情");
     }
 }

@@ -1,4 +1,4 @@
-package com.duma.ld.zhilianlift.view.main.order;
+package com.duma.ld.zhilianlift.view.main.shopping.order;
 
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
@@ -141,7 +141,7 @@ public class OrderInfoActivity extends BaseMyActivity {
                 .build(new OnBaseAdapterListener<OrderModel>() {
                     @Override
                     public void convert(BaseViewHolder helper, OrderModel item) {
-                        PublicUtil.getView_OrderGoods(mActivity, helper, item, true, new BaseQuickAdapter.OnItemClickListener() {
+                        PublicUtil.getViewOrder(mActivity, helper, item, true, new BaseQuickAdapter.OnItemClickListener() {
                             @Override
                             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                                 //点击商品跳转商品详情页
@@ -248,8 +248,7 @@ public class OrderInfoActivity extends BaseMyActivity {
                 TsUtils.show("复制订单编号成功!");
                 break;
             case R.id.tv_shouhou:
-                // TODO: 2018/1/10  申请售后
-
+                IntentUtil.goAddAfterSalesList(mActivity, model.getOrder_goods(), model.getMaster_order_sn());
                 break;
             case R.id.tv_hui:
                 clickBtn(tvHui);

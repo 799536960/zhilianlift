@@ -15,8 +15,9 @@ import com.blankj.utilcode.util.SpanUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.duma.ld.zhilianlift.Adapter.GlideImageLoader;
-import com.duma.ld.zhilianlift.Adapter.OrderGoodsAdapter;
 import com.duma.ld.zhilianlift.R;
+import com.duma.ld.zhilianlift.base.baseAdapter.BaseAdapter;
+import com.duma.ld.zhilianlift.base.baseAdapter.OnBaseAdapterListener;
 import com.duma.ld.zhilianlift.base.baseJsonHttp.MyJsonCallback;
 import com.duma.ld.zhilianlift.model.GoodsBean;
 import com.duma.ld.zhilianlift.model.HttpResModel;
@@ -89,20 +90,42 @@ public class PublicUtil {
     }
 
     //这个eventType 只是订单详情回到订单列表的时候eventbus发的事件用的
-    public static void getView_OrderGoods(final Activity mActivity, final BaseViewHolder helper,
-                                          final OrderModel item, final boolean isOrderInfo, BaseQuickAdapter.OnItemClickListener itemClickListener) {
+    public static void getViewOrder(final Activity mActivity, final BaseViewHolder helper,
+                                    final OrderModel item, final boolean isOrderInfo,
+                                    BaseQuickAdapter.OnItemClickListener itemClickListener) {
+        final String type = item.getOrder_status_code();
         RecyclerView rv_goodsList = helper.getView(R.id.rv_goodsList);
-        //默认没有售后按钮 除非在订单详情中
-        boolean isShouHou = false;
-        String type = item.getOrder_status_code();
-        if (isOrderInfo) {
-            if (type.equals(Order_Type_DaiFaHuo) || type.equals(Order_Type_DaiPinJia) || type.equals(Order_Type_YiWanChen)) {
-                isShouHou = true;
-            }
-        }
-        final OrderGoodsAdapter orderGoodsAdapter = new OrderGoodsAdapter(rv_goodsList, mActivity, isShouHou);
-        orderGoodsAdapter.getmAdapter().setNewData(item.getOrder_goods());
-        orderGoodsAdapter.getmAdapter().setOnItemClickListener(itemClickListener);
+        BaseAdapter<OrderModel.OrderGoodsBean> adapter = new BaseAdapter.Builder<OrderModel.OrderGoodsBean>(rv_goodsList, mActivity, R.layout.adapter_order_goods2)
+                .isNested()
+                .setNoEnpty()
+                .build(new OnBaseAdapterListener<OrderModel.OrderGoodsBean>() {
+                    @Override
+                    public void convert(BaseViewHolder helper, final OrderModel.OrderGoodsBean goodsBean) {
+                        getViewOrderGoods(helper, goodsBean, mActivity);
+                        TextView tv_afterSales = helper.getView(R.id.tv_afterSales);
+                        //默认没有售后按钮 除非在订单详情中
+                        boolean isShouHou = false;
+                        if (isOrderInfo) {
+                            if (type.equals(Order_Type_DaiFaHuo) || type.equals(Order_Type_DaiPinJia) || type.equals(Order_Type_YiWanChen)) {
+                                isShouHou = true;
+                            }
+                        }
+                        if (isShouHou) {
+                            tv_afterSales.setVisibility(View.VISIBLE);
+                        } else {
+                            tv_afterSales.setVisibility(View.GONE);
+                        }
+                        tv_afterSales.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                IntentUtil.goAddAfterSalesList(mActivity, goodsBean, item.getMaster_order_sn());
+                            }
+                        });
+                    }
+                });
+        adapter.setNewData(item.getOrder_goods());
+        adapter.setOnItemClickListener(itemClickListener);
+        //订单ui
         if (isOrderInfo) {
             //订单详情 按钮消失
             helper.setGone(R.id.layout_btn, false);
@@ -116,6 +139,14 @@ public class PublicUtil {
         TextView tv_hui = helper.getView(R.id.tv_hui);
         TextView tv_hong = helper.getView(R.id.tv_hong);
         PublicUtil.refreshOrderBut(tv_hui, tv_hong, type, true);
+    }
+
+    public static void getViewOrderGoods(BaseViewHolder helper, OrderModel.OrderGoodsBean item, Activity activity) {
+        helper.setText(R.id.tv_title, item.getGoods_name())
+                .setText(R.id.tv_spec, "数量:" + item.getGoods_num() + " " + item.getSpec_key_name_noNull())
+                .setText(R.id.tv_price, "¥" + item.getGoods_price());
+        ImageView img_icon = helper.getView(R.id.img_icon);
+        ImageLoader.with(activity, item.getOriginal_img(), img_icon);
     }
 
     /**

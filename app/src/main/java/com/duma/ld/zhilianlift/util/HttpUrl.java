@@ -71,4 +71,5 @@ public class HttpUrl {
     public static String comment_list = BaseUrl + "/index.php/api/user/comment_list";
     public static String upload_comment_img = BaseUrl + "/index.php/api/user/upload_comment_img";
     public static String addComment = BaseUrl + "/index.php/api/user/addComment";
+    public static String get_return_goods_status = BaseUrl + "/index.php/api/order/get_return_goods_status";
 }

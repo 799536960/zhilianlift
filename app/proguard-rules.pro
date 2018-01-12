@@ -201,3 +201,6 @@
 -dontwarn com.just.agentweb.**
 #Java 注入类不要混淆 ， 例如 sample 里面的 AndroidInterface 类 ， 需要 Keep 。
 #-keepclassmembers class com.just.library.agentweb.AndroidInterface{ *; }
+
+-keepattributes InnerClasses
+-dontoptimize

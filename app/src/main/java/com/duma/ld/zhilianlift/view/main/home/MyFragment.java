@@ -21,6 +21,7 @@ import com.duma.ld.zhilianlift.model.UserModel;
 import com.duma.ld.zhilianlift.util.ImageLoader;
 import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
+import com.duma.ld.zhilianlift.view.main.shopping.AfterSalesListActivity;
 import com.duma.ld.zhilianlift.view.main.wode.SettingActivity;
 import com.duma.ld.zhilianlift.widget.LinearImageLayout;
 import com.lzy.okgo.OkGo;
@@ -200,6 +201,7 @@ public class MyFragment extends BaseMyFragment {
                 IntentUtil.goOrderList(mActivity, 4);
                 break;
             case R.id.layout_order_shouhou:
+                startActivity(new Intent(mActivity, AfterSalesListActivity.class));
                 break;
             case R.id.layout_order:
                 IntentUtil.goOrderList(mActivity);

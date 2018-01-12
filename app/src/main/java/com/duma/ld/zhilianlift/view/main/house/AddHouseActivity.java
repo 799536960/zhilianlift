@@ -10,7 +10,7 @@ import com.duma.ld.zhilianlift.Adapter.MyViewPagerAdapter;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
 import com.duma.ld.zhilianlift.util.Constants;
-import com.duma.ld.zhilianlift.view.main.order.OrderListFragment;
+import com.duma.ld.zhilianlift.view.main.shopping.order.OrderListFragment;
 
 import butterknife.BindView;
 

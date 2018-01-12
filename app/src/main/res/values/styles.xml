@@ -174,4 +174,12 @@
         <item name="android:paddingTop">14dp</item>
     </style>
 
+    <style name="apply_refund">
+        <item name="android:background">@color/white</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingLeft">13dp</item>
+        <item name="android:paddingRight">13dp</item>
+        <item name="android:paddingTop">10dp</item>
+    </style>
+
 </resources>

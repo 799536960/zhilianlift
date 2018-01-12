@@ -1,4 +1,4 @@
-package com.duma.ld.zhilianlift.view.main.order;
+package com.duma.ld.zhilianlift.view.main.shopping.order;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;

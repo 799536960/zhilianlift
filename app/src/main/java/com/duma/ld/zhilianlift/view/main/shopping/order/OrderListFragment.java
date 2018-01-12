@@ -1,4 +1,4 @@
-package com.duma.ld.zhilianlift.view.main.order;
+package com.duma.ld.zhilianlift.view.main.shopping.order;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -121,7 +121,7 @@ public class OrderListFragment extends BaseMyFragment {
 
                     @Override
                     public void convert(final BaseViewHolder helper, final OrderModel item) {
-                        PublicUtil.getView_OrderGoods(mActivity, helper, item, false, new BaseQuickAdapter.OnItemClickListener() {
+                        PublicUtil.getViewOrder(mActivity, helper, item, false, new BaseQuickAdapter.OnItemClickListener() {
                             @Override
                             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                                 // 跳转到订单详情

@@ -103,16 +103,19 @@
         <activity android:name=".view.main.pay.PaySuccessActivity" />
         <activity android:name=".view.main.pay.PayActivity" />
         <activity
-            android:name=".view.main.order.OrderListActivity"
+            android:name=".view.main.shopping.order.OrderListActivity"
             android:launchMode="singleTask" />
         <activity android:name=".view.main.house.MySecondHouseActivity" />
         <activity android:name=".view.main.house.MyRentalHouseActivity" />
         <activity android:name=".view.main.house.AddHouseActivity" />
         <activity
-            android:name=".view.main.order.OrderInfoActivity"
+            android:name=".view.main.shopping.order.OrderInfoActivity"
             android:launchMode="singleTask" />
         <activity android:name=".view.start.WebViewActivity" />
         <activity android:name=".view.main.shopping.AddCommentActivity" />
+        <activity android:name=".view.main.shopping.AfterSalesListActivity" />
+        <activity android:name=".view.main.shopping.ApplyAfterSalesListActivity" />
+        <activity android:name=".view.main.shopping.ApplyRefundActivity" />
     </application>
 
 </manifest>
