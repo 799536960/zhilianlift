@@ -154,9 +154,9 @@ public class ClassFragment extends BaseMyFragment {
                 break;
             case R.id.layout_message:
                 if (SpDataUtil.isLogin()) {
-                    IntentUtil.goLogin(mActivity);
-                } else {
                     IntentUtil.goMessage(mActivity);
+                } else {
+                    IntentUtil.goLogin(mActivity);
                 }
                 break;
         }

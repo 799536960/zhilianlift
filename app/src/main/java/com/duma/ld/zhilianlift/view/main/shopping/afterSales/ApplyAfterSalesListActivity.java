@@ -83,6 +83,10 @@ public class ApplyAfterSalesListActivity extends BaseMyActivity {
                 .execute(new MyJsonCallback<HttpResModel<AfterSalesType>>() {
                     @Override
                     protected void onJsonSuccess(Response<HttpResModel<AfterSalesType>> respons, HttpResModel<AfterSalesType> stringHttpResModel) {
+                        // TODO: 2018/1/15  http tag问题
+                        if (mList.size() == 1) {
+                            finish();
+                        }
                         switch (stringHttpResModel.getResult().getType()) {
                             case "1":
                                 //售后详情
@@ -96,9 +100,6 @@ public class ApplyAfterSalesListActivity extends BaseMyActivity {
                                 //申请退货页面
                                 IntentUtil.goApplyAfterSales(mActivity, orderGoodsBean);
                                 break;
-                        }
-                        if (mList.size() == 1) {
-                            finish();
                         }
                     }
                 }.isDialog(mActivity));

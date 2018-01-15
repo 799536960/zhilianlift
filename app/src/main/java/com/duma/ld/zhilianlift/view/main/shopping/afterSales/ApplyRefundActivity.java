@@ -66,7 +66,7 @@ public class ApplyRefundActivity extends BaseMyActivity {
 
     @Override
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig) {
-        return initConfig.setLayoutIdByActivity(R.layout.activity_apply_refund, false).setTopBar_A("申请退款");
+        return initConfig.setLayoutIdByActivity(R.layout.activity_apply_refund).setTopBar_A("申请退款");
     }
 
     @Override
@@ -111,6 +111,12 @@ public class ApplyRefundActivity extends BaseMyActivity {
                     @Override
                     protected void onJsonSuccess(Response<HttpResModel<AfterSalesModel>> respons, HttpResModel<AfterSalesModel> afterSalesModelHttpResModel) {
                         mAdapter.addData(afterSalesModelHttpResModel.getResult());
+                    }
+
+                    @Override
+                    public void onError(Response<HttpResModel<AfterSalesModel>> response) {
+                        super.onError(response);
+                        finish();
                     }
                 });
     }

@@ -75,4 +75,7 @@ public class HttpUrl {
     public static String return_goods = BaseUrl + "/index.php/api/order/return_goods";
     public static String return_list = BaseUrl + "/index.php/api/order/return_list";
     public static String return_goods_info = BaseUrl + "/index.php/api/order/return_goods_info";
+    public static String getNews = BaseUrl + "/index.php/api/user/getNews";
+    public static String del_new = BaseUrl + "/index.php/api/del_new";
+    public static String clear_new = BaseUrl + "/index.php/api/clear_new";
 }
