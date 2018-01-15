@@ -24,6 +24,7 @@ import com.duma.ld.zhilianlift.model.AfterSalesModel;
 import com.duma.ld.zhilianlift.model.GoodsBean;
 import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.model.OrderModel;
+import com.duma.ld.zhilianlift.model.UserModel;
 import com.duma.ld.zhilianlift.view.main.shopping.ShoppingCartActivity;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
@@ -295,4 +296,17 @@ public class PublicUtil {
                     }
                 }.isDialog(mActivity));
     }
+
+    /**
+     * 获取消息数量
+     */
+    public static String getMessageNum() {
+        UserModel user = SpDataUtil.getUser();
+        if (user == null) {
+            return "";
+        }
+        return user.getNews();
+    }
+
+
 }

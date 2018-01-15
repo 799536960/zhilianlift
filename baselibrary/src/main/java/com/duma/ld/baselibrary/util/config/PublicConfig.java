@@ -318,6 +318,11 @@ public abstract class PublicConfig {
         setTopBar(name, rightString, LiftImg_Default, 0, onTopBarLeftListener, onTopBarRightListener);
     }
 
+    @NonNull
+    protected void setTopBar(String name, OnTopBarLeftListener onTopBarLeftListener, @DrawableRes int rightImg, OnTopBarRightListener onTopBarRightListener) {
+        setTopBar(name, "", LiftImg_Default, rightImg, onTopBarLeftListener, onTopBarRightListener);
+    }
+
     protected void setYinyin(boolean isYinyin) {
         if (yinYinView != null) {
             if (isYinyin) {

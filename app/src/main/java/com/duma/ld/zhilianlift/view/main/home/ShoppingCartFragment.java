@@ -428,8 +428,7 @@ public class ShoppingCartFragment extends BaseMyFragment {
                 setEdit(!mAdapter.isEdit());
                 break;
             case R.id.layout_messgae:
-                // TODO: 2018/1/2 消息
-
+                IntentUtil.goMessage(mActivity);
                 break;
             case R.id.tv_settlement:
                 IntentUtil.goConfirmOrder(mActivity);
@@ -518,6 +517,7 @@ public class ShoppingCartFragment extends BaseMyFragment {
         super.onSupportVisible();
         onClickLoadingRefresh();
         setEdit(false);
+        layoutMessgae.setNum(PublicUtil.getMessageNum());
     }
 
     private void setEdit(boolean intEdit) {

@@ -20,6 +20,10 @@ import com.duma.ld.zhilianlift.base.baseJsonHttp.MyJsonCallback;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyFragment;
 import com.duma.ld.zhilianlift.model.ClassModel;
 import com.duma.ld.zhilianlift.model.HttpResModel;
+import com.duma.ld.zhilianlift.util.IntentUtil;
+import com.duma.ld.zhilianlift.util.PublicUtil;
+import com.duma.ld.zhilianlift.util.SpDataUtil;
+import com.duma.ld.zhilianlift.widget.LinearImageLayout;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 
@@ -42,7 +46,7 @@ public class ClassFragment extends BaseMyFragment {
     @BindView(R.id.layout_search)
     LinearLayout layoutSearch;
     @BindView(R.id.layout_message)
-    FrameLayout layoutMessage;
+    LinearImageLayout layoutMessage;
     @BindView(R.id.rv_class)
     RecyclerView rvClass;
     @BindView(R.id.layout_framgment)
@@ -61,6 +65,12 @@ public class ClassFragment extends BaseMyFragment {
         super.init(savedInstanceState);
         initAdapter();
         initFragment();
+    }
+
+    @Override
+    public void onSupportVisible() {
+        super.onSupportVisible();
+        layoutMessage.setNum(PublicUtil.getMessageNum());
     }
 
     @Override
@@ -137,10 +147,17 @@ public class ClassFragment extends BaseMyFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.layout_scan:
+                // TODO: 2018/1/15 扫码
                 break;
             case R.id.layout_search:
+                IntentUtil.goSearch(mActivity);
                 break;
             case R.id.layout_message:
+                if (SpDataUtil.isLogin()) {
+                    IntentUtil.goLogin(mActivity);
+                } else {
+                    IntentUtil.goMessage(mActivity);
+                }
                 break;
         }
     }

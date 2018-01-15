@@ -29,6 +29,7 @@ import com.duma.ld.zhilianlift.view.main.shopping.order.ConfirmOrderActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.order.OrderInfoActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.order.OrderListActivity;
 import com.duma.ld.zhilianlift.view.main.wode.CouponsActivity;
+import com.duma.ld.zhilianlift.view.main.wode.MessageActivity;
 import com.duma.ld.zhilianlift.view.main.wode.MyCollectActivity;
 import com.duma.ld.zhilianlift.view.main.wode.MyRecordActivity;
 import com.duma.ld.zhilianlift.view.main.wode.UserDataActivity;
@@ -407,6 +408,14 @@ public class IntentUtil {
     public static void goAfterSalesInfo(Activity activity, String asId) {
         Intent intent = new Intent(activity, AfterSalesInfoActivity.class);
         intent.putExtra(Constants.id, asId);
+        activity.startActivity(intent);
+    }
+
+    /**
+     * 消息中心
+     */
+    public static void goMessage(Activity activity) {
+        Intent intent = new Intent(activity, MessageActivity.class);
         activity.startActivity(intent);
     }
 }

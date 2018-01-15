@@ -190,6 +190,7 @@ public class MyFragment extends BaseMyFragment {
                 startActivity(new Intent(mActivity, SettingActivity.class));
                 break;
             case R.id.layout_messgae:
+                IntentUtil.goMessage(mActivity);
                 break;
             case R.id.layout_order_daifukuan:
                 IntentUtil.goOrderList(mActivity, 1);

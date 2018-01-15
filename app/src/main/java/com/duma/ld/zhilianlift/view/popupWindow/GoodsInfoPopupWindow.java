@@ -9,6 +9,7 @@ import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseAdapter.BaseAdapter;
 import com.duma.ld.zhilianlift.model.QuModel;
 import com.duma.ld.zhilianlift.util.IntentUtil;
+import com.duma.ld.zhilianlift.util.SpDataUtil;
 import com.duma.ld.zhilianlift.widget.LinearImageLayout;
 
 import razerdp.basepopup.BasePopupWindow;
@@ -72,14 +73,20 @@ public class GoodsInfoPopupWindow extends BasePopupWindow implements View.OnClic
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.layout_message:
-                // TODO: 2017/12/28 跳转message
-                break;
             case R.id.layout_home:
                 IntentUtil.goMain(activity);
-                break;
+                return;
             case R.id.layout_search:
                 IntentUtil.goSearch(activity);
+                return;
+        }
+        if (!SpDataUtil.isLogin()) {
+            IntentUtil.goLogin(activity);
+            return;
+        }
+        switch (v.getId()) {
+            case R.id.layout_message:
+                IntentUtil.goMessage(activity);
                 break;
             case R.id.layout_collect:
                 IntentUtil.goMyCollect(activity);

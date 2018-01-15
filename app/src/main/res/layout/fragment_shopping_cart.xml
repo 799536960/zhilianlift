@@ -61,8 +61,7 @@
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                app:LiIcon="@drawable/message_light"
-                app:LiNum="111" />
+                app:LiIcon="@drawable/message_light" />
 
 
         </LinearLayout>

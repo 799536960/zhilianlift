@@ -1,5 +1,6 @@
 package com.duma.ld.baselibrary.util.config;
 
+import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,8 +43,13 @@ public class ActivityConfig extends PublicConfig {
         return this;
     }
 
-    public ActivityConfig setTopBar_A(String name, OnTopBarLeftListener onTopBarLeftListener, String rightString, OnTopBarRightListener onTopBarRightListener) {
-        setTopBar(name, onTopBarLeftListener, rightString, onTopBarRightListener);
+    public ActivityConfig setTopBar_A(String name, OnTopBarLeftListener onTopBarLeftListener, @DrawableRes int rightImg, OnTopBarRightListener onTopBarRightListener) {
+        setTopBar(name, onTopBarLeftListener, rightImg, onTopBarRightListener);
+        return this;
+    }
+
+    public ActivityConfig setTopBar_A(String name, OnTopBarLeftListener onTopBarLeftListener, String rightText, OnTopBarRightListener onTopBarRightListener) {
+        setTopBar(name, onTopBarLeftListener, rightText, onTopBarRightListener);
         return this;
     }
 

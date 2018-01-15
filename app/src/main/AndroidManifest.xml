@@ -118,6 +118,7 @@
         <activity android:name=".view.main.shopping.afterSales.ApplyRefundActivity" />
         <activity android:name=".view.main.shopping.afterSales.AfterSalesInfoActivity" />
         <activity android:name=".view.main.shopping.afterSales.ApplyAfterSalesActivity" />
+        <activity android:name=".view.main.wode.MessageActivity" />
     </application>
 
 </manifest>
