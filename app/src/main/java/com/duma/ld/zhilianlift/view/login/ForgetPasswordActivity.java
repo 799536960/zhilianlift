@@ -82,7 +82,7 @@ public class ForgetPasswordActivity extends BaseMyActivity {
                         DialogUtil.getInstance().hide();
                         sendCodeUtil.starTime();
                     }
-                });
+                }.noTag());
     }
 
     @Override

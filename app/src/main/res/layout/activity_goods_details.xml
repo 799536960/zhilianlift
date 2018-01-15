@@ -111,9 +111,16 @@
                 android:layout_weight="1"
                 android:background="@drawable/ripple_bai"
                 android:gravity="center"
-                app:LiIcon="@drawable/shoucang"
-                app:LiName="收藏"
-                app:LiPadding="2dp" />
+                android:orientation="vertical"
+                app:LiIcon="@drawable/shoucang">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="收藏"
+                    android:textSize="10sp" />
+            </com.duma.ld.zhilianlift.widget.LinearImageLayout>
 
             <com.duma.ld.zhilianlift.widget.LinearImageLayout
                 android:id="@+id/layout_servicePhone"
@@ -122,9 +129,16 @@
                 android:layout_weight="1"
                 android:background="@drawable/ripple_bai"
                 android:gravity="center"
-                app:LiIcon="@drawable/goods4"
-                app:LiName="客服"
-                app:LiPadding="2dp" />
+                android:orientation="vertical"
+                app:LiIcon="@drawable/goods4">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="客服"
+                    android:textSize="10sp" />
+            </com.duma.ld.zhilianlift.widget.LinearImageLayout>
 
             <com.duma.ld.zhilianlift.widget.LinearImageLayout
                 android:id="@+id/layout_shopCart"
@@ -133,9 +147,16 @@
                 android:layout_weight="1"
                 android:background="@drawable/ripple_bai"
                 android:gravity="center"
-                app:LiIcon="@drawable/goods3"
-                app:LiName="购物车"
-                app:LiPadding="2dp" />
+                android:orientation="vertical"
+                app:LiIcon="@drawable/goods3">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="购物车"
+                    android:textSize="10sp" />
+            </com.duma.ld.zhilianlift.widget.LinearImageLayout>
         </LinearLayout>
 
         <TextView

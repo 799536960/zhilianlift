@@ -10,96 +10,104 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
-            style="@style/topbar_h_fragment"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:background="@color/primary"
-            android:gravity="right|center"
-            android:orientation="horizontal"
-            android:paddingRight="12dp">
-
-
-            <FrameLayout
-                android:id="@+id/layout_setting"
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:background="@drawable/ripple_hong">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/wode14" />
-            </FrameLayout>
-
-            <com.duma.ld.zhilianlift.widget.LinearImageLayout
-                android:id="@+id/layout_messgae"
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:background="@drawable/ripple_hong"
-                android:gravity="center"
-                app:LiIcon="@drawable/wode15" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layout_user"
-            android:layout_width="match_parent"
-            android:layout_height="105dp"
-            android:background="@color/primary"
-            android:orientation="horizontal">
+            android:layout_height="180dp"
+            android:background="@drawable/bg1"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:gravity="right|center"
+                android:orientation="horizontal"
+                android:paddingRight="12dp">
 
-                <ImageView
-                    android:id="@+id/img_icon"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginLeft="18dp"
-                    android:src="@drawable/img_60" />
+                <FrameLayout
+                    android:id="@+id/layout_setting"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:paddingBottom="2dp">
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_Nick_name"
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="昵称"
-                        android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:layout_gravity="center|bottom"
+                        android:src="@drawable/wode14" />
+                </FrameLayout>
 
-                    <TextView
-                        android:id="@+id/tv_phone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="用户名:18888888"
-                        android:textColor="@color/white"
-                        android:textSize="10sp" />
-                </LinearLayout>
+                <com.duma.ld.zhilianlift.widget.LinearImageLayout
+                    android:id="@+id/layout_messgae"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center|bottom"
+                    app:LiIcon="@drawable/wode15" />
             </LinearLayout>
 
-            <FrameLayout
-                android:layout_width="32dp"
-                android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/layout_user"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center|top"
-                    android:layout_marginTop="35dp"
-                    android:src="@drawable/wode16" />
-            </FrameLayout>
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
 
-        </LinearLayout>
+                    <ImageView
+                        android:id="@+id/img_icon"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="18dp"
+                        android:src="@drawable/img_60" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_Nick_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="昵称"
+                            android:textColor="@color/white"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/tv_phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="用户名:18888888"
+                            android:textColor="@color/white"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+
+                    <FrameLayout
+                        android:layout_width="32dp"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/wode16" />
+                    </FrameLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -113,10 +121,17 @@
                 android:layout_weight="1"
                 android:background="@drawable/ripple_bai"
                 android:gravity="center"
+                android:orientation="vertical"
                 app:LiIcon="@drawable/wode13"
-                app:LiName="待付款"
-                app:LiNum="2222"
-                app:LiPadding="17dp" />
+                app:LiNum="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="代付款"
+                    android:textSize="12sp" />
+            </com.duma.ld.zhilianlift.widget.LinearImageLayout>
 
             <com.duma.ld.zhilianlift.widget.LinearImageLayout
                 android:id="@+id/layout_order_daishouhuo"
@@ -125,9 +140,16 @@
                 android:layout_weight="1"
                 android:background="@drawable/ripple_bai"
                 android:gravity="center"
-                app:LiIcon="@drawable/wode12"
-                app:LiName="待收货"
-                app:LiPadding="17dp" />
+                android:orientation="vertical"
+                app:LiIcon="@drawable/wode12">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="待收货"
+                    android:textSize="12sp" />
+            </com.duma.ld.zhilianlift.widget.LinearImageLayout>
 
             <com.duma.ld.zhilianlift.widget.LinearImageLayout
                 android:id="@+id/layout_order_daipinjia"
@@ -136,9 +158,16 @@
                 android:layout_weight="1"
                 android:background="@drawable/ripple_bai"
                 android:gravity="center"
-                app:LiIcon="@drawable/wode11"
-                app:LiName="待评价"
-                app:LiPadding="17dp" />
+                android:orientation="vertical"
+                app:LiIcon="@drawable/wode11">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="待评价"
+                    android:textSize="12sp" />
+            </com.duma.ld.zhilianlift.widget.LinearImageLayout>
 
             <com.duma.ld.zhilianlift.widget.LinearImageLayout
                 android:id="@+id/layout_order_shouhou"
@@ -147,9 +176,16 @@
                 android:layout_weight="1"
                 android:background="@drawable/ripple_bai"
                 android:gravity="center"
-                app:LiIcon="@drawable/wode10"
-                app:LiName="退换/售后"
-                app:LiPadding="17dp" />
+                android:orientation="vertical"
+                app:LiIcon="@drawable/wode10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="退换/售后"
+                    android:textSize="12sp" />
+            </com.duma.ld.zhilianlift.widget.LinearImageLayout>
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -164,9 +200,16 @@
                 android:layout_weight="1"
                 android:background="@drawable/ripple_bai"
                 android:gravity="center"
-                app:LiIcon="@drawable/wode4"
-                app:LiName="我的订单"
-                app:LiPadding="17dp" />
+                android:orientation="vertical"
+                app:LiIcon="@drawable/wode4">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="我的订单"
+                    android:textSize="12sp" />
+            </com.duma.ld.zhilianlift.widget.LinearImageLayout>
         </LinearLayout>
 
         <View style="@style/henxian" />
@@ -203,7 +246,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="13dp"
+                    android:layout_marginBottom="15dp"
                     android:text="装修资金"
                     android:textColor="@color/hei3"
                     android:textSize="11sp" />
@@ -236,7 +279,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="13dp"
+                    android:layout_marginBottom="15dp"
                     android:text="优惠券"
                     android:textColor="@color/hei3"
                     android:textSize="11sp" />
@@ -269,7 +312,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="13dp"
+                    android:layout_marginBottom="15dp"
                     android:text="余额"
                     android:textColor="@color/hei3"
                     android:textSize="11sp" />
@@ -302,7 +345,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="13dp"
+                    android:layout_marginBottom="15dp"
                     android:text="补贴积分"
                     android:textColor="@color/hei3"
                     android:textSize="11sp" />
@@ -319,9 +362,17 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                app:LiIcon="@drawable/wode5"
-                app:LiName="我的钱包"
-                app:LiPadding="17dp" />
+                android:orientation="vertical"
+                app:LiIcon="@drawable/wode5">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
+                    android:text="我的钱包"
+                    android:textColor="@color/hei3"
+                    android:textSize="11sp" />
+            </com.duma.ld.zhilianlift.widget.LinearImageLayout>
         </LinearLayout>
 
         <View

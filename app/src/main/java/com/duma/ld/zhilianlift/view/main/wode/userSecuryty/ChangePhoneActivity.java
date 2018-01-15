@@ -90,7 +90,7 @@ public class ChangePhoneActivity extends BaseMyActivity {
                     sendCodeUtil_New.starTime();
                 }
             }
-        });
+        }.noTag());
     }
 
     @Override

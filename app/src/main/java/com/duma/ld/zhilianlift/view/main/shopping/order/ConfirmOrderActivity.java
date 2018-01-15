@@ -260,7 +260,7 @@ public class ConfirmOrderActivity extends BaseMyActivity {
                     finish();
                 }
             }
-        };
+        }.setTag(100);
         GetRequest<HttpResModel<ConfirmOrderModel>> params = OkGo.<HttpResModel<ConfirmOrderModel>>get(Cart2);
         if (!isType()) {
             params.params("goods_id", model.getGoods_id())
@@ -518,7 +518,7 @@ public class ConfirmOrderActivity extends BaseMyActivity {
                     finish();
                 }
             }
-        }.isDialog(mActivity));
+        }.isDialog(mActivity).noTag());
     }
 
     private boolean isYuE() {

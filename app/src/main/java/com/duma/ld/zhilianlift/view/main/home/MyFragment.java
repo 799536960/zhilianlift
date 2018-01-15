@@ -145,7 +145,7 @@ public class MyFragment extends BaseMyFragment {
             Logger.e("user: null");
             imgIcon.setImageDrawable(ZhuanHuanUtil.getDrawable(R.drawable.img_60));
             //没有登录 初始化数据
-            tvPhone.setVisibility(View.INVISIBLE);
+            tvPhone.setVisibility(View.GONE);
             tvName.setText("未登录");
             tvZhuangXiuZiJin.setText("0");
             tvYouHuiJuan.setText("0");

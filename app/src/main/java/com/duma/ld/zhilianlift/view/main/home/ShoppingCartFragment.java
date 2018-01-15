@@ -453,6 +453,7 @@ public class ShoppingCartFragment extends BaseMyFragment {
     private void changeSelect() {
         DialogUtil.getInstance().show(mActivity);
         OkGo.<HttpResModel<ShoppingCartModel>>post(changeNum)
+                .tag(httpTag)
                 .params("cart_form_data", new Gson().toJson(mSelectList))
                 .params("status", "0")
                 .execute(new MyJsonCallback<HttpResModel<ShoppingCartModel>>() {
@@ -498,6 +499,7 @@ public class ShoppingCartFragment extends BaseMyFragment {
     public void onClickLoadingRefresh() {
         super.onClickLoadingRefresh();
         OkGo.<HttpResModel<ShoppingCartModel>>get(cartList)
+                .tag(httpTag)
                 .execute(new MyJsonCallback<HttpResModel<ShoppingCartModel>>(mFragmentConfig) {
                     @Override
                     protected void onJsonSuccess(Response<HttpResModel<ShoppingCartModel>> respons, HttpResModel<ShoppingCartModel> shoppingCartModelHttpResModel) {

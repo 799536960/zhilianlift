@@ -85,7 +85,7 @@ public class RegisterActivity extends BaseMyActivity {
                         DialogUtil.getInstance().hide();
                         sendCodeUtil.starTime();
                     }
-                });
+                }.noTag());
     }
 
     @Override

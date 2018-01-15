@@ -13,9 +13,9 @@
     </declare-styleable>
 
     <declare-styleable name="LinearImageLayout">
-        <attr name="LiName" format="string" />
+        <!--<attr name="LiName" format="string" />-->
         <attr name="LiIcon" format="reference" />
-        <attr name="LiPadding" format="dimension" />
+        <!--<attr name="LiPadding" format="dimension" />-->
         <attr name="LiNum" format="integer" />
     </declare-styleable>
 

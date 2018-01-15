@@ -129,7 +129,7 @@ public class SelectAddresFragment extends BaseMyFragment {
                     protected void onJsonSuccess(Response<HttpResModel<List<ProvinceModel>>> respons, HttpResModel<List<ProvinceModel>> listHttpResModel) {
                         adapter.setNewData(listHttpResModel.getResult());
                     }
-                });
+                }.noTag());
     }
 
 }

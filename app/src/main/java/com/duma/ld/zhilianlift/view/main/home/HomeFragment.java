@@ -193,7 +193,7 @@ public class HomeFragment extends BaseMyFragment {
                     protected void onJsonSuccess(Response<HttpResModel<HomeModel>> respons, HttpResModel<HomeModel> homeModelHttpResModel) {
                         initData(homeModelHttpResModel.getResult());
                     }
-                });
+                }.noTag());
     }
 
     @OnClick({R.id.layout_city, R.id.layout_search, R.id.layout_scan})

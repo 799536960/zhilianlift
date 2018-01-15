@@ -32,14 +32,14 @@ public class ImageLoader {
         //options.error(errorRes)//加载错误的图片
 //        options.error(R.color.hui1);//或者是个颜色值
         //options.circleCrop()设置成圆形头像<这个是V4.0新增的>
-        Glide.with(context)
+        Glide.with(MyApplication.getInstance())
                 .load(url)
                 .apply(options)
                 .into(imageView);
     }
 
     public static void with(Context context, Object url, ImageView imageView) {
-        with(context, url, imageView, 0);
+        with(MyApplication.getInstance(), url, imageView, 0);
     }
 
     public static void with(Object url, ImageView imageView) {
@@ -64,7 +64,7 @@ public class ImageLoader {
         //options.placeholder(loadingRes)//加载中图片
         options.error(R.drawable.img_60);//或者是个颜色值
         options.circleCrop();
-        Glide.with(context)
+        Glide.with(MyApplication.getInstance())
                 .load(url)
                 .apply(options)
                 .into(imageView);

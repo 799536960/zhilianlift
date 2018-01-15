@@ -28,10 +28,16 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
     //是否开启dialog
     private boolean isDialog = false;
     private Activity mActivity;
+    //是否tag
+    private boolean isTag = true;
+    public static int httpTag = 200;
 
     @Override
     public void onStart(Request<T, ? extends Request> request) {
         loadingShow();
+        if (isTag) {
+            request.tag(httpTag);
+        }
         HttpParams params = request.getParams();
         params.put("token", SpDataUtil.getToken());
         params.put("user_id", SpDataUtil.getUserId());
@@ -58,6 +64,17 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
     public MyJsonCallback<T> isDialog(Activity activity) {
         isDialog = true;
         mActivity = activity;
+        return this;
+    }
+
+    public MyJsonCallback<T> noTag() {
+        isTag = false;
+        return this;
+    }
+
+    public MyJsonCallback<T> setTag(int tag) {
+        isTag = true;
+        httpTag = tag;
         return this;
     }
 

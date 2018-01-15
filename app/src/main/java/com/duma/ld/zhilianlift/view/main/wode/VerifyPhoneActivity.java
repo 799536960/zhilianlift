@@ -74,7 +74,7 @@ public class VerifyPhoneActivity extends BaseMyActivity {
                             DialogUtil.getInstance().hide();
                             sendCodeUtil.starTime();
                         }
-                    });
+                    }.noTag());
         }
     }
 
