@@ -32,6 +32,21 @@ public class AfterSalesModel {
     private String store_name;
     private String store_address;
     private String service_phone;
+    /**
+     * province : 山西省
+     * city : 阳泉市
+     * address : 你够
+     * total_address : 山西省阳泉市平定县你够
+     * consignee : 金素恩尼
+     * mobile : 18772397062
+     */
+
+    private String province;
+    private String city;
+    private String address;
+    private String total_address;
+    private String consignee;
+    private String mobile;
 
     public int getRec_id() {
         return rec_id;
@@ -142,5 +157,53 @@ public class AfterSalesModel {
 
     public void setService_phone(String service_phone) {
         this.service_phone = service_phone;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getTotal_address() {
+        return total_address;
+    }
+
+    public void setTotal_address(String total_address) {
+        this.total_address = total_address;
+    }
+
+    public String getConsignee() {
+        return consignee;
+    }
+
+    public void setConsignee(String consignee) {
+        this.consignee = consignee;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 }

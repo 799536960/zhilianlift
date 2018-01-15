@@ -3,24 +3,24 @@
     <item
         android:id="@+id/i_home"
         android:checked="true"
-        android:icon="@drawable/selector_main1"
+        android:icon="@drawable/ic_home_unselected"
         android:title="@string/main_bottom_bar1" />
 
     <item
         android:id="@+id/i_class"
-        android:icon="@drawable/selector_main2"
+        android:icon="@drawable/ic_classify_unselected"
         android:title="@string/main_bottom_bar2" />
 
     <item
         android:id="@+id/i_finance"
-        android:icon="@drawable/selector_main3"
+        android:icon="@drawable/ic_finance_unselected"
         android:title="@string/main_bottom_bar3" />
     <item
         android:id="@+id/i_shoppingCart"
-        android:icon="@drawable/selector_main4"
+        android:icon="@drawable/ic_shopping_unselected"
         android:title="@string/main_bottom_bar4" />
     <item
         android:id="@+id/i_my"
-        android:icon="@drawable/selector_main5"
+        android:icon="@drawable/ic_me_unselected"
         android:title="@string/main_bottom_bar5" />
 </menu>

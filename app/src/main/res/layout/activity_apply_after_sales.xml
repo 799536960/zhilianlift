@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/hui_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white" />
+
+        <LinearLayout
+            style="@style/apply_refund"
+            android:layout_width="match_parent"
+            android:layout_height="89dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="服务类型"
+                android:textSize="13sp" />
+
+            <RadioGroup
+                android:id="@+id/radio_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radio_btn_tuihuo"
+                    android:layout_width="77dp"
+                    android:layout_height="31dp"
+                    android:background="@drawable/sl_dr_hong_hei"
+                    android:button="@null"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:text="退货"
+                    android:textColor="@drawable/sl_hong_hei" />
+
+                <RadioButton
+                    android:id="@+id/radio_btn_huanhuo"
+                    android:layout_width="77dp"
+                    android:layout_height="31dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/sl_dr_hong_hei"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="换货"
+                    android:textColor="@drawable/sl_hong_hei" />
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/apply_refund"
+            android:layout_width="match_parent"
+            android:layout_height="94dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="申请数量"
+                android:textSize="13sp" />
+
+            <com.duma.ld.zhilianlift.widget.NumInputLayout
+                android:id="@+id/numInput_num"
+                android:layout_width="110dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="8dp"
+                app:Nun_Width="30dp" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/apply_refund"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:text="问题描述"
+            android:textSize="13sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <EditText
+                android:id="@+id/edit_content"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:background="@color/hui_bg"
+                android:gravity="top"
+                android:hint="请在此输入您要反馈的问题，我们很珍视您的意见，我们将在第一时间安排护理或给到反馈，真挚感谢！"
+                android:maxLength="200"
+                android:padding="5dp"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_photo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp" />
+        </RelativeLayout>
+
+
+        <LinearLayout
+            style="@style/apply_refund"
+            android:layout_width="match_parent"
+            android:layout_height="98dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="商品退回方式"
+                android:textSize="13sp" />
+
+            <RadioGroup
+                android:id="@+id/radio_kuaidi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radio_btn_shangmen"
+                    android:layout_width="77dp"
+                    android:layout_height="31dp"
+                    android:background="@drawable/sl_dr_hong_hei"
+                    android:button="@null"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:text="上门取件"
+                    android:textColor="@drawable/sl_hong_hei" />
+
+                <RadioButton
+                    android:id="@+id/radio_btn_kuaidi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="31dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/sl_dr_hong_hei"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="快递至第三方卖家"
+                    android:textColor="@drawable/sl_hong_hei" />
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_shangmen_kuaidi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="12dp"
+                    android:text="联系人:"
+                    android:textColor="@color/hei4" />
+
+                <EditText
+                    android:id="@+id/edit_address_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="12dp"
+                    android:background="@null"
+                    android:hint="请填写收货人姓名"
+                    android:maxLength="20"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <View style="@style/henxian" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="12dp"
+                    android:text="联系电话:"
+                    android:textColor="@color/hei4" />
+
+                <EditText
+                    android:id="@+id/edit_address_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="12dp"
+                    android:background="@null"
+                    android:hint="请填写收货人手机号码"
+                    android:inputType="phone"
+                    android:maxLength="11"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <View style="@style/henxian" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginLeft="12dp"
+                android:gravity="center_vertical"
+                android:text="收件地址"
+                android:textColor="@color/hei4" />
+
+            <LinearLayout
+                android:id="@+id/layout_add_address"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/edit_address_info"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="35dp"
+                    android:layout_weight="1"
+                    android:maxLines="2"
+                    android:text="地址详情地址详情地址详情地址详情地址详情地址详情地址详情"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:src="@drawable/jiantou_r" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_other_kuaidi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="12dp"
+                    android:text="快递公司:"
+                    android:textColor="@color/hei4" />
+
+                <EditText
+                    android:id="@+id/edit_kuaidi_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="12dp"
+                    android:background="@null"
+                    android:hint="请输入快递公司名称"
+                    android:maxLength="30"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <View style="@style/henxian" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="12dp"
+                    android:text="快递单号:"
+                    android:textColor="@color/hei4" />
+
+                <EditText
+                    android:id="@+id/edit_kuaidi_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="12dp"
+                    android:background="@null"
+                    android:hint="请输入快递单号"
+                    android:inputType="phone"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="11dp"
+            android:text="提交服务单后，售后专员可能与您电话沟通，请保持手机畅通"
+            android:textColor="@color/hui2"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_submit"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="37dp"
+            android:background="@drawable/lr_4_hong"
+            android:gravity="center"
+            android:text="提交"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+</ScrollView>

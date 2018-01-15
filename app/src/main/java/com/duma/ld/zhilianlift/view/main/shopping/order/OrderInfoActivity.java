@@ -208,17 +208,17 @@ public class OrderInfoActivity extends BaseMyActivity {
         switch (result.getOrder_status_code()) {
             case Order_Type_DaiFuKuan:
                 tvCourierState.setText("等待付款");
-                imgCourierState.setImageDrawable(ZhuanHuanUtil.getDrawable(R.drawable.complete));
+                imgCourierState.setImageDrawable(ZhuanHuanUtil.getDrawable(R.drawable.pay));
                 tvCourierType.setText("需付款：¥" + result.getDaFuKuan());
                 break;
             case Order_Type_DaiFaHuo:
                 tvCourierState.setText("正在出库");
-                imgCourierState.setImageDrawable(ZhuanHuanUtil.getDrawable(R.drawable.complete));
+                imgCourierState.setImageDrawable(ZhuanHuanUtil.getDrawable(R.drawable.out));
                 tvShouhou.setVisibility(View.VISIBLE);
                 break;
             case Order_Type_DaiShouHuo:
                 tvCourierState.setText("已出库");
-                imgCourierState.setImageDrawable(ZhuanHuanUtil.getDrawable(R.drawable.complete));
+                imgCourierState.setImageDrawable(ZhuanHuanUtil.getDrawable(R.drawable.car));
                 break;
             case Order_Type_DaiPinJia:
                 tvCourierState.setText("完成");
@@ -227,7 +227,7 @@ public class OrderInfoActivity extends BaseMyActivity {
                 break;
             case Order_Type_YiQuXiao:
                 tvCourierState.setText("已取消");
-                imgCourierState.setImageDrawable(ZhuanHuanUtil.getDrawable(R.drawable.complete));
+                imgCourierState.setImageDrawable(ZhuanHuanUtil.getDrawable(R.drawable.cancel));
                 tvCourierType.setText("");
                 break;
             case Order_Type_YiWanChen:

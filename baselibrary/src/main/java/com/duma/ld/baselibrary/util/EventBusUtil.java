@@ -7,7 +7,6 @@ import org.greenrobot.eventbus.EventBus;
 
 
 /**
- *
  * @author liudong
  * @date 2017/6/6
  */
@@ -29,7 +28,7 @@ public class EventBusUtil {
         EventBus.getDefault().post(new EventModel<>(code, message));
     }
 
-    public static void sendModel(int code, Object data, String message) {
+    public static void sendModel(int code, String message, Object data) {
         EventBus.getDefault().post(new EventModel<>(code, data, message));
     }
 

@@ -3,7 +3,6 @@ package com.duma.ld.zhilianlift.util;
 import android.app.Activity;
 import android.content.Intent;
 
-import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.model.AddresModel;
 import com.duma.ld.zhilianlift.model.CommitOrderModel;
@@ -15,19 +14,20 @@ import com.duma.ld.zhilianlift.view.main.home.HomeActivity;
 import com.duma.ld.zhilianlift.view.main.house.AddHouseActivity;
 import com.duma.ld.zhilianlift.view.main.house.MyRentalHouseActivity;
 import com.duma.ld.zhilianlift.view.main.house.MySecondHouseActivity;
-import com.duma.ld.zhilianlift.view.main.shopping.afterSales.AfterSalesInfoActivity;
-import com.duma.ld.zhilianlift.view.main.shopping.order.OrderInfoActivity;
-import com.duma.ld.zhilianlift.view.main.shopping.order.OrderListActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PayActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PayInputPasswordActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PaySuccessActivity;
-import com.duma.ld.zhilianlift.view.main.shopping.afterSales.ApplyAfterSalesListActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.AddCommentActivity;
+import com.duma.ld.zhilianlift.view.main.shopping.SearchActivity;
+import com.duma.ld.zhilianlift.view.main.shopping.afterSales.AfterSalesInfoActivity;
+import com.duma.ld.zhilianlift.view.main.shopping.afterSales.ApplyAfterSalesActivity;
+import com.duma.ld.zhilianlift.view.main.shopping.afterSales.ApplyAfterSalesListActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.afterSales.ApplyRefundActivity;
-import com.duma.ld.zhilianlift.view.main.shopping.order.ConfirmOrderActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.goods.GoodsDetailsActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.goods.GoodsListActivity;
-import com.duma.ld.zhilianlift.view.main.shopping.SearchActivity;
+import com.duma.ld.zhilianlift.view.main.shopping.order.ConfirmOrderActivity;
+import com.duma.ld.zhilianlift.view.main.shopping.order.OrderInfoActivity;
+import com.duma.ld.zhilianlift.view.main.shopping.order.OrderListActivity;
 import com.duma.ld.zhilianlift.view.main.wode.CouponsActivity;
 import com.duma.ld.zhilianlift.view.main.wode.MyCollectActivity;
 import com.duma.ld.zhilianlift.view.main.wode.MyRecordActivity;
@@ -396,10 +396,9 @@ public class IntentUtil {
      * 跳转申请退换货 申请售后页面
      */
     public static void goApplyAfterSales(Activity activity, OrderModel.OrderGoodsBean order_goods) {
-//        Intent intent = new Intent(activity, ApplyRefundActivity.class);
-//        intent.putExtra(Constants.Model, order_goods);
-//        activity.startActivity(intent);
-        TsUtils.show("跳转申请退换货 申请售后页面");
+        Intent intent = new Intent(activity, ApplyAfterSalesActivity.class);
+        intent.putExtra(Constants.Model, order_goods);
+        activity.startActivity(intent);
     }
 
     /**

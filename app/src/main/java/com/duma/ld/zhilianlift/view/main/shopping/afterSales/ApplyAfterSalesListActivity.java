@@ -14,6 +14,7 @@ import com.duma.ld.zhilianlift.base.baseAdapter.BaseAdapter;
 import com.duma.ld.zhilianlift.base.baseAdapter.OnBaseAdapterListener;
 import com.duma.ld.zhilianlift.base.baseJsonHttp.MyJsonCallback;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
+import com.duma.ld.zhilianlift.model.AfterSalesType;
 import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.model.OrderModel;
 import com.duma.ld.zhilianlift.util.Constants;
@@ -103,30 +104,4 @@ public class ApplyAfterSalesListActivity extends BaseMyActivity {
                 }.isDialog(mActivity));
     }
 
-    class AfterSalesType {
-
-        /**
-         * id : null
-         * type : 2
-         */
-
-        private String id;
-        private String type;
-
-        public String getId() {
-            return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
-
-        public String getType() {
-            return type;
-        }
-
-        public void setType(String type) {
-            this.type = type;
-        }
-    }
 }

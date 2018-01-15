@@ -31,6 +31,9 @@
     <declare-styleable name="CheckBoxComment">
         <attr name="CbC_Name" format="string" />
     </declare-styleable>
+    <declare-styleable name="NumInputLayout">
+        <attr name="Nun_Width" format="dimension" />
+    </declare-styleable>
     <declare-styleable name="RedioLayout">
         <attr name="redio_text" format="string" />
     </declare-styleable>

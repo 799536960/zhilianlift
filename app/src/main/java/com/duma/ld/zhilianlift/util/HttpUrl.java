@@ -73,4 +73,6 @@ public class HttpUrl {
     public static String addComment = BaseUrl + "/index.php/api/user/addComment";
     public static String get_return_goods_status = BaseUrl + "/index.php/api/order/get_return_goods_status";
     public static String return_goods = BaseUrl + "/index.php/api/order/return_goods";
+    public static String return_list = BaseUrl + "/index.php/api/order/return_list";
+    public static String return_goods_info = BaseUrl + "/index.php/api/order/return_goods_info";
 }

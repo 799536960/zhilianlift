@@ -1,6 +1,7 @@
 package com.duma.ld.zhilianlift.widget;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.text.Editable;
@@ -98,6 +99,30 @@ public class NumInputLayout extends LinearLayout implements TextWatcher {
         edit_num.addTextChangedListener(this);
         maxNum = 999;
         setNum(1);
+
+        if (attrs != null) {
+            TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.NumInputLayout);
+            float mWidth = a.getDimension(R.styleable.NumInputLayout_Nun_Width, dp2px(25));
+            a.recycle();
+            refreH((int) mWidth);
+        }
+    }
+
+//    @Override
+//    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+//        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+//        refreH();
+//    }
+
+    /**
+     * dp转px
+     *
+     * @param dpValue dp值
+     * @return px值
+     */
+    private int dp2px(final float dpValue) {
+        final float scale = mContext.getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
     }
 
     public void setNoInput() {
@@ -148,10 +173,14 @@ public class NumInputLayout extends LinearLayout implements TextWatcher {
         }
     }
 
-    @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(getHeight(), ViewGroup.LayoutParams.MATCH_PARENT);
+//    @Override
+//    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+//        super.onSizeChanged(w, h, oldw, oldh);
+//        refreH();
+//    }
+
+    private void refreH(int width) {
+        LayoutParams layoutParams = new LayoutParams(width, ViewGroup.LayoutParams.MATCH_PARENT);
         layout_jian.setLayoutParams(layoutParams);
         layout_jia.setLayoutParams(layoutParams);
     }

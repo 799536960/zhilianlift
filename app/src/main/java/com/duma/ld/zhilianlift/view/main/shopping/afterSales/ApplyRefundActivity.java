@@ -85,7 +85,7 @@ public class ApplyRefundActivity extends BaseMyActivity {
         imageSelectManager = ImageSelectManager.create(mActivity)
                 .setMaxNum(6)
                 .starRvStyle(rvPhoto);
-        editMoney.setHint("最多¥" + order_goods.getGoods_price());
+        editMoney.setHint("最多¥" + order_goods.getGoods_price() * order_goods.getGoods_num());
         editMoney.setFilters(new InputFilter[]{new PointLengthFilter()});
         layoutEdit.setVisibility(View.GONE);
         dialog = new ApplyRefundDialog(mActivity, new ApplyRefundDialog.OnStringClickListener() {

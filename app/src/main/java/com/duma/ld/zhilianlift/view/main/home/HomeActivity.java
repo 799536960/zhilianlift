@@ -20,6 +20,7 @@ import me.yokeyword.fragmentation.SupportFragment;
 
 
 /**
+ * 首页
  * Created by liudong on 2017/11/29.
  */
 public class HomeActivity extends BaseMyActivity {

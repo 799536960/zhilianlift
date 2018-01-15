@@ -45,6 +45,7 @@ import static com.duma.ld.zhilianlift.util.HttpUrl.getAddressList;
 import static com.duma.ld.zhilianlift.util.HttpUrl.setDefaultAddress;
 
 /**
+ * 地址管理
  * Created by liudong on 2017/12/11.
  */
 
@@ -156,7 +157,8 @@ public class AddresListActivity extends BaseMyActivity {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 if (keyId != null) {
-                    EventBusUtil.sendModel(event_address, AddresListActivity.this.adapter.getData().get(position).getAddress_id() + "");
+                    AddresModel model = AddresListActivity.this.adapter.getData().get(position);
+                    EventBusUtil.sendModel(event_address, model.getAddress_id() + "", model);
                     mActivity.finish();
                 }
             }
