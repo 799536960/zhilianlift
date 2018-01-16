@@ -63,6 +63,7 @@ public class ChangeLoginPasswordActivity extends BaseMyActivity {
         }
         DialogUtil.getInstance().show_noBack(mActivity);
         OkGo.<HttpResModel<String>>post(password)
+                .tag(httpTag)
                 .params("old_password", editOldPassword.getText().toString())
                 .params("new_password", editNewPassword1.getText().toString())
                 .params("confirm_password", editNewPassword2.getText().toString())

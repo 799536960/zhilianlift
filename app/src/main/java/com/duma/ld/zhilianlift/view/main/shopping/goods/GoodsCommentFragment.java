@@ -81,7 +81,7 @@ public class GoodsCommentFragment extends BaseMyFragment implements View.OnClick
         adapter = new BaseAdapter.Builder<CommentModel>(rvList, mActivity, R.layout.adapter_comment_info)
                 .buildLoad(new OnBaseLoadAdapterListener<CommentModel>() {
                     @Override
-                    public void onLoadHttp(int page, int httpTag) {
+                    public void onLoadHttp(int page, int size) {
                         OkGo.<HttpResModel<GoodsCommentModel>>get(getGoodsComment)
                                 .tag(httpTag)
                                 .params(Constants.Page, page)

@@ -107,6 +107,7 @@ public class SettingActivity extends BaseMyActivity {
     private void QueryRealNameHttp() {
         DialogUtil.getInstance().show_noBack(mActivity);
         OkGo.<HttpResModel<RealNameModel>>get(getcertification)
+                .tag(httpTag)
                 .execute(new MyJsonCallback<HttpResModel<RealNameModel>>() {
                     @Override
                     protected void onJsonSuccess(Response<HttpResModel<RealNameModel>> respons, HttpResModel<RealNameModel> realNameModelHttpResModel) {

@@ -77,6 +77,7 @@ public class RegisterActivity extends BaseMyActivity {
     private void sendCode() {
         DialogUtil.getInstance().show_noBack(mActivity, "发送验证码中");
         OkGo.<HttpResModel<String>>get(send_validate_code)
+                .tag(httpTag)
                 .params("mobile", editPhone.getText().toString())
                 .params("type", "1")
                 .execute(new MyJsonCallback<HttpResModel<String>>() {
@@ -85,7 +86,7 @@ public class RegisterActivity extends BaseMyActivity {
                         DialogUtil.getInstance().hide();
                         sendCodeUtil.starTime();
                     }
-                }.noTag());
+                });
     }
 
     @Override
@@ -134,6 +135,7 @@ public class RegisterActivity extends BaseMyActivity {
                 }
                 DialogUtil.getInstance().show_noBack(mActivity);
                 OkGo.<HttpResModel<UserModel>>post(reg)
+                        .tag(httpTag)
                         .params("username", editPhone.getText().toString())
                         .params("password1", editPassword.getText().toString())
                         .params("password2", editPassword2.getText().toString())

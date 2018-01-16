@@ -203,7 +203,8 @@
 1. 添加在申请中的列表
 1. 添加售后详情
 1. 添加消息中心 删除 清空 和列表显示
-1. (activity finish 和 http 取消tag的问题)
+1. (activity finish 和 http 取消tag的问题) 已解决
+
     
     
    

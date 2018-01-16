@@ -33,12 +33,13 @@ import me.yokeyword.fragmentation.SupportFragment;
 public abstract class BaseFragment extends SupportFragment implements OnViewConfigListener {
     protected BaseActivity mActivity;
     protected FragmentConfig mFragmentConfig;
-    public static final int httpTag = 200;
+    protected Object httpTag;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         this.mActivity = (BaseActivity) context;
+        httpTag = BaseFragment.this;
     }
 
     @Override

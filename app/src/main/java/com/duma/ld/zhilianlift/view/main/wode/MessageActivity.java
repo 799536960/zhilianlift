@@ -82,7 +82,7 @@ public class MessageActivity extends BaseMyActivity {
         mAdapter = new BaseAdapter.Builder<MessageModel>(rvList, mActivity, R.layout.adapter_message)
                 .buildLoad(new OnBaseLoadAdapterListener<MessageModel>() {
                     @Override
-                    public void onLoadHttp(int page, int httpTag) {
+                    public void onLoadHttp(int page, int size) {
                         OkGo.<HttpResModel<List<MessageModel>>>get(getNews)
                                 .tag(httpTag)
                                 .params(Constants.Page, page)
@@ -137,6 +137,7 @@ public class MessageActivity extends BaseMyActivity {
 
     private void deleteHttp(final int position) {
         OkGo.<HttpResModel<List<MessageModel>>>get(del_new)
+                .tag(httpTag)
                 .params("ids", mAdapter.getData().get(position).getId())
                 .execute(new MyJsonCallback<HttpResModel<List<MessageModel>>>(mActivityConfig) {
                     @Override
@@ -149,6 +150,7 @@ public class MessageActivity extends BaseMyActivity {
 
     private void deleteAll() {
         OkGo.<HttpResModel<List<MessageModel>>>get(clear_new)
+                .tag(httpTag)
                 .execute(new MyJsonCallback<HttpResModel<List<MessageModel>>>(mActivityConfig) {
                     @Override
                     protected void onJsonSuccess(Response<HttpResModel<List<MessageModel>>> respons, HttpResModel<List<MessageModel>> myRecordModel) {

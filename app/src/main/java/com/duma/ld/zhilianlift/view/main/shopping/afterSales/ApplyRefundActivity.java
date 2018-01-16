@@ -106,6 +106,7 @@ public class ApplyRefundActivity extends BaseMyActivity {
     public void onClickLoadingRefresh() {
         super.onClickLoadingRefresh();
         OkGo.<HttpResModel<AfterSalesModel>>get(return_goods)
+                .tag(httpTag)
                 .params("rec_id", order_goods.getRec_id())
                 .execute(new MyJsonCallback<HttpResModel<AfterSalesModel>>(mActivityConfig) {
                     @Override
@@ -157,6 +158,7 @@ public class ApplyRefundActivity extends BaseMyActivity {
         }
         AfterSalesModel model = mAdapter.getData().get(0);
         OkGo.<HttpResModel<String>>post(return_goods)
+                .tag(httpTag)
                 .params("rec_id", model.getRec_id())
                 .params("goods_num", model.getGoods_num())
                 .params("type", 0)

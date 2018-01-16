@@ -130,6 +130,7 @@ public class AddOrChangeFragment extends BaseMyFragment {
     private void saveHttp() {
         DialogUtil.getInstance().show_noBack(mActivity);
         PostRequest<HttpResModel<AddresModel>> params = OkGo.<HttpResModel<AddresModel>>post(addAddress)
+                .tag(httpTag)
                 .params("address_id", id)
                 .params("consignee", edtName.getText().toString())
                 .params("address", edtAddres.getText().toString())

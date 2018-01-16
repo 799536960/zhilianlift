@@ -115,7 +115,7 @@ public class AddresListActivity extends BaseMyActivity {
         adapter = new BaseAdapter.Builder<AddresModel>(rvList, mActivity, R.layout.rv_dizhi_list)
                 .buildLoad(new OnBaseLoadAdapterListener<AddresModel>() {
                     @Override
-                    public void onLoadHttp(int page, int httpTag) {
+                    public void onLoadHttp(int page, int size) {
                         OkGo.<HttpResModel<List<AddresModel>>>get(getAddressList)
                                 .tag(httpTag)
                                 .params(Constants.Page, page)
@@ -192,6 +192,7 @@ public class AddresListActivity extends BaseMyActivity {
     private void setDefault(final int layoutPosition) {
         DialogUtil.getInstance().show_noBack(mActivity);
         OkGo.<HttpResModel<String>>get(setDefaultAddress)
+                .tag(httpTag)
                 .params("address_id", adapter.getData().get(layoutPosition).getAddress_id())
                 .execute(new MyJsonCallback<HttpResModel<String>>() {
                     @Override
@@ -214,6 +215,7 @@ public class AddresListActivity extends BaseMyActivity {
     private void removeHttp(final int position) {
         DialogUtil.getInstance().show_noBack(mActivity);
         OkGo.<HttpResModel<String>>get(del_address)
+                .tag(httpTag)
                 .params("id", adapter.getData().get(position).getAddress_id())
                 .execute(new MyJsonCallback<HttpResModel<String>>() {
                     @Override

@@ -126,7 +126,7 @@ public class MyFragment extends BaseMyFragment {
         UserModel user = SpDataUtil.getUser();
         if (user != null) {
             //登录后
-            Logger.e("user: " + user.toString());
+//            Logger.e("user: " + user.toString());
             ImageLoader.with_head(mActivity, user.getHead_pic(), imgIcon);
             tvPhone.setVisibility(View.VISIBLE);
             tvName.setText(user.getNickname());
@@ -162,6 +162,7 @@ public class MyFragment extends BaseMyFragment {
     private void getUserDataHttp() {
         swLoading.setRefreshing(true);
         OkGo.<HttpResModel<UserModel>>get(userInfo)
+                .tag(httpTag)
                 .execute(new MyJsonCallback<HttpResModel<UserModel>>() {
                     @Override
                     protected void onJsonSuccess(Response<HttpResModel<UserModel>> respons, HttpResModel<UserModel> userModelHttpResModel) {

@@ -77,13 +77,13 @@ public class ApplyAfterSalesListActivity extends BaseMyActivity {
 
     private void afterSalesHttp(final OrderModel.OrderGoodsBean orderGoodsBean) {
         OkGo.<HttpResModel<AfterSalesType>>get(get_return_goods_status)
+                .tag(httpTag)
                 .params("goods_id", orderGoodsBean.getGoods_id())
                 .params("order_id", order_id)
                 .params("rec_id", orderGoodsBean.getRec_id())
                 .execute(new MyJsonCallback<HttpResModel<AfterSalesType>>() {
                     @Override
                     protected void onJsonSuccess(Response<HttpResModel<AfterSalesType>> respons, HttpResModel<AfterSalesType> stringHttpResModel) {
-                        // TODO: 2018/1/15  http tag问题
                         if (mList.size() == 1) {
                             finish();
                         }

@@ -54,7 +54,7 @@ public class AfterSalesListActivity extends BaseMyActivity {
         mAdapter = new BaseAdapter.Builder<AfterSalesListModel>(rvList, mActivity, R.layout.adapter_after_sales_list)
                 .buildLoad(new OnBaseLoadAdapterListener<AfterSalesListModel>() {
                     @Override
-                    public void onLoadHttp(int page, int httpTag) {
+                    public void onLoadHttp(int page, int size) {
                         OkGo.<HttpResModel<List<AfterSalesListModel>>>get(return_list)
                                 .tag(httpTag)
                                 .params(Constants.Page, page)

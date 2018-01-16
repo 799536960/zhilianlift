@@ -128,6 +128,7 @@ public class RealNameEditActivity extends BaseMyActivity {
         list.add(file2);
         list.add(file3);
         PostRequest<HttpResModel<String>> params = OkGo.<HttpResModel<String>>post(certification)
+                .tag(httpTag)
                 .params("realname", editName.getText().toString())
                 .params("idcard", editNum.getText().toString());
         if (model != null) {

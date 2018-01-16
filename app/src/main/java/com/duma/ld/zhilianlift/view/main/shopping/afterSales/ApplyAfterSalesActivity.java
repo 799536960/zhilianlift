@@ -125,6 +125,7 @@ public class ApplyAfterSalesActivity extends BaseMyActivity implements RadioGrou
     public void onClickLoadingRefresh() {
         super.onClickLoadingRefresh();
         OkGo.<HttpResModel<AfterSalesModel>>get(return_goods)
+                .tag(httpTag)
                 .params("rec_id", order_goods.getRec_id())
                 .execute(new MyJsonCallback<HttpResModel<AfterSalesModel>>(mActivityConfig) {
                     @Override
@@ -219,6 +220,7 @@ public class ApplyAfterSalesActivity extends BaseMyActivity implements RadioGrou
     private void tijiaoHttp() {
         AfterSalesModel model = mAdapter.getData().get(0);
         OkGo.<HttpResModel<String>>post(return_goods)
+                .tag(httpTag)
                 .params("rec_id", model.getRec_id())
                 .params("goods_num", numInputNum.getNum())
                 .params("type", type)

@@ -97,6 +97,7 @@ public class AfterSalesInfoActivity extends BaseMyActivity {
     public void onClickLoadingRefresh() {
         super.onClickLoadingRefresh();
         OkGo.<HttpResModel<AfterSalesInfoModel>>get(return_goods_info)
+                .tag(httpTag)
                 .params("id", id)
                 .execute(new MyJsonCallback<HttpResModel<AfterSalesInfoModel>>(mActivityConfig) {
                     @Override

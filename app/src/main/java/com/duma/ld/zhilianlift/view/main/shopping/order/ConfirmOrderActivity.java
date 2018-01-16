@@ -260,8 +260,8 @@ public class ConfirmOrderActivity extends BaseMyActivity {
                     finish();
                 }
             }
-        }.setTag(100);
-        GetRequest<HttpResModel<ConfirmOrderModel>> params = OkGo.<HttpResModel<ConfirmOrderModel>>get(Cart2);
+        };
+        GetRequest<HttpResModel<ConfirmOrderModel>> params = OkGo.<HttpResModel<ConfirmOrderModel>>get(Cart2).tag(httpTag);
         if (!isType()) {
             params.params("goods_id", model.getGoods_id())
                     .params("action", "buy_now")
@@ -466,6 +466,7 @@ public class ConfirmOrderActivity extends BaseMyActivity {
     //提交订单请求
     private void commitOrderHttp(String password) {
         PostRequest<HttpResModel<CommitOrderModel>> params = OkGo.<HttpResModel<CommitOrderModel>>post(Cart3)
+                .tag(httpTag)
                 .params("act", "submit_order")
                 .params("user_note", editText.getText().toString());
         if (orderTime != 0) {
@@ -518,7 +519,7 @@ public class ConfirmOrderActivity extends BaseMyActivity {
                     finish();
                 }
             }
-        }.isDialog(mActivity).noTag());
+        }.isDialog(mActivity));
     }
 
     private boolean isYuE() {

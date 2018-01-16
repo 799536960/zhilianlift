@@ -124,12 +124,13 @@ public class SelectAddresFragment extends BaseMyFragment {
             }
         }
         httpResModelGetRequest
+                .tag(httpTag)
                 .execute(new MyJsonCallback<HttpResModel<List<ProvinceModel>>>(mFragmentConfig) {
                     @Override
                     protected void onJsonSuccess(Response<HttpResModel<List<ProvinceModel>>> respons, HttpResModel<List<ProvinceModel>> listHttpResModel) {
                         adapter.setNewData(listHttpResModel.getResult());
                     }
-                }.noTag());
+                });
     }
 
 }

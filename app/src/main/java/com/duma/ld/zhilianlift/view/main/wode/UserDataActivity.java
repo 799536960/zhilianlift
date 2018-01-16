@@ -131,6 +131,7 @@ public class UserDataActivity extends BaseMyActivity {
         DialogUtil.getInstance().show_noBack(mActivity);
         final long value = time / 1000;
         OkGo.<HttpResModel<String>>post(updateUserInfo)
+                .tag(httpTag)
                 .params("birthday", value)
                 .execute(new MyJsonCallback<HttpResModel<String>>() {
                     @Override
@@ -145,6 +146,7 @@ public class UserDataActivity extends BaseMyActivity {
     private void setSexHttp(final int options1) {
         DialogUtil.getInstance().show_noBack(mActivity);
         OkGo.<HttpResModel<String>>post(updateUserInfo)
+                .tag(httpTag)
                 .params("sex", options1)
                 .execute(new MyJsonCallback<HttpResModel<String>>() {
                     @Override
@@ -159,6 +161,7 @@ public class UserDataActivity extends BaseMyActivity {
     private void setNickName(final String nickName) {
         DialogUtil.getInstance().show_noBack(mActivity);
         OkGo.<HttpResModel<String>>post(updateUserInfo)
+                .tag(httpTag)
                 .params("nickname", nickName)
                 .execute(new MyJsonCallback<HttpResModel<String>>() {
                     @Override
@@ -198,6 +201,7 @@ public class UserDataActivity extends BaseMyActivity {
     private void upLoadImgHead(final File file) {
         DialogUtil.getInstance().show_noBack(mActivity, "上传中..");
         OkGo.<HttpResModel<String>>post(upload_headpic)
+                .tag(httpTag)
                 .params("head_pic", file)
                 .execute(new MyJsonCallback<HttpResModel<String>>() {
                     @Override

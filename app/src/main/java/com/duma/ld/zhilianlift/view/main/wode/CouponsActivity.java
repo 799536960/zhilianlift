@@ -60,8 +60,8 @@ public class CouponsActivity extends BaseMyActivity {
         adapter = new BaseAdapter.Builder<CouponsModel>(rvList, mActivity, R.layout.adapter_coupons)
                 .buildLoad(new OnBaseLoadAdapterListener<CouponsModel>() {
                     @Override
-                    public void onLoadHttp(int page, int httpTag) {
-                        GetRequest<HttpResModel<List<CouponsModel>>> httpResModelGetRequest = OkGo.<HttpResModel<List<CouponsModel>>>get(getCouponList);
+                    public void onLoadHttp(int page, int size) {
+                        GetRequest<HttpResModel<List<CouponsModel>>> httpResModelGetRequest = OkGo.<HttpResModel<List<CouponsModel>>>get(getCouponList).tag(httpTag);
                         if (last_order_amount != null) {
                             httpResModelGetRequest.params("last_order_amount", last_order_amount);
                         }

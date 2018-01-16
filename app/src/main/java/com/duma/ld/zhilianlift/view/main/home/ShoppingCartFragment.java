@@ -175,9 +175,9 @@ public class ShoppingCartFragment extends BaseMyFragment {
 
             @Override
             public void changeNum(final int position, int num) {
-                OkGo.getInstance().cancelTag("changeNum");
+                OkGo.getInstance().cancelTag(httpTag);
                 OkGo.<HttpResModel<ShoppingChangeNumModel>>get(changeGoodsNum)
-                        .tag("changeNum")
+                        .tag(httpTag)
                         .params("id", mList.get(position).getShoppingCartStoreGoodsModel().getId())
                         .params("goods_num", num)
                         .execute(new MyJsonCallback<HttpResModel<ShoppingChangeNumModel>>(mFragmentConfig) {
@@ -198,6 +198,7 @@ public class ShoppingCartFragment extends BaseMyFragment {
                         //修改规格
                         DialogUtil.getInstance().show_noBack(mActivity);
                         OkGo.<HttpResModel<GoodsMainModel>>get(goodsInfo)
+                                .tag(httpTag)
                                 .params("id", mList.get(position).getShoppingCartStoreGoodsModel().getGoods_id())
                                 .execute(new MyJsonCallback<HttpResModel<GoodsMainModel>>() {
                                     @Override
@@ -278,6 +279,7 @@ public class ShoppingCartFragment extends BaseMyFragment {
         }
         DialogUtil.getInstance().show_noBack(mActivity);
         OkGo.<HttpResModel<ShoppingChangeNumModel>>get(change)
+                .tag(httpTag)
                 .params("id", mList.get(position).getShoppingCartStoreGoodsModel().getId())
                 .params("item_id", specGoodsPriceBean.getItem_id())
                 .execute(new MyJsonCallback<HttpResModel<ShoppingChangeNumModel>>() {
@@ -483,6 +485,7 @@ public class ShoppingCartFragment extends BaseMyFragment {
 
         }
         OkGo.<HttpResModel<ShoppingCartModel>>post(changeNum)
+                .tag(httpTag)
                 .params("cart_form_data", new Gson().toJson(list))
                 .params("status", "1")
                 .execute(new MyJsonCallback<HttpResModel<ShoppingCartModel>>() {

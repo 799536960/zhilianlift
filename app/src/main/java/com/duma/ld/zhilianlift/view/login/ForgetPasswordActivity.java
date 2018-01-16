@@ -75,6 +75,7 @@ public class ForgetPasswordActivity extends BaseMyActivity {
     private void sendCode() {
         DialogUtil.getInstance().show_noBack(mActivity, "发送验证码中");
         OkGo.<HttpResModel<String>>get(send_validate_code)
+                .tag(httpTag)
                 .params("mobile", editPhone.getText().toString())
                 .execute(new MyJsonCallback<HttpResModel<String>>() {
                     @Override
@@ -82,7 +83,7 @@ public class ForgetPasswordActivity extends BaseMyActivity {
                         DialogUtil.getInstance().hide();
                         sendCodeUtil.starTime();
                     }
-                }.noTag());
+                });
     }
 
     @Override
@@ -131,6 +132,7 @@ public class ForgetPasswordActivity extends BaseMyActivity {
                 }
                 DialogUtil.getInstance().show_noBack(mActivity);
                 OkGo.<HttpResModel<String>>post(forgetpassword)
+                        .tag(httpTag)
                         .params("username", editPhone.getText().toString())
                         .params("old_password", editPassword.getText().toString())
                         .params("new_password", editPassword2.getText().toString())

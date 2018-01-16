@@ -67,6 +67,7 @@ public class VerifyPhoneActivity extends BaseMyActivity {
             //发送验证码
             DialogUtil.getInstance().show_noBack(mActivity, "发送验证码中");
             OkGo.<HttpResModel<String>>get(send_validate_code)
+                    .tag(httpTag)
                     .params("mobile", SpDataUtil.getUser().getMobile())
                     .execute(new MyJsonCallback<HttpResModel<String>>() {
                         @Override
@@ -74,7 +75,7 @@ public class VerifyPhoneActivity extends BaseMyActivity {
                             DialogUtil.getInstance().hide();
                             sendCodeUtil.starTime();
                         }
-                    }.noTag());
+                    });
         }
     }
 
@@ -121,6 +122,7 @@ public class VerifyPhoneActivity extends BaseMyActivity {
     private void verifyHttp(String str) {
         DialogUtil.getInstance().show_noBack(mActivity);
         OkGo.<HttpResModel<String>>post(check_sms)
+                .tag(httpTag)
                 .params("mobile", SpDataUtil.getUser().getMobile())
                 .params("check_code", str)
                 .execute(new MyJsonCallback<HttpResModel<String>>() {

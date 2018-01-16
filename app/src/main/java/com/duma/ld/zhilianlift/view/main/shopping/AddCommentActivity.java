@@ -101,6 +101,7 @@ public class AddCommentActivity extends BaseMyActivity {
         }
         Logger.e(new Gson().toJson(upDataList));
         OkGo.<HttpResModel<OrderModel>>post(addComment)
+                .tag(httpTag)
                 .params("order_id", order_id)
                 .params("comment_form_data", new Gson().toJson(upDataList))
                 .execute(new MyJsonCallback<HttpResModel<OrderModel>>() {
@@ -195,6 +196,7 @@ public class AddCommentActivity extends BaseMyActivity {
     private void upDataPhoto(final List<LocalMedia> list) {
         DialogUtil.getInstance().show_noBack(mActivity, "图片上传中");
         OkGo.<HttpResModel<List<String>>>post(upload_comment_img)
+                .tag(httpTag)
                 .addFileParams("idcard_img[]", ImageSelectManager.getFileList(list))
                 .execute(new MyJsonCallback<HttpResModel<List<String>>>() {
                     @Override
@@ -211,6 +213,7 @@ public class AddCommentActivity extends BaseMyActivity {
     public void onClickLoadingRefresh() {
         super.onClickLoadingRefresh();
         OkGo.<HttpResModel<OrderCommentModel>>get(comment_list)
+                .tag(httpTag)
                 .params("order_id", order_id)
                 .execute(new MyJsonCallback<HttpResModel<OrderCommentModel>>(mActivityConfig) {
                     @Override

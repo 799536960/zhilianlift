@@ -70,9 +70,9 @@ public class GoodsTypeAdapter implements BaseQuickAdapter.OnItemClickListener {
                 .setTitleOrDrawableId("您还没有收藏的物品哦~", R.drawable.record1)
                 .buildLoad(new OnBaseLoadAdapterListener<MyRecordModel.VisitBean>() {
                     @Override
-                    public void onLoadHttp(int page, int httpTag) {
+                    public void onLoadHttp(int page, int size) {
                         OkGo.<HttpResModel<List<MyRecordModel.VisitBean>>>get(collectgoodlist)
-                                .tag(httpTag)
+                                .tag(mActivity)
                                 .params(Constants.Page, page)
                                 .execute(new MyJsonCallback<HttpResModel<List<MyRecordModel.VisitBean>>>(config) {
                                     @Override

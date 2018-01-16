@@ -238,6 +238,7 @@ public class PublicUtil {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         OkGo.<HttpResModel<OrderModel>>get(del_order)
+                                .tag(mActivity)
                                 .params("order_id", order_id)
                                 .execute(jsonCallback);
                     }
@@ -256,6 +257,7 @@ public class PublicUtil {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         OkGo.<HttpResModel<OrderModel>>get(cancelOrder)
+                                .tag(mActivity)
                                 .params("order_id", order_id)
                                 .execute(jsonCallback);
                     }
@@ -274,6 +276,7 @@ public class PublicUtil {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         OkGo.<HttpResModel<OrderModel>>get(orderConfirm)
+                                .tag(mActivity)
                                 .params("order_id", order_id)
                                 .execute(jsonCallback);
                     }
@@ -288,6 +291,7 @@ public class PublicUtil {
      */
     public static void HttpZaiCiGouMai(String sn, final Activity mActivity) {
         OkGo.<HttpResModel<OrderModel>>get(buy)
+                .tag(mActivity)
                 .params("sn", sn)
                 .execute(new MyJsonCallback<HttpResModel<OrderModel>>() {
                     @Override

@@ -158,6 +158,7 @@ public class OrderInfoActivity extends BaseMyActivity {
     public void onClickLoadingRefresh() {
         super.onClickLoadingRefresh();
         OkGo.<HttpResModel<OrderModel>>get(order_detail)
+                .tag(httpTag)
                 .params("sn", sn)
                 .execute(new MyJsonCallback<HttpResModel<OrderModel>>(mActivityConfig) {
                     @Override

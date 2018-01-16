@@ -70,6 +70,7 @@ public class LoginActivity extends BaseMyActivity {
                 }
                 DialogUtil.getInstance().show_noBack(mActivity, "登陆中");
                 OkGo.<HttpResModel<UserModel>>post(login)
+                        .tag(httpTag)
                         .params("username", editPhone.getText().toString())
                         .params("password", editPassword.getText().toString())
                         .execute(new MyJsonCallback<HttpResModel<UserModel>>() {

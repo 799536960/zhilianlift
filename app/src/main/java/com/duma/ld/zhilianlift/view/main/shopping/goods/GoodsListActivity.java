@@ -239,15 +239,17 @@ public class GoodsListActivity extends BaseMyActivity {
         }
         adapter = builder.buildLoad(new OnBaseLoadAdapterListener<GoodsBean>() {
             @Override
-            public void onLoadHttp(int page, int httpTag) {
+            public void onLoadHttp(int page, int size) {
                 GetRequest<HttpResModel<GoodsListModel>> request;
                 if (type.equals(Constants.ClassId)) {
                     //分类进来的
                     request = OkGo.<HttpResModel<GoodsListModel>>get(goodsList)
+                            .tag(httpTag)
                             .params("id", res);
                 } else {
                     //条件
                     request = OkGo.<HttpResModel<GoodsListModel>>get(search)
+                            .tag(httpTag)
                             .params("q", res);
                 }
                 request.tag(httpTag)

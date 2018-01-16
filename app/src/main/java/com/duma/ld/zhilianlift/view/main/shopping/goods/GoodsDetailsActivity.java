@@ -165,6 +165,7 @@ public class GoodsDetailsActivity extends BaseMyActivity {
         super.onResume();
         if (goodsNumModel == null) {
             OkGo.<HttpResModel<GoodsNumModel>>get(getInfo)
+                    .tag(httpTag)
                     .params("goods_id", id)
                     .execute(new MyJsonCallback<HttpResModel<GoodsNumModel>>() {
                         @Override

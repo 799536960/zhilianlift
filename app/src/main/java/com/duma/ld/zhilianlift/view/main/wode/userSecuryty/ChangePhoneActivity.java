@@ -79,7 +79,7 @@ public class ChangePhoneActivity extends BaseMyActivity {
                     .params("mobile", editNewPhone.getText().toString())
                     .params("type", "1");
         }
-        httpResModelGetRequest.execute(new MyJsonCallback<HttpResModel<String>>() {
+        httpResModelGetRequest.tag(httpTag).execute(new MyJsonCallback<HttpResModel<String>>() {
             @Override
             protected void onJsonSuccess(Response<HttpResModel<String>> respons, HttpResModel<String> stringHttpResModel) {
                 DialogUtil.getInstance().hide();
@@ -90,7 +90,7 @@ public class ChangePhoneActivity extends BaseMyActivity {
                     sendCodeUtil_New.starTime();
                 }
             }
-        }.noTag());
+        });
     }
 
     @Override
@@ -136,6 +136,7 @@ public class ChangePhoneActivity extends BaseMyActivity {
                 }
                 DialogUtil.getInstance().show_noBack(mActivity);
                 OkGo.<HttpResModel<String>>post(mobile)
+                        .tag(httpTag)
                         .params("old_mobile", SpDataUtil.getUser().getMobile())
                         .params("old_code", editOldCode.getText().toString())
                         .params("new_mobile", editNewPhone.getText().toString())

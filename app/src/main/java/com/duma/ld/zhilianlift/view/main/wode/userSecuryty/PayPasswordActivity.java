@@ -144,6 +144,7 @@ public class PayPasswordActivity extends BaseMyActivity {
     private void verifyPayPassword() {
         DialogUtil.getInstance().show_noBack(mActivity);
         OkGo.<HttpResModel<String>>post(paypwd)
+                .tag(httpTag)
                 .params("paypwd", layoutPassword.getPassword())
                 .execute(new MyJsonCallback<HttpResModel<String>>() {
                     @Override
@@ -171,6 +172,7 @@ public class PayPasswordActivity extends BaseMyActivity {
     private void setPay() {
         DialogUtil.getInstance().show_noBack(mActivity);
         OkGo.<HttpResModel<String>>post(setpaypwd)
+                .tag(httpTag)
                 .params("paypwd", layoutPassword.getPassword())
                 .execute(new MyJsonCallback<HttpResModel<String>>() {
                     @Override

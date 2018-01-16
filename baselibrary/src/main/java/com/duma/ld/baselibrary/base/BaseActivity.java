@@ -27,11 +27,12 @@ import me.yokeyword.fragmentation.SupportActivity;
 public abstract class BaseActivity extends SupportActivity implements OnViewConfigListener {
     protected BaseActivity mActivity;
     protected ActivityConfig mActivityConfig;
-    public static final int httpTag = 200;
+    protected Object httpTag;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        httpTag = BaseActivity.this;
         mActivity = this;
         this.mActivityConfig = setActivityConfig(savedInstanceState, new InitConfig(mActivity, this));
         mActivityConfig.end();

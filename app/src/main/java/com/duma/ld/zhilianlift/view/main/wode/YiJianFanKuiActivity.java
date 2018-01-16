@@ -71,6 +71,7 @@ public class YiJianFanKuiActivity extends BaseMyActivity {
         DialogUtil.getInstance().show_noBack(mActivity, "上传中...");
 
         OkGo.<HttpResModel<String>>post(suggestion)
+                .tag(httpTag)
                 .params("suggestion", editYijian.getText().toString())
                 .params("mobile", editLianXiFangShi.getText().toString())
                 .addFileParams("img[]", imageSelectManager.getFileList())

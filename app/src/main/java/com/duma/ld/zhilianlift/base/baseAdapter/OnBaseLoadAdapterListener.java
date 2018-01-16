@@ -7,7 +7,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
  */
 
 public interface OnBaseLoadAdapterListener<T> {
-    void onLoadHttp(int page, int httpTag);
+    void onLoadHttp(int page, int size);
 
     void convert(BaseViewHolder helper, T item);
 }

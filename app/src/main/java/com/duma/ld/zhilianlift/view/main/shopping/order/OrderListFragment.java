@@ -106,7 +106,7 @@ public class OrderListFragment extends BaseMyFragment {
         mAdapter = new BaseAdapter.Builder<OrderModel>(rvList, mActivity, R.layout.adapter_order_list)
                 .buildLoad(new OnBaseLoadAdapterListener<OrderModel>() {
                     @Override
-                    public void onLoadHttp(int page, int httpTag) {
+                    public void onLoadHttp(int page, int size) {
                         OkGo.<HttpResModel<List<OrderModel>>>get(getOrderList)
                                 .tag(httpTag)
                                 .params(Constants.Page, page)

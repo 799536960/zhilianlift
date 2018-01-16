@@ -39,7 +39,7 @@ public class MyRecordActivity extends BaseSelectDelectActivity {
                 .setTitleOrDrawableId("您还没有浏览记录哦~", R.drawable.record1)
                 .buildLoad(new OnBaseLoadAdapterListener<MyRecordModel>() {
                     @Override
-                    public void onLoadHttp(int page, int httpTag) {
+                    public void onLoadHttp(int page, int size) {
                         OkGo.<HttpResModel<List<MyRecordModel>>>get(visit_log)
                                 .tag(httpTag)
                                 .params(Constants.Page, page)

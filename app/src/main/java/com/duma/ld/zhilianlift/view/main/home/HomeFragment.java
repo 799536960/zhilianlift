@@ -186,14 +186,14 @@ public class HomeFragment extends BaseMyFragment {
         tvCity.setText(SpDataUtil.getCity());
         OkGo.getInstance().cancelTag("onClickLoadingRefresh");
         OkGo.<HttpResModel<HomeModel>>get(homePage)
-                .tag("onClickLoadingRefresh")
+                .tag(httpTag)
                 .params("city_name", SpDataUtil.getCity())
                 .execute(new MyJsonCallback<HttpResModel<HomeModel>>(mFragmentConfig) {
                     @Override
                     protected void onJsonSuccess(Response<HttpResModel<HomeModel>> respons, HttpResModel<HomeModel> homeModelHttpResModel) {
                         initData(homeModelHttpResModel.getResult());
                     }
-                }.noTag());
+                });
     }
 
     @OnClick({R.id.layout_city, R.id.layout_search, R.id.layout_scan})

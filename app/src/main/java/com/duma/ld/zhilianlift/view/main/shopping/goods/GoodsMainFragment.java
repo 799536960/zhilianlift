@@ -237,6 +237,7 @@ public class GoodsMainFragment extends BaseMyFragment {
     public void onClickLoadingRefresh() {
         super.onClickLoadingRefresh();
         OkGo.<HttpResModel<GoodsMainModel>>get(goodsInfo)
+                .tag(httpTag)
                 .params("id", id)
                 .execute(new MyJsonCallback<HttpResModel<GoodsMainModel>>(mFragmentConfig) {
                     @Override
