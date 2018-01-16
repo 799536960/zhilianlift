@@ -119,6 +119,9 @@
         <activity android:name=".view.main.shopping.afterSales.AfterSalesInfoActivity" />
         <activity android:name=".view.main.shopping.afterSales.ApplyAfterSalesActivity" />
         <activity android:name=".view.main.wode.MessageActivity" />
+        <activity android:name=".view.main.pay.HousePayListActivity" />
+        <activity android:name=".view.main.pay.PointsPayListActivity" />
+        <activity android:name=".view.main.pay.YuEListActivity" />
     </application>
 
 </manifest>

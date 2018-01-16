@@ -78,4 +78,5 @@ public class HttpUrl {
     public static String getNews = BaseUrl + "/index.php/api/user/getNews";
     public static String del_new = BaseUrl + "/index.php/api/user/del_new";
     public static String clear_new = BaseUrl + "/index.php/api/user/clear_new";
+    public static String account_log = BaseUrl + "/index.php/api/user/account_log";
 }

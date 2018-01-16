@@ -21,6 +21,9 @@ import com.duma.ld.zhilianlift.model.UserModel;
 import com.duma.ld.zhilianlift.util.ImageLoader;
 import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
+import com.duma.ld.zhilianlift.view.main.pay.HousePayListActivity;
+import com.duma.ld.zhilianlift.view.main.pay.PointsPayListActivity;
+import com.duma.ld.zhilianlift.view.main.pay.YuEListActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.afterSales.AfterSalesListActivity;
 import com.duma.ld.zhilianlift.view.main.wode.SettingActivity;
 import com.duma.ld.zhilianlift.widget.LinearImageLayout;
@@ -209,13 +212,16 @@ public class MyFragment extends BaseMyFragment {
                 IntentUtil.goOrderList(mActivity);
                 break;
             case R.id.layout_money_zhuangxiuzijin:
+                startActivity(new Intent(mActivity, HousePayListActivity.class));
                 break;
             case R.id.layout_money_youhuijuan:
                 IntentUtil.goCoupons(mActivity);
                 break;
             case R.id.layout_money_yu_e:
+                startActivity(new Intent(mActivity, YuEListActivity.class));
                 break;
             case R.id.layout_money_jifen:
+                startActivity(new Intent(mActivity, PointsPayListActivity.class));
                 break;
             case R.id.layout_wode_daikuan:
                 break;

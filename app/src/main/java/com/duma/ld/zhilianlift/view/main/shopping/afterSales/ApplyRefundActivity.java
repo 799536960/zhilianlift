@@ -63,6 +63,7 @@ public class ApplyRefundActivity extends BaseMyActivity {
     private OrderModel.OrderGoodsBean order_goods;
     private ApplyRefundDialog dialog;
     private BaseAdapter<AfterSalesModel> mAdapter;
+    private AfterSalesModel model;
 
     @Override
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig) {
@@ -85,7 +86,6 @@ public class ApplyRefundActivity extends BaseMyActivity {
         imageSelectManager = ImageSelectManager.create(mActivity)
                 .setMaxNum(6)
                 .starRvStyle(rvPhoto);
-        editMoney.setHint("最多¥" + order_goods.getGoods_price() * order_goods.getGoods_num());
         editMoney.setFilters(new InputFilter[]{new PointLengthFilter()});
         layoutEdit.setVisibility(View.GONE);
         dialog = new ApplyRefundDialog(mActivity, new ApplyRefundDialog.OnStringClickListener() {
@@ -112,6 +112,7 @@ public class ApplyRefundActivity extends BaseMyActivity {
                     @Override
                     protected void onJsonSuccess(Response<HttpResModel<AfterSalesModel>> respons, HttpResModel<AfterSalesModel> afterSalesModelHttpResModel) {
                         mAdapter.addData(afterSalesModelHttpResModel.getResult());
+                        initData(afterSalesModelHttpResModel.getResult());
                     }
 
                     @Override
@@ -120,6 +121,11 @@ public class ApplyRefundActivity extends BaseMyActivity {
                         finish();
                     }
                 });
+    }
+
+    private void initData(AfterSalesModel result) {
+        model = result;
+        editMoney.setHint("最多¥" + result.getGoods_price());
     }
 
     @OnClick({R.id.layout_other, R.id.tv_submit})
@@ -134,8 +140,8 @@ public class ApplyRefundActivity extends BaseMyActivity {
                     return;
                 }
                 double money = Double.parseDouble(editMoney.getText().toString());
-                if (money <= 0 || money > order_goods.getGoods_price()) {
-                    TsUtils.show("请输入正确的金额不能大于" + order_goods.getGoods_price() + "元");
+                if (money <= 0 || money > model.getGoods_price()) {
+                    TsUtils.show("请输入正确的金额不能大于" + model.getGoods_price() + "元");
                     return;
                 }
                 if (tvOther.getText().toString().equals("请选择")) {

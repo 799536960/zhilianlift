@@ -14,7 +14,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.duma.ld.baselibrary.util.ZhuanHuanUtil;
 import com.duma.ld.zhilianlift.R;
-import com.lzy.okgo.OkGo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -126,8 +125,8 @@ public class BaseAdapter<T> extends BaseQuickAdapter<T, BaseViewHolder> implemen
     }
 
     private void onRefresh(int page) {
-        OkGo.getInstance().cancelTag(-1);
-        onBaseLoadAdapterListener.onLoadHttp(page, -1);
+//        OkGo.getInstance().cancelTag(mActivity);
+        onBaseLoadAdapterListener.onLoadHttp(page, 10);
     }
 
     /**
