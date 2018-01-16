@@ -43,6 +43,11 @@ public class ActivityConfig extends PublicConfig {
         return this;
     }
 
+    public ActivityConfig setTopBar_A(String name, String rightText, OnTopBarRightListener onTopBarRightListener) {
+        setTopBar(name, rightText, onTopBarRightListener);
+        return this;
+    }
+
     public ActivityConfig setTopBar_A(String name, OnTopBarLeftListener onTopBarLeftListener, @DrawableRes int rightImg, OnTopBarRightListener onTopBarRightListener) {
         setTopBar(name, onTopBarLeftListener, rightImg, onTopBarRightListener);
         return this;

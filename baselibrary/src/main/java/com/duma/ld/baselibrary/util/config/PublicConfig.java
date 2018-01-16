@@ -314,6 +314,11 @@ public abstract class PublicConfig {
     }
 
     @NonNull
+    protected void setTopBar(String name, String rightText, OnTopBarRightListener onTopBarRightListener) {
+        setTopBar(name, rightText, LiftImg_Default, 0, null, onTopBarRightListener);
+    }
+
+    @NonNull
     protected void setTopBar(String name, OnTopBarLeftListener onTopBarLeftListener, String rightString, OnTopBarRightListener onTopBarRightListener) {
         setTopBar(name, rightString, LiftImg_Default, 0, onTopBarLeftListener, onTopBarRightListener);
     }

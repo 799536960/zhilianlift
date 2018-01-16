@@ -22,17 +22,19 @@ public class EditMaxLengthUtil implements TextWatcher {
         this.editText = editText;
         this.max = max;
         editText.addTextChangedListener(this);
-
+        textView.setText("0/" + max);
     }
 
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-        textView.setText(max + "");
+//        textView.setText(max + "");
+        textView.setText(s.toString().length() + "/" + max);
     }
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
-        textView.setText((max - editText.length()) + "");
+//        textView.setText((max - editText.length()) + "");
+        textView.setText(s.toString().length() + "/" + max);
     }
 
     @Override

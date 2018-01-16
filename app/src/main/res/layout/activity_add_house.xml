@@ -18,8 +18,9 @@
         app:tabSelectedTextColor="@color/huang2"
         app:tabTextColor="@color/hui2" />
 
+
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager_content"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent" />
 </LinearLayout>

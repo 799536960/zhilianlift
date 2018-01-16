@@ -2,6 +2,7 @@ package com.duma.ld.zhilianlift.util.imageSelect;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -31,6 +32,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class ImageSelectManager implements PaiZhaoDialog.ClickListenerInterface {
     private Activity mActivity;
+    private Fragment fragment;
     private RecyclerView mRecyclerView;
     private BaseQuickAdapter<LocalMedia, BaseViewHolder> mAdapter;
     //rv的列
@@ -79,6 +81,10 @@ public class ImageSelectManager implements PaiZhaoDialog.ClickListenerInterface 
         isSave = true;
     }
 
+    public ImageSelectManager setFragment(Fragment fragment) {
+        this.fragment = fragment;
+        return this;
+    }
 
     /**
      * rv样式
@@ -229,7 +235,13 @@ public class ImageSelectManager implements PaiZhaoDialog.ClickListenerInterface 
     }
 
     private void openGallery() {
-        PictureSelectionModel pictureSelectionModel = PictureSelector.create(mActivity)
+        PictureSelector pictureSelector;
+        if (fragment != null) {
+            pictureSelector = PictureSelector.create(fragment);
+        } else {
+            pictureSelector = PictureSelector.create(mActivity);
+        }
+        PictureSelectionModel pictureSelectionModel = pictureSelector
                 .openGallery(PictureMimeType.ofImage())
                 .maxSelectNum(maxNum)
                 .compress(isCompress)
@@ -242,7 +254,13 @@ public class ImageSelectManager implements PaiZhaoDialog.ClickListenerInterface 
     }
 
     private void openCamera() {
-        PictureSelectionModel pictureSelectionModel = PictureSelector.create(mActivity)
+        PictureSelector pictureSelector;
+        if (fragment != null) {
+            pictureSelector = PictureSelector.create(fragment);
+        } else {
+            pictureSelector = PictureSelector.create(mActivity);
+        }
+        PictureSelectionModel pictureSelectionModel = pictureSelector
                 .openCamera(PictureMimeType.ofImage())
                 .maxSelectNum(maxNum)
                 .compress(isCompress)

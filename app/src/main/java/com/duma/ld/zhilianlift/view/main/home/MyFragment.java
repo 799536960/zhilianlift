@@ -134,7 +134,6 @@ public class MyFragment extends BaseMyFragment {
             tvPhone.setVisibility(View.VISIBLE);
             tvName.setText(user.getNickname());
             tvPhone.setText("用户名:" + user.getMobile_xx());
-
             tvZhuangXiuZiJin.setText(user.getRenovation_money());
             tvYouHuiJuan.setText(user.getCoupon_count());
             tvYuE.setText(user.getUser_money());
@@ -142,7 +141,7 @@ public class MyFragment extends BaseMyFragment {
             layoutMessgae.setNum(user.getNews());
             layoutOrderDaifukuan.setNum(user.getWaitPay());
             layoutOrderDaishouhuo.setNum(user.getWaitReceive());
-            layoutOrderDaipinjia.setNum(user.getWaitSend());
+            layoutOrderDaipinjia.setNum(user.getWaitcomment());
             layoutOrderShouhou.setNum(user.getReturn_count());
         } else {
             Logger.e("user: null");
