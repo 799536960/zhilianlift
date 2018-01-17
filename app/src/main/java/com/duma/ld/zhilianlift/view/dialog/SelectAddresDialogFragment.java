@@ -25,7 +25,7 @@ import static com.duma.ld.zhilianlift.util.Constants.event_addres_refresh;
  * Created by liudong on 2017/12/12.
  */
 
-public class SelectAddresDialog extends BaseMyFragment {
+public class SelectAddresDialogFragment extends BaseMyFragment {
     @BindView(R.id.layout_back)
     FrameLayout layoutBack;
     @BindView(R.id.tabLayout)

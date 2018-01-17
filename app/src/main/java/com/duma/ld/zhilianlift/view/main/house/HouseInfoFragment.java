@@ -25,6 +25,7 @@ import com.duma.ld.zhilianlift.model.HouseHttpModel;
 import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.view.dialog.HouseListDialog;
+import com.duma.ld.zhilianlift.view.dialog.SelectAddresDialogFragment;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 import com.lzy.okgo.request.GetRequest;
@@ -209,6 +210,7 @@ public class HouseInfoFragment extends BaseMyFragment implements OnBaseAdapterLi
                 leiXinListDialog.setName("物业类型");
                 break;
             case R.id.layout_diQu:
+                extraTransaction().startDontHideSelf(new SelectAddresDialogFragment());
                 break;
             case R.id.layout_fuKuanFangShi:
                 fuKuanFangShiDialog.show();

@@ -21,7 +21,7 @@ import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.model.PCDAddresModel;
 import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.DialogUtil;
-import com.duma.ld.zhilianlift.view.dialog.SelectAddresDialog;
+import com.duma.ld.zhilianlift.view.dialog.SelectAddresDialogFragment;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 import com.lzy.okgo.request.PostRequest;
@@ -99,7 +99,7 @@ public class AddOrChangeFragment extends BaseMyFragment {
                 KeyboardUtils.hideSoftInput(edtAddres);
                 KeyboardUtils.hideSoftInput(edtName);
                 KeyboardUtils.hideSoftInput(edtPhone);
-                extraTransaction().startDontHideSelf(new SelectAddresDialog());
+                extraTransaction().startDontHideSelf(new SelectAddresDialogFragment());
                 break;
             case R.id.tv_sava_btn:
                 if (edtPhone.getText().toString().isEmpty()) {
