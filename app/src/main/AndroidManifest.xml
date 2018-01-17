@@ -105,8 +105,7 @@
         <activity
             android:name=".view.main.shopping.order.OrderListActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".view.main.house.MySecondHouseActivity" />
-        <activity android:name=".view.main.house.MyRentalHouseActivity" />
+        <activity android:name=".view.main.house.MyHouseActivity" />
         <activity android:name=".view.main.house.AddHouseActivity" />
         <activity
             android:name=".view.main.shopping.order.OrderInfoActivity"

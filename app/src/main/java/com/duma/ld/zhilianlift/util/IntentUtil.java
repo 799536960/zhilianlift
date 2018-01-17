@@ -9,12 +9,10 @@ import com.duma.ld.zhilianlift.model.CommitOrderModel;
 import com.duma.ld.zhilianlift.model.OrderModel;
 import com.duma.ld.zhilianlift.model.RealNameModel;
 import com.duma.ld.zhilianlift.model.ShoppingSpacModel;
-import com.duma.ld.zhilianlift.view.main.wode.addres.SelectAddresDialogActivity;
 import com.duma.ld.zhilianlift.view.login.LoginOrRegisterActivity;
 import com.duma.ld.zhilianlift.view.main.home.HomeActivity;
 import com.duma.ld.zhilianlift.view.main.house.AddHouseActivity;
-import com.duma.ld.zhilianlift.view.main.house.MyRentalHouseActivity;
-import com.duma.ld.zhilianlift.view.main.house.MySecondHouseActivity;
+import com.duma.ld.zhilianlift.view.main.house.MyHouseActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PayActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PayInputPasswordActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PaySuccessActivity;
@@ -37,6 +35,7 @@ import com.duma.ld.zhilianlift.view.main.wode.UserDataActivity;
 import com.duma.ld.zhilianlift.view.main.wode.VerifyPhoneActivity;
 import com.duma.ld.zhilianlift.view.main.wode.addres.AddOrChangeActivity;
 import com.duma.ld.zhilianlift.view.main.wode.addres.AddresListActivity;
+import com.duma.ld.zhilianlift.view.main.wode.addres.SelectAddresDialogActivity;
 import com.duma.ld.zhilianlift.view.main.wode.realName.RealNameEditActivity;
 import com.duma.ld.zhilianlift.view.main.wode.userSecuryty.PayPasswordActivity;
 import com.duma.ld.zhilianlift.view.main.wode.userSecuryty.PayPasswordSuccessActivity;
@@ -301,13 +300,18 @@ public class IntentUtil {
 
     //我的出租
     public static void goRental(Activity activity) {
-        Intent intent = new Intent(activity, MyRentalHouseActivity.class);
-        activity.startActivity(intent);
+        goHouse(activity, "1");
     }
 
     //我的二手房
     public static void goSecondHouse(Activity activity) {
-        Intent intent = new Intent(activity, MySecondHouseActivity.class);
+        goHouse(activity, "");
+    }
+
+    //我的房
+    private static void goHouse(Activity activity, String key) {
+        Intent intent = new Intent(activity, MyHouseActivity.class);
+        intent.putExtra(Constants.key, key);
         activity.startActivity(intent);
     }
 

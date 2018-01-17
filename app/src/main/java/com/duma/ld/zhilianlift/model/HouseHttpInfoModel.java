@@ -1,5 +1,6 @@
 package com.duma.ld.zhilianlift.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -42,7 +43,7 @@ public class HouseHttpInfoModel {
             this.item = item;
         }
 
-        public static class ItemBean {
+        public static class ItemBean implements Serializable {
             @Override
             public String toString() {
                 return "ItemBean{" +
