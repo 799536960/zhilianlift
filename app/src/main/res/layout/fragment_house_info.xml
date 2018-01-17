@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/hui_bg"
     android:orientation="vertical">
 
     <ScrollView
@@ -13,13 +14,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <View
-                style="@style/henxian"
-                android:layout_height="10dp" />
-
             <LinearLayout
                 style="@style/house_info"
                 android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -35,11 +33,11 @@
                     android:hint="请填写房屋名称" />
             </LinearLayout>
 
-            <View style="@style/henxian" />
 
             <LinearLayout
                 style="@style/house_info"
                 android:layout_width="match_parent"
+                android:layout_marginTop="1dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -55,11 +53,12 @@
                     android:hint="请填写房屋简介" />
             </LinearLayout>
 
-            <View style="@style/henxian" />
 
             <LinearLayout
+                android:id="@+id/layout_wuYeleiXin"
                 style="@style/house_info"
                 android:layout_width="match_parent"
+                android:layout_marginTop="1dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -69,6 +68,7 @@
                     android:text="物业类型：" />
 
                 <TextView
+                    android:id="@+id/tv_wuYeleiXin"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -85,12 +85,13 @@
                     android:src="@drawable/jiantou_r" />
             </LinearLayout>
 
-            <View style="@style/henxian" />
 
             <LinearLayout
                 android:id="@+id/layout_teSe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:background="@color/white"
                 android:orientation="horizontal"
                 android:paddingBottom="10dp"
                 android:paddingEnd="10dp"
@@ -109,11 +110,11 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
-            <View style="@style/henxian" />
 
             <LinearLayout
                 style="@style/house_info"
                 android:layout_width="match_parent"
+                android:layout_marginTop="1dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -129,11 +130,12 @@
                     android:hint="请填写您的楼盘名称" />
             </LinearLayout>
 
-            <View style="@style/henxian" />
 
             <LinearLayout
+                android:id="@+id/layout_diQu"
                 style="@style/house_info"
                 android:layout_width="match_parent"
+                android:layout_marginTop="1dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -143,6 +145,7 @@
                     android:text="所在地区：" />
 
                 <TextView
+                    android:id="@+id/tv_diQu"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -159,11 +162,11 @@
                     android:src="@drawable/jiantou_r" />
             </LinearLayout>
 
-            <View style="@style/henxian" />
 
             <LinearLayout
                 style="@style/house_info"
                 android:layout_width="match_parent"
+                android:layout_marginTop="1dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -179,12 +182,12 @@
                     android:hint="请输入详情地址" />
             </LinearLayout>
 
-            <View style="@style/henxian" />
 
             <LinearLayout
                 android:id="@+id/layout_leiXin"
                 style="@style/house_info"
                 android:layout_width="match_parent"
+                android:layout_marginTop="1dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -194,6 +197,7 @@
                     android:text="出租类型：" />
 
                 <RadioGroup
+                    android:id="@+id/group_leiXin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -201,6 +205,7 @@
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/radio_zhenZu"
                         android:layout_width="65dp"
                         android:layout_height="27dp"
                         android:background="@drawable/sl_dr_huang_hui"
@@ -211,6 +216,7 @@
                         android:textSize="12sp" />
 
                     <RadioButton
+                        android:id="@+id/radio_heZu"
                         android:layout_width="65dp"
                         android:layout_height="27dp"
                         android:layout_marginLeft="6dp"
@@ -223,18 +229,18 @@
                 </RadioGroup>
             </LinearLayout>
 
-            <View style="@style/henxian" />
 
             <LinearLayout
                 style="@style/house_info"
                 android:layout_width="match_parent"
+                android:layout_marginTop="1dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="户         型：" />
+                    android:text="@string/house1" />
 
                 <EditText
                     style="@style/edit_1"
@@ -273,18 +279,18 @@
 
             </LinearLayout>
 
-            <View style="@style/henxian" />
 
             <LinearLayout
                 style="@style/house_info"
                 android:layout_width="match_parent"
+                android:layout_marginTop="1dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="楼         层：" />
+                    android:text="@string/house2" />
 
                 <EditText
                     style="@style/edit_1"
@@ -325,11 +331,11 @@
 
             </LinearLayout>
 
-            <View style="@style/henxian" />
 
             <LinearLayout
                 style="@style/house_info"
                 android:layout_width="match_parent"
+                android:layout_marginTop="1dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -351,19 +357,19 @@
                     android:text="平米" />
             </LinearLayout>
 
-            <View style="@style/henxian" />
 
             <LinearLayout
                 android:id="@+id/layout_zujin"
                 style="@style/house_info"
                 android:layout_width="match_parent"
+                android:layout_marginTop="1dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="租         金：" />
+                    android:text="@string/house3" />
 
                 <EditText
                     style="@style/edit_1"
@@ -378,19 +384,19 @@
                     android:text="元/月" />
             </LinearLayout>
 
-            <View style="@style/henxian" />
 
             <LinearLayout
                 android:id="@+id/layout_shouJia"
                 style="@style/house_info"
                 android:layout_width="match_parent"
+                android:layout_marginTop="1dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="售         价：" />
+                    android:text="@string/house4" />
 
                 <EditText
                     style="@style/edit_1"
@@ -405,12 +411,12 @@
                     android:text="万元" />
             </LinearLayout>
 
-            <View style="@style/henxian" />
 
             <LinearLayout
                 android:id="@+id/layout_fuKuanFangShi"
                 style="@style/house_info"
                 android:layout_width="match_parent"
+                android:layout_marginTop="1dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -420,6 +426,7 @@
                     android:text="付款方式：" />
 
                 <TextView
+                    android:id="@+id/tv_fuKuanFangShi"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -436,11 +443,11 @@
                     android:src="@drawable/jiantou_r" />
             </LinearLayout>
 
-            <View style="@style/henxian" />
 
             <LinearLayout
                 style="@style/house_info"
                 android:layout_width="match_parent"
+                android:layout_marginTop="1dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -456,18 +463,18 @@
                     android:hint="(选填)" />
             </LinearLayout>
 
-            <View style="@style/henxian" />
 
             <LinearLayout
                 style="@style/house_info"
                 android:layout_width="match_parent"
+                android:layout_marginTop="1dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="年         代：" />
+                    android:text="@string/house5" />
 
                 <EditText
                     style="@style/edit_1"
@@ -476,11 +483,11 @@
                     android:hint="(选填)" />
             </LinearLayout>
 
-            <View style="@style/henxian" />
 
             <LinearLayout
                 style="@style/house_info"
                 android:layout_width="match_parent"
+                android:layout_marginTop="1dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -496,12 +503,12 @@
                     android:hint="(选填)" />
             </LinearLayout>
 
-            <View style="@style/henxian" />
 
             <LinearLayout
                 android:id="@+id/layout_xinBie"
                 style="@style/house_info"
                 android:layout_width="match_parent"
+                android:layout_marginTop="1dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -511,6 +518,7 @@
                     android:text="性别要求：" />
 
                 <RadioGroup
+                    android:id="@+id/group_xinBie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -518,6 +526,7 @@
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/radio_buxian"
                         android:layout_width="65dp"
                         android:layout_height="27dp"
                         android:background="@drawable/sl_dr_huang_hui"
@@ -528,6 +537,7 @@
                         android:textSize="12sp" />
 
                     <RadioButton
+                        android:id="@+id/radio_nan"
                         android:layout_width="65dp"
                         android:layout_height="27dp"
                         android:layout_marginLeft="6dp"
@@ -539,6 +549,7 @@
                         android:textSize="12sp" />
 
                     <RadioButton
+                        android:id="@+id/radio_nv"
                         android:layout_width="65dp"
                         android:layout_height="27dp"
                         android:layout_marginLeft="6dp"
@@ -551,12 +562,13 @@
                 </RadioGroup>
             </LinearLayout>
 
-            <View style="@style/henxian" />
 
             <LinearLayout
                 android:id="@+id/layout_sheShi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:background="@color/white"
                 android:orientation="horizontal"
                 android:paddingBottom="10dp"
                 android:paddingEnd="10dp"
@@ -575,22 +587,20 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
-            <View
-                style="@style/henxian"
-                android:layout_height="10dp" />
-
             <LinearLayout
                 style="@style/house_info"
                 android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="来         源：" />
+                    android:text="@string/house6" />
 
                 <RadioGroup
+                    android:id="@+id/group_laiYuan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -598,6 +608,7 @@
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/radio_yeZhu"
                         android:layout_width="65dp"
                         android:layout_height="27dp"
                         android:background="@drawable/sl_dr_huang_hui"
@@ -608,6 +619,7 @@
                         android:textSize="12sp" />
 
                     <RadioButton
+                        android:id="@+id/radio_jiJiRen"
                         android:layout_width="65dp"
                         android:layout_height="27dp"
                         android:layout_marginLeft="6dp"
@@ -620,11 +632,11 @@
                 </RadioGroup>
             </LinearLayout>
 
-            <View style="@style/henxian" />
 
             <LinearLayout
                 style="@style/house_info"
                 android:layout_width="match_parent"
+                android:layout_marginTop="1dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -640,11 +652,10 @@
                     android:hint="请填写您的姓名" />
             </LinearLayout>
 
-            <View style="@style/henxian" />
-
             <LinearLayout
                 style="@style/house_info"
                 android:layout_width="match_parent"
+                android:layout_marginTop="1dp"
                 android:orientation="horizontal">
 
                 <TextView

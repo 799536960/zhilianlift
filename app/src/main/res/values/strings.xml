@@ -9,4 +9,12 @@
     <string name="permission2">我们需要获取您的位置权限来为您提供周边的商品信息.</string>
     <string name="permission3">继续</string>
     <string name="main1">更多</string>
+
+    <string name="house1">户&#8194;&#8194;&#8194;&#8194;型：</string>
+    <string name="house2">楼&#8194;&#8194;&#8194;&#8194;层：</string>
+    <string name="house3">租&#8194;&#8194;&#8194;&#8194;金：</string>
+    <string name="house4">售&#8194;&#8194;&#8194;&#8194;价：</string>
+    <string name="house5">年&#8194;&#8194;&#8194;&#8194;代：</string>
+    <string name="house6">来&#8194;&#8194;&#8194;&#8194;源：</string>
+    <string name="house7">姓&#8194;&#8194;&#8194;&#8194;名：</string>
 </resources>

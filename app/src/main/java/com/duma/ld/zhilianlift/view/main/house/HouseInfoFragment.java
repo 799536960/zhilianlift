@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.duma.ld.baselibrary.util.TsUtils;
@@ -21,6 +24,7 @@ import com.duma.ld.zhilianlift.model.HouseHttpInfoModel;
 import com.duma.ld.zhilianlift.model.HouseHttpModel;
 import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.util.Constants;
+import com.duma.ld.zhilianlift.view.dialog.HouseListDialog;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 import com.lzy.okgo.request.GetRequest;
@@ -29,6 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 import static com.duma.ld.zhilianlift.util.HttpUrl.getALL;
 
@@ -37,7 +42,7 @@ import static com.duma.ld.zhilianlift.util.HttpUrl.getALL;
  * Created by liudong on 2018/1/9.
  */
 
-public class HouseInfoFragment extends BaseMyFragment implements OnBaseAdapterListener<HouseHttpInfoModel.FilterAttrBean.ItemBean> {
+public class HouseInfoFragment extends BaseMyFragment implements OnBaseAdapterListener<HouseHttpInfoModel.FilterAttrBean.ItemBean>, RadioGroup.OnCheckedChangeListener {
     @BindView(R.id.layout_teSe)
     LinearLayout layoutTeSe;
     @BindView(R.id.layout_leiXin)
@@ -56,9 +61,42 @@ public class HouseInfoFragment extends BaseMyFragment implements OnBaseAdapterLi
     RecyclerView rvTeSe;
     @BindView(R.id.rv_sheShi)
     RecyclerView rvSheShi;
+    @BindView(R.id.group_leiXin)
+    RadioGroup groupLeiXin;
+    @BindView(R.id.group_xinBie)
+    RadioGroup groupXinBie;
+    @BindView(R.id.group_laiYuan)
+    RadioGroup groupLaiYuan;
+    @BindView(R.id.tv_wuYeleiXin)
+    TextView tvWuYeleiXin;
+    @BindView(R.id.layout_wuYeleiXin)
+    LinearLayout layoutWuYeleiXin;
+    @BindView(R.id.tv_diQu)
+    TextView tvDiQu;
+    @BindView(R.id.layout_diQu)
+    LinearLayout layoutDiQu;
+    @BindView(R.id.radio_zhenZu)
+    RadioButton radioZhenZu;
+    @BindView(R.id.radio_heZu)
+    RadioButton radioHeZu;
+    @BindView(R.id.tv_fuKuanFangShi)
+    TextView tvFuKuanFangShi;
+    @BindView(R.id.radio_buxian)
+    RadioButton radioBuxian;
+    @BindView(R.id.radio_nan)
+    RadioButton radioNan;
+    @BindView(R.id.radio_nv)
+    RadioButton radioNv;
+    @BindView(R.id.radio_yeZhu)
+    RadioButton radioYeZhu;
+    @BindView(R.id.radio_jiJiRen)
+    RadioButton radioJiJiRen;
     private HouseHttpModel model;
+    //房屋特色
     private BaseAdapter<HouseHttpInfoModel.FilterAttrBean.ItemBean> mAdapterTeSe;
+    //房屋设施
     private BaseAdapter<HouseHttpInfoModel.FilterAttrBean.ItemBean> mAdapterSheShi;
+    private HouseListDialog leiXinListDialog, fuKuanFangShiDialog;
 
     public static HouseInfoFragment newInstance(HouseHttpModel model) {
         HouseInfoFragment fragment = new HouseInfoFragment();
@@ -99,6 +137,7 @@ public class HouseInfoFragment extends BaseMyFragment implements OnBaseAdapterLi
             layoutSheShi.setVisibility(View.GONE);
             layoutFuKuanFangShi.setVisibility(View.GONE);
         }
+        //初始化adapter
         mAdapterTeSe = new BaseAdapter.Builder<HouseHttpInfoModel.FilterAttrBean.ItemBean>(rvTeSe, mActivity, R.layout.adapter_house_info)
                 .setLayoutManager(new GridLayoutManager(mActivity, 4))
                 .isNested()
@@ -111,20 +150,71 @@ public class HouseInfoFragment extends BaseMyFragment implements OnBaseAdapterLi
                 .build(this);
         initList();
         mAdapterSheShi.setNewData(model.getmListSheShi());
+        //单选监听选择
+        groupLaiYuan.setOnCheckedChangeListener(this);
+        groupLeiXin.setOnCheckedChangeListener(this);
+        groupXinBie.setOnCheckedChangeListener(this);
+        groupLeiXin.check(R.id.radio_zhenZu);
+        groupXinBie.check(R.id.radio_buxian);
+        groupLaiYuan.check(R.id.radio_yeZhu);
+        //初始化付款方式
+        fuKuanFangShiDialog = new HouseListDialog(mActivity, getInitFuKuanFangShiList(), new HouseListDialog.OnStringClickListener() {
+            @Override
+            public void onItemClick(HouseHttpInfoModel.FilterAttrBean.ItemBean itemBean, int position) {
+                model.setFuKuanFangShiModel(itemBean);
+                tvFuKuanFangShi.setText(itemBean.getSo_name());
+            }
+        });
         onClickLoadingRefresh();
     }
 
-    private void initList() {
-        List<HouseHttpInfoModel.FilterAttrBean.ItemBean> list = new ArrayList<>();
-        list.add(new HouseHttpInfoModel.FilterAttrBean.ItemBean("宽带"));
-        list.add(new HouseHttpInfoModel.FilterAttrBean.ItemBean("热水器"));
-        list.add(new HouseHttpInfoModel.FilterAttrBean.ItemBean("洗衣机"));
-        list.add(new HouseHttpInfoModel.FilterAttrBean.ItemBean("冰箱"));
-        list.add(new HouseHttpInfoModel.FilterAttrBean.ItemBean("空调"));
-        list.add(new HouseHttpInfoModel.FilterAttrBean.ItemBean("衣柜"));
-        list.add(new HouseHttpInfoModel.FilterAttrBean.ItemBean("暖气"));
-        list.add(new HouseHttpInfoModel.FilterAttrBean.ItemBean("厨房"));
-        model.setmListSheShi(list);
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        switch (checkedId) {
+            case R.id.radio_zhenZu:
+                //整租
+                layoutXinBie.setVisibility(View.GONE);
+                layoutSheShi.setVisibility(View.GONE);
+                break;
+            case R.id.radio_heZu:
+                //合租
+                layoutXinBie.setVisibility(View.VISIBLE);
+                layoutSheShi.setVisibility(View.VISIBLE);
+                break;
+            case R.id.radio_buxian:
+                //性别 不限
+                break;
+            case R.id.radio_nan:
+                //性别 男
+                break;
+            case R.id.radio_nv:
+                //性别 女
+                break;
+            case R.id.radio_yeZhu:
+                //来源 业主房源
+                break;
+            case R.id.radio_jiJiRen:
+                //来源 经纪人
+                break;
+        }
+    }
+
+
+    @OnClick({R.id.layout_wuYeleiXin, R.id.layout_diQu, R.id.layout_fuKuanFangShi})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.layout_wuYeleiXin:
+                leiXinListDialog.show();
+                leiXinListDialog.setName("物业类型");
+                break;
+            case R.id.layout_diQu:
+                break;
+            case R.id.layout_fuKuanFangShi:
+                fuKuanFangShiDialog.show();
+                fuKuanFangShiDialog.setName("付款方式");
+                break;
+        }
     }
 
     @Override
@@ -149,6 +239,8 @@ public class HouseInfoFragment extends BaseMyFragment implements OnBaseAdapterLi
         });
     }
 
+
+    //初始化http请求数据
     private void initData(HouseHttpInfoModel result) {
         if (result.getFilter_attr() != null) {
             for (int i = 0; i < result.getFilter_attr().size(); i++) {
@@ -157,12 +249,18 @@ public class HouseInfoFragment extends BaseMyFragment implements OnBaseAdapterLi
                     mAdapterTeSe.setNewData(model.getmListTeSe());
                 }
                 if (result.getFilter_attr().get(i).getName().equals("物业类型")) {
-                    model.setmListLeiXin(result.getFilter_attr().get(i).getItem());
+                    //物业类型
+                    leiXinListDialog = new HouseListDialog(mActivity, result.getFilter_attr().get(i).getItem(), new HouseListDialog.OnStringClickListener() {
+                        @Override
+                        public void onItemClick(HouseHttpInfoModel.FilterAttrBean.ItemBean itemBean, int position) {
+                            model.setWuYeLeiXinModel(itemBean);
+                            tvWuYeleiXin.setText(itemBean.getSo_name());
+                        }
+                    });
                 }
             }
         }
     }
-
 
     @Override
     public void convert(BaseViewHolder helper, final HouseHttpInfoModel.FilterAttrBean.ItemBean item) {
@@ -174,5 +272,30 @@ public class HouseInfoFragment extends BaseMyFragment implements OnBaseAdapterLi
                 item.setCheck(isChecked);
             }
         });
+    }
+
+    //初始化房屋设施数据
+    private void initList() {
+        List<HouseHttpInfoModel.FilterAttrBean.ItemBean> list = new ArrayList<>();
+        list.add(new HouseHttpInfoModel.FilterAttrBean.ItemBean("宽带"));
+        list.add(new HouseHttpInfoModel.FilterAttrBean.ItemBean("热水器"));
+        list.add(new HouseHttpInfoModel.FilterAttrBean.ItemBean("洗衣机"));
+        list.add(new HouseHttpInfoModel.FilterAttrBean.ItemBean("冰箱"));
+        list.add(new HouseHttpInfoModel.FilterAttrBean.ItemBean("空调"));
+        list.add(new HouseHttpInfoModel.FilterAttrBean.ItemBean("衣柜"));
+        list.add(new HouseHttpInfoModel.FilterAttrBean.ItemBean("暖气"));
+        list.add(new HouseHttpInfoModel.FilterAttrBean.ItemBean("厨房"));
+        model.setmListSheShi(list);
+    }
+
+    //初始化付款方式数据
+    private List<HouseHttpInfoModel.FilterAttrBean.ItemBean> getInitFuKuanFangShiList() {
+        List<HouseHttpInfoModel.FilterAttrBean.ItemBean> list = new ArrayList<>();
+        list.add(new HouseHttpInfoModel.FilterAttrBean.ItemBean("押一付一"));
+        list.add(new HouseHttpInfoModel.FilterAttrBean.ItemBean("押一付二"));
+        list.add(new HouseHttpInfoModel.FilterAttrBean.ItemBean("押一付三"));
+        list.add(new HouseHttpInfoModel.FilterAttrBean.ItemBean("押一付四"));
+        list.add(new HouseHttpInfoModel.FilterAttrBean.ItemBean("无押金"));
+        return list;
     }
 }

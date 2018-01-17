@@ -56,6 +56,7 @@ public class AddHouseActivity extends BaseMyActivity implements OnTopBarRightLis
         viewPagerAdapter.addFragment(HouseImageFragment.newInstance(model), "房屋图片");
         viewPagerAdapter.addFragment(HouseOtherFragment.newInstance(model), "配套补充");
         viewPagerContent.setAdapter(viewPagerAdapter);
+        viewPagerContent.setOffscreenPageLimit(3);
         layoutTablayout.setupWithViewPager(viewPagerContent);
     }
 

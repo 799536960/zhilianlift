@@ -8,25 +8,32 @@ import java.util.List;
  */
 
 public class HouseHttpModel implements Serializable {
-    @Override
-    public String toString() {
-        return "HouseHttpModel{" +
-                "isRental=" + isRental +
-                ", mListTeSe=" + mListTeSe +
-                ", mListLeiXin=" + mListLeiXin +
-                ", mListSheShi=" + mListSheShi +
-                '}';
-    }
-
     //是否出租房
     private boolean isRental;
     //房屋特色 出售才会出现
     private List<HouseHttpInfoModel.FilterAttrBean.ItemBean> mListTeSe;
-    //物业类型
-    private List<HouseHttpInfoModel.FilterAttrBean.ItemBean> mListLeiXin;
     //房屋设施  出租才会出现
     private List<HouseHttpInfoModel.FilterAttrBean.ItemBean> mListSheShi;
+    //物业类型
+    private HouseHttpInfoModel.FilterAttrBean.ItemBean wuYeLeiXinModel;
+    //付款方式
+    private HouseHttpInfoModel.FilterAttrBean.ItemBean fuKuanFangShiModel;
 
+    public HouseHttpInfoModel.FilterAttrBean.ItemBean getWuYeLeiXinModel() {
+        return wuYeLeiXinModel;
+    }
+
+    public void setWuYeLeiXinModel(HouseHttpInfoModel.FilterAttrBean.ItemBean wuYeLeiXinModel) {
+        this.wuYeLeiXinModel = wuYeLeiXinModel;
+    }
+
+    public HouseHttpInfoModel.FilterAttrBean.ItemBean getFuKuanFangShiModel() {
+        return fuKuanFangShiModel;
+    }
+
+    public void setFuKuanFangShiModel(HouseHttpInfoModel.FilterAttrBean.ItemBean fuKuanFangShiModel) {
+        this.fuKuanFangShiModel = fuKuanFangShiModel;
+    }
 
     public List<HouseHttpInfoModel.FilterAttrBean.ItemBean> getmListSheShi() {
         return mListSheShi;
@@ -34,14 +41,6 @@ public class HouseHttpModel implements Serializable {
 
     public void setmListSheShi(List<HouseHttpInfoModel.FilterAttrBean.ItemBean> mListSheShi) {
         this.mListSheShi = mListSheShi;
-    }
-
-    public List<HouseHttpInfoModel.FilterAttrBean.ItemBean> getmListLeiXin() {
-        return mListLeiXin;
-    }
-
-    public void setmListLeiXin(List<HouseHttpInfoModel.FilterAttrBean.ItemBean> mListLeiXin) {
-        this.mListLeiXin = mListLeiXin;
     }
 
     public List<HouseHttpInfoModel.FilterAttrBean.ItemBean> getmListTeSe() {
