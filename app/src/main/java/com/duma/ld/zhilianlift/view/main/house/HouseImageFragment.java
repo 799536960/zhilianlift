@@ -60,5 +60,6 @@ public class HouseImageFragment extends BaseMyFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         imageSelectManager.onActivityResult(requestCode, resultCode, data);
+        model.setList(imageSelectManager.getFileList());
     }
 }

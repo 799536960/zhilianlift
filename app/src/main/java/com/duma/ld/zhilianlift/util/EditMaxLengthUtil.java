@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.duma.ld.baselibrary.util.ZhuanHuanUtil;
 import com.duma.ld.zhilianlift.R;
+import com.duma.ld.zhilianlift.view.main.house.OnTextChangeListener;
 
 /**
  * Created by liudong on 2017/6/15.
@@ -16,6 +17,7 @@ public class EditMaxLengthUtil implements TextWatcher {
     private TextView textView;
     private EditText editText;
     private int max;
+    private OnTextChangeListener onTextChanged;
 
     public EditMaxLengthUtil(EditText editText, TextView textView, int max) {
         this.textView = textView;
@@ -23,6 +25,10 @@ public class EditMaxLengthUtil implements TextWatcher {
         this.max = max;
         editText.addTextChangedListener(this);
         textView.setText("0/" + max);
+    }
+
+    public void setOnTextChanged(OnTextChangeListener onTextChanged) {
+        this.onTextChanged = onTextChanged;
     }
 
     @Override
@@ -39,6 +45,9 @@ public class EditMaxLengthUtil implements TextWatcher {
 
     @Override
     public void afterTextChanged(Editable s) {
+        if (onTextChanged != null) {
+            onTextChanged.textChanged(s);
+        }
         if (editText.length() == max) {
             textView.setTextColor(ZhuanHuanUtil.getColor(R.color.hong));
         } else {

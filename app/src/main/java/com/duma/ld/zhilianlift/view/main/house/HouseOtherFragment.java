@@ -1,6 +1,7 @@
 package com.duma.ld.zhilianlift.view.main.house;
 
 import android.os.Bundle;
+import android.text.Editable;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -62,6 +63,24 @@ public class HouseOtherFragment extends BaseMyFragment {
         editMaxLengthUtil1 = new EditMaxLengthUtil(editXiaoQu, tvXiaoQu, 500);
         editMaxLengthUtil2 = new EditMaxLengthUtil(editJiaoTong, tvJiaoTong, 500);
         editMaxLengthUtil3 = new EditMaxLengthUtil(editZhoubian, tvZhoubian, 500);
+        editMaxLengthUtil1.setOnTextChanged(new OnTextChangeListener() {
+            @Override
+            public void textChanged(Editable s) {
+                model.setXiaoQuGaiKuang(s.toString());
+            }
+        });
+        editMaxLengthUtil2.setOnTextChanged(new OnTextChangeListener() {
+            @Override
+            public void textChanged(Editable s) {
+                model.setJiaoTongZhuangKuang(s.toString());
+            }
+        });
+        editMaxLengthUtil3.setOnTextChanged(new OnTextChangeListener() {
+            @Override
+            public void textChanged(Editable s) {
+                model.setZhouBianPeiTao(s.toString());
+            }
+        });
     }
 
 }

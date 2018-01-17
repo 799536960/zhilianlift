@@ -122,6 +122,9 @@
         <activity android:name=".view.main.pay.HousePayListActivity" />
         <activity android:name=".view.main.pay.PointsPayListActivity" />
         <activity android:name=".view.main.pay.YuEListActivity" />
+        <activity
+            android:name=".view.main.wode.addres.SelectAddresDialogActivity"
+            android:theme="@style/AppTheme_tm_hei" />
     </application>
 
 </manifest>

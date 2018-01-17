@@ -3,15 +3,18 @@ package com.duma.ld.zhilianlift.view.main.house;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.duma.ld.baselibrary.model.EventModel;
 import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.baselibrary.util.config.FragmentConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
@@ -23,9 +26,11 @@ import com.duma.ld.zhilianlift.base.baseView.BaseMyFragment;
 import com.duma.ld.zhilianlift.model.HouseHttpInfoModel;
 import com.duma.ld.zhilianlift.model.HouseHttpModel;
 import com.duma.ld.zhilianlift.model.HttpResModel;
+import com.duma.ld.zhilianlift.model.PCDAddresModel;
 import com.duma.ld.zhilianlift.util.Constants;
+import com.duma.ld.zhilianlift.util.EditUtil;
+import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.view.dialog.HouseListDialog;
-import com.duma.ld.zhilianlift.view.dialog.SelectAddresDialogFragment;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 import com.lzy.okgo.request.GetRequest;
@@ -92,6 +97,40 @@ public class HouseInfoFragment extends BaseMyFragment implements OnBaseAdapterLi
     RadioButton radioYeZhu;
     @BindView(R.id.radio_jiJiRen)
     RadioButton radioJiJiRen;
+    @BindView(R.id.edit_fangWuMinCheng)
+    EditText editFangWuMinCheng;
+    @BindView(R.id.edit_jianJie)
+    EditText editJianJie;
+    @BindView(R.id.edit_louPanMinCheng)
+    EditText editLouPanMinCheng;
+    @BindView(R.id.edit_diZhi)
+    EditText editDiZhi;
+    @BindView(R.id.edit_jiShi)
+    EditText editJiShi;
+    @BindView(R.id.edit_jiTing)
+    EditText editJiTing;
+    @BindView(R.id.edit_jiWei)
+    EditText editJiWei;
+    @BindView(R.id.edit_jiLou)
+    EditText editJiLou;
+    @BindView(R.id.edit_gongJiCeng)
+    EditText editGongJiCeng;
+    @BindView(R.id.edit_mianJi)
+    EditText editMianJi;
+    @BindView(R.id.edit_zuJin)
+    EditText editZuJin;
+    @BindView(R.id.edit_shouJia)
+    EditText editShouJia;
+    @BindView(R.id.edit_zhuangXiu)
+    EditText editZhuangXiu;
+    @BindView(R.id.edit_nianDai)
+    EditText editNianDai;
+    @BindView(R.id.edit_chaoXiang)
+    EditText editChaoXiang;
+    @BindView(R.id.edit_xinMin)
+    EditText editXinMin;
+    @BindView(R.id.edit_dianHua)
+    EditText editDianHua;
     private HouseHttpModel model;
     //房屋特色
     private BaseAdapter<HouseHttpInfoModel.FilterAttrBean.ItemBean> mAdapterTeSe;
@@ -166,39 +205,114 @@ public class HouseInfoFragment extends BaseMyFragment implements OnBaseAdapterLi
                 tvFuKuanFangShi.setText(itemBean.getSo_name());
             }
         });
+        //初始化编辑框监听
+        initEdit();
         onClickLoadingRefresh();
     }
 
-
-    @Override
-    public void onCheckedChanged(RadioGroup group, int checkedId) {
-        switch (checkedId) {
-            case R.id.radio_zhenZu:
-                //整租
-                layoutXinBie.setVisibility(View.GONE);
-                layoutSheShi.setVisibility(View.GONE);
-                break;
-            case R.id.radio_heZu:
-                //合租
-                layoutXinBie.setVisibility(View.VISIBLE);
-                layoutSheShi.setVisibility(View.VISIBLE);
-                break;
-            case R.id.radio_buxian:
-                //性别 不限
-                break;
-            case R.id.radio_nan:
-                //性别 男
-                break;
-            case R.id.radio_nv:
-                //性别 女
-                break;
-            case R.id.radio_yeZhu:
-                //来源 业主房源
-                break;
-            case R.id.radio_jiJiRen:
-                //来源 经纪人
-                break;
-        }
+    private void initEdit() {
+        editFangWuMinCheng.addTextChangedListener(new EditUtil(new OnTextChangeListener() {
+            @Override
+            public void textChanged(Editable s) {
+                model.setFangWuMinCheng(s.toString());
+            }
+        }));
+        editJianJie.addTextChangedListener(new EditUtil(new OnTextChangeListener() {
+            @Override
+            public void textChanged(Editable s) {
+                model.setFangWuJianJie(s.toString());
+            }
+        }));
+        editLouPanMinCheng.addTextChangedListener(new EditUtil(new OnTextChangeListener() {
+            @Override
+            public void textChanged(Editable s) {
+                model.setLouPanMinCheng(s.toString());
+            }
+        }));
+        editDiZhi.addTextChangedListener(new EditUtil(new OnTextChangeListener() {
+            @Override
+            public void textChanged(Editable s) {
+                model.setXiangXiDiZhi(s.toString());
+            }
+        }));
+        editJiShi.addTextChangedListener(new EditUtil(new OnTextChangeListener() {
+            @Override
+            public void textChanged(Editable s) {
+                model.setJiShi(s.toString());
+            }
+        }));
+        editJiTing.addTextChangedListener(new EditUtil(new OnTextChangeListener() {
+            @Override
+            public void textChanged(Editable s) {
+                model.setJiTing(s.toString());
+            }
+        }));
+        editJiWei.addTextChangedListener(new EditUtil(new OnTextChangeListener() {
+            @Override
+            public void textChanged(Editable s) {
+                model.setJiWei(s.toString());
+            }
+        }));
+        editJiLou.addTextChangedListener(new EditUtil(new OnTextChangeListener() {
+            @Override
+            public void textChanged(Editable s) {
+                model.setJiLou(s.toString());
+            }
+        }));
+        editGongJiCeng.addTextChangedListener(new EditUtil(new OnTextChangeListener() {
+            @Override
+            public void textChanged(Editable s) {
+                model.setGongJiCeng(s.toString());
+            }
+        }));
+        editMianJi.addTextChangedListener(new EditUtil(new OnTextChangeListener() {
+            @Override
+            public void textChanged(Editable s) {
+                model.setJianZhuMianJi(s.toString());
+            }
+        }));
+        editZuJin.addTextChangedListener(new EditUtil(new OnTextChangeListener() {
+            @Override
+            public void textChanged(Editable s) {
+                model.setZuJing(s.toString());
+            }
+        }));
+        editShouJia.addTextChangedListener(new EditUtil(new OnTextChangeListener() {
+            @Override
+            public void textChanged(Editable s) {
+                model.setShouJia(s.toString());
+            }
+        }));
+        editZhuangXiu.addTextChangedListener(new EditUtil(new OnTextChangeListener() {
+            @Override
+            public void textChanged(Editable s) {
+                model.setFangWuZhuangXiu(s.toString());
+            }
+        }));
+        editNianDai.addTextChangedListener(new EditUtil(new OnTextChangeListener() {
+            @Override
+            public void textChanged(Editable s) {
+                model.setNianDai(s.toString());
+            }
+        }));
+        editChaoXiang.addTextChangedListener(new EditUtil(new OnTextChangeListener() {
+            @Override
+            public void textChanged(Editable s) {
+                model.setFangWuChaoXiang(s.toString());
+            }
+        }));
+        editXinMin.addTextChangedListener(new EditUtil(new OnTextChangeListener() {
+            @Override
+            public void textChanged(Editable s) {
+                model.setXinMing(s.toString());
+            }
+        }));
+        editDianHua.addTextChangedListener(new EditUtil(new OnTextChangeListener() {
+            @Override
+            public void textChanged(Editable s) {
+                model.setLianXiDianHua(s.toString());
+            }
+        }));
     }
 
 
@@ -210,7 +324,7 @@ public class HouseInfoFragment extends BaseMyFragment implements OnBaseAdapterLi
                 leiXinListDialog.setName("物业类型");
                 break;
             case R.id.layout_diQu:
-                extraTransaction().startDontHideSelf(new SelectAddresDialogFragment());
+                IntentUtil.goAddress(mActivity);
                 break;
             case R.id.layout_fuKuanFangShi:
                 fuKuanFangShiDialog.show();
@@ -276,6 +390,44 @@ public class HouseInfoFragment extends BaseMyFragment implements OnBaseAdapterLi
         });
     }
 
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        switch (checkedId) {
+            case R.id.radio_zhenZu:
+                //整租
+                layoutXinBie.setVisibility(View.GONE);
+//                layoutSheShi.setVisibility(View.GONE);
+                model.setChuZuleiXin(0);
+                break;
+            case R.id.radio_heZu:
+                //合租
+                layoutXinBie.setVisibility(View.VISIBLE);
+//                layoutSheShi.setVisibility(View.VISIBLE);
+                model.setChuZuleiXin(1);
+                break;
+            case R.id.radio_buxian:
+                //性别 不限
+                model.setXinBieYaoQiu(0);
+                break;
+            case R.id.radio_nan:
+                //性别 男
+                model.setXinBieYaoQiu(1);
+                break;
+            case R.id.radio_nv:
+                //性别 女
+                model.setXinBieYaoQiu(2);
+                break;
+            case R.id.radio_yeZhu:
+                //来源 业主房源
+                model.setLaiYuan(0);
+                break;
+            case R.id.radio_jiJiRen:
+                //来源 经纪人
+                model.setLaiYuan(1);
+                break;
+        }
+    }
+
     //初始化房屋设施数据
     private void initList() {
         List<HouseHttpInfoModel.FilterAttrBean.ItemBean> list = new ArrayList<>();
@@ -298,6 +450,24 @@ public class HouseInfoFragment extends BaseMyFragment implements OnBaseAdapterLi
         list.add(new HouseHttpInfoModel.FilterAttrBean.ItemBean("押一付三"));
         list.add(new HouseHttpInfoModel.FilterAttrBean.ItemBean("押一付四"));
         list.add(new HouseHttpInfoModel.FilterAttrBean.ItemBean("无押金"));
+        list.add(new HouseHttpInfoModel.FilterAttrBean.ItemBean("面议"));
         return list;
     }
+
+    @Override
+    protected boolean isRegisterEventBus() {
+        return true;
+    }
+
+    //地区选择
+    @Override
+    protected void onReceiveEvent(EventModel eventModel) {
+        super.onReceiveEvent(eventModel);
+        if (eventModel.getCode() == Constants.event_addres_add) {
+            PCDAddresModel addresModel = (PCDAddresModel) eventModel.getData();
+            model.setAddresModel(addresModel);
+            tvDiQu.setText(addresModel.getProvinceModel().getName() + addresModel.getCityModel().getName() + addresModel.getDistrictModel().getName());
+        }
+    }
+
 }

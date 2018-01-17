@@ -18,7 +18,6 @@ import com.duma.ld.zhilianlift.base.baseView.BaseMyFragment;
 import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.model.PCDAddresModel;
 import com.duma.ld.zhilianlift.model.ProvinceModel;
-import com.duma.ld.zhilianlift.util.Constants;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 import com.lzy.okgo.request.GetRequest;
@@ -48,19 +47,24 @@ public class SelectAddresFragment extends BaseMyFragment {
 
     public static SelectAddresFragment newInstance(PCDAddresModel model) {
         SelectAddresFragment fragment = new SelectAddresFragment();
-        Bundle args = new Bundle();
-        args.putSerializable(Constants.key, model);
-        fragment.setArguments(args);
+//        Bundle args = new Bundle();
+//        args.putSerializable(Constants.key, model);
+//        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     protected FragmentConfig setFragmentConfig(Bundle savedInstanceState, InitConfig initConfig) {
-        Bundle args = getArguments();
-        if (args != null) {
-            model = (PCDAddresModel) args.getSerializable(Constants.key);
-        }
+//        Bundle args = getArguments();
+//        if (args != null) {
+//            model = (PCDAddresModel) args.getSerializable(Constants.key);
+//        }
         return initConfig.setLayoutIdByFragment(R.layout.fragment_select_addres);
+    }
+
+    public void setModel(PCDAddresModel model) {
+        this.model = model;
+        select = -1;
     }
 
     @Override
@@ -90,11 +94,14 @@ public class SelectAddresFragment extends BaseMyFragment {
                 sendModel.setDistrictModel(model.getDistrictModel());
                 if (sendModel.getProvinceModel() == null) {
                     sendModel.setProvinceModel(data.get(position));
+                    sendModel.setCityModel(null);
+                    sendModel.setDistrictModel(null);
                     EventBusUtil.sendModel(event_addres_refresh, sendModel);
                     return;
                 }
                 if (sendModel.getProvinceModel() != null && sendModel.getCityModel() == null) {
                     sendModel.setCityModel(data.get(position));
+                    sendModel.setDistrictModel(null);
                     EventBusUtil.sendModel(event_addres_refresh, sendModel);
                     return;
                 }

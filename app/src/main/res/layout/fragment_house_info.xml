@@ -27,10 +27,12 @@
                     android:text="房屋名称：" />
 
                 <EditText
+                    android:id="@+id/edit_fangWuMinCheng"
                     style="@style/edit_1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="请填写房屋名称" />
+                    android:hint="请填写房屋名称"
+                    android:inputType="text" />
             </LinearLayout>
 
 
@@ -47,10 +49,12 @@
                     android:text="房屋简介：" />
 
                 <EditText
+                    android:id="@+id/edit_jianJie"
                     style="@style/edit_1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="请填写房屋简介" />
+                    android:hint="请填写房屋简介"
+                    android:inputType="text" />
             </LinearLayout>
 
 
@@ -124,10 +128,12 @@
                     android:text="楼盘名称：" />
 
                 <EditText
+                    android:id="@+id/edit_louPanMinCheng"
                     style="@style/edit_1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="请填写您的楼盘名称" />
+                    android:hint="请填写您的楼盘名称"
+                    android:inputType="text" />
             </LinearLayout>
 
 
@@ -176,10 +182,12 @@
                     android:text="详细地址：" />
 
                 <EditText
+                    android:id="@+id/edit_diZhi"
                     style="@style/edit_1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="请输入详情地址" />
+                    android:hint="请输入详情地址"
+                    android:inputType="text" />
             </LinearLayout>
 
 
@@ -243,6 +251,7 @@
                     android:text="@string/house1" />
 
                 <EditText
+                    android:id="@+id/edit_jiShi"
                     style="@style/edit_1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -256,6 +265,7 @@
                     android:layout_gravity="center_vertical" />
 
                 <EditText
+                    android:id="@+id/edit_jiTing"
                     style="@style/edit_1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -270,6 +280,7 @@
                     android:layout_gravity="center_vertical" />
 
                 <EditText
+                    android:id="@+id/edit_jiWei"
                     style="@style/edit_1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -293,6 +304,7 @@
                     android:text="@string/house2" />
 
                 <EditText
+                    android:id="@+id/edit_jiLou"
                     style="@style/edit_1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -306,6 +318,7 @@
                     android:layout_gravity="center_vertical" />
 
                 <EditText
+                    android:id="@+id/edit_gongJiCeng"
                     style="@style/edit_1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -345,11 +358,13 @@
                     android:text="建筑面积：" />
 
                 <EditText
+                    android:id="@+id/edit_mianJi"
                     style="@style/edit_1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:hint="请填写房屋面积" />
+                    android:hint="请填写房屋面积"
+                    android:inputType="number" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -372,11 +387,13 @@
                     android:text="@string/house3" />
 
                 <EditText
+                    android:id="@+id/edit_zuJin"
                     style="@style/edit_1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:hint="请填写租赁价格" />
+                    android:hint="请填写租赁价格"
+                    android:inputType="number" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -399,11 +416,13 @@
                     android:text="@string/house4" />
 
                 <EditText
+                    android:id="@+id/edit_shouJia"
                     style="@style/edit_1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:hint="请填写房屋售价" />
+                    android:hint="请填写房屋售价"
+                    android:inputType="number" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -457,10 +476,12 @@
                     android:text="房屋装修：" />
 
                 <EditText
+                    android:id="@+id/edit_zhuangXiu"
                     style="@style/edit_1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="(选填)" />
+                    android:hint="(选填)"
+                    android:inputType="text" />
             </LinearLayout>
 
 
@@ -477,10 +498,12 @@
                     android:text="@string/house5" />
 
                 <EditText
+                    android:id="@+id/edit_nianDai"
                     style="@style/edit_1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="(选填)" />
+                    android:hint="(选填)"
+                    android:inputType="text" />
             </LinearLayout>
 
 
@@ -497,10 +520,12 @@
                     android:text="房屋朝向：" />
 
                 <EditText
+                    android:id="@+id/edit_chaoXiang"
                     style="@style/edit_1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="(选填)" />
+                    android:hint="(选填)"
+                    android:inputType="text" />
             </LinearLayout>
 
 
@@ -643,13 +668,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="姓         名：" />
+                    android:text="@string/house7" />
 
                 <EditText
+                    android:id="@+id/edit_xinMin"
                     style="@style/edit_1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="请填写您的姓名" />
+                    android:hint="请填写您的姓名"
+                    android:inputType="text" />
             </LinearLayout>
 
             <LinearLayout
@@ -665,6 +692,7 @@
                     android:text="联系电话：" />
 
                 <EditText
+                    android:id="@+id/edit_dianHua"
                     style="@style/edit_1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

@@ -9,6 +9,7 @@ import com.duma.ld.zhilianlift.model.CommitOrderModel;
 import com.duma.ld.zhilianlift.model.OrderModel;
 import com.duma.ld.zhilianlift.model.RealNameModel;
 import com.duma.ld.zhilianlift.model.ShoppingSpacModel;
+import com.duma.ld.zhilianlift.view.main.wode.addres.SelectAddresDialogActivity;
 import com.duma.ld.zhilianlift.view.login.LoginOrRegisterActivity;
 import com.duma.ld.zhilianlift.view.main.home.HomeActivity;
 import com.duma.ld.zhilianlift.view.main.house.AddHouseActivity;
@@ -417,5 +418,14 @@ public class IntentUtil {
     public static void goMessage(Activity activity) {
         Intent intent = new Intent(activity, MessageActivity.class);
         activity.startActivity(intent);
+    }
+
+    /**
+     * 选择地区
+     */
+    public static void goAddress(Activity activity) {
+        Intent intent = new Intent(activity, SelectAddresDialogActivity.class);
+        activity.startActivity(intent);
+        activity.overridePendingTransition(R.anim.out_to_left2, R.anim.in_from_right);
     }
 }

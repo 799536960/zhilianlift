@@ -6,7 +6,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.blankj.utilcode.util.KeyboardUtils;
 import com.blankj.utilcode.util.RegexUtils;
 import com.duma.ld.baselibrary.model.EventModel;
 import com.duma.ld.baselibrary.util.EventBusUtil;
@@ -21,7 +20,7 @@ import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.model.PCDAddresModel;
 import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.DialogUtil;
-import com.duma.ld.zhilianlift.view.dialog.SelectAddresDialogFragment;
+import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 import com.lzy.okgo.request.PostRequest;
@@ -96,10 +95,7 @@ public class AddOrChangeFragment extends BaseMyFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.layout_diqu:
-                KeyboardUtils.hideSoftInput(edtAddres);
-                KeyboardUtils.hideSoftInput(edtName);
-                KeyboardUtils.hideSoftInput(edtPhone);
-                extraTransaction().startDontHideSelf(new SelectAddresDialogFragment());
+                IntentUtil.goAddress(mActivity);
                 break;
             case R.id.tv_sava_btn:
                 if (edtPhone.getText().toString().isEmpty()) {
