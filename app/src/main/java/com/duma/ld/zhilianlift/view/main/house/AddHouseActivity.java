@@ -207,7 +207,7 @@ public class AddHouseActivity extends BaseMyActivity implements OnTopBarRightLis
                 .params("floor", model.getJiLou())
                 .params("floorall", model.getGongJiCeng())
                 .params("architecture", model.getJianZhuMianJi())
-                .params("house_price", model.getShouJia())
+                .params("allprice", model.getShouJia())
                 .params("renovation", model.getFangWuZhuangXiu())
                 .params("years", model.getNianDai())
                 .params("orientation", model.getFangWuChaoXiang())
@@ -253,7 +253,7 @@ public class AddHouseActivity extends BaseMyActivity implements OnTopBarRightLis
                 .params("floor", model.getJiLou())
                 .params("floorall", model.getGongJiCeng())
                 .params("architecture", model.getJianZhuMianJi())
-                .params("house_price", model.getZuJing())
+                .params("rent", model.getZuJing())
                 .params("payment", model.getFuKuanFangShiModel().getSo_name())//付款方式
                 .params("renovation", model.getFangWuZhuangXiu())
                 .params("years", model.getNianDai())

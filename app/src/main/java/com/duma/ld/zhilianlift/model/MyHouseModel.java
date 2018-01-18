@@ -67,6 +67,24 @@ public class MyHouseModel {
     private String company_district_name;
     private List<HouseImagesListBean> houseImagesList;
     private List<HouseLabelBean> houseLabel;
+    private String read_count;
+    private String rent;
+
+    public String getRent() {
+        return rent;
+    }
+
+    public void setRent(String rent) {
+        this.rent = rent;
+    }
+
+    public String getRead_count() {
+        return read_count;
+    }
+
+    public void setRead_count(String read_count) {
+        this.read_count = read_count;
+    }
 
     public int getHouse_id() {
         return house_id;
@@ -269,6 +287,13 @@ public class MyHouseModel {
     }
 
     public String getOrientation() {
+        return orientation;
+    }
+
+    public String getOrientationNoNull() {
+        if (orientation == null) {
+            return "";
+        }
         return orientation;
     }
 

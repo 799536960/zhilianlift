@@ -83,4 +83,6 @@ public class HttpUrl {
     public static String second = BaseUrl + "/index.php/api/house/second";
     public static String lease = BaseUrl + "/index.php/api/house/lease";
     public static String getMyHouse = BaseUrl + "/index.php/api/house/getMyHouse";
+    public static String deleteHouse = BaseUrl + "/index.php/api/house/deleteHouse";
+    public static String editHouseStatus = BaseUrl + "/index.php/api/house/editHouseStatus";
 }

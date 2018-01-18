@@ -14,22 +14,21 @@ import com.duma.ld.zhilianlift.base.MyApplication;
  */
 public class ImageLoader {
     public static void with(Context context, Object url, ImageView imageView, int roundingRadius) {
-        if (url == null) {
-            return;
-        }
-        if (url instanceof String) {
-            if (!((String) url).contains("http")) {
-                url = HttpUrl.BaseUrl + url;
+        if (url != null) {
+            if (url instanceof String) {
+                if (!((String) url).contains("http")) {
+                    url = HttpUrl.BaseUrl + url;
+                }
             }
         }
 
-        RequestOptions options = new RequestOptions();
-        options.placeholder(R.color.hui3);//加载中图片
+        RequestOptions options = new RequestOptions()
+                .placeholder(R.color.hui3);
+//        options.placeholder(R.color.hui3);//加载中图片
         if (roundingRadius != 0) {
-            options.centerCrop().transform(new RoundedCorners(roundingRadius));
+            options = options.centerCrop().transform(new RoundedCorners(roundingRadius));
         }
-
-        //options.error(errorRes)//加载错误的图片
+//        options.error(R.color.hui3);//加载错误的图片
 //        options.error(R.color.hui1);//或者是个颜色值
         //options.circleCrop()设置成圆形头像<这个是V4.0新增的>
         Glide.with(MyApplication.getInstance())

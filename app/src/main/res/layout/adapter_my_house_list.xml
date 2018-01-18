@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -12,10 +13,7 @@
         android:layout_height="45dp"
         android:orientation="horizontal"
         android:paddingEnd="13dp"
-        android:paddingStart="13dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:paddingStart="13dp">
 
         <TextView
             android:id="@+id/tv_type"
@@ -43,157 +41,153 @@
 
     <View
         style="@style/henxian"
-        android:layout_marginTop="44dp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginBottom="12dp" />
 
-    <ImageView
-        android:id="@+id/img_icon"
-        android:layout_width="105dp"
-        android:layout_height="105dp"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="17dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tv_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="17dp"
-        android:ellipsize="end"
-        android:maxLines="2"
-        android:text="万达广场北部软件园附近单身万达广场北部软件园附近单2身"
-        android:textSize="15sp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/img_icon"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        <FrameLayout
+            android:id="@+id/layout_img"
+            android:layout_width="105dp"
+            android:layout_height="105dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="17dp"
+            app:layout_constraintLeft_toLeftOf="parent">
 
-    <TextView
-        android:id="@+id/tv_spec1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="58dp"
-        android:text="3室2厅2卫    132㎡    南北"
-        android:textColor="@color/hui2"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/img_icon"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+            <ImageView
+                android:id="@+id/img_house"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher" />
+        </FrameLayout>
 
-    <TextView
-        android:id="@+id/tv_spec2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="75dp"
-        android:text="萧山区    西子三水公寓"
-        android:textColor="@color/hui2"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/img_icon"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_list"
-        android:layout_width="0dp"
-        android:layout_height="18dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="96dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/img_icon"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="17dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="11111"
+            android:textSize="15sp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/layout_img" />
 
-    <TextView
-        android:id="@+id/tv_money"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
-        android:text="5000元/月"
-        android:textColor="@color/huang1"
-        app:layout_constraintStart_toEndOf="@+id/img_icon"
-        app:layout_constraintTop_toBottomOf="@+id/rv_list" />
+        <TextView
+            android:id="@+id/tv_spec1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="3dp"
+            android:text="3室2厅2卫    132㎡    南北"
+            android:textColor="@color/hui2"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/layout_img"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
-    <TextView
-        android:id="@+id/tv_money2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:text="5909元/平"
-        android:textColor="@color/hui2"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/tv_money"
-        app:layout_constraintTop_toBottomOf="@+id/rv_list" />
+        <TextView
+            android:id="@+id/tv_spec2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="3dp"
+            android:text="萧山区    西子三水公寓"
+            android:textColor="@color/hui2"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/layout_img"
+            app:layout_constraintTop_toBottomOf="@+id/tv_spec1" />
 
-    <TextView
-        android:id="@+id/tv_num"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="10dp"
-        android:gravity="end"
-        android:text="0次浏览"
-        android:textColor="@color/hui2"
-        android:textSize="12sp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_list" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_list"
+            android:layout_width="0dp"
+            android:layout_height="18dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/layout_img"
+            app:layout_constraintTop_toBottomOf="@+id/tv_spec2" />
+
+        <TextView
+            android:id="@+id/tv_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:text="5000元/月"
+            android:textColor="@color/huang1"
+            app:layout_constraintStart_toEndOf="@+id/layout_img"
+            app:layout_constraintTop_toBottomOf="@+id/rv_list" />
+
+        <TextView
+            android:id="@+id/tv_money2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="5909元/平"
+            android:textColor="@color/hui2"
+            android:textSize="12sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_money"
+            app:layout_constraintStart_toEndOf="@+id/tv_money" />
+
+        <TextView
+            android:id="@+id/tv_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:gravity="end"
+            android:text="0次浏览"
+            android:textColor="@color/hui2"
+            android:textSize="12sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_money"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+
+    <View
+        style="@style/henxian"
+        android:layout_marginTop="12dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
-        android:orientation="vertical"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_money">
+        android:layout_height="56dp"
+        android:gravity="right"
+        android:orientation="horizontal">
 
-        <View style="@style/henxian" />
+        <TextView
+            android:id="@+id/tv_delete"
+            android:layout_width="75dp"
+            android:layout_height="27dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bx_15_hei"
+            android:gravity="center"
+            android:text="删除"
+            android:textColor="@color/hei2" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:gravity="right"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tv_delete"
-                android:layout_width="75dp"
-                android:layout_height="27dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/bx_15_hei"
-                android:gravity="center"
-                android:text="删除"
-                android:textColor="@color/hei2" />
-
-            <TextView
-                android:id="@+id/tv_change"
-                android:layout_width="75dp"
-                android:layout_height="27dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/bx_15_hei"
-                android:gravity="center"
-                android:text="上架"
-                android:textColor="@color/hei2" />
-        </LinearLayout>
-
-        <View
-            style="@style/henxian"
-            android:layout_height="10dp" />
+        <TextView
+            android:id="@+id/tv_change"
+            android:layout_width="75dp"
+            android:layout_height="27dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bx_15_hei"
+            android:gravity="center"
+            android:text="上架"
+            android:textColor="@color/hei2" />
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+    <View
+        style="@style/henxian"
+        android:layout_height="10dp" />
+
+</LinearLayout>
