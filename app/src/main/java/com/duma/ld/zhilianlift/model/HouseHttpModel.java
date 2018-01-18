@@ -16,7 +16,7 @@ public class HouseHttpModel implements Serializable {
     /**
      * 多选
      */
-    //房屋特色  出售才会出现
+    //房屋特色 都有
     private List<HouseHttpInfoModel.FilterAttrBean.ItemBean> mListTeSe;
     //房屋设施  出租才会出现
     private List<HouseHttpInfoModel.FilterAttrBean.ItemBean> mListSheShi;

@@ -167,7 +167,7 @@ public class HouseInfoFragment extends BaseMyFragment implements OnBaseAdapterLi
         }
         if (model.isRental()) {
             //出租
-            layoutTeSe.setVisibility(View.GONE);
+//            layoutTeSe.setVisibility(View.GONE);
             layoutShouJia.setVisibility(View.GONE);
         } else {
             //出售

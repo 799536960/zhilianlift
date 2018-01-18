@@ -140,6 +140,18 @@ public class AddHouseActivity extends BaseMyActivity implements OnTopBarRightLis
             TsUtils.show("请输入联系电话!");
             return;
         }
+        if (model.getmListTeSe() != null) {
+            boolean kong = true;
+            for (int i = 0; i < model.getmListTeSe().size(); i++) {
+                if (model.getmListTeSe().get(i).isCheck()) {
+                    kong = false;
+                }
+            }
+            if (kong) {
+                TsUtils.show("请至少选择一种房屋特色!");
+                return;
+            }
+        }
         if (model.isRental()) {
             //验证出租信息
             if (model.getmListSheShi() != null) {
@@ -163,18 +175,6 @@ public class AddHouseActivity extends BaseMyActivity implements OnTopBarRightLis
                 return;
             }
         } else {
-            if (model.getmListTeSe() != null) {
-                boolean kong = true;
-                for (int i = 0; i < model.getmListTeSe().size(); i++) {
-                    if (model.getmListTeSe().get(i).isCheck()) {
-                        kong = false;
-                    }
-                }
-                if (kong) {
-                    TsUtils.show("请至少选择一种房屋特色!");
-                    return;
-                }
-            }
             if (StringUtils.isEmpty(model.getShouJia())) {
                 TsUtils.show("请输入售价!");
                 return;
@@ -278,7 +278,14 @@ public class AddHouseActivity extends BaseMyActivity implements OnTopBarRightLis
                 }
             }
         }
+        List<String> strings = new ArrayList<>();
+        for (int i = 0; i < model.getmListTeSe().size(); i++) {
+            if (model.getmListTeSe().get(i).isCheck()) {
+                strings.add(model.getmListTeSe().get(i).getSo_value());
+            }
+        }
         params.params("facilities", sheshi)
+                .addUrlParams("characteristics[]", strings)
                 .addFileParams("house_img[]", model.getList())
                 .execute(new MyJsonCallback<HttpResModel<String>>() {
                     @Override

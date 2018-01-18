@@ -124,6 +124,7 @@
         <activity
             android:name=".view.main.wode.addres.SelectAddresDialogActivity"
             android:theme="@style/AppTheme_tm_hei" />
+        <activity android:name=".view.main.house.HouseListActivity" />
     </application>
 
 </manifest>

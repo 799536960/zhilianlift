@@ -59,9 +59,22 @@ public class Class_2_Fragment extends BaseMyFragment {
                 adapter_3.setOnItemClickListener(new OnItemClickListener() {
                     @Override
                     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                        IntentUtil.goGoodsList_class(mActivity, adapter_3.getData().get(position).getId() + "");
-                        // TODO: 2018/1/9 房产跳转
-
+                        switch (adapter_3.getData().get(position).getId()) {
+                            case 855:
+                                //二手房
+                                IntentUtil.goHouseList_erShoufang(mActivity);
+                                break;
+                            case 854:
+                                //出租房
+                                IntentUtil.goHouseList_zuFang(mActivity);
+                                break;
+                            case 853:
+                                //新房
+                                IntentUtil.goHouseList_xinFang(mActivity);
+                                break;
+                            default:
+                                IntentUtil.goGoodsList_class(mActivity, adapter_3.getData().get(position).getId() + "");
+                        }
                     }
                 });
                 RecyclerView rv_class_3 = helper.getView(R.id.rv_class_3);

@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.ConvertUtils;
@@ -23,6 +25,7 @@ import com.duma.ld.zhilianlift.model.AfterSalesListModel;
 import com.duma.ld.zhilianlift.model.AfterSalesModel;
 import com.duma.ld.zhilianlift.model.GoodsBean;
 import com.duma.ld.zhilianlift.model.HttpResModel;
+import com.duma.ld.zhilianlift.model.MyHouseModel;
 import com.duma.ld.zhilianlift.model.OrderModel;
 import com.duma.ld.zhilianlift.model.UserModel;
 import com.duma.ld.zhilianlift.view.main.shopping.ShoppingCartActivity;
@@ -166,6 +169,43 @@ public class PublicUtil {
                 .setText(R.id.tv_price, "¥" + item.getGoods_price());
         ImageView img_icon = helper.getView(R.id.img_icon);
         ImageLoader.with(activity, item.getOriginal_img(), img_icon);
+    }
+
+    public static void getViewHouse(BaseViewHolder helper, MyHouseModel item, Activity mActivity, boolean isChuZu) {
+        helper.setText(R.id.tv_name, item.getHouse_name() + "")
+                .setText(R.id.tv_spec1, item.getDoor_door() + "室" + item.getOffice() + "厅" + item.getToilet() + "卫  " +
+                        item.getArchitecture() + "㎡  " + item.getOrientationNoNull())
+                .setText(R.id.tv_spec2, item.getHouse_name() + "");
+        ImageView img_house = helper.getView(R.id.img_house);
+        ImageLoader.with(item.getOriginal_img(), img_house);
+        RecyclerView rv_list = helper.getView(R.id.rv_list);
+        if (item.getHouseLabel() == null || item.getHouseLabel().size() == 0) {
+            rv_list.setVisibility(View.GONE);
+        } else {
+            rv_list.setVisibility(View.VISIBLE);
+            BaseAdapter<MyHouseModel.HouseLabelBean> adapter = new BaseAdapter.Builder<MyHouseModel.HouseLabelBean>(rv_list, mActivity, R.layout.adapter_my_house_item)
+                    .setNoEnpty()
+                    .isNested()
+                    .setLayoutManager(new LinearLayoutManager(mActivity, LinearLayout.HORIZONTAL, false))
+                    .build(new OnBaseAdapterListener<MyHouseModel.HouseLabelBean>() {
+                        @Override
+                        public void convert(BaseViewHolder helper, MyHouseModel.HouseLabelBean item) {
+                            helper.setText(R.id.tv_name, item.getSo_name());
+                        }
+                    });
+            adapter.setNewData(item.getHouseLabel());
+            rv_list.setAdapter(adapter);
+        }
+        TextView tv_money2 = helper.getView(R.id.tv_money2);
+        TextView tv_money = helper.getView(R.id.tv_money);
+        if (isChuZu) {
+            tv_money2.setVisibility(View.GONE);
+            tv_money.setText(item.getRent() + "元/月");
+        } else {
+            tv_money2.setVisibility(View.VISIBLE);
+            tv_money2.setText(item.getHouse_price() + "元/平");
+            tv_money.setText(item.getAllprice() + "万元");
+        }
     }
 
     /**

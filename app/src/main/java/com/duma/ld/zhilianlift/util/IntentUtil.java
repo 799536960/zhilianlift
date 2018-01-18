@@ -12,6 +12,7 @@ import com.duma.ld.zhilianlift.model.ShoppingSpacModel;
 import com.duma.ld.zhilianlift.view.login.LoginOrRegisterActivity;
 import com.duma.ld.zhilianlift.view.main.home.HomeActivity;
 import com.duma.ld.zhilianlift.view.main.house.AddHouseActivity;
+import com.duma.ld.zhilianlift.view.main.house.HouseListActivity;
 import com.duma.ld.zhilianlift.view.main.house.MyHouseActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PayActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PayInputPasswordActivity;
@@ -431,5 +432,26 @@ public class IntentUtil {
         Intent intent = new Intent(activity, SelectAddresDialogActivity.class);
         activity.startActivity(intent);
         activity.overridePendingTransition(R.anim.out_to_left2, R.anim.in_from_right);
+    }
+
+    /**
+     * 房产列表
+     */
+    private static void goHouseList(Activity activity, int type) {
+        Intent intent = new Intent(activity, HouseListActivity.class);
+        intent.putExtra(Constants.Type, type);
+        activity.startActivity(intent);
+    }
+
+    public static void goHouseList_xinFang(Activity activity) {
+        goHouseList(activity, 0);
+    }
+
+    public static void goHouseList_erShoufang(Activity activity) {
+        goHouseList(activity, 1);
+    }
+
+    public static void goHouseList_zuFang(Activity activity) {
+        goHouseList(activity, 2);
     }
 }
