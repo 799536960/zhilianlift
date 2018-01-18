@@ -175,7 +175,7 @@ public class PublicUtil {
         helper.setText(R.id.tv_name, item.getHouse_name() + "")
                 .setText(R.id.tv_spec1, item.getDoor_door() + "室" + item.getOffice() + "厅" + item.getToilet() + "卫  " +
                         item.getArchitecture() + "㎡  " + item.getOrientationNoNull())
-                .setText(R.id.tv_spec2, item.getHouse_name() + "");
+                .setText(R.id.tv_spec2, item.getCompany_district_name() + " " + item.getHouse_address());
         ImageView img_house = helper.getView(R.id.img_house);
         ImageLoader.with(item.getOriginal_img(), img_house);
         RecyclerView rv_list = helper.getView(R.id.rv_list);

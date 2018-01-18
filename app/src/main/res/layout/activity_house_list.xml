@@ -108,6 +108,11 @@
                 app:CbTrueIcon="@drawable/up"
                 app:CbTrueTvColor="@color/huang2" />
 
+            <View
+                style="@style/shuxian"
+                android:layout_height="14dp"
+                android:layout_gravity="center_vertical" />
+
             <com.duma.ld.zhilianlift.widget.CheckBoxGoodsList
                 android:id="@+id/cb_shaiXuan"
                 android:layout_width="0dp"
@@ -115,9 +120,10 @@
                 android:layout_weight="1"
                 android:background="@drawable/ripple_bai"
                 android:gravity="center"
-                app:CbFalseIcon="@drawable/sx2"
-                app:CbName="筛选"
-                app:CbTrueIcon="@drawable/sx1" />
+                app:CbFalseTvColor="@color/hei6"
+                app:CbName="更多筛选"
+                app:CbTextSize="15sp"
+                app:CbTrueTvColor="@color/huang2" />
         </LinearLayout>
 
         <View

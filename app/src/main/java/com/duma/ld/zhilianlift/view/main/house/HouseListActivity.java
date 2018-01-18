@@ -21,6 +21,7 @@ import com.duma.ld.zhilianlift.model.HouseListModel;
 import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.model.MyHouseModel;
 import com.duma.ld.zhilianlift.model.ScreeningModel;
+import com.duma.ld.zhilianlift.model.ScreeningSelectListModel;
 import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.PublicUtil;
 import com.duma.ld.zhilianlift.util.ShaiXuanUtil;
@@ -28,6 +29,7 @@ import com.duma.ld.zhilianlift.widget.CheckBoxGoodsList;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 import com.lzy.okgo.request.GetRequest;
+import com.orhanobut.logger.Logger;
 
 import java.util.List;
 
@@ -121,6 +123,22 @@ public class HouseListActivity extends BaseMyActivity {
                             default:
                                 request = OkGo.get(getList2);
                                 break;
+                        }
+                        if (cbShaiXuan.isChecked()) {
+                            //筛选
+                            List<ScreeningSelectListModel> list_shaiXuan = shaiXuanUtil.getList_shaiXuan();
+                            for (int i = 0; i < list_shaiXuan.size(); i++) {
+                                String value = "";
+                                for (int i1 = 0; i1 < list_shaiXuan.get(i).getList().size(); i1++) {
+                                    if (i1 == 0) {
+                                        value = list_shaiXuan.get(i).getList().get(i1).getValue();
+                                    } else {
+                                        value = value + "," + list_shaiXuan.get(i).getList().get(i1).getValue();
+                                    }
+                                }
+                                Logger.e("Key: " + list_shaiXuan.get(i).getKey() + " value: " + value);
+                                request.params(list_shaiXuan.get(i).getKey(), value);
+                            }
                         }
                         request
                                 .tag(httpTag)
