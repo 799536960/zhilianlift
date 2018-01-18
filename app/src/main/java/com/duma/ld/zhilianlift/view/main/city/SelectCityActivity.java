@@ -9,21 +9,11 @@ import android.widget.FrameLayout;
 import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
-import com.duma.ld.zhilianlift.base.baseJsonHttp.MyJsonCallback;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
-import com.duma.ld.zhilianlift.model.CityEntity;
-import com.duma.ld.zhilianlift.model.HttpResModel;
-import com.lzy.okgo.OkGo;
-import com.lzy.okgo.model.Response;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import me.yokeyword.fragmentation.SupportFragment;
-
-import static com.duma.ld.zhilianlift.util.HttpUrl.getcity;
-import static com.lzy.okgo.cache.CacheMode.FIRST_CACHE_THEN_REQUEST;
 
 /**
  * 选择城市页面
@@ -56,8 +46,6 @@ public class SelectCityActivity extends BaseMyActivity {
             mFragments[1] = findFragment(SearchFragment.class);
         }
         initSearch();
-        //请求城市
-        onClickLoadingRefresh();
     }
 
     private void initSearch() {
@@ -82,21 +70,6 @@ public class SelectCityActivity extends BaseMyActivity {
                 findFragment(SearchFragment.class).bindQueryText(editSearch.getText().toString());
             }
         });
-    }
-
-
-    @Override
-    public void onClickLoadingRefresh() {
-        super.onClickLoadingRefresh();
-        OkGo.<HttpResModel<List<CityEntity>>>get(getcity)
-                .tag(httpTag)
-                .cacheMode(FIRST_CACHE_THEN_REQUEST)
-                .execute(new MyJsonCallback<HttpResModel<List<CityEntity>>>(mActivityConfig, false) {
-                    @Override
-                    protected void onJsonSuccess(Response<HttpResModel<List<CityEntity>>> respons, HttpResModel<List<CityEntity>> listHttpResModel) {
-                        findFragment(SelectCityFragment.class).setData(listHttpResModel, mActivityConfig);
-                    }
-                });
     }
 
 

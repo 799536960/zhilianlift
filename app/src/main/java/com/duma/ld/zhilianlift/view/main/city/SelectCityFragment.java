@@ -7,7 +7,6 @@ import android.view.View;
 import com.duma.ld.baselibrary.model.EventModel;
 import com.duma.ld.baselibrary.util.EventBusUtil;
 import com.duma.ld.baselibrary.util.ZhuanHuanUtil;
-import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.config.FragmentConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
@@ -37,6 +36,8 @@ import me.yokeyword.indexablerv.IndexableLayout;
 
 import static com.duma.ld.zhilianlift.util.Constants.event_location_city;
 import static com.duma.ld.zhilianlift.util.HttpUrl.get_region;
+import static com.duma.ld.zhilianlift.util.HttpUrl.getcity;
+import static com.lzy.okgo.cache.CacheMode.FIRST_CACHE_THEN_REQUEST;
 
 /**
  * Created by liudong on 2017/12/6.
@@ -95,6 +96,7 @@ public class SelectCityFragment extends BaseMyFragment {
         });
         //开启定位
         LocationUtil.getInstance().start(mActivity, event_location_city);
+        onClickLoadingRefresh();
     }
 
     private void setCity(String name, String code) {
@@ -107,14 +109,14 @@ public class SelectCityFragment extends BaseMyFragment {
         mActivity.finish();
     }
 
-    public void setData(HttpResModel<List<CityEntity>> listHttpResModel, final ActivityConfig activityConfig) {
+    public void setData(HttpResModel<List<CityEntity>> listHttpResModel) {
         mDatas = listHttpResModel.getResult();
         mAdapter.setDatas(mDatas, new IndexableAdapter.IndexCallback<CityEntity>() {
             @Override
             public void onFinished(List<EntityWrapper<CityEntity>> datas) {
                 // 数据处理完成后回调
                 findFragment(SearchFragment.class).bindDatas(mDatas);
-                activityConfig.hideLoadingView();
+                mFragmentConfig.hideLoadingView();
             }
         });
         addHearder();
@@ -159,4 +161,17 @@ public class SelectCityFragment extends BaseMyFragment {
         layoutIndex.addHeaderAdapter(rvAdapter);
     }
 
+    @Override
+    public void onClickLoadingRefresh() {
+        super.onClickLoadingRefresh();
+        OkGo.<HttpResModel<List<CityEntity>>>get(getcity)
+                .tag(httpTag)
+                .cacheMode(FIRST_CACHE_THEN_REQUEST)
+                .execute(new MyJsonCallback<HttpResModel<List<CityEntity>>>(mFragmentConfig, false) {
+                    @Override
+                    protected void onJsonSuccess(Response<HttpResModel<List<CityEntity>>> respons, HttpResModel<List<CityEntity>> listHttpResModel) {
+                        setData(listHttpResModel);
+                    }
+                });
+    }
 }

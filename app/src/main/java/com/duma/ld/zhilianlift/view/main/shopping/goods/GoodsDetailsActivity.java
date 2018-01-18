@@ -48,6 +48,7 @@ import static com.duma.ld.zhilianlift.util.HttpUrl.collectGoodsOrNo;
 import static com.duma.ld.zhilianlift.util.HttpUrl.getInfo;
 
 /**
+ * 商品详情页
  * Created by liudong on 2017/12/22.
  */
 

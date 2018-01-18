@@ -21,6 +21,8 @@ public class PhotoQueryActivity extends BaseMyActivity implements ViewPager.OnPa
     TextView tvPosition;
     @BindView(R.id.pager_photo)
     ViewPager pagerPhoto;
+    @BindView(R.id.tv_allNum)
+    TextView tvAllNum;
 
     private List<String> mList;
     private int position;
@@ -37,7 +39,8 @@ public class PhotoQueryActivity extends BaseMyActivity implements ViewPager.OnPa
         super.init(savedInstanceState);
         mList = (List<String>) getIntent().getSerializableExtra(Constants.Model);
         position = Integer.parseInt(getIntent().getStringExtra(Constants.key));
-        tvPosition.setText((position + 1) + "/" + mList.size());
+        tvPosition.setText((position + 1) + "");
+        tvAllNum.setText("/" + mList.size());
         adapter = new QueryPhotoAdapter(mList, mActivity);
         pagerPhoto.setAdapter(adapter);
         pagerPhoto.setCurrentItem(position);
@@ -58,13 +61,12 @@ public class PhotoQueryActivity extends BaseMyActivity implements ViewPager.OnPa
 
     @Override
     public void onPageSelected(int position) {
-        tvPosition.setText((position + 1) + "/" + mList.size());
+        tvPosition.setText((position + 1) + "");
     }
 
     @Override
     public void onPageScrollStateChanged(int state) {
 
     }
-
 
 }
