@@ -14,6 +14,7 @@ import com.duma.ld.zhilianlift.view.main.home.HomeActivity;
 import com.duma.ld.zhilianlift.view.main.house.AddHouseActivity;
 import com.duma.ld.zhilianlift.view.main.house.HouseListActivity;
 import com.duma.ld.zhilianlift.view.main.house.MyHouseActivity;
+import com.duma.ld.zhilianlift.view.main.house.ZuFangInfoActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PayActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PayInputPasswordActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PaySuccessActivity;
@@ -453,5 +454,13 @@ public class IntentUtil {
 
     public static void goHouseList_zuFang(Activity activity) {
         goHouseList(activity, 2);
+    }
+
+
+    //租房详情页
+    public static void goZufangInfo(Activity activity, int houseId) {
+        Intent intent = new Intent(activity, ZuFangInfoActivity.class);
+        intent.putExtra(Constants.id, houseId + "");
+        activity.startActivity(intent);
     }
 }

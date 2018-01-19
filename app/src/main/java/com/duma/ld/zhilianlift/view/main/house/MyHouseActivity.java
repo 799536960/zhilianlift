@@ -138,6 +138,12 @@ public class MyHouseActivity extends BaseMyActivity {
                 }
             }
         });
+        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                IntentUtil.goZufangInfo(mActivity, mAdapter.getData().get(position).getHouse_id());
+            }
+        });
     }
 
 
