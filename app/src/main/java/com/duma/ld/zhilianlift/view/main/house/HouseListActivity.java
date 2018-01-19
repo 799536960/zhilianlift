@@ -18,13 +18,20 @@ import com.duma.ld.zhilianlift.base.baseJsonHttp.MyJsonCallback;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
 import com.duma.ld.zhilianlift.model.GoodsListModel;
 import com.duma.ld.zhilianlift.model.HouseListModel;
+import com.duma.ld.zhilianlift.model.HousePopModel;
 import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.model.MyHouseModel;
+import com.duma.ld.zhilianlift.model.QuModel;
 import com.duma.ld.zhilianlift.model.ScreeningModel;
 import com.duma.ld.zhilianlift.model.ScreeningSelectListModel;
 import com.duma.ld.zhilianlift.util.Constants;
+import com.duma.ld.zhilianlift.util.DialogUtil;
 import com.duma.ld.zhilianlift.util.PublicUtil;
 import com.duma.ld.zhilianlift.util.ShaiXuanUtil;
+import com.duma.ld.zhilianlift.util.SpDataUtil;
+import com.duma.ld.zhilianlift.view.popupWindow.HouseQuYuPopupWindow;
+import com.duma.ld.zhilianlift.view.popupWindow.HouseTwoListPopupWindow;
+import com.duma.ld.zhilianlift.view.popupWindow.OnPopListener;
 import com.duma.ld.zhilianlift.widget.CheckBoxGoodsList;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
@@ -35,10 +42,15 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import razerdp.basepopup.BasePopupWindow;
 
+import static com.duma.ld.zhilianlift.util.HttpUrl.getALL1;
+import static com.duma.ld.zhilianlift.util.HttpUrl.getALL2;
+import static com.duma.ld.zhilianlift.util.HttpUrl.getALL3;
 import static com.duma.ld.zhilianlift.util.HttpUrl.getAddressList;
 import static com.duma.ld.zhilianlift.util.HttpUrl.getList2;
 import static com.duma.ld.zhilianlift.util.HttpUrl.getList3;
+import static com.duma.ld.zhilianlift.util.HttpUrl.get_region;
 
 /**
  * 房产列表 0找新房 1二手房(售房) 2租房
@@ -77,6 +89,15 @@ public class HouseListActivity extends BaseMyActivity {
     private BaseAdapter<MyHouseModel> mAdapter;
     //筛选
     private ShaiXuanUtil shaiXuanUtil;
+    //pop
+    //区域pop
+    private HouseQuYuPopupWindow houseQuYuPopupWindow;
+    private List<QuModel> quModelList;
+    private String city;
+    //价格pop
+    private HouseTwoListPopupWindow houseTwoListPopupWindow;
+    //区域
+    private HouseTwoListPopupWindow houseTwoListPopupWindowHuXin;
 
     @Override
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig) {
@@ -98,6 +119,10 @@ public class HouseListActivity extends BaseMyActivity {
                 mActivityConfig.setTopBar_A("租房");
                 break;
         }
+        //默认是当前的城市
+        city = SpDataUtil.getLocation().getCity();
+        //初始化pop
+        initPop();
         //初始化筛选
         initScreen();
         //初始化房产列表设配器
@@ -105,6 +130,63 @@ public class HouseListActivity extends BaseMyActivity {
         onClickLoadingRefresh();
     }
 
+    //初始化pop
+    private void initPop() {
+        /**
+         * 区域pop
+         */
+        houseQuYuPopupWindow = new HouseQuYuPopupWindow(mActivity);
+        houseQuYuPopupWindow.setOnDismissListener(new BasePopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                cbDiQu.setChecked(false);
+                String name;
+                if (houseQuYuPopupWindow.getmPosition() != 0) {
+                    name = quModelList.get(houseQuYuPopupWindow.getmPosition()).getName();
+                } else {
+                    name = "区域";
+                }
+                if (!name.equals(cbDiQu.getText())) {
+                    cbDiQu.setText(name);
+                    onClickLoadingRefresh();
+                }
+            }
+        });
+        /**
+         * 价格
+         */
+        houseTwoListPopupWindow = new HouseTwoListPopupWindow(mActivity);
+        houseTwoListPopupWindow.setCbText(cbJiaGe, "价格", new OnPopListener() {
+            @Override
+            public void refresh() {
+                onClickLoadingRefresh();
+            }
+        });
+        houseTwoListPopupWindowHuXin = new HouseTwoListPopupWindow(mActivity);
+        houseTwoListPopupWindowHuXin.setCbText(cbHuXin, "户型", new OnPopListener() {
+            @Override
+            public void refresh() {
+                onClickLoadingRefresh();
+            }
+        });
+
+//        houseTwoListPopupWindow.setOnDismissListener(new BasePopupWindow.OnDismissListener() {
+//            @Override
+//            public void onDismiss() {
+//                cbJiaGe.setChecked(false);
+//                String name;
+//                if (houseTwoListPopupWindow.getmPositionContent() != 0) {
+//                    name = houseTwoListPopupWindow.getmAdapterContent().getData().get(houseTwoListPopupWindow.getmPositionContent()).getSo_name();
+//                } else {
+//                    name = "价格";
+//                }
+//                if (!name.equals(cbJiaGe.getText())) {
+//                    cbJiaGe.setText(name);
+//                    onClickLoadingRefresh();
+//                }
+//            }
+//        });
+    }
 
     private void initAdapter() {
         mAdapter = new BaseAdapter.Builder<MyHouseModel>(rvList, mActivity, R.layout.adapter_house_list)
@@ -136,9 +218,19 @@ public class HouseListActivity extends BaseMyActivity {
                                         value = value + "," + list_shaiXuan.get(i).getList().get(i1).getValue();
                                     }
                                 }
-                                Logger.e("Key: " + list_shaiXuan.get(i).getKey() + " value: " + value);
+                                Logger.e("筛选 Key: " + list_shaiXuan.get(i).getKey() + " value: " + value);
                                 request.params(list_shaiXuan.get(i).getKey(), value);
                             }
+                        }
+                        HousePopModel.FilterAttrBean.ItemBean selectModel = houseTwoListPopupWindow.getSelectModel();
+                        if (selectModel != null) {
+                            Logger.e("价格 Key: " + selectModel.getSo_key() + " value: " + selectModel.getSo_value());
+                            request.params(selectModel.getSo_key(), selectModel.getSo_value());
+                        }
+                        selectModel = houseTwoListPopupWindowHuXin.getSelectModel();
+                        if (selectModel != null) {
+                            Logger.e("户型 Key: " + selectModel.getSo_key() + " value: " + selectModel.getSo_value());
+                            request.params(selectModel.getSo_key(), selectModel.getSo_value());
                         }
                         request
                                 .tag(httpTag)
@@ -176,10 +268,25 @@ public class HouseListActivity extends BaseMyActivity {
             case R.id.tv_city:
                 break;
             case R.id.cb_diQu:
+                if (quModelList == null || quModelList.size() == 0) {
+                    getQuHttp();
+                } else {
+                    showPop();
+                }
                 break;
             case R.id.cb_jiaGe:
+                if (houseTwoListPopupWindow.isModel()) {
+                    jiaGeHttp();
+                } else {
+                    showPopJiaGe();
+                }
                 break;
             case R.id.cb_huXin:
+                if (houseTwoListPopupWindowHuXin.isModel()) {
+                    huXinHttp();
+                } else {
+                    showPopHuXin();
+                }
                 break;
             case R.id.cb_shaiXuan:
                 //筛选开关
@@ -193,6 +300,94 @@ public class HouseListActivity extends BaseMyActivity {
                 shaiXuanUtil.closeDrawer();
                 break;
         }
+    }
+
+    private void jiaGeHttp() {
+        String url = getALL1;
+        String cat_id = "";
+        switch (type) {
+            case 0:
+                cat_id = "853";
+                break;
+            case 1:
+                cat_id = "855";
+                break;
+            case 2:
+                cat_id = "854";
+                url = getALL3;
+                break;
+        }
+        DialogUtil.getInstance().show_noBack(mActivity);
+        OkGo.<HttpResModel<HousePopModel>>get(url)
+                .params("cat_id", cat_id)
+                .tag(httpTag)
+                .execute(new MyJsonCallback<HttpResModel<HousePopModel>>() {
+                    @Override
+                    protected void onJsonSuccess(Response<HttpResModel<HousePopModel>> respons, HttpResModel<HousePopModel> listHttpResModel) {
+                        DialogUtil.getInstance().hide();
+                        houseTwoListPopupWindow.setHousePopModel(listHttpResModel.getResult());
+                        showPopJiaGe();
+                    }
+                });
+    }
+
+    private void huXinHttp() {
+        String cat_id = "";
+        switch (type) {
+            case 0:
+                cat_id = "853";
+                break;
+            case 1:
+                cat_id = "855";
+                break;
+            case 2:
+                cat_id = "854";
+                break;
+        }
+        DialogUtil.getInstance().show_noBack(mActivity);
+        OkGo.<HttpResModel<HousePopModel>>get(getALL2)
+                .params("cat_id", cat_id)
+                .tag(httpTag)
+                .execute(new MyJsonCallback<HttpResModel<HousePopModel>>() {
+                    @Override
+                    protected void onJsonSuccess(Response<HttpResModel<HousePopModel>> respons, HttpResModel<HousePopModel> listHttpResModel) {
+                        DialogUtil.getInstance().hide();
+                        houseTwoListPopupWindowHuXin.setHousePopModel(listHttpResModel.getResult());
+                        showPopHuXin();
+                    }
+                });
+    }
+
+    private void showPopJiaGe() {
+        cbJiaGe.setChecked(true);
+        houseTwoListPopupWindow.showPopupWindow(viewShow);
+    }
+
+    private void showPopHuXin() {
+        cbHuXin.setChecked(true);
+        houseTwoListPopupWindowHuXin.showPopupWindow(viewShow);
+    }
+
+    private void getQuHttp() {
+        DialogUtil.getInstance().show_noBack(mActivity);
+        OkGo.<HttpResModel<List<QuModel>>>get(get_region)
+                .params("name", city)
+                .tag(httpTag)
+                .execute(new MyJsonCallback<HttpResModel<List<QuModel>>>() {
+                    @Override
+                    protected void onJsonSuccess(Response<HttpResModel<List<QuModel>>> respons, HttpResModel<List<QuModel>> listHttpResModel) {
+                        DialogUtil.getInstance().hide();
+                        quModelList = listHttpResModel.getResult();
+                        quModelList.add(0, new QuModel("不限"));
+                        houseQuYuPopupWindow.setList(quModelList);
+                        showPop();
+                    }
+                });
+    }
+
+    private void showPop() {
+        cbDiQu.setChecked(true);
+        houseQuYuPopupWindow.showPopupWindow(viewShow);
     }
 
     //初始化筛选数据

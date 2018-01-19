@@ -13,22 +13,26 @@ import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseAdapter.BaseAdapter;
 import com.duma.ld.zhilianlift.base.baseAdapter.OnBaseAdapterListener;
 import com.duma.ld.zhilianlift.model.QuModel;
-import com.duma.ld.zhilianlift.util.SpDataUtil;
 
 import java.util.List;
 
 import razerdp.basepopup.BasePopupWindow;
 
 /**
- * 展示商品详情页面的区域pop
+ * 房产详情页面的区域pop
  * Created by liudong on 2017/12/21.
  */
 
-public class ListPopupWindow extends BasePopupWindow {
+public class HouseQuYuPopupWindow extends BasePopupWindow {
     private Activity activity;
-    public BaseAdapter<QuModel> adapter;
+    private BaseAdapter<QuModel> mAdapter;
+    private int mPosition;
 
-    public ListPopupWindow(Activity context) {
+    public int getmPosition() {
+        return mPosition;
+    }
+
+    public HouseQuYuPopupWindow(Activity context) {
         super(context);
         this.activity = context;
         initData();
@@ -56,31 +60,38 @@ public class ListPopupWindow extends BasePopupWindow {
 
     protected void initData() {
         RecyclerView recyclerView = getPopupWindowView().findViewById(R.id.rv_list);
-        adapter = new BaseAdapter.Builder<QuModel>(recyclerView, activity, R.layout.adapter_pop_list)
+        mAdapter = new BaseAdapter.Builder<QuModel>(recyclerView, activity, R.layout.adapter_pop_list)
                 .build(new OnBaseAdapterListener<QuModel>() {
                     @Override
                     public void convert(BaseViewHolder helper, QuModel item) {
                         TextView tv_name = helper.getView(R.id.tv_name);
                         tv_name.setText(item.getName());
-                        if (!SpDataUtil.getLocation().getDistrict().isEmpty() && item.getName().contains(SpDataUtil.getLocation().getDistrict())) {
-                            tv_name.setTextColor(ZhuanHuanUtil.getColor(R.color.hong));
+                        if (mPosition == helper.getLayoutPosition()) {
+                            tv_name.setTextColor(ZhuanHuanUtil.getColor(R.color.huang2));
                         } else {
                             tv_name.setTextColor(ZhuanHuanUtil.getColor(R.color.hei1));
                         }
                     }
                 });
-        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                QuModel model = (QuModel) adapter.getData().get(position);
-                SpDataUtil.setDistrict(model.getName(), model.getCode());
+                mPosition = position;
                 adapter.notifyDataSetChanged();
                 dismiss();
             }
         });
     }
 
+    @Override
+    public void dismiss() {
+        super.dismiss();
+
+    }
+
+
+
     public void setList(List<QuModel> list) {
-        adapter.setNewData(list);
+        mAdapter.setNewData(list);
     }
 }
