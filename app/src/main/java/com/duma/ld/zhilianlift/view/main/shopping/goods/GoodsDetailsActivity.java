@@ -102,13 +102,13 @@ public class GoodsDetailsActivity extends BaseMyActivity {
         viewPagerContent.setOffscreenPageLimit(3);
         layoutTablayout.setupWithViewPager(viewPagerContent);
         dialog = PublicUtil.getAlertDialog(mActivity, "确认拨打", "即将为您拨打 " + Constants.kefu)
-                .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                .setPositiveButton("拨打", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         PhoneUtils.dial(Constants.kefu);
                     }
                 })
-                .setNegativeButton("否", null)
+                .setNegativeButton("取消", null)
                 .setCancelable(false)
                 .create();
         goodsSpecDialog = new GoodsSpecDialog(mActivity, new GoodsSpecDialog.OnDialogListener() {

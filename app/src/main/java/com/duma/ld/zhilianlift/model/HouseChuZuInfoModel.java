@@ -128,7 +128,15 @@ public class HouseChuZuInfoModel implements Serializable {
         private int sales_type;
         private long completed_time;
         private String purpose_name;
+        private String admin_telephone;
 
+        public String getAdmin_telephone() {
+            return admin_telephone;
+        }
+
+        public void setAdmin_telephone(String admin_telephone) {
+            this.admin_telephone = admin_telephone;
+        }
 
         public String getPurpose_name() {
             return purpose_name;

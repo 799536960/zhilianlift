@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.PhoneUtils;
+import com.blankj.utilcode.util.StringUtils;
 import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.baselibrary.util.ZhuanHuanUtil;
 import com.duma.ld.baselibrary.util.config.ActivityConfig;
@@ -99,15 +100,19 @@ public class HouseInfoActivity extends BaseMyActivity {
 
     private void initData(HouseChuZuInfoModel result) {
         HouseBean = result;
-        // TODO: 2018/1/22 电话不知道是哪个
-        dialog = PublicUtil.getAlertDialog(mActivity, "确认拨打", "即将为您拨打 " + Constants.kefu)
-                .setPositiveButton("是", new DialogInterface.OnClickListener() {
+        String telephone = result.getHouse().getAdmin_telephone();
+        if (StringUtils.isEmpty(telephone)) {
+            telephone = Constants.kefu;
+        }
+        final String finalTelephone = telephone;
+        dialog = PublicUtil.getAlertDialog(mActivity, "确认拨打", "即将为您拨打 " + telephone)
+                .setPositiveButton("拨打", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        PhoneUtils.dial(Constants.kefu);
+                        PhoneUtils.dial(finalTelephone);
                     }
                 })
-                .setNegativeButton("否", null)
+                .setNegativeButton("取消", null)
                 .setCancelable(false)
                 .create();
         HouseChuZuInfoModel.HouseBean house = result.getHouse();
