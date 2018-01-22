@@ -4,9 +4,9 @@ import android.os.Bundle;
 import android.text.TextPaint;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.duma.ld.baselibrary.util.TsUtils;
+import com.duma.ld.baselibrary.util.ZhuanHuanUtil;
 import com.duma.ld.baselibrary.util.config.FragmentConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
@@ -15,6 +15,7 @@ import com.duma.ld.zhilianlift.model.HouseChuZuInfoModel;
 import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.PublicUtil;
+import com.duma.ld.zhilianlift.widget.TvNoNullText;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;
 
@@ -32,47 +33,65 @@ public class MyHouseInfoFragment extends BaseMyFragment {
     @BindView(R.id.banner)
     Banner banner;
     @BindView(R.id.tv_houseName)
-    TextView tvHouseName;
+    TvNoNullText tvHouseName;
     @BindView(R.id.tv_jiaGe_title)
-    TextView tvJiaGeTitle;
+    TvNoNullText tvJiaGeTitle;
     @BindView(R.id.tv_jiaGe)
-    TextView tvJiaGe;
+    TvNoNullText tvJiaGe;
     @BindView(R.id.tv_huXin)
-    TextView tvHuXin;
+    TvNoNullText tvHuXin;
     @BindView(R.id.tv_mianji)
-    TextView tvMianji;
+    TvNoNullText tvMianji;
     @BindView(R.id.tv_leixin)
-    TextView tvLeixin;
+    TvNoNullText tvLeixin;
     @BindView(R.id.tv_xinBie)
-    TextView tvXinBie;
+    TvNoNullText tvXinBie;
     @BindView(R.id.layout_xinBie)
     LinearLayout layoutXinBie;
     @BindView(R.id.layout_leixin)
     LinearLayout layoutLeixin;
     @BindView(R.id.tv_zhuangXiu)
-    TextView tvZhuangXiu;
+    TvNoNullText tvZhuangXiu;
     @BindView(R.id.tv_nianDai)
-    TextView tvNianDai;
+    TvNoNullText tvNianDai;
     @BindView(R.id.tv_chaoXiang)
-    TextView tvChaoXiang;
+    TvNoNullText tvChaoXiang;
     @BindView(R.id.tv_louCheng)
-    TextView tvLouCheng;
+    TvNoNullText tvLouCheng;
     @BindView(R.id.tv_sheShi)
-    TextView tvSheShi;
+    TvNoNullText tvSheShi;
     @BindView(R.id.tv_louPanXinXi)
-    TextView tvLouPanXinXi;
+    TvNoNullText tvLouPanXinXi;
     @BindView(R.id.tv_xiaoQu_title)
-    TextView tvXiaoQuTitle;
+    TvNoNullText tvXiaoQuTitle;
     @BindView(R.id.tv_xiaoQu)
-    TextView tvXiaoQu;
+    TvNoNullText tvXiaoQu;
     @BindView(R.id.tv_jiaoTong_title)
-    TextView tvJiaoTongTitle;
+    TvNoNullText tvJiaoTongTitle;
     @BindView(R.id.tv_jiaoTong)
-    TextView tvJiaoTong;
+    TvNoNullText tvJiaoTong;
     @BindView(R.id.tv_zhouBian_title)
-    TextView tvZhouBianTitle;
+    TvNoNullText tvZhouBianTitle;
     @BindView(R.id.tv_zhouBian)
-    TextView tvZhouBian;
+    TvNoNullText tvZhouBian;
+    @BindView(R.id.tv_louPanMinCheng)
+    TvNoNullText tvLouPanMinCheng;
+    @BindView(R.id.tv_wuYeleiXin)
+    TvNoNullText tvWuYeleiXin;
+    @BindView(R.id.tv_jianZhuLeiBie)
+    TvNoNullText tvJianZhuLeiBie;
+    @BindView(R.id.tv_chanQuanNianXian)
+    TvNoNullText tvChanQuanNianXian;
+    @BindView(R.id.tv_tingCheWei)
+    TvNoNullText tvTingCheWei;
+    @BindView(R.id.tv_rongJiLv)
+    TvNoNullText tvRongJiLv;
+    @BindView(R.id.tv_lvHuaLv)
+    TvNoNullText tvLvHuaLv;
+    @BindView(R.id.tv_kaiFaShang)
+    TvNoNullText tvKaiFaShang;
+    @BindView(R.id.tv_junGongShiJian)
+    TvNoNullText tvJunGongShiJian;
     private HouseChuZuInfoModel model;
 
     public static MyHouseInfoFragment newInstance(HouseChuZuInfoModel model) {
@@ -129,16 +148,48 @@ public class MyHouseInfoFragment extends BaseMyFragment {
             case 2:
                 //二手房
                 layoutLeixin.setVisibility(View.GONE);
-                tvJiaGeTitle.setText("售价");
-//                tvJiaGe.setText();
+                tvJiaGeTitle.setNewText("售价");
+                tvJiaGe.setNewText(house.getAllprice() + "万元");
                 break;
             case 3:
                 //租房
-                tvJiaGeTitle.setText("租金");
+                tvJiaGeTitle.setNewText("租金");
+                tvJiaGe.setNewText(house.getRent() + "元/月");
                 break;
         }
-        tvHouseName.setText(house.getSynopsis() + "");
+        /*
+          房屋数据
+         */
+        tvHouseName.setNewText(house.getSynopsis());
+        tvHuXin.setNewText(house.getDoor_door() + "室" + house.getOffice() + "厅" + house.getToilet() + "卫");
+        tvMianji.setNewText(house.getArchitecture() + "m²");
+        tvLeixin.setNewText(house.getLease_type_string());
+        tvXinBie.setNewText(house.getSex_string());
+        tvLouCheng.setNewText(house.getFloor() + "楼/共" + house.getFloorall() + "层");
+        tvSheShi.setNewText(house.getFacilities());
+        //可以不填
+        tvZhuangXiu.setNewText(house.getRenovation());
+        tvNianDai.setNewText(house.getYears(), "年");
+        tvChaoXiang.setNewText(house.getOrientation());
+        tvXiaoQu.setNewText(house.getVillage());
+        tvJiaoTong.setNewText(house.getTraffic());
+        tvZhouBian.setNewText(house.getPeriphery());
 
+        /*
+          楼盘信息
+         */
+        tvLouPanMinCheng.setNewText(house.getPremises_name());
+        tvJianZhuLeiBie.setNewText(house.getArchitecture_type());
+        tvChanQuanNianXian.setNewText(house.getProperty(), "年");
+        tvTingCheWei.setNewText(house.getParkinglot());
+        tvRongJiLv.setNewText(house.getVolume(), "%");
+        tvLvHuaLv.setNewText(house.getGreen(), "%");
+        tvKaiFaShang.setNewText(house.getDevelopers());
+        tvWuYeleiXin.setNewText(house.getPurpose());
+        if (house.getCompleted_time() == 0) {
+            tvJunGongShiJian.setNewText("");
+        } else {
+            tvJunGongShiJian.setNewText(ZhuanHuanUtil.Time2nian2(house.getCompleted_time()));
+        }
     }
-
 }

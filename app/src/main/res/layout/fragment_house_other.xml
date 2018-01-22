@@ -69,10 +69,16 @@
             <EditText
                 android:id="@+id/edit_chanQuanNianXian"
                 style="@style/edit_1"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:hint="(选填)"
-                android:inputType="text" />
+                android:inputType="number" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="年" />
         </LinearLayout>
 
         <View style="@style/henxian" />
@@ -113,10 +119,16 @@
             <EditText
                 android:id="@+id/edit_rongJiLv"
                 style="@style/edit_1"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:hint="(选填)"
-                android:inputType="text" />
+                android:inputType="number" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="%" />
         </LinearLayout>
 
         <View style="@style/henxian" />
@@ -135,15 +147,22 @@
             <EditText
                 android:id="@+id/edit_lvhuaLv"
                 style="@style/edit_1"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:hint="(选填)"
-                android:inputType="text" />
+                android:inputType="number" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="%" />
         </LinearLayout>
 
         <View style="@style/henxian" />
 
         <LinearLayout
+            android:id="@+id/layout_junGongShiJian"
             style="@style/house_info"
             android:layout_width="match_parent"
             android:orientation="horizontal">
@@ -154,13 +173,22 @@
                 android:layout_gravity="center_vertical"
                 android:text="竣工时间：" />
 
-            <EditText
-                android:id="@+id/edit_junGongShiJian"
-                style="@style/edit_1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="(选填)"
-                android:inputType="text" />
+            <TextView
+                android:id="@+id/tv_junGongShiJian"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="请选择时间(选填)"
+                android:textColor="@color/hui2" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/jiantou_r" />
         </LinearLayout>
 
         <View style="@style/henxian" />

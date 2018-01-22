@@ -70,10 +70,10 @@ public class HouseChuZuInfoModel implements Serializable {
         private String house_address;
         private String house_telephone;
         private String start_time;
-        private int purpose;
+        private String purpose;
         private int house_status;
         private String renovation;
-        private int property;
+        private String property;
         private String house_price;
         private String architecture;
         private String isset;
@@ -104,7 +104,7 @@ public class HouseChuZuInfoModel implements Serializable {
         private int district;
         private String source;
         private String user_name;
-        private String lease_type;
+        private int lease_type;
         private String payment;
         private String house_img;
         private String province_code;
@@ -112,7 +112,7 @@ public class HouseChuZuInfoModel implements Serializable {
         private String district_code;
         private String sales_address;
         private String parkinglot;
-        private int architecture_type;
+        private String architecture_type;
         private String longitude;
         private String latitude;
         private String original_img;
@@ -126,6 +126,42 @@ public class HouseChuZuInfoModel implements Serializable {
         private int dele;
         private String rent;
         private int sales_type;
+        private long completed_time;
+
+
+//        public HouseBean() {
+//            String s = "未填";
+//            premises_name = s;
+//            purpose = s;
+//            property = s;
+//            parkinglot = s;
+//            volume = s;
+//            green = s;
+//            developers = s;
+//            renovation = s;
+//            years = s;
+//            orientation = s;
+//            village = s;
+//            traffic = s;
+//            periphery = s;
+//            architecture_type = s;
+//        }
+
+        public String getPurpose() {
+            return purpose;
+        }
+
+        public void setPurpose(String purpose) {
+            this.purpose = purpose;
+        }
+
+        public long getCompleted_time() {
+            return completed_time;
+        }
+
+        public void setCompleted_time(long completed_time) {
+            this.completed_time = completed_time;
+        }
 
         public int getHouse_id() {
             return house_id;
@@ -167,14 +203,6 @@ public class HouseChuZuInfoModel implements Serializable {
             this.start_time = start_time;
         }
 
-        public int getPurpose() {
-            return purpose;
-        }
-
-        public void setPurpose(int purpose) {
-            this.purpose = purpose;
-        }
-
         public int getHouse_status() {
             return house_status;
         }
@@ -191,11 +219,11 @@ public class HouseChuZuInfoModel implements Serializable {
             this.renovation = renovation;
         }
 
-        public int getProperty() {
+        public String getProperty() {
             return property;
         }
 
-        public void setProperty(int property) {
+        public void setProperty(String property) {
             this.property = property;
         }
 
@@ -439,11 +467,21 @@ public class HouseChuZuInfoModel implements Serializable {
             this.user_name = user_name;
         }
 
-        public String getLease_type() {
+        //出租类型 0 整租 1 合租    出租才会出现
+        public String getLease_type_string() {
+            if (lease_type == 0) {
+                return "整租";
+            } else if (lease_type == 1) {
+                return "合租";
+            }
+            return "";
+        }
+
+        public int getLease_type() {
             return lease_type;
         }
 
-        public void setLease_type(String lease_type) {
+        public void setLease_type(int lease_type) {
             this.lease_type = lease_type;
         }
 
@@ -503,11 +541,11 @@ public class HouseChuZuInfoModel implements Serializable {
             this.parkinglot = parkinglot;
         }
 
-        public int getArchitecture_type() {
+        public String getArchitecture_type() {
             return architecture_type;
         }
 
-        public void setArchitecture_type(int architecture_type) {
+        public void setArchitecture_type(String architecture_type) {
             this.architecture_type = architecture_type;
         }
 
@@ -571,6 +609,19 @@ public class HouseChuZuInfoModel implements Serializable {
             return sex;
         }
 
+        //性别要求 0 不限 1 男 2 女 出租才会出现
+        public String getSex_string() {
+            switch (sex) {
+                case 0:
+                    return "不限";
+                case 1:
+                    return "仅限男生";
+                case 2:
+                    return "仅限女生";
+            }
+            return "";
+        }
+
         public void setSex(int sex) {
             this.sex = sex;
         }
@@ -632,7 +683,7 @@ public class HouseChuZuInfoModel implements Serializable {
         }
     }
 
-    public static class HouseDoorListBean implements Serializable{
+    public static class HouseDoorListBean implements Serializable {
         /**
          * id : 3
          * house_id : 55
@@ -728,7 +779,7 @@ public class HouseChuZuInfoModel implements Serializable {
         }
     }
 
-    public static class HouseImagesListBean implements Serializable{
+    public static class HouseImagesListBean implements Serializable {
         /**
          * id : 81
          * house_id : 55
@@ -774,7 +825,7 @@ public class HouseChuZuInfoModel implements Serializable {
         }
     }
 
-    public static class HouseLabelBean implements Serializable{
+    public static class HouseLabelBean implements Serializable {
         /**
          * id : 145
          * house_id : 55

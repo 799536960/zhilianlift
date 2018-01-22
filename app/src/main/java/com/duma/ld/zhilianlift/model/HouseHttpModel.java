@@ -108,7 +108,6 @@ public class HouseHttpModel implements Serializable {
     private String kaiFaShang;
 
 
-
     public String getJianZhuLieBie() {
         return jianZhuLieBie;
     }

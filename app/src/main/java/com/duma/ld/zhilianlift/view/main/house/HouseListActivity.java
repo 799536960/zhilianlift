@@ -49,7 +49,7 @@ import razerdp.basepopup.BasePopupWindow;
 import static com.duma.ld.zhilianlift.util.HttpUrl.getALL1;
 import static com.duma.ld.zhilianlift.util.HttpUrl.getALL2;
 import static com.duma.ld.zhilianlift.util.HttpUrl.getALL3;
-import static com.duma.ld.zhilianlift.util.HttpUrl.getAddressList;
+import static com.duma.ld.zhilianlift.util.HttpUrl.getList1;
 import static com.duma.ld.zhilianlift.util.HttpUrl.getList2;
 import static com.duma.ld.zhilianlift.util.HttpUrl.getList3;
 import static com.duma.ld.zhilianlift.util.HttpUrl.get_region;
@@ -199,7 +199,7 @@ public class HouseListActivity extends BaseMyActivity {
                         switch (type) {
                             case 0:
                                 //找新房
-                                request = OkGo.get(getAddressList);
+                                request = OkGo.get(getList1);
                                 break;
                             case 1:
                                 request = OkGo.get(getList3);

@@ -2,10 +2,14 @@ package com.duma.ld.zhilianlift.view.main.house;
 
 import android.os.Bundle;
 import android.text.Editable;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bigkoo.pickerview.TimePickerView;
 import com.duma.ld.baselibrary.util.TsUtils;
+import com.duma.ld.baselibrary.util.ZhuanHuanUtil;
 import com.duma.ld.baselibrary.util.config.FragmentConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
@@ -15,7 +19,10 @@ import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.EditMaxLengthUtil;
 import com.duma.ld.zhilianlift.util.EditUtil;
 
+import java.util.Date;
+
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * 房屋信息
@@ -47,12 +54,15 @@ public class AddHouseOtherFragment extends BaseMyFragment {
     EditText editRongJiLv;
     @BindView(R.id.edit_lvhuaLv)
     EditText editLvhuaLv;
-    @BindView(R.id.edit_junGongShiJian)
-    EditText editJunGongShiJian;
     @BindView(R.id.edit_KaiFaShang)
     EditText editKaiFaShang;
+    @BindView(R.id.tv_junGongShiJian)
+    TextView tvJunGongShiJian;
+    @BindView(R.id.layout_junGongShiJian)
+    LinearLayout layoutJunGongShiJian;
     private HouseHttpModel model;
     private EditMaxLengthUtil editMaxLengthUtil1, editMaxLengthUtil2, editMaxLengthUtil3;
+    private TimePickerView timePickerView;
 
     public static AddHouseOtherFragment newInstance(HouseHttpModel model) {
         AddHouseOtherFragment fragment = new AddHouseOtherFragment();
@@ -98,7 +108,17 @@ public class AddHouseOtherFragment extends BaseMyFragment {
                 model.setZhouBianPeiTao(s.toString());
             }
         });
-
+        timePickerView = new TimePickerView.Builder(mActivity, new TimePickerView.OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                tvJunGongShiJian.setText(ZhuanHuanUtil.Time2nian2(date.getTime()));
+                model.setJunGongShiJian(date.getTime() + "");
+            }
+        })
+                .setType(new boolean[]{true, true, true, false, false, false})
+                .setSubmitColor(ZhuanHuanUtil.getColor(R.color.primary_hong))
+                .setCancelColor(ZhuanHuanUtil.getColor(R.color.primary_hong))
+                .build();
         //初始化编辑框监听
         initEdit();
     }
@@ -140,12 +160,6 @@ public class AddHouseOtherFragment extends BaseMyFragment {
                 model.setLvHuaLv(s.toString());
             }
         }));
-        editJunGongShiJian.addTextChangedListener(new EditUtil(new OnTextChangeListener() {
-            @Override
-            public void textChanged(Editable s) {
-                model.setJunGongShiJian(s.toString());
-            }
-        }));
         editKaiFaShang.addTextChangedListener(new EditUtil(new OnTextChangeListener() {
             @Override
             public void textChanged(Editable s) {
@@ -154,4 +168,8 @@ public class AddHouseOtherFragment extends BaseMyFragment {
         }));
     }
 
+    @OnClick(R.id.layout_junGongShiJian)
+    public void onViewClicked() {
+        timePickerView.show();
+    }
 }
