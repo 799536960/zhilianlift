@@ -20,14 +20,14 @@ import butterknife.BindView;
  * Created by liudong on 2018/1/9.
  */
 
-public class HouseImageFragment extends BaseMyFragment {
+public class AddHouseImageFragment extends BaseMyFragment {
     @BindView(R.id.rv_photo)
     RecyclerView rvPhoto;
     private HouseHttpModel model;
     private ImageSelectManager imageSelectManager;
 
-    public static HouseImageFragment newInstance(HouseHttpModel model) {
-        HouseImageFragment fragment = new HouseImageFragment();
+    public static AddHouseImageFragment newInstance(HouseHttpModel model) {
+        AddHouseImageFragment fragment = new AddHouseImageFragment();
         Bundle args = new Bundle();
         args.putSerializable(Constants.Model, model);
         fragment.setArguments(args);

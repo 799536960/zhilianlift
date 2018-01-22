@@ -76,7 +76,6 @@
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
-            android:text="1312"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -91,12 +90,10 @@
         android:orientation="vertical">
 
         <FrameLayout
+            android:id="@+id/layout_fragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
-
-            <include layout="@layout/include_house_info" />
-        </FrameLayout>
+            android:layout_weight="1" />
 
         <View style="@style/henxian" />
 
@@ -119,6 +116,23 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
                     android:text="收藏"
+                    android:textSize="10sp" />
+            </com.duma.ld.zhilianlift.widget.LinearImageLayout>
+
+            <com.duma.ld.zhilianlift.widget.LinearImageLayout
+                android:id="@+id/layout_baobei"
+                android:layout_width="75dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/ripple_bai"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:LiIcon="@drawable/shoucang">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="在线报备"
                     android:textSize="10sp" />
             </com.duma.ld.zhilianlift.widget.LinearImageLayout>
 

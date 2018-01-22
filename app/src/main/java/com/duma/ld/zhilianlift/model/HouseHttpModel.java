@@ -50,7 +50,7 @@ public class HouseHttpModel implements Serializable {
     //周边配套(选填)
     private String zhouBianPeiTao;
     /**
-     * 普通数据
+     * 房屋数据
      */
     //地区
     private PCDAddresModel addresModel;
@@ -58,8 +58,6 @@ public class HouseHttpModel implements Serializable {
     private String fangWuMinCheng;
     //房屋简介
     private String fangWuJianJie;
-    //楼盘名称
-    private String louPanMinCheng;
     //详细地址
     private String xiangXiDiZhi;
     //几室
@@ -89,6 +87,83 @@ public class HouseHttpModel implements Serializable {
     //联系电话
     private String lianXiDianHua;
 
+    /**
+     * 楼盘信息
+     */
+    //楼盘名称
+    private String louPanMinCheng;
+    //建筑类别
+    private String jianZhuLieBie;
+    //产权年限
+    private String chanQuanNianXian;
+    //停车位
+    private String tingCheWei;
+    //容积率
+    private String rongJiLv;
+    //绿化率
+    private String lvHuaLv;
+    //竣工时间
+    private String junGongShiJian;
+    //开发商
+    private String kaiFaShang;
+
+
+
+    public String getJianZhuLieBie() {
+        return jianZhuLieBie;
+    }
+
+    public void setJianZhuLieBie(String jianZhuLieBie) {
+        this.jianZhuLieBie = jianZhuLieBie;
+    }
+
+    public String getChanQuanNianXian() {
+        return chanQuanNianXian;
+    }
+
+    public void setChanQuanNianXian(String chanQuanNianXian) {
+        this.chanQuanNianXian = chanQuanNianXian;
+    }
+
+    public String getTingCheWei() {
+        return tingCheWei;
+    }
+
+    public void setTingCheWei(String tingCheWei) {
+        this.tingCheWei = tingCheWei;
+    }
+
+    public String getRongJiLv() {
+        return rongJiLv;
+    }
+
+    public void setRongJiLv(String rongJiLv) {
+        this.rongJiLv = rongJiLv;
+    }
+
+    public String getLvHuaLv() {
+        return lvHuaLv;
+    }
+
+    public void setLvHuaLv(String lvHuaLv) {
+        this.lvHuaLv = lvHuaLv;
+    }
+
+    public String getJunGongShiJian() {
+        return junGongShiJian;
+    }
+
+    public void setJunGongShiJian(String junGongShiJian) {
+        this.junGongShiJian = junGongShiJian;
+    }
+
+    public String getKaiFaShang() {
+        return kaiFaShang;
+    }
+
+    public void setKaiFaShang(String kaiFaShang) {
+        this.kaiFaShang = kaiFaShang;
+    }
 
     public List<File> getList() {
         return list;

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
@@ -26,6 +27,7 @@ import com.duma.ld.zhilianlift.model.ScreeningModel;
 import com.duma.ld.zhilianlift.model.ScreeningSelectListModel;
 import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.DialogUtil;
+import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.PublicUtil;
 import com.duma.ld.zhilianlift.util.ShaiXuanUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
@@ -247,7 +249,6 @@ public class HouseListActivity extends BaseMyActivity {
                                 }.setLoadAdapter(mAdapter));
                     }
 
-
                     @Override
                     public void convert(BaseViewHolder helper, MyHouseModel item) {
                         helper.setGone(R.id.tv_num, false);
@@ -259,6 +260,12 @@ public class HouseListActivity extends BaseMyActivity {
 
                     }
                 });
+        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                IntentUtil.goHouseInfo(mActivity, mAdapter.getData().get(position).getHouse_id());
+            }
+        });
     }
 
 

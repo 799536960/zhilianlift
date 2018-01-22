@@ -12,9 +12,9 @@ import com.duma.ld.zhilianlift.model.ShoppingSpacModel;
 import com.duma.ld.zhilianlift.view.login.LoginOrRegisterActivity;
 import com.duma.ld.zhilianlift.view.main.home.HomeActivity;
 import com.duma.ld.zhilianlift.view.main.house.AddHouseActivity;
+import com.duma.ld.zhilianlift.view.main.house.HouseInfoActivity;
 import com.duma.ld.zhilianlift.view.main.house.HouseListActivity;
 import com.duma.ld.zhilianlift.view.main.house.MyHouseActivity;
-import com.duma.ld.zhilianlift.view.main.house.ZuFangInfoActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PayActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PayInputPasswordActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PaySuccessActivity;
@@ -458,8 +458,8 @@ public class IntentUtil {
 
 
     //租房详情页
-    public static void goZufangInfo(Activity activity, int houseId) {
-        Intent intent = new Intent(activity, ZuFangInfoActivity.class);
+    public static void goHouseInfo(Activity activity, int houseId) {
+        Intent intent = new Intent(activity, HouseInfoActivity.class);
         intent.putExtra(Constants.id, houseId + "");
         activity.startActivity(intent);
     }

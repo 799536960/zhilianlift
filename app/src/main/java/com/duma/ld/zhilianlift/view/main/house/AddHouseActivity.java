@@ -67,9 +67,9 @@ public class AddHouseActivity extends BaseMyActivity implements OnTopBarRightLis
             model.setRental(true);
         }
         MyViewPagerAdapter viewPagerAdapter = new MyViewPagerAdapter(getSupportFragmentManager());
-        viewPagerAdapter.addFragment(HouseInfoFragment.newInstance(model), "房屋信息");
-        viewPagerAdapter.addFragment(HouseImageFragment.newInstance(model), "房屋图片");
-        viewPagerAdapter.addFragment(HouseOtherFragment.newInstance(model), "配套补充");
+        viewPagerAdapter.addFragment(AddHouseInfoFragment.newInstance(model), "房屋信息");
+        viewPagerAdapter.addFragment(AddHouseImageFragment.newInstance(model), "房屋图片");
+        viewPagerAdapter.addFragment(AddHouseOtherFragment.newInstance(model), "配套补充");
         viewPagerContent.setAdapter(viewPagerAdapter);
         viewPagerContent.setOffscreenPageLimit(3);
         layoutTablayout.setupWithViewPager(viewPagerContent);
@@ -98,10 +98,6 @@ public class AddHouseActivity extends BaseMyActivity implements OnTopBarRightLis
         }
         if (StringUtils.isEmpty(model.getFangWuJianJie())) {
             TsUtils.show("请输入房屋简介!");
-            return;
-        }
-        if (StringUtils.isEmpty(model.getLouPanMinCheng())) {
-            TsUtils.show("请输入楼盘名称!");
             return;
         }
         if (StringUtils.isEmpty(model.getXiangXiDiZhi())) {
@@ -194,8 +190,9 @@ public class AddHouseActivity extends BaseMyActivity implements OnTopBarRightLis
 
     private void chuShouHttp() {
         PostRequest<HttpResModel<String>> params = OkGo.<HttpResModel<String>>post(second)
-                .tag(httpTag)
-                .params("house_name", model.getFangWuMinCheng())
+                .tag(httpTag);
+        setPublicParam(params);
+        params.params("house_name", model.getFangWuMinCheng())
                 .params("synopsis", model.getFangWuJianJie())
                 .params("purpose", model.getWuYeLeiXinModel().getSo_value())
                 .params("premises_name", model.getLouPanMinCheng())
@@ -237,10 +234,21 @@ public class AddHouseActivity extends BaseMyActivity implements OnTopBarRightLis
                 });
     }
 
+    private void setPublicParam(PostRequest<HttpResModel<String>> request) {
+        request.params("architecture_type", model.getJianZhuLieBie())
+                .params("property", model.getChanQuanNianXian())
+                .params("parkinglot", model.getTingCheWei())
+                .params("volume", model.getRongJiLv())
+                .params("green", model.getLvHuaLv())
+                .params("completed_time", model.getJunGongShiJian())
+                .params("developers", model.getKaiFaShang());
+    }
+
     private void chuZuHttp() {
         PostRequest<HttpResModel<String>> params = OkGo.<HttpResModel<String>>post(lease)
-                .tag(httpTag)
-                .params("house_name", model.getFangWuMinCheng())
+                .tag(httpTag);
+        setPublicParam(params);
+        params.params("house_name", model.getFangWuMinCheng())
                 .params("synopsis", model.getFangWuJianJie())
                 .params("purpose", model.getWuYeLeiXinModel().getSo_value())
                 .params("premises_name", model.getLouPanMinCheng())

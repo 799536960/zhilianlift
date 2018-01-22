@@ -9,9 +9,181 @@
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
         android:background="@color/white"
-        android:orientation="vertical"
-        android:paddingEnd="10dp"
-        android:paddingStart="10dp">
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/house_info"
+            android:layout_width="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="楼盘名称：" />
+
+            <EditText
+                android:id="@+id/edit_louPanMinCheng"
+                style="@style/edit_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="(选填)"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <View style="@style/henxian" />
+
+        <LinearLayout
+            style="@style/house_info"
+            android:layout_width="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="建筑类别：" />
+
+            <EditText
+                android:id="@+id/edit_jianZhuLieBie"
+                style="@style/edit_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="(选填)"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <View style="@style/henxian" />
+
+        <LinearLayout
+            style="@style/house_info"
+            android:layout_width="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="产权年限：" />
+
+            <EditText
+                android:id="@+id/edit_chanQuanNianXian"
+                style="@style/edit_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="(选填)"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <View style="@style/henxian" />
+
+        <LinearLayout
+            style="@style/house_info"
+            android:layout_width="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/house8" />
+
+            <EditText
+                android:id="@+id/edit_tingCheWei"
+                style="@style/edit_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="(选填)"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <View style="@style/henxian" />
+
+        <LinearLayout
+            style="@style/house_info"
+            android:layout_width="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/house9" />
+
+            <EditText
+                android:id="@+id/edit_rongJiLv"
+                style="@style/edit_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="(选填)"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <View style="@style/henxian" />
+
+        <LinearLayout
+            style="@style/house_info"
+            android:layout_width="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/house10" />
+
+            <EditText
+                android:id="@+id/edit_lvhuaLv"
+                style="@style/edit_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="(选填)"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <View style="@style/henxian" />
+
+        <LinearLayout
+            style="@style/house_info"
+            android:layout_width="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="竣工时间：" />
+
+            <EditText
+                android:id="@+id/edit_junGongShiJian"
+                style="@style/edit_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="(选填)"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <View style="@style/henxian" />
+
+        <LinearLayout
+            style="@style/house_info"
+            android:layout_width="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/house11" />
+
+            <EditText
+                android:id="@+id/edit_KaiFaShang"
+                style="@style/edit_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="(选填)"
+                android:inputType="text" />
+        </LinearLayout>
 
 
         <TextView
@@ -19,11 +191,15 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="14dp"
             android:layout_marginTop="14dp"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
             android:text="小区概况(选填)" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/bx_0_hui2"
             android:orientation="vertical">
 
@@ -54,12 +230,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="14dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="14dp"
             android:text="交通状况(选填)" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/bx_0_hui2"
             android:orientation="vertical">
 
@@ -90,6 +270,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="14dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="14dp"
             android:text="周边配套(选填)" />
 
@@ -97,6 +279,8 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_marginBottom="50dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/bx_0_hui2"
             android:orientation="vertical">
 

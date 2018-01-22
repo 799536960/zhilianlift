@@ -48,7 +48,7 @@ import static com.duma.ld.zhilianlift.util.HttpUrl.getALL;
  * Created by liudong on 2018/1/9.
  */
 
-public class HouseInfoFragment extends BaseMyFragment implements OnBaseAdapterListener<HouseHttpInfoModel.FilterAttrBean.ItemBean>, RadioGroup.OnCheckedChangeListener {
+public class AddHouseInfoFragment extends BaseMyFragment implements OnBaseAdapterListener<HouseHttpInfoModel.FilterAttrBean.ItemBean>, RadioGroup.OnCheckedChangeListener {
     @BindView(R.id.layout_teSe)
     LinearLayout layoutTeSe;
     @BindView(R.id.layout_leiXin)
@@ -101,8 +101,6 @@ public class HouseInfoFragment extends BaseMyFragment implements OnBaseAdapterLi
     EditText editFangWuMinCheng;
     @BindView(R.id.edit_jianJie)
     EditText editJianJie;
-    @BindView(R.id.edit_louPanMinCheng)
-    EditText editLouPanMinCheng;
     @BindView(R.id.edit_diZhi)
     EditText editDiZhi;
     @BindView(R.id.edit_jiShi)
@@ -138,8 +136,8 @@ public class HouseInfoFragment extends BaseMyFragment implements OnBaseAdapterLi
     private BaseAdapter<HouseHttpInfoModel.FilterAttrBean.ItemBean> mAdapterSheShi;
     private HouseListDialog leiXinListDialog, fuKuanFangShiDialog;
 
-    public static HouseInfoFragment newInstance(HouseHttpModel model) {
-        HouseInfoFragment fragment = new HouseInfoFragment();
+    public static AddHouseInfoFragment newInstance(HouseHttpModel model) {
+        AddHouseInfoFragment fragment = new AddHouseInfoFragment();
         Bundle args = new Bundle();
         args.putSerializable(Constants.Model, model);
         fragment.setArguments(args);
@@ -167,7 +165,6 @@ public class HouseInfoFragment extends BaseMyFragment implements OnBaseAdapterLi
         }
         if (model.isRental()) {
             //出租
-//            layoutTeSe.setVisibility(View.GONE);
             layoutShouJia.setVisibility(View.GONE);
         } else {
             //出售
@@ -221,12 +218,6 @@ public class HouseInfoFragment extends BaseMyFragment implements OnBaseAdapterLi
             @Override
             public void textChanged(Editable s) {
                 model.setFangWuJianJie(s.toString());
-            }
-        }));
-        editLouPanMinCheng.addTextChangedListener(new EditUtil(new OnTextChangeListener() {
-            @Override
-            public void textChanged(Editable s) {
-                model.setLouPanMinCheng(s.toString());
             }
         }));
         editDiZhi.addTextChangedListener(new EditUtil(new OnTextChangeListener() {

@@ -20,7 +20,8 @@
             android:paddingBottom="10dp"
             android:paddingLeft="17dp"
             android:paddingRight="17dp"
-            android:paddingTop="15dp">
+            android:paddingTop="15dp"
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"

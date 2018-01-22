@@ -1,12 +1,13 @@
 package com.duma.ld.zhilianlift.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by liudong on 2018/1/19.
  */
 
-public class HouseChuZuInfoModel {
+public class HouseChuZuInfoModel implements Serializable {
 
     /**
      * house : {"house_id":55,"house_name":null,"house_address":"西湖","house_telephone":"99999999","start_time":"2018-01-19 00:00:00","purpose":3,"house_status":0,"renovation":"1","property":8,"house_price":"1000","architecture":"90","isset":"1898","volume":"76890","green":"222","door_door":null,"sales":"售楼许可","developers":"开发商","periphery":null,"house_type":1,"cat_id1":851,"cat_id2":852,"cat_id3":853,"on_time":"1516342043","is_show":null,"years":null,"orientation":null,"floor":null,"traffic":null,"village":null,"examine":0,"reason_no":null,"user_id":null,"synopsis":"就是一个简介","premises_name":"楼盘名称","province_id":11,"city_id":123,"district":1251,"source":null,"user_name":null,"lease_type":null,"payment":null,"house_img":null,"province_code":"330000","city_code":"330100","district_code":"330105","sales_address":"售楼地址","parkinglot":"停车位","architecture_type":0,"longitude":"120.2193754157201","latitude":"30.259244461","original_img":"/public/upload/goods/2018/01-19/f787345e42279dcca6cbdac5aa34aad2.jpg","toilet":null,"office":null,"floorall":null,"allprice":null,"sex":null,"facilities":null,"read_count":0,"dele":0,"rent":"0","sales_type":3}
@@ -62,7 +63,7 @@ public class HouseChuZuInfoModel {
         this.houseLabel = houseLabel;
     }
 
-    public static class HouseBean {
+    public static class HouseBean implements Serializable {
 
         private int house_id;
         private String house_name;
@@ -615,7 +616,7 @@ public class HouseChuZuInfoModel {
         }
     }
 
-    public static class CollectBean {
+    public static class CollectBean implements Serializable {
         /**
          * result : 1
          */
@@ -631,7 +632,7 @@ public class HouseChuZuInfoModel {
         }
     }
 
-    public static class HouseDoorListBean {
+    public static class HouseDoorListBean implements Serializable{
         /**
          * id : 3
          * house_id : 55
@@ -727,7 +728,7 @@ public class HouseChuZuInfoModel {
         }
     }
 
-    public static class HouseImagesListBean {
+    public static class HouseImagesListBean implements Serializable{
         /**
          * id : 81
          * house_id : 55
@@ -773,7 +774,7 @@ public class HouseChuZuInfoModel {
         }
     }
 
-    public static class HouseLabelBean {
+    public static class HouseLabelBean implements Serializable{
         /**
          * id : 145
          * house_id : 55
