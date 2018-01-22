@@ -97,17 +97,37 @@ public class GoodsTypeAdapter implements BaseQuickAdapter.OnItemClickListener {
         helper.setText(R.id.tv_title, item.getGoods_name());
         TextView tv_price = helper.getView(R.id.tv_price);
         if (item.getType() == 0) {
-            SpannableStringBuilder spannableStringBuilder = new SpanUtils()
-                    .append("¥")
-                    .setFontSize(ConvertUtils.sp2px(13))
-                    .append(item.getGoods_price() + "")
-                    .setFontSize(ConvertUtils.sp2px(18))
-                    .create();
-            tv_price.setText(spannableStringBuilder);
-            tv_price.setTextColor(ZhuanHuanUtil.getColor(R.color.hong));
+
         } else {
-            tv_price.setText(item.getGoods_price());
-            tv_price.setTextColor(ZhuanHuanUtil.getColor(R.color.huang1));
+
+        }
+        //        type = 0 是商品  goods_id
+//        type = 1 是新房  house_id
+//        type = 2 是二手房 house_id
+//        type = 3 是租房   house_id
+        switch (item.getType()) {
+            case 0:
+                SpannableStringBuilder spannableStringBuilder = new SpanUtils()
+                        .append("¥")
+                        .setFontSize(ConvertUtils.sp2px(13))
+                        .append(item.getGoods_price() + "")
+                        .setFontSize(ConvertUtils.sp2px(18))
+                        .create();
+                tv_price.setText(spannableStringBuilder);
+                tv_price.setTextColor(ZhuanHuanUtil.getColor(R.color.hong));
+                break;
+            case 1:
+                tv_price.setText(item.getGoods_price() + "元/平");
+                tv_price.setTextColor(ZhuanHuanUtil.getColor(R.color.huang1));
+                break;
+            case 2:
+                tv_price.setText(item.getGoods_price() + "万元");
+                tv_price.setTextColor(ZhuanHuanUtil.getColor(R.color.huang1));
+                break;
+            case 3:
+                tv_price.setText(item.getGoods_price() + "元/月");
+                tv_price.setTextColor(ZhuanHuanUtil.getColor(R.color.huang1));
+                break;
         }
         final CheckBoxNoOnClick cb_select = helper.getView(R.id.cb_select);
         if (isEdit) {
@@ -132,16 +152,16 @@ public class GoodsTypeAdapter implements BaseQuickAdapter.OnItemClickListener {
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
 //        type = 0 是商品  goods_id
-//
 //        type = 1 是新房  house_id
-//
 //        type = 2 是二手房 house_id
-//
-//        type = 3 是住房   house_id
+//        type = 3 是租房   house_id
         MyRecordModel.VisitBean visitBean = mAdapter.getData().get(position);
         switch (visitBean.getType()) {
             case 0:
                 IntentUtil.goGoodsDetails(mActivity, visitBean.getGoods_id());
+                break;
+            default:
+                IntentUtil.goHouseInfo(mActivity, visitBean.getHouse_id());
                 break;
         }
     }

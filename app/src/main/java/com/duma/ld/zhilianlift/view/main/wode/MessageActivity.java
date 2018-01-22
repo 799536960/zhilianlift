@@ -26,6 +26,7 @@ import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.model.MessageModel;
 import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.PublicUtil;
+import com.duma.ld.zhilianlift.util.SpDataUtil;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 
@@ -90,6 +91,7 @@ public class MessageActivity extends BaseMyActivity {
                                     @Override
                                     protected void onJsonSuccess(Response<HttpResModel<List<MessageModel>>> respons, HttpResModel<List<MessageModel>> myRecordModel) {
                                         mAdapter.setLoadData(myRecordModel.getResult());
+                                        SpDataUtil.setMessageNum("");
                                     }
                                 }.setLoadAdapter(mAdapter));
                     }
@@ -144,6 +146,7 @@ public class MessageActivity extends BaseMyActivity {
                     protected void onJsonSuccess(Response<HttpResModel<List<MessageModel>>> respons, HttpResModel<List<MessageModel>> myRecordModel) {
                         TsUtils.show("删除成功!");
                         mAdapter.remove(position);
+
                     }
                 }.isDialog(mActivity));
     }

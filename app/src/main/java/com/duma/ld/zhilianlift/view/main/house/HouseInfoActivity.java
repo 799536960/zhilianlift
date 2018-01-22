@@ -1,12 +1,18 @@
 package com.duma.ld.zhilianlift.view.main.house;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.PhoneUtils;
+import com.duma.ld.baselibrary.util.TsUtils;
+import com.duma.ld.baselibrary.util.ZhuanHuanUtil;
 import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
@@ -15,12 +21,19 @@ import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
 import com.duma.ld.zhilianlift.model.HouseChuZuInfoModel;
 import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.util.Constants;
+import com.duma.ld.zhilianlift.util.DialogUtil;
+import com.duma.ld.zhilianlift.util.IntentUtil;
+import com.duma.ld.zhilianlift.util.PublicUtil;
+import com.duma.ld.zhilianlift.util.SpDataUtil;
+import com.duma.ld.zhilianlift.view.popupWindow.GoodsInfoPopupWindow;
 import com.duma.ld.zhilianlift.widget.LinearImageLayout;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
+import static com.duma.ld.zhilianlift.util.HttpUrl.collectHouseOrNo;
 import static com.duma.ld.zhilianlift.util.HttpUrl.gethoustInfo;
 
 /**
@@ -52,6 +65,9 @@ public class HouseInfoActivity extends BaseMyActivity {
     @BindView(R.id.layout_baobei)
     LinearImageLayout layoutBaobei;
     private String houseId;
+    private GoodsInfoPopupWindow goodsInfoPopupWindow;
+    private HouseChuZuInfoModel HouseBean;
+    private AlertDialog dialog;
 
     @Override
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig) {
@@ -62,8 +78,11 @@ public class HouseInfoActivity extends BaseMyActivity {
     protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
         houseId = getIntent().getStringExtra(Constants.id);
+        goodsInfoPopupWindow = new GoodsInfoPopupWindow(mActivity);
+        goodsInfoPopupWindow.setMessageNum(SpDataUtil.getMessageNum());
         onClickLoadingRefresh();
     }
+
 
     @Override
     public void onClickLoadingRefresh() {
@@ -79,6 +98,18 @@ public class HouseInfoActivity extends BaseMyActivity {
     }
 
     private void initData(HouseChuZuInfoModel result) {
+        HouseBean = result;
+        // TODO: 2018/1/22 电话不知道是哪个
+        dialog = PublicUtil.getAlertDialog(mActivity, "确认拨打", "即将为您拨打 " + Constants.kefu)
+                .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        PhoneUtils.dial(Constants.kefu);
+                    }
+                })
+                .setNegativeButton("否", null)
+                .setCancelable(false)
+                .create();
         HouseChuZuInfoModel.HouseBean house = result.getHouse();
         tvName.setText(house.getHouse_name());
         //判断什么房子
@@ -94,6 +125,66 @@ public class HouseInfoActivity extends BaseMyActivity {
                 loadRootFragment(R.id.layout_fragment, MyHouseInfoFragment.newInstance(result));
                 break;
         }
+        //是否收藏
+        HouseChuZuInfoModel.CollectBean collect = result.getCollect();
+        if (collect != null) {
+            setShouCang(collect.getResult() + "");
+        }
     }
 
+    @OnClick({R.id.layout_back, R.id.layout_share, R.id.layout_menu, R.id.layout_collect, R.id.layout_baobei, R.id.layout_phone})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.layout_back:
+                finish();
+                return;
+            case R.id.layout_share:
+                // TODO: 2017/12/26 分享
+                TsUtils.show("分享");
+                return;
+            case R.id.layout_menu:
+                goodsInfoPopupWindow.showPopupWindow(R.id.layout_tobBar);
+                return;
+            case R.id.layout_phone:
+                dialog.show();
+                return;
+        }
+        if (!SpDataUtil.isLogin()) {
+            IntentUtil.goLogin(mActivity);
+            return;
+        }
+        switch (view.getId()) {
+            case R.id.layout_collect:
+                //收藏
+                collectHouse();
+                break;
+            case R.id.layout_baobei:
+                startActivity(new Intent(mActivity, AddBaoBeiActivity.class));
+                break;
+
+        }
+    }
+
+    private void collectHouse() {
+        OkGo.getInstance().cancelTag(httpTag);
+        OkGo.<HttpResModel<String>>get(collectHouseOrNo)
+                .tag(httpTag)
+                .params("house_id", HouseBean.getHouse().getHouse_id())
+                .execute(new MyJsonCallback<HttpResModel<String>>() {
+                    @Override
+                    protected void onJsonSuccess(Response<HttpResModel<String>> respons, HttpResModel<String> stringHttpResModel) {
+                        DialogUtil.getInstance().hide();
+                        TsUtils.show(stringHttpResModel.getMsg());
+                        setShouCang(stringHttpResModel.getResult());
+                    }
+                });
+    }
+
+    private void setShouCang(String string) {
+        if (string.equals("1")) {
+            layoutCollect.setIcon(ZhuanHuanUtil.getDrawable(R.drawable.shoucang2));
+        } else {
+            layoutCollect.setIcon(ZhuanHuanUtil.getDrawable(R.drawable.shoucang));
+        }
+    }
 }

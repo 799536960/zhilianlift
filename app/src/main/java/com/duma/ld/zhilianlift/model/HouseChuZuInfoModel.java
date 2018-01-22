@@ -127,25 +127,16 @@ public class HouseChuZuInfoModel implements Serializable {
         private String rent;
         private int sales_type;
         private long completed_time;
+        private String purpose_name;
 
 
-//        public HouseBean() {
-//            String s = "未填";
-//            premises_name = s;
-//            purpose = s;
-//            property = s;
-//            parkinglot = s;
-//            volume = s;
-//            green = s;
-//            developers = s;
-//            renovation = s;
-//            years = s;
-//            orientation = s;
-//            village = s;
-//            traffic = s;
-//            periphery = s;
-//            architecture_type = s;
-//        }
+        public String getPurpose_name() {
+            return purpose_name;
+        }
+
+        public void setPurpose_name(String purpose_name) {
+            this.purpose_name = purpose_name;
+        }
 
         public String getPurpose() {
             return purpose;

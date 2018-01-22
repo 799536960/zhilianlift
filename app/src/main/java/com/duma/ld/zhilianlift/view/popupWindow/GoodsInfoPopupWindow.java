@@ -70,6 +70,10 @@ public class GoodsInfoPopupWindow extends BasePopupWindow implements View.OnClic
         img_message.setNum(num + "");
     }
 
+    public void setMessageNum(String num) {
+        img_message.setNum(num + "");
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

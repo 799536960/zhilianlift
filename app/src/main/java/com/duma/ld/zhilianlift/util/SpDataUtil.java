@@ -168,4 +168,26 @@ public class SpDataUtil {
             return user.getUser_id();
         }
     }
+
+    /**
+     * 获取消息数量
+     */
+    public static String getMessageNum() {
+        UserModel user = SpDataUtil.getUser();
+        if (user == null) {
+            return "";
+        }
+        return user.getNews();
+    }
+
+    /**
+     * 设置消息数量
+     */
+    public static void setMessageNum(String num) {
+        UserModel user = SpDataUtil.getUser();
+        if (user == null) {
+            return;
+        }
+        user.setNews(num);
+    }
 }

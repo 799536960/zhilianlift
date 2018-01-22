@@ -21,7 +21,6 @@ import com.duma.ld.zhilianlift.base.baseView.BaseMyFragment;
 import com.duma.ld.zhilianlift.model.ClassModel;
 import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.util.IntentUtil;
-import com.duma.ld.zhilianlift.util.PublicUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
 import com.duma.ld.zhilianlift.widget.LinearImageLayout;
 import com.lzy.okgo.OkGo;
@@ -70,7 +69,7 @@ public class ClassFragment extends BaseMyFragment {
     @Override
     public void onSupportVisible() {
         super.onSupportVisible();
-        layoutMessage.setNum(PublicUtil.getMessageNum());
+        layoutMessage.setNum(SpDataUtil.getMessageNum());
     }
 
     @Override

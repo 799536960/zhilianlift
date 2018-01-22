@@ -28,6 +28,7 @@ import com.duma.ld.zhilianlift.model.SpecGoodsPriceBean;
 import com.duma.ld.zhilianlift.util.DialogUtil;
 import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.PublicUtil;
+import com.duma.ld.zhilianlift.util.SpDataUtil;
 import com.duma.ld.zhilianlift.view.dialog.GoodsSpecDialog;
 import com.duma.ld.zhilianlift.widget.CheckBoxGoodsList;
 import com.duma.ld.zhilianlift.widget.CheckBoxNoOnClick;
@@ -520,7 +521,7 @@ public class ShoppingCartFragment extends BaseMyFragment {
         super.onSupportVisible();
         onClickLoadingRefresh();
         setEdit(false);
-        layoutMessgae.setNum(PublicUtil.getMessageNum());
+        layoutMessgae.setNum(SpDataUtil.getMessageNum());
     }
 
     private void setEdit(boolean intEdit) {

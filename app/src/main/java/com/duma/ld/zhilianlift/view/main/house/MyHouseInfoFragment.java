@@ -185,7 +185,7 @@ public class MyHouseInfoFragment extends BaseMyFragment {
         tvRongJiLv.setNewText(house.getVolume(), "%");
         tvLvHuaLv.setNewText(house.getGreen(), "%");
         tvKaiFaShang.setNewText(house.getDevelopers());
-        tvWuYeleiXin.setNewText(house.getPurpose());
+        tvWuYeleiXin.setNewText(house.getPurpose_name());
         if (house.getCompleted_time() == 0) {
             tvJunGongShiJian.setNewText("");
         } else {

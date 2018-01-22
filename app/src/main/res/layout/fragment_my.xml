@@ -122,8 +122,7 @@
                 android:background="@drawable/ripple_bai"
                 android:gravity="center"
                 android:orientation="vertical"
-                app:LiIcon="@drawable/wode13"
-                app:LiNum="1">
+                app:LiIcon="@drawable/wode13">
 
                 <TextView
                     android:layout_width="wrap_content"
