@@ -1,1 +1,1 @@
-include ':app', ':baselibrary', ':maplibrary'
+include ':app', ':baselibrary', ':maplibrary', ':picture_library', ':ucrop'

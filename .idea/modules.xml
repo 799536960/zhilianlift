@@ -6,6 +6,8 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/baselibrary/baselibrary.iml" filepath="$PROJECT_DIR$/baselibrary/baselibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/maplibrary/maplibrary.iml" filepath="$PROJECT_DIR$/maplibrary/maplibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/picture_library/picture_library.iml" filepath="$PROJECT_DIR$/picture_library/picture_library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ucrop/ucrop.iml" filepath="$PROJECT_DIR$/ucrop/ucrop.iml" />
     </modules>
   </component>
 </project>
