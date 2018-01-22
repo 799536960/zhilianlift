@@ -191,7 +191,17 @@ public class HouseListActivity extends BaseMyActivity {
     }
 
     private void initAdapter() {
-        mAdapter = new BaseAdapter.Builder<MyHouseModel>(rvList, mActivity, R.layout.adapter_house_list)
+        int house_layout;
+        switch (type) {
+            case 0:
+                //找新房
+                house_layout = R.layout.adapter_new_house_list;
+                break;
+            default:
+                house_layout = R.layout.adapter_house_list;
+                break;
+        }
+        mAdapter = new BaseAdapter.Builder<MyHouseModel>(rvList, mActivity, house_layout)
                 .buildLoad(new OnBaseLoadAdapterListener<MyHouseModel>() {
                     @Override
                     public void onLoadHttp(int page, int size) {
@@ -251,11 +261,20 @@ public class HouseListActivity extends BaseMyActivity {
 
                     @Override
                     public void convert(BaseViewHolder helper, MyHouseModel item) {
-                        helper.setGone(R.id.tv_num, false);
-                        if (type == 1) {
-                            PublicUtil.getViewHouse(helper, item, mActivity, false);
-                        } else {
-                            PublicUtil.getViewHouse(helper, item, mActivity, true);
+                        switch (type) {
+                            case 0:
+                                //找新房
+                                PublicUtil.getViewHouseNew(helper, item, mActivity);
+                                break;
+                            case 1:
+                                helper.setGone(R.id.tv_num, false);
+                                //租房
+                                PublicUtil.getViewHouse(helper, item, mActivity, false);
+                                break;
+                            default:
+                                helper.setGone(R.id.tv_num, false);
+                                PublicUtil.getViewHouse(helper, item, mActivity, true);
+                                break;
                         }
 
                     }

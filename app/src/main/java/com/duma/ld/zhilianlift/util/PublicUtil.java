@@ -16,6 +16,7 @@ import com.blankj.utilcode.util.ConvertUtils;
 import com.blankj.utilcode.util.SpanUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.duma.ld.baselibrary.util.ZhuanHuanUtil;
 import com.duma.ld.zhilianlift.Adapter.GlideImageLoader;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseAdapter.BaseAdapter;
@@ -204,6 +205,51 @@ public class PublicUtil {
             tv_money2.setVisibility(View.VISIBLE);
             tv_money2.setText(item.getHouse_price() + "元/平");
             tv_money.setText(item.getAllprice() + "万元");
+        }
+    }
+
+    public static void getViewHouseNew(BaseViewHolder helper, MyHouseModel item, Activity mActivity) {
+        helper.setText(R.id.tv_name, item.getHouse_name() + "")
+                .setText(R.id.tv_spec2, item.getCompany_district_name() + " " + item.getHouse_address());
+        ImageView img_house = helper.getView(R.id.img_house);
+        ImageLoader.with(item.getOriginal_img(), img_house);
+        RecyclerView rv_list = helper.getView(R.id.rv_list);
+        if (item.getHouseLabel() == null || item.getHouseLabel().size() == 0) {
+            rv_list.setVisibility(View.GONE);
+        } else {
+            rv_list.setVisibility(View.VISIBLE);
+            BaseAdapter<MyHouseModel.HouseLabelBean> adapter = new BaseAdapter.Builder<MyHouseModel.HouseLabelBean>(rv_list, mActivity, R.layout.adapter_my_house_item)
+                    .setNoEnpty()
+                    .isNested()
+                    .setLayoutManager(new LinearLayoutManager(mActivity, LinearLayout.HORIZONTAL, false))
+                    .build(new OnBaseAdapterListener<MyHouseModel.HouseLabelBean>() {
+                        @Override
+                        public void convert(BaseViewHolder helper, MyHouseModel.HouseLabelBean item) {
+                            helper.setText(R.id.tv_name, item.getSo_name());
+                        }
+                    });
+            adapter.setNewData(item.getHouseLabel());
+            rv_list.setAdapter(adapter);
+        }
+        TextView tv_money = helper.getView(R.id.tv_money);
+        TextView tv_type = helper.getView(R.id.tv_type);
+        tv_money.setText(item.getRent() + "元/月");
+        switch (item.getSales_type()) {
+            case 1:
+                tv_type.setBackground(ZhuanHuanUtil.getDrawable(R.drawable.lr_2_lv));
+                tv_type.setTextColor(ZhuanHuanUtil.getColor(R.color.white));
+                tv_type.setText("在售");
+                break;
+            case 2:
+                tv_type.setBackground(ZhuanHuanUtil.getDrawable(R.drawable.lr_2_lan));
+                tv_type.setTextColor(ZhuanHuanUtil.getColor(R.color.white));
+                tv_type.setText("待售");
+                break;
+            case 3:
+                tv_type.setBackground(ZhuanHuanUtil.getDrawable(R.drawable.lr_2_hui2));
+                tv_type.setTextColor(ZhuanHuanUtil.getColor(R.color.hui2));
+                tv_type.setText("售罄");
+                break;
         }
     }
 

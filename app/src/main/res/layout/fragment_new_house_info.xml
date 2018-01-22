@@ -20,8 +20,54 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="标题"
+            android:text="嘉丰万悦城7号线地铁旁 约95～132㎡精致公寓 周边三横一纵交通路网环绕 左右皆繁华"
             android:textSize="17sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="购房特惠【专车看房 成交享豪礼 抢千元优惠券】询40转88享优惠"
+            android:textColor="@color/hei2"
+            android:textSize="13sp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="10dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="参考均价："
+                    android:textColor="@color/hui2" />
+
+                <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    android:id="@+id/tv_sheShi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2000元/平"
+                    android:textColor="@color/huang2"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>

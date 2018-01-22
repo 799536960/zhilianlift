@@ -11,7 +11,7 @@ public class MyHouseModel {
     private String house_name;
     private String house_address;
     private String house_telephone;
-    private long start_time;
+    private String start_time;
     private int purpose;
     private int house_status;
     private String renovation;
@@ -69,6 +69,15 @@ public class MyHouseModel {
     private List<HouseLabelBean> houseLabel;
     private String read_count;
     private String rent;
+    private int sales_type;
+
+    public int getSales_type() {
+        return sales_type;
+    }
+
+    public void setSales_type(int sales_type) {
+        this.sales_type = sales_type;
+    }
 
     public String getRent() {
         return rent;
@@ -118,11 +127,11 @@ public class MyHouseModel {
         this.house_telephone = house_telephone;
     }
 
-    public long getStart_time() {
+    public String getStart_time() {
         return start_time;
     }
 
-    public void setStart_time(long start_time) {
+    public void setStart_time(String start_time) {
         this.start_time = start_time;
     }
 
