@@ -198,7 +198,8 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_huXin"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" />
 
         </LinearLayout>
 
@@ -248,7 +249,8 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rv_louPanZhaoPian"
@@ -642,9 +644,22 @@
                     android:drawableRight="@drawable/jiantou_r_xiao"
                     android:text="详情"
                     android:textColor="@color/hui2"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:visibility="gone" />
             </LinearLayout>
 
+            <com.duma.ld.zhilianlift.widget.MapFrameLayout
+                android:id="@+id/layout_mapView"
+                android:layout_width="300dp"
+                android:layout_height="250dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp">
+
+                <com.baidu.mapapi.map.MapView
+                    android:id="@+id/mapView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </com.duma.ld.zhilianlift.widget.MapFrameLayout>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

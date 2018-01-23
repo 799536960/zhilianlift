@@ -12,6 +12,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.baidu.mapapi.map.BaiduMap;
+import com.baidu.mapapi.map.BitmapDescriptor;
+import com.baidu.mapapi.map.BitmapDescriptorFactory;
+import com.baidu.mapapi.map.MapStatus;
+import com.baidu.mapapi.map.MapStatusUpdate;
+import com.baidu.mapapi.map.MapStatusUpdateFactory;
+import com.baidu.mapapi.map.MarkerOptions;
+import com.baidu.mapapi.map.OverlayOptions;
+import com.baidu.mapapi.model.LatLng;
 import com.blankj.utilcode.util.ConvertUtils;
 import com.blankj.utilcode.util.SpanUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -192,7 +201,7 @@ public class PublicUtil {
         getViewHousePublic(helper, item, mActivity);
         TextView tv_money = helper.getView(R.id.tv_money);
         TextView tv_type = helper.getView(R.id.tv_type);
-        tv_money.setText(item.getRent() + "元/月");
+        tv_money.setText(item.getOn_chang_text());
         switch (item.getSales_type()) {
             case 1:
                 tv_type.setBackground(ZhuanHuanUtil.getDrawable(R.drawable.lr_2_lv));
@@ -370,4 +379,22 @@ public class PublicUtil {
                 }.isDialog(mActivity));
     }
 
+    public static void setGoMarker(BaiduMap mBaiduMap, double Latitude, double Longitude, int zoom) {
+        LatLng point = new LatLng(Latitude, Longitude);
+        MapStatus mapStatus = new MapStatus.Builder()
+                .target(point)
+                .zoom(zoom)
+                .build();
+        MapStatusUpdate statusUpdate = MapStatusUpdateFactory.newMapStatus(mapStatus);
+        mBaiduMap.setMapStatus(statusUpdate);
+        //构建Marker图标
+        BitmapDescriptor bitmap = BitmapDescriptorFactory
+                .fromResource(R.drawable.tubiao1);
+        //构建MarkerOption，用于在地图上添加Marker
+        OverlayOptions option = new MarkerOptions()
+                .position(point)
+                .icon(bitmap);
+        //在地图上添加Marker，并显示
+        mBaiduMap.addOverlay(option);
+    }
 }

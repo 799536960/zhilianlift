@@ -5,15 +5,7 @@ import android.os.Bundle;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.baidu.mapapi.map.BitmapDescriptor;
-import com.baidu.mapapi.map.BitmapDescriptorFactory;
-import com.baidu.mapapi.map.MapStatus;
-import com.baidu.mapapi.map.MapStatusUpdate;
-import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
-import com.baidu.mapapi.map.MarkerOptions;
-import com.baidu.mapapi.map.OverlayOptions;
-import com.baidu.mapapi.model.LatLng;
 import com.blankj.utilcode.util.AppUtils;
 import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.baselibrary.util.config.ActivityConfig;
@@ -22,6 +14,7 @@ import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseView.BaseMapActivity;
 import com.duma.ld.zhilianlift.model.HouseMapModel;
 import com.duma.ld.zhilianlift.util.Constants;
+import com.duma.ld.zhilianlift.util.PublicUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -59,24 +52,8 @@ public class HouseMapActivity extends BaseMapActivity {
         mActivityConfig.setTopBar_A(model.getLouPanMinCheng() + "");
         tvBiaoti.setText(model.getLouPanMinCheng() + "");
         tvAddress.setText(model.getAddress() + "");
-        LatLng point = new LatLng(model.getLatitude(), model.getLongitude());
-        MapStatus mapStatus = new MapStatus.Builder()
-                .target(point)
-                .zoom(16)
-                .build();
-        MapStatusUpdate statusUpdate = MapStatusUpdateFactory.newMapStatus(mapStatus);
-        mBaiduMap.setMapStatus(statusUpdate);
-        //构建Marker图标
-        BitmapDescriptor bitmap = BitmapDescriptorFactory
-                .fromResource(R.drawable.tubiao1);
-        //构建MarkerOption，用于在地图上添加Marker
-        OverlayOptions option = new MarkerOptions()
-                .position(point)
-                .icon(bitmap);
-        //在地图上添加Marker，并显示
-        mBaiduMap.addOverlay(option);
+        PublicUtil.setGoMarker(mBaiduMap, model.getLatitude(), model.getLongitude(), 16);
     }
-
 
     @OnClick(R.id.layout_daoHang)
     public void onViewClicked() {
@@ -88,8 +65,7 @@ public class HouseMapActivity extends BaseMapActivity {
         } else if (AppUtils.isInstallApp("com.autonavi.minimap")) {
             uri = "androidamap://navi?sourceApplication=" + appName + "&lat=" + model.getLatitude() + "&lon=" + model.getLongitude() + "&dev=0&style=0";
             startDaoHang(uri);
-        } else
-            if (AppUtils.isInstallApp("com.google.android.apps.maps")) {
+        } else if (AppUtils.isInstallApp("com.google.android.apps.maps")) {
             uri = "google.navigation:q=" + model.getLatitude() + "," + model.getLongitude();
             startDaoHang(uri);
         } else {

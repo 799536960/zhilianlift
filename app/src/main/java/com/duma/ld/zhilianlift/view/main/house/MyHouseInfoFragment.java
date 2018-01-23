@@ -130,9 +130,10 @@ public class MyHouseInfoFragment extends BaseMyFragment {
         paint.setFakeBoldText(true);
         //banner
         final List<String> list = new ArrayList<>();
-        for (int i = 0; i < model.getHouseImagesList().size(); i++) {
-            list.add(model.getHouseImagesList().get(i).getImage_url());
-        }
+//        for (int i = 0; i < model.getHouseImagesList().size(); i++) {
+//            list.add(model.getHouseImagesList().get(i).getImage_url());
+//        }
+        list.add("1");
         banner.setOnBannerListener(new OnBannerListener() {
             @Override
             public void OnBannerClick(int position) {

@@ -64,7 +64,6 @@ public class HouseChuZuInfoModel implements Serializable {
     }
 
     public static class HouseBean implements Serializable {
-
         private int house_id;
         private String house_name;
         private String house_address;
@@ -129,6 +128,36 @@ public class HouseChuZuInfoModel implements Serializable {
         private long completed_time;
         private String purpose_name;
         private String admin_telephone;
+        private String total_house_address;
+        // 0售价 1总价 2待定
+        private int on_chang;
+
+        public int getOn_chang() {
+            return on_chang;
+        }
+
+        public String getOn_chang_text() {
+            switch (on_chang) {
+                case 0:
+                    return house_price + "元/平";
+                case 1:
+                    return allprice + "万元/套";
+                default:
+                    return "价格待定";
+            }
+        }
+
+        public void setOn_chang(int on_chang) {
+            this.on_chang = on_chang;
+        }
+
+        public String getTotal_house_address() {
+            return total_house_address;
+        }
+
+        public void setTotal_house_address(String total_house_address) {
+            this.total_house_address = total_house_address;
+        }
 
         public String getAdmin_telephone() {
             return admin_telephone;
@@ -787,16 +816,58 @@ public class HouseChuZuInfoModel implements Serializable {
 
     public static class HouseImagesListBean implements Serializable {
         /**
-         * id : 81
-         * house_id : 55
-         * image_url : /public/upload/goods/2018/01-19/0dd9691bb1a170ef19730262c60e5825.jpg
-         * img_sort : 0
+         * name : 楼盘照片
+         * so_key : title
+         * so_name : 户型图
+         * so_value : 户型图
+         * id : 66
+         * type : 11
+         * order_by : 1
+         * houseImages : [{"id":128,"house_id":1,"image_url":"/public/upload/goods/2018/01-23/1727e59ed2bfd850819ec82fb348578a.jpg","img_sort":0,"title":"户型图"},{"id":129,"house_id":1,"image_url":"/public/upload/goods/2018/01-23/d0f27e51e5eace79162e2ee68be26fe5.jpg","img_sort":0,"title":"户型图"}]
+         * doorcount : 2
          */
 
+        private String name;
+        private String so_key;
+        private String so_name;
+        private String so_value;
         private int id;
-        private int house_id;
-        private String image_url;
-        private int img_sort;
+        private int type;
+        private int order_by;
+        private int doorcount;
+        private List<HouseImagesBean> houseImages;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getSo_key() {
+            return so_key;
+        }
+
+        public void setSo_key(String so_key) {
+            this.so_key = so_key;
+        }
+
+        public String getSo_name() {
+            return so_name;
+        }
+
+        public void setSo_name(String so_name) {
+            this.so_name = so_name;
+        }
+
+        public String getSo_value() {
+            return so_value;
+        }
+
+        public void setSo_value(String so_value) {
+            this.so_value = so_value;
+        }
 
         public int getId() {
             return id;
@@ -806,28 +877,92 @@ public class HouseChuZuInfoModel implements Serializable {
             this.id = id;
         }
 
-        public int getHouse_id() {
-            return house_id;
+        public int getType() {
+            return type;
         }
 
-        public void setHouse_id(int house_id) {
-            this.house_id = house_id;
+        public void setType(int type) {
+            this.type = type;
         }
 
-        public String getImage_url() {
-            return image_url;
+        public int getOrder_by() {
+            return order_by;
         }
 
-        public void setImage_url(String image_url) {
-            this.image_url = image_url;
+        public void setOrder_by(int order_by) {
+            this.order_by = order_by;
         }
 
-        public int getImg_sort() {
-            return img_sort;
+        public int getDoorcount() {
+            return doorcount;
         }
 
-        public void setImg_sort(int img_sort) {
-            this.img_sort = img_sort;
+        public void setDoorcount(int doorcount) {
+            this.doorcount = doorcount;
+        }
+
+        public List<HouseImagesBean> getHouseImages() {
+            return houseImages;
+        }
+
+        public void setHouseImages(List<HouseImagesBean> houseImages) {
+            this.houseImages = houseImages;
+        }
+
+        public static class HouseImagesBean implements Serializable {
+            /**
+             * id : 128
+             * house_id : 1
+             * image_url : /public/upload/goods/2018/01-23/1727e59ed2bfd850819ec82fb348578a.jpg
+             * img_sort : 0
+             * title : 户型图
+             */
+
+            private int id;
+            private int house_id;
+            private String image_url;
+            private int img_sort;
+            private String title;
+
+            public int getId() {
+                return id;
+            }
+
+            public void setId(int id) {
+                this.id = id;
+            }
+
+            public int getHouse_id() {
+                return house_id;
+            }
+
+            public void setHouse_id(int house_id) {
+                this.house_id = house_id;
+            }
+
+            public String getImage_url() {
+                return image_url;
+            }
+
+            public void setImage_url(String image_url) {
+                this.image_url = image_url;
+            }
+
+            public int getImg_sort() {
+                return img_sort;
+            }
+
+            public void setImg_sort(int img_sort) {
+                this.img_sort = img_sort;
+            }
+
+            public String getTitle() {
+                return title;
+            }
+
+            public void setTitle(String title) {
+                this.title = title;
+            }
         }
     }
 

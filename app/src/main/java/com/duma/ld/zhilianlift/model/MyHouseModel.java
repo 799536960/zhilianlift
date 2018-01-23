@@ -70,6 +70,27 @@ public class MyHouseModel {
     private String read_count;
     private String rent;
     private int sales_type;
+    // 0售价 1总价 2待定
+    private int on_chang;
+
+    public int getOn_chang() {
+        return on_chang;
+    }
+
+    public String getOn_chang_text() {
+        switch (on_chang) {
+            case 0:
+                return house_price + "元/平";
+            case 1:
+                return allprice + "万元/套";
+            default:
+                return "价格待定";
+        }
+    }
+
+    public void setOn_chang(int on_chang) {
+        this.on_chang = on_chang;
+    }
 
     public int getSales_type() {
         return sales_type;
