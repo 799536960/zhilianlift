@@ -15,12 +15,12 @@
             android:layout_width="match_parent"
             android:layout_height="375dp" />
 
-       <com.duma.ld.zhilianlift.widget.TvNoNullText
+        <com.duma.ld.zhilianlift.widget.TvNoNullText
             android:id="@+id/tv_houseName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="标题"
+            android:text="标标题标题标题标题标题标题标题标题标题标题标题标题题"
             android:textSize="17sp" />
 
         <View style="@style/henxian" />
@@ -37,14 +37,14 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-               <com.duma.ld.zhilianlift.widget.TvNoNullText
+                <com.duma.ld.zhilianlift.widget.TvNoNullText
                     android:id="@+id/tv_jiaGe_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="售价"
                     android:textSize="15sp" />
 
-               <com.duma.ld.zhilianlift.widget.TvNoNullText
+                <com.duma.ld.zhilianlift.widget.TvNoNullText
                     android:id="@+id/tv_jiaGe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -66,13 +66,13 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-               <com.duma.ld.zhilianlift.widget.TvNoNullText
+                <com.duma.ld.zhilianlift.widget.TvNoNullText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="户型"
                     android:textSize="15sp" />
 
-               <com.duma.ld.zhilianlift.widget.TvNoNullText
+                <com.duma.ld.zhilianlift.widget.TvNoNullText
                     android:id="@+id/tv_huXin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -94,13 +94,13 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-               <com.duma.ld.zhilianlift.widget.TvNoNullText
+                <com.duma.ld.zhilianlift.widget.TvNoNullText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="建筑面积"
                     android:textSize="15sp" />
 
-               <com.duma.ld.zhilianlift.widget.TvNoNullText
+                <com.duma.ld.zhilianlift.widget.TvNoNullText
                     android:id="@+id/tv_mianji"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -137,14 +137,14 @@
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
-                   <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="类型："
                         android:textColor="@color/hui2"
                         android:textSize="15sp" />
 
-                   <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
                         android:id="@+id/tv_leixin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -159,14 +159,14 @@
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
-                   <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="性别："
                         android:textColor="@color/hui2"
                         android:textSize="15sp" />
 
-                   <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
                         android:id="@+id/tv_xinBie"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -190,14 +190,14 @@
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
-                   <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="装修："
                         android:textColor="@color/hui2"
                         android:textSize="15sp" />
 
-                   <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
                         android:id="@+id/tv_zhuangXiu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -211,14 +211,14 @@
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
-                   <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="年代："
                         android:textColor="@color/hui2"
                         android:textSize="15sp" />
 
-                   <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
                         android:id="@+id/tv_nianDai"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -242,14 +242,14 @@
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
-                   <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="朝向："
                         android:textColor="@color/hui2"
                         android:textSize="15sp" />
 
-                   <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
                         android:id="@+id/tv_chaoXiang"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -263,14 +263,14 @@
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
-                   <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="楼层："
                         android:textColor="@color/hui2"
                         android:textSize="15sp" />
 
-                   <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
                         android:id="@+id/tv_louCheng"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -294,14 +294,14 @@
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
-                   <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="设施："
                         android:textColor="@color/hui2"
                         android:textSize="15sp" />
 
-                   <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
                         android:id="@+id/tv_sheShi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -325,7 +325,7 @@
             android:paddingRight="17dp"
             android:paddingTop="14dp">
 
-           <com.duma.ld.zhilianlift.widget.TvNoNullText
+            <com.duma.ld.zhilianlift.widget.TvNoNullText
                 android:id="@+id/tv_louPanXinXi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -348,14 +348,14 @@
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
-                   <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="楼盘名称："
                         android:textColor="@color/hui2"
                         android:textSize="15sp" />
 
-                   <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
                         android:id="@+id/tv_louPanMinCheng"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -378,14 +378,14 @@
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
-                   <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="物业类型："
                         android:textColor="@color/hui2"
                         android:textSize="15sp" />
 
-                   <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
                         android:id="@+id/tv_wuYeleiXin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -399,14 +399,14 @@
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
-                   <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="建筑类别："
                         android:textColor="@color/hui2"
                         android:textSize="15sp" />
 
-                   <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
                         android:id="@+id/tv_jianZhuLeiBie"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -428,14 +428,14 @@
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
-                   <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="产权年限："
                         android:textColor="@color/hui2"
                         android:textSize="15sp" />
 
-                   <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
                         android:id="@+id/tv_chanQuanNianXian"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -449,14 +449,14 @@
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
-                   <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/house8"
                         android:textColor="@color/hui2"
                         android:textSize="15sp" />
 
-                   <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
                         android:id="@+id/tv_tingCheWei"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -478,14 +478,14 @@
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
-                   <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/house9"
                         android:textColor="@color/hui2"
                         android:textSize="15sp" />
 
-                   <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
                         android:id="@+id/tv_rongJiLv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -499,14 +499,14 @@
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
-                   <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/house10"
                         android:textColor="@color/hui2"
                         android:textSize="15sp" />
 
-                   <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
                         android:id="@+id/tv_lvHuaLv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -535,7 +535,7 @@
                         android:textColor="@color/hui2"
                         android:textSize="15sp" />
 
-                   <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
                         android:id="@+id/tv_junGongShiJian"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -557,14 +557,14 @@
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
-                   <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/house11"
                         android:textColor="@color/hui2"
                         android:textSize="15sp" />
 
-                   <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
                         android:id="@+id/tv_kaiFaShang"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -588,7 +588,7 @@
             android:paddingRight="17dp"
             android:paddingTop="15dp">
 
-           <com.duma.ld.zhilianlift.widget.TvNoNullText
+            <com.duma.ld.zhilianlift.widget.TvNoNullText
                 android:id="@+id/tv_xiaoQu_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -598,7 +598,7 @@
                 android:textColor="#424854"
                 android:textSize="15sp" />
 
-           <com.duma.ld.zhilianlift.widget.TvNoNullText
+            <com.duma.ld.zhilianlift.widget.TvNoNullText
                 android:id="@+id/tv_xiaoQu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -620,7 +620,7 @@
             android:paddingRight="17dp"
             android:paddingTop="15dp">
 
-           <com.duma.ld.zhilianlift.widget.TvNoNullText
+            <com.duma.ld.zhilianlift.widget.TvNoNullText
                 android:id="@+id/tv_jiaoTong_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -630,7 +630,7 @@
                 android:textColor="#424854"
                 android:textSize="15sp" />
 
-           <com.duma.ld.zhilianlift.widget.TvNoNullText
+            <com.duma.ld.zhilianlift.widget.TvNoNullText
                 android:id="@+id/tv_jiaoTong"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -652,7 +652,7 @@
             android:paddingRight="17dp"
             android:paddingTop="15dp">
 
-           <com.duma.ld.zhilianlift.widget.TvNoNullText
+            <com.duma.ld.zhilianlift.widget.TvNoNullText
                 android:id="@+id/tv_zhouBian_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -662,7 +662,7 @@
                 android:textColor="#424854"
                 android:textSize="15sp" />
 
-           <com.duma.ld.zhilianlift.widget.TvNoNullText
+            <com.duma.ld.zhilianlift.widget.TvNoNullText
                 android:id="@+id/tv_zhouBian"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

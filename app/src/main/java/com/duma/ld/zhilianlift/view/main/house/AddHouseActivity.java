@@ -88,16 +88,16 @@ public class AddHouseActivity extends BaseMyActivity implements OnTopBarRightLis
             TsUtils.show("请输入房屋名称!");
             return;
         }
+        if (StringUtils.isEmpty(model.getLouPanMinCheng())) {
+            TsUtils.show("请输入楼盘名称!");
+            return;
+        }
         if (model.getWuYeLeiXinModel() == null) {
             TsUtils.show("请选择物业类型!");
             return;
         }
         if (model.getAddresModel() == null) {
             TsUtils.show("请选择地区!");
-            return;
-        }
-        if (StringUtils.isEmpty(model.getFangWuJianJie())) {
-            TsUtils.show("请输入房屋简介!");
             return;
         }
         if (StringUtils.isEmpty(model.getXiangXiDiZhi())) {

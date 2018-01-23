@@ -25,6 +25,7 @@ import com.duma.ld.zhilianlift.base.baseJsonHttp.MyJsonCallback;
 import com.duma.ld.zhilianlift.model.AfterSalesListModel;
 import com.duma.ld.zhilianlift.model.AfterSalesModel;
 import com.duma.ld.zhilianlift.model.GoodsBean;
+import com.duma.ld.zhilianlift.model.HouseLabelBean;
 import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.model.MyHouseModel;
 import com.duma.ld.zhilianlift.model.OrderModel;
@@ -172,30 +173,9 @@ public class PublicUtil {
     }
 
     public static void getViewHouse(BaseViewHolder helper, MyHouseModel item, Activity mActivity, boolean isChuZu) {
-        helper.setText(R.id.tv_name, item.getHouse_name() + "")
-                .setText(R.id.tv_spec1, item.getDoor_door() + "室" + item.getOffice() + "厅" + item.getToilet() + "卫  " +
-                        item.getArchitecture() + "㎡  " + item.getOrientationNoNull())
-                .setText(R.id.tv_spec2, item.getCompany_district_name() + " " + item.getHouse_address());
-        ImageView img_house = helper.getView(R.id.img_house);
-        ImageLoader.with(item.getOriginal_img(), img_house);
-        RecyclerView rv_list = helper.getView(R.id.rv_list);
-        if (item.getHouseLabel() == null || item.getHouseLabel().size() == 0) {
-            rv_list.setVisibility(View.GONE);
-        } else {
-            rv_list.setVisibility(View.VISIBLE);
-            BaseAdapter<MyHouseModel.HouseLabelBean> adapter = new BaseAdapter.Builder<MyHouseModel.HouseLabelBean>(rv_list, mActivity, R.layout.adapter_my_house_item)
-                    .setNoEnpty()
-                    .isNested()
-                    .setLayoutManager(new LinearLayoutManager(mActivity, LinearLayout.HORIZONTAL, false))
-                    .build(new OnBaseAdapterListener<MyHouseModel.HouseLabelBean>() {
-                        @Override
-                        public void convert(BaseViewHolder helper, MyHouseModel.HouseLabelBean item) {
-                            helper.setText(R.id.tv_name, item.getSo_name());
-                        }
-                    });
-            adapter.setNewData(item.getHouseLabel());
-            rv_list.setAdapter(adapter);
-        }
+        getViewHousePublic(helper, item, mActivity);
+        helper.setText(R.id.tv_spec1, item.getDoor_door() + "室" + item.getOffice() + "厅" + item.getToilet() + "卫  " +
+                item.getArchitecture() + "㎡  " + item.getOrientationNoNull());
         TextView tv_money2 = helper.getView(R.id.tv_money2);
         TextView tv_money = helper.getView(R.id.tv_money);
         if (isChuZu) {
@@ -209,28 +189,7 @@ public class PublicUtil {
     }
 
     public static void getViewHouseNew(BaseViewHolder helper, MyHouseModel item, Activity mActivity) {
-        helper.setText(R.id.tv_name, item.getHouse_name() + "")
-                .setText(R.id.tv_spec2, item.getCompany_district_name() + " " + item.getHouse_address());
-        ImageView img_house = helper.getView(R.id.img_house);
-        ImageLoader.with(item.getOriginal_img(), img_house);
-        RecyclerView rv_list = helper.getView(R.id.rv_list);
-        if (item.getHouseLabel() == null || item.getHouseLabel().size() == 0) {
-            rv_list.setVisibility(View.GONE);
-        } else {
-            rv_list.setVisibility(View.VISIBLE);
-            BaseAdapter<MyHouseModel.HouseLabelBean> adapter = new BaseAdapter.Builder<MyHouseModel.HouseLabelBean>(rv_list, mActivity, R.layout.adapter_my_house_item)
-                    .setNoEnpty()
-                    .isNested()
-                    .setLayoutManager(new LinearLayoutManager(mActivity, LinearLayout.HORIZONTAL, false))
-                    .build(new OnBaseAdapterListener<MyHouseModel.HouseLabelBean>() {
-                        @Override
-                        public void convert(BaseViewHolder helper, MyHouseModel.HouseLabelBean item) {
-                            helper.setText(R.id.tv_name, item.getSo_name());
-                        }
-                    });
-            adapter.setNewData(item.getHouseLabel());
-            rv_list.setAdapter(adapter);
-        }
+        getViewHousePublic(helper, item, mActivity);
         TextView tv_money = helper.getView(R.id.tv_money);
         TextView tv_type = helper.getView(R.id.tv_type);
         tv_money.setText(item.getRent() + "元/月");
@@ -250,6 +209,31 @@ public class PublicUtil {
                 tv_type.setTextColor(ZhuanHuanUtil.getColor(R.color.hui2));
                 tv_type.setText("售罄");
                 break;
+        }
+    }
+
+    public static void getViewHousePublic(BaseViewHolder helper, MyHouseModel item, Activity mActivity) {
+        helper.setText(R.id.tv_name, item.getHouse_name() + "")
+                .setText(R.id.tv_spec2, item.getCompany_district_name() + " " + item.getHouse_address());
+        ImageView img_house = helper.getView(R.id.img_house);
+        ImageLoader.with(item.getOriginal_img(), img_house);
+        RecyclerView rv_list = helper.getView(R.id.rv_list);
+        if (item.getHouseLabel() == null || item.getHouseLabel().size() == 0) {
+            rv_list.setVisibility(View.GONE);
+        } else {
+            rv_list.setVisibility(View.VISIBLE);
+            BaseAdapter<HouseLabelBean> adapter = new BaseAdapter.Builder<HouseLabelBean>(rv_list, mActivity, R.layout.adapter_my_house_item)
+                    .setNoEnpty()
+                    .isNested()
+                    .setLayoutManager(new LinearLayoutManager(mActivity, LinearLayout.HORIZONTAL, false))
+                    .build(new OnBaseAdapterListener<HouseLabelBean>() {
+                        @Override
+                        public void convert(BaseViewHolder helper, HouseLabelBean item) {
+                            helper.setText(R.id.tv_name, item.getSo_name());
+                        }
+                    });
+            adapter.setNewData(item.getHouseLabel());
+            rv_list.setAdapter(adapter);
         }
     }
 

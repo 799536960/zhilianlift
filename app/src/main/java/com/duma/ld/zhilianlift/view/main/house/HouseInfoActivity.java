@@ -116,7 +116,7 @@ public class HouseInfoActivity extends BaseMyActivity {
                 .setCancelable(false)
                 .create();
         HouseChuZuInfoModel.HouseBean house = result.getHouse();
-        tvName.setText(house.getHouse_name());
+        tvName.setText(house.getPremises_nameNull());
         //判断什么房子
         switch (house.getHouse_type()) {
             case 1:

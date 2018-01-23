@@ -45,14 +45,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="房屋简介：" />
+                    android:text="楼盘名称：" />
 
                 <EditText
-                    android:id="@+id/edit_jianJie"
+                    android:id="@+id/edit_louPanMinCheng"
                     style="@style/edit_1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="请填写房屋简介"
+                    android:hint="请填写楼盘名称"
                     android:inputType="text" />
             </LinearLayout>
 

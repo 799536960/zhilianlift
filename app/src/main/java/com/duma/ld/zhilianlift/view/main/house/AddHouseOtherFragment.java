@@ -42,8 +42,6 @@ public class AddHouseOtherFragment extends BaseMyFragment {
     EditText editZhoubian;
     @BindView(R.id.tv_zhoubian)
     TextView tvZhoubian;
-    @BindView(R.id.edit_louPanMinCheng)
-    EditText editLouPanMinCheng;
     @BindView(R.id.edit_jianZhuLieBie)
     EditText editJianZhuLieBie;
     @BindView(R.id.edit_chanQuanNianXian)
@@ -124,12 +122,6 @@ public class AddHouseOtherFragment extends BaseMyFragment {
     }
 
     private void initEdit() {
-        editLouPanMinCheng.addTextChangedListener(new EditUtil(new OnTextChangeListener() {
-            @Override
-            public void textChanged(Editable s) {
-                model.setLouPanMinCheng(s.toString());
-            }
-        }));
         editJianZhuLieBie.addTextChangedListener(new EditUtil(new OnTextChangeListener() {
             @Override
             public void textChanged(Editable s) {

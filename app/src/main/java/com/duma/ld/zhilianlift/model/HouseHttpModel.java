@@ -56,7 +56,7 @@ public class HouseHttpModel implements Serializable {
     private PCDAddresModel addresModel;
     //房屋名称
     private String fangWuMinCheng;
-    //房屋简介
+    //房屋简介 (去掉了)
     private String fangWuJianJie;
     //详细地址
     private String xiangXiDiZhi;
@@ -90,7 +90,7 @@ public class HouseHttpModel implements Serializable {
     /**
      * 楼盘信息
      */
-    //楼盘名称
+    //楼盘名称 (改为必填)
     private String louPanMinCheng;
     //建筑类别
     private String jianZhuLieBie;

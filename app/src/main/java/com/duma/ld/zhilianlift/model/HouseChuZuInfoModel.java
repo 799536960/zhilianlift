@@ -69,7 +69,7 @@ public class HouseChuZuInfoModel implements Serializable {
         private String house_name;
         private String house_address;
         private String house_telephone;
-        private String start_time;
+        private long start_time;
         private String purpose;
         private int house_status;
         private String renovation;
@@ -194,11 +194,11 @@ public class HouseChuZuInfoModel implements Serializable {
             this.house_telephone = house_telephone;
         }
 
-        public String getStart_time() {
+        public long getStart_time() {
             return start_time;
         }
 
-        public void setStart_time(String start_time) {
+        public void setStart_time(long start_time) {
             this.start_time = start_time;
         }
 
@@ -419,6 +419,13 @@ public class HouseChuZuInfoModel implements Serializable {
         }
 
         public String getPremises_name() {
+            return premises_name;
+        }
+
+        public String getPremises_nameNull() {
+            if (premises_name == null) {
+                return "";
+            }
             return premises_name;
         }
 
@@ -824,49 +831,4 @@ public class HouseChuZuInfoModel implements Serializable {
         }
     }
 
-    public static class HouseLabelBean implements Serializable {
-        /**
-         * id : 145
-         * house_id : 55
-         * hs_id : 48
-         * so_name : 经济住宅
-         */
-
-        private int id;
-        private int house_id;
-        private int hs_id;
-        private String so_name;
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public int getHouse_id() {
-            return house_id;
-        }
-
-        public void setHouse_id(int house_id) {
-            this.house_id = house_id;
-        }
-
-        public int getHs_id() {
-            return hs_id;
-        }
-
-        public void setHs_id(int hs_id) {
-            this.hs_id = hs_id;
-        }
-
-        public String getSo_name() {
-            return so_name;
-        }
-
-        public void setSo_name(String so_name) {
-            this.so_name = so_name;
-        }
-    }
 }

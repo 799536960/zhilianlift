@@ -99,8 +99,8 @@ public class AddHouseInfoFragment extends BaseMyFragment implements OnBaseAdapte
     RadioButton radioJiJiRen;
     @BindView(R.id.edit_fangWuMinCheng)
     EditText editFangWuMinCheng;
-    @BindView(R.id.edit_jianJie)
-    EditText editJianJie;
+    //    @BindView(R.id.edit_jianJie)
+//    EditText editJianJie;
     @BindView(R.id.edit_diZhi)
     EditText editDiZhi;
     @BindView(R.id.edit_jiShi)
@@ -129,6 +129,8 @@ public class AddHouseInfoFragment extends BaseMyFragment implements OnBaseAdapte
     EditText editXinMin;
     @BindView(R.id.edit_dianHua)
     EditText editDianHua;
+    @BindView(R.id.edit_louPanMinCheng)
+    EditText editLouPanMinCheng;
     private HouseHttpModel model;
     //房屋特色
     private BaseAdapter<HouseHttpInfoModel.FilterAttrBean.ItemBean> mAdapterTeSe;
@@ -214,10 +216,10 @@ public class AddHouseInfoFragment extends BaseMyFragment implements OnBaseAdapte
                 model.setFangWuMinCheng(s.toString());
             }
         }));
-        editJianJie.addTextChangedListener(new EditUtil(new OnTextChangeListener() {
+        editLouPanMinCheng.addTextChangedListener(new EditUtil(new OnTextChangeListener() {
             @Override
             public void textChanged(Editable s) {
-                model.setFangWuJianJie(s.toString());
+                model.setLouPanMinCheng(s.toString());
             }
         }));
         editDiZhi.addTextChangedListener(new EditUtil(new OnTextChangeListener() {

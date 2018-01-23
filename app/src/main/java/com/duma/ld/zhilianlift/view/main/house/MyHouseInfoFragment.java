@@ -160,7 +160,7 @@ public class MyHouseInfoFragment extends BaseMyFragment {
         /*
           房屋数据
          */
-        tvHouseName.setNewText(house.getSynopsis());
+        tvHouseName.setNewText(house.getHouse_name());
         tvHuXin.setNewText(house.getDoor_door() + "室" + house.getOffice() + "厅" + house.getToilet() + "卫");
         tvMianji.setNewText(house.getArchitecture() + "m²");
         tvLeixin.setNewText(house.getLease_type_string());

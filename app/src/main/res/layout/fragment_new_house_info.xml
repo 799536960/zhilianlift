@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/hui_bg">
@@ -24,6 +25,7 @@
             android:textSize="17sp" />
 
         <TextView
+            android:id="@+id/tv_jianJie"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -33,10 +35,35 @@
             android:textSize="13sp" />
 
         <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_biaoQian"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:visibility="gone" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="10dp">
+
+            <com.duma.ld.zhilianlift.widget.TvNoNullText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="参考均价："
+                android:textColor="@color/hui2" />
+
+            <com.duma.ld.zhilianlift.widget.TvNoNullText
+                android:id="@+id/tv_jiaGe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2000元/平"
+                android:textColor="@color/huang2" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,19 +82,565 @@
                 <com.duma.ld.zhilianlift.widget.TvNoNullText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="参考均价："
+                    android:text="楼盘地址："
                     android:textColor="@color/hui2" />
 
                 <com.duma.ld.zhilianlift.widget.TvNoNullText
-                    android:id="@+id/tv_sheShi"
+                    android:id="@+id/tv_louPanDiZhi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2000元/平"
-                    android:textColor="@color/huang2"
-                    android:textSize="15sp" />
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="余杭区临平东湖北路旺盛路口（32号湘潭路)"
+                    android:textColor="@color/huang2" />
             </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/dingwei" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="10dp">
+
+
+            <com.duma.ld.zhilianlift.widget.TvNoNullText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="最新开盘："
+                android:textColor="@color/hui2" />
+
+            <com.duma.ld.zhilianlift.widget.TvNoNullText
+                android:id="@+id/tv_zuiXinKaiPan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2016-12-03"
+                android:textColor="@color/huang2" />
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="10dp">
+
+            <com.duma.ld.zhilianlift.widget.TvNoNullText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="在售户型："
+                android:textColor="@color/hui2" />
+
+            <com.duma.ld.zhilianlift.widget.TvNoNullText
+                android:id="@+id/tv_zaiShouHuXin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3居、2居、1居"
+                android:textColor="@color/huang2" />
+
+        </LinearLayout>
+
+        <View
+            style="@style/henxian"
+            android:layout_height="10dp"
+            android:layout_marginTop="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="15dp"
+            android:paddingLeft="17dp"
+            android:paddingRight="17dp"
+            android:paddingTop="15dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    android:id="@+id/tv_huXin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="5dp"
+                    android:drawableStart="@drawable/bangbang"
+                    android:text="户型(3)"
+                    android:textColor="#424854"
+                    android:textSize="15sp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="6dp"
+                    android:drawableRight="@drawable/jiantou_r_xiao"
+                    android:text="详情"
+                    android:textColor="@color/hui2"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_huXin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <View
+            style="@style/henxian"
+            android:layout_height="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="15dp"
+            android:paddingLeft="17dp"
+            android:paddingRight="17dp"
+            android:paddingTop="15dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    android:id="@+id/tv_louPanZhaoPian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="5dp"
+                    android:drawableStart="@drawable/bangbang"
+                    android:text="楼盘照片"
+                    android:textColor="#424854"
+                    android:textSize="15sp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="6dp"
+                    android:drawableRight="@drawable/jiantou_r_xiao"
+                    android:text="详情"
+                    android:textColor="@color/hui2"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_louPanZhaoPian"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View
+            style="@style/henxian"
+            android:layout_height="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="14dp"
+            android:paddingLeft="17dp"
+            android:paddingRight="17dp"
+            android:paddingTop="14dp">
+
+            <com.duma.ld.zhilianlift.widget.TvNoNullText
+                android:id="@+id/tv_louPanXinXi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/bangbang"
+                android:drawablePadding="5dp"
+                android:text="楼盘信息"
+                android:textColor="#424854"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="7dp"
+                android:paddingTop="14dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="楼盘名称："
+                        android:textColor="@color/hui2"
+                        android:textSize="15sp" />
+
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
+                        android:id="@+id/tv_louPanMinCheng"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="合租"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="7dp"
+                android:paddingTop="7dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="占地面积："
+                        android:textColor="@color/hui2"
+                        android:textSize="15sp" />
+
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
+                        android:id="@+id/tv_zhanDiMianJi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="合租"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/house8"
+                        android:textColor="@color/hui2"
+                        android:textSize="15sp" />
+
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
+                        android:id="@+id/tv_tingCheWei"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="合租"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="7dp"
+                android:paddingTop="7dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="建筑类别："
+                        android:textColor="@color/hui2"
+                        android:textSize="15sp" />
+
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
+                        android:id="@+id/tv_jianZhuLeiBie"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="合租"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="物业类别："
+                        android:textColor="@color/hui2"
+                        android:textSize="15sp" />
+
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
+                        android:id="@+id/tv_wuYeleiXin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="合租"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="7dp"
+                android:paddingTop="7dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/house9"
+                        android:textColor="@color/hui2"
+                        android:textSize="15sp" />
+
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
+                        android:id="@+id/tv_rongJiLv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="合租"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/house10"
+                        android:textColor="@color/hui2"
+                        android:textSize="15sp" />
+
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
+                        android:id="@+id/tv_lvHuaLv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="合租"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="7dp"
+                android:paddingTop="7dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="产权年限："
+                        android:textColor="@color/hui2"
+                        android:textSize="15sp" />
+
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
+                        android:id="@+id/tv_chanQuanNianXian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="合租"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="竣工时间："
+                        android:textColor="@color/hui2"
+                        android:textSize="15sp" />
+
+                    <com.duma.ld.zhilianlift.widget.TvNoNullText
+                        android:id="@+id/tv_junGongShiJian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="合租"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="7dp"
+                android:paddingTop="7dp">
+
+                <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="售楼许可："
+                    android:textColor="@color/hui2"
+                    android:textSize="15sp" />
+
+                <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    android:id="@+id/tv_shouLouXuKe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="合租"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="7dp"
+                android:paddingTop="7dp">
+
+                <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/house11"
+                    android:textColor="@color/hui2"
+                    android:textSize="15sp" />
+
+                <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    android:id="@+id/tv_kaiFaShang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="合租"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="7dp">
+
+                <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="售楼地址："
+                    android:textColor="@color/hui2"
+                    android:textSize="15sp" />
+
+                <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    android:id="@+id/tv_shouLouDiZhi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="合租"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            style="@style/henxian"
+            android:layout_height="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="15dp"
+            android:paddingLeft="17dp"
+            android:paddingRight="17dp"
+            android:paddingTop="15dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.duma.ld.zhilianlift.widget.TvNoNullText
+                    android:id="@+id/tv_zhouBian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="5dp"
+                    android:drawableStart="@drawable/bangbang"
+                    android:text="周边配套设施"
+                    android:textColor="#424854"
+                    android:textSize="15sp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="6dp"
+                    android:drawableRight="@drawable/jiantou_r_xiao"
+                    android:text="详情"
+                    android:textColor="@color/hui2"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>
