@@ -23,7 +23,7 @@ import me.yokeyword.fragmentation.SupportFragment;
  * 首页
  * Created by liudong on 2017/11/29.
  */
-public class HomeActivity extends BaseMyActivity {
+public class MainActivity extends BaseMyActivity {
     @BindView(R.id.layout_fragment)
     FrameLayout layoutFragment;
     @BindView(R.id.bar_bottom)
@@ -44,7 +44,7 @@ public class HomeActivity extends BaseMyActivity {
 
     @Override
     protected void setStatusBar() {
-        StatusBarUtil.setTranslucentForImageViewInFragment(HomeActivity.this, null);
+        StatusBarUtil.setTranslucentForImageViewInFragment(MainActivity.this, null);
     }
 
     private void initFragment() {

@@ -45,7 +45,7 @@
             android:enabled="true"
             android:process=":remote" />
         <!--第三方-->
-        <activity android:name=".view.main.home.HomeActivity">
+        <activity android:name=".view.main.home.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -127,6 +127,7 @@
         <activity android:name=".view.main.house.HouseListActivity" />
         <activity android:name=".view.main.house.HouseInfoActivity" />
         <activity android:name=".view.main.house.AddBaoBeiActivity" />
+        <activity android:name=".view.main.house.HouseMapActivity"/>
     </application>
 
 </manifest>

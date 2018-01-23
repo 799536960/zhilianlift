@@ -3,6 +3,8 @@ package com.duma.ld.zhilianlift.view.main.house;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextPaint;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -16,6 +18,7 @@ import com.duma.ld.zhilianlift.base.baseAdapter.OnBaseAdapterListener;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyFragment;
 import com.duma.ld.zhilianlift.model.HouseChuZuInfoModel;
 import com.duma.ld.zhilianlift.model.HouseLabelBean;
+import com.duma.ld.zhilianlift.model.HouseMapModel;
 import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.PublicUtil;
@@ -28,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * 新房 详情页
@@ -87,7 +91,16 @@ public class NewHouseInfoFragment extends BaseMyFragment {
     TvNoNullText tvLouPanZhaoPian;
     @BindView(R.id.tv_zhouBian)
     TvNoNullText tvZhouBian;
+    @BindView(R.id.layout_map)
+    LinearLayout layoutMap;
+    @BindView(R.id.tv_info_huXin)
+    TextView tvInfoHuXin;
+    @BindView(R.id.tv_info_zhaoPian)
+    TextView tvInfoZhaoPian;
+    @BindView(R.id.tv_info_zhouBian)
+    TextView tvInfoZhouBian;
     private HouseChuZuInfoModel model;
+    private HouseChuZuInfoModel.HouseBean house;
 
     public static NewHouseInfoFragment newInstance(HouseChuZuInfoModel model) {
         NewHouseInfoFragment fragment = new NewHouseInfoFragment();
@@ -151,7 +164,7 @@ public class NewHouseInfoFragment extends BaseMyFragment {
         adapter.setNewData(model.getHouseLabel());
         rvBiaoQian.setAdapter(adapter);
         //房屋数据
-        HouseChuZuInfoModel.HouseBean house = model.getHouse();
+        house = model.getHouse();
         tvLouPanDiZhi.setNewText(house.getHouse_address());
         tvZuiXinKaiPan.setNewText(ZhuanHuanUtil.Time2nian2(house.getStart_time() * 1000));
         //楼盘数据
@@ -173,4 +186,18 @@ public class NewHouseInfoFragment extends BaseMyFragment {
         tvShouLouDiZhi.setNewText("");
     }
 
+    @OnClick({R.id.layout_map, R.id.tv_info_huXin, R.id.tv_info_zhaoPian, R.id.tv_info_zhouBian})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.layout_map:
+                IntentUtil.goHouseMap(mActivity, new HouseMapModel(house.getPremises_name(), house.getHouse_address(), house.getLatitude(), house.getLongitude()));
+                break;
+            case R.id.tv_info_huXin:
+                break;
+            case R.id.tv_info_zhaoPian:
+                break;
+            case R.id.tv_info_zhouBian:
+                break;
+        }
+    }
 }

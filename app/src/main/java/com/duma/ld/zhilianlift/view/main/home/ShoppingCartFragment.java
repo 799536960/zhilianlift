@@ -93,7 +93,7 @@ public class ShoppingCartFragment extends BaseMyFragment {
     @Override
     protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
-        if (mActivity instanceof HomeActivity) {
+        if (mActivity instanceof MainActivity) {
             layoutBack.setVisibility(View.GONE);
         }
         isShoppingAllSelect = false;

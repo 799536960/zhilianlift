@@ -6,14 +6,16 @@ import android.content.Intent;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.model.AddresModel;
 import com.duma.ld.zhilianlift.model.CommitOrderModel;
+import com.duma.ld.zhilianlift.model.HouseMapModel;
 import com.duma.ld.zhilianlift.model.OrderModel;
 import com.duma.ld.zhilianlift.model.RealNameModel;
 import com.duma.ld.zhilianlift.model.ShoppingSpacModel;
 import com.duma.ld.zhilianlift.view.login.LoginOrRegisterActivity;
-import com.duma.ld.zhilianlift.view.main.home.HomeActivity;
+import com.duma.ld.zhilianlift.view.main.home.MainActivity;
 import com.duma.ld.zhilianlift.view.main.house.AddHouseActivity;
 import com.duma.ld.zhilianlift.view.main.house.HouseInfoActivity;
 import com.duma.ld.zhilianlift.view.main.house.HouseListActivity;
+import com.duma.ld.zhilianlift.view.main.house.HouseMapActivity;
 import com.duma.ld.zhilianlift.view.main.house.MyHouseActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PayActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PayInputPasswordActivity;
@@ -157,7 +159,7 @@ public class IntentUtil {
     }
 
     public static void goMain(Activity activity) {
-        Intent intent = new Intent(activity, HomeActivity.class);
+        Intent intent = new Intent(activity, MainActivity.class);
         intent.setFlags(FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         activity.startActivity(intent);
@@ -461,6 +463,13 @@ public class IntentUtil {
     public static void goHouseInfo(Activity activity, int houseId) {
         Intent intent = new Intent(activity, HouseInfoActivity.class);
         intent.putExtra(Constants.id, houseId + "");
+        activity.startActivity(intent);
+    }
+
+    //去地图
+    public static void goHouseMap(Activity activity, HouseMapModel model) {
+        Intent intent = new Intent(activity, HouseMapActivity.class);
+        intent.putExtra(Constants.Model, model);
         activity.startActivity(intent);
     }
 }

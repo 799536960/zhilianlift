@@ -113,8 +113,8 @@ public class HouseChuZuInfoModel implements Serializable {
         private String sales_address;
         private String parkinglot;
         private String architecture_type;
-        private String longitude;
-        private String latitude;
+        private double longitude;
+        private double latitude;
         private String original_img;
         private String toilet;
         private String office;
@@ -555,19 +555,19 @@ public class HouseChuZuInfoModel implements Serializable {
             this.architecture_type = architecture_type;
         }
 
-        public String getLongitude() {
+        public double getLongitude() {
             return longitude;
         }
 
-        public void setLongitude(String longitude) {
+        public void setLongitude(double longitude) {
             this.longitude = longitude;
         }
 
-        public String getLatitude() {
+        public double getLatitude() {
             return latitude;
         }
 
-        public void setLatitude(String latitude) {
+        public void setLatitude(double latitude) {
             this.latitude = latitude;
         }
 
