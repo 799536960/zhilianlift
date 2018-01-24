@@ -5,11 +5,13 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
+import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
@@ -33,6 +35,7 @@ public class MainActivity extends BaseMyActivity {
 
     @Override
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig) {
+        setTheme(R.style.AppTheme);
         return initConfig.setLayoutIdByActivity(R.layout.activity_home, false);
     }
 
@@ -99,5 +102,15 @@ public class MainActivity extends BaseMyActivity {
                 return true;
             }
         });
+    }
+
+    @Override
+    protected void onBack() {
+        if (System.currentTimeMillis() - Constants.TOUCH_TIME < Constants.WAIT_TIME) {
+            finish();
+        } else {
+            Constants.TOUCH_TIME = System.currentTimeMillis();
+            Toast.makeText(this, "再按一次退出App", Toast.LENGTH_SHORT).show();
+        }
     }
 }
