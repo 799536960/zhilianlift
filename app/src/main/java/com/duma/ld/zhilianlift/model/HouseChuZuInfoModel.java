@@ -19,7 +19,7 @@ public class HouseChuZuInfoModel implements Serializable {
 
     private HouseBean house;
     private CollectBean collect;
-    private List<HouseDoorListBean> house_doorList;
+    private List<HouseHuXinBean> house_doorList;
     private List<HouseImagesListBean> houseImagesList;
     private List<HouseLabelBean> houseLabel;
 
@@ -39,11 +39,11 @@ public class HouseChuZuInfoModel implements Serializable {
         this.collect = collect;
     }
 
-    public List<HouseDoorListBean> getHouse_doorList() {
+    public List<HouseHuXinBean> getHouse_doorList() {
         return house_doorList;
     }
 
-    public void setHouse_doorList(List<HouseDoorListBean> house_doorList) {
+    public void setHouse_doorList(List<HouseHuXinBean> house_doorList) {
         this.house_doorList = house_doorList;
     }
 
@@ -718,101 +718,6 @@ public class HouseChuZuInfoModel implements Serializable {
         }
     }
 
-    public static class HouseDoorListBean implements Serializable {
-        /**
-         * id : 3
-         * house_id : 55
-         * door_img : /public/upload/goods/2018/01-19/ccab3a74bbc747b448c3876de5cebbb4.jpg
-         * door_price : 4
-         * door_get : 3
-         * door_area : 2
-         * architecture_area : 1
-         * door_door : 1
-         * door_sort : null
-         */
-
-        private int id;
-        private int house_id;
-        private String door_img;
-        private String door_price;
-        private String door_get;
-        private String door_area;
-        private String architecture_area;
-        private String door_door;
-        private String door_sort;
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public int getHouse_id() {
-            return house_id;
-        }
-
-        public void setHouse_id(int house_id) {
-            this.house_id = house_id;
-        }
-
-        public String getDoor_img() {
-            return door_img;
-        }
-
-        public void setDoor_img(String door_img) {
-            this.door_img = door_img;
-        }
-
-        public String getDoor_price() {
-            return door_price;
-        }
-
-        public void setDoor_price(String door_price) {
-            this.door_price = door_price;
-        }
-
-        public String getDoor_get() {
-            return door_get;
-        }
-
-        public void setDoor_get(String door_get) {
-            this.door_get = door_get;
-        }
-
-        public String getDoor_area() {
-            return door_area;
-        }
-
-        public void setDoor_area(String door_area) {
-            this.door_area = door_area;
-        }
-
-        public String getArchitecture_area() {
-            return architecture_area;
-        }
-
-        public void setArchitecture_area(String architecture_area) {
-            this.architecture_area = architecture_area;
-        }
-
-        public String getDoor_door() {
-            return door_door;
-        }
-
-        public void setDoor_door(String door_door) {
-            this.door_door = door_door;
-        }
-
-        public String getDoor_sort() {
-            return door_sort;
-        }
-
-        public void setDoor_sort(String door_sort) {
-            this.door_sort = door_sort;
-        }
-    }
 
     public static class HouseImagesListBean implements Serializable {
         /**

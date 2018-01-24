@@ -13,6 +13,7 @@ import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.UiSettings;
 import com.baidu.mapapi.model.LatLng;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.baselibrary.util.ZhuanHuanUtil;
@@ -23,6 +24,7 @@ import com.duma.ld.zhilianlift.base.baseAdapter.BaseAdapter;
 import com.duma.ld.zhilianlift.base.baseAdapter.OnBaseAdapterListener;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyFragment;
 import com.duma.ld.zhilianlift.model.HouseChuZuInfoModel;
+import com.duma.ld.zhilianlift.model.HouseHuXinBean;
 import com.duma.ld.zhilianlift.model.HouseLabelBean;
 import com.duma.ld.zhilianlift.model.HouseMapModel;
 import com.duma.ld.zhilianlift.util.Constants;
@@ -152,6 +154,7 @@ public class NewHouseInfoFragment extends BaseMyFragment {
         paint.setFakeBoldText(true);
         //banner
         final List<String> list = new ArrayList<>();
+        // TODO: 2018/1/24 轮播没有
 //        for (int i = 0; i < model.getHouseImagesList().size(); i++) {
 //            list.add(model.getHouseImagesList().get(i).getImage_url());
 //        }
@@ -214,29 +217,35 @@ public class NewHouseInfoFragment extends BaseMyFragment {
         tvShouLouXuKe.setNewText(house.getSales());
         tvShouLouDiZhi.setNewText(house.getTotal_house_address());
         //户型
-        BaseAdapter<HouseChuZuInfoModel.HouseDoorListBean> huXinAdapter = new BaseAdapter.Builder<HouseChuZuInfoModel.HouseDoorListBean>(rvHuXin, mActivity, R.layout.adapter_house_info_huxin)
+        BaseAdapter<HouseHuXinBean> huXinAdapter = new BaseAdapter.Builder<HouseHuXinBean>(rvHuXin, mActivity, R.layout.adapter_house_info_huxin)
                 .setNoEnpty()
                 .isNested()
                 .setLayoutManager(new LinearLayoutManager(mActivity, LinearLayout.HORIZONTAL, false))
-                .build(new OnBaseAdapterListener<HouseChuZuInfoModel.HouseDoorListBean>() {
+                .build(new OnBaseAdapterListener<HouseHuXinBean>() {
                     @Override
-                    public void convert(BaseViewHolder helper, HouseChuZuInfoModel.HouseDoorListBean item) {
+                    public void convert(BaseViewHolder helper, HouseHuXinBean item) {
                         helper.setText(R.id.tv_biaoti, "没有字段")
                                 .setText(R.id.tv_name, "建筑面积" + item.getArchitecture_area() + "㎡");
                         ImageLoader.with(item.getDoor_img(), (ImageView) helper.getView(R.id.img_icon));
                     }
                 });
         huXinAdapter.setNewData(model.getHouse_doorList());
+        huXinAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                IntentUtil.goHuXinInfo(mActivity, model.getHouse().getHouse_id());
+            }
+        });
         tvHuXin.setText("户型(" + model.getHouse_doorList().size() + ")");
         //楼盘照片
-        BaseAdapter<HouseChuZuInfoModel.HouseImagesListBean> zhaoPianAdapter = new BaseAdapter.Builder<HouseChuZuInfoModel.HouseImagesListBean>(rvLouPanZhaoPian, mActivity, R.layout.adapter_house_info_zhaopian)
+        final BaseAdapter<HouseChuZuInfoModel.HouseImagesListBean> zhaoPianAdapter = new BaseAdapter.Builder<HouseChuZuInfoModel.HouseImagesListBean>(rvLouPanZhaoPian, mActivity, R.layout.adapter_house_info_zhaopian)
                 .setNoEnpty()
                 .isNested()
                 .setLayoutManager(new LinearLayoutManager(mActivity, LinearLayout.HORIZONTAL, false))
                 .build(new OnBaseAdapterListener<HouseChuZuInfoModel.HouseImagesListBean>() {
                     @Override
                     public void convert(BaseViewHolder helper, HouseChuZuInfoModel.HouseImagesListBean item) {
-                        helper.setText(R.id.tv_biaoti, item.getName() + " (" + item.getHouseImages().size() + ")");
+                        helper.setText(R.id.tv_biaoti, item.getSo_name() + " (" + item.getHouseImages().size() + ")");
                         ImageLoader.with(item.getHouseImages().get(0).getImage_url(), (ImageView) helper.getView(R.id.img_icon));
                     }
                 });
@@ -249,6 +258,17 @@ public class NewHouseInfoFragment extends BaseMyFragment {
                 iterator.remove();
             }
         }
+        zhaoPianAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                List<HouseChuZuInfoModel.HouseImagesListBean.HouseImagesBean> houseImages = zhaoPianAdapter.getData().get(position).getHouseImages();
+                List<String> imgList = new ArrayList<>();
+                for (int i = 0; i < houseImages.size(); i++) {
+                    imgList.add(houseImages.get(i).getImage_url());
+                }
+                IntentUtil.goPhoto(mActivity, imgList, 0);
+            }
+        });
         zhaoPianAdapter.setNewData(houseImagesList);
     }
 
@@ -276,6 +296,7 @@ public class NewHouseInfoFragment extends BaseMyFragment {
                 IntentUtil.goHouseMap(mActivity, new HouseMapModel(house.getPremises_name(), house.getHouse_address(), house.getLatitude(), house.getLongitude()));
                 break;
             case R.id.tv_info_huXin:
+                IntentUtil.goHuXinInfo(mActivity, model.getHouse().getHouse_id());
                 break;
             case R.id.tv_info_zhaoPian:
                 break;

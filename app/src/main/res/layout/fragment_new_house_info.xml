@@ -244,7 +244,8 @@
                     android:drawableRight="@drawable/jiantou_r_xiao"
                     android:text="详情"
                     android:textColor="@color/hui2"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <RelativeLayout

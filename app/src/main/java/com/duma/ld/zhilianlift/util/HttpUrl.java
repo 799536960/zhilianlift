@@ -93,4 +93,6 @@ public class HttpUrl {
     public static String getALL2 = BaseUrl + "/index.php/api/house/getALL2";
     public static String gethoustInfo = BaseUrl + "/index.php/api/house/gethoustInfo";
     public static String collectHouseOrNo = BaseUrl + "/index.php/api/house/collectHouseOrNo";
+    public static String getdoorinfo = BaseUrl + "/index.php/api/house/getdoorinfo";
+    public static String addPreparation = BaseUrl + "/index.php/api/house/addPreparation";
 }

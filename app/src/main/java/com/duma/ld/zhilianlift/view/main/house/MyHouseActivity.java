@@ -153,6 +153,7 @@ public class MyHouseActivity extends BaseMyActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         OkGo.<HttpResModel<String>>get(deleteHouse)
+                                .tag(httpTag)
                                 .params("house_id", house_id)
                                 .execute(new MyJsonCallback<HttpResModel<String>>() {
                                     @Override
@@ -178,6 +179,7 @@ public class MyHouseActivity extends BaseMyActivity {
             type = 0;
         }
         OkGo.<HttpResModel<String>>get(editHouseStatus)
+                .tag(httpTag)
                 .params("house_id", myHouseModel.getHouse_id())
                 .params("house_status", type)
                 .execute(new MyJsonCallback<HttpResModel<String>>() {

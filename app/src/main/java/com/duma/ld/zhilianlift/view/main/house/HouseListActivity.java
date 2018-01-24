@@ -372,6 +372,7 @@ public class HouseListActivity extends BaseMyActivity {
         }
         DialogUtil.getInstance().show_noBack(mActivity);
         OkGo.<HttpResModel<HousePopModel>>get(getALL2)
+                .tag(httpTag)
                 .params("cat_id", cat_id)
                 .tag(httpTag)
                 .execute(new MyJsonCallback<HttpResModel<HousePopModel>>() {

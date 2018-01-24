@@ -1,7 +1,6 @@
 package com.duma.ld.zhilianlift.view.main.house;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
@@ -89,6 +88,7 @@ public class HouseInfoActivity extends BaseMyActivity {
     public void onClickLoadingRefresh() {
         super.onClickLoadingRefresh();
         OkGo.<HttpResModel<HouseChuZuInfoModel>>get(gethoustInfo)
+                .tag(httpTag)
                 .params("house_id", houseId)
                 .execute(new MyJsonCallback<HttpResModel<HouseChuZuInfoModel>>(mActivityConfig) {
                     @Override
@@ -164,7 +164,7 @@ public class HouseInfoActivity extends BaseMyActivity {
                 collectHouse();
                 break;
             case R.id.layout_baobei:
-                startActivity(new Intent(mActivity, AddBaoBeiActivity.class));
+                IntentUtil.goAddBaoBei(mActivity, HouseBean.getHouse().getHouse_id());
                 break;
 
         }
