@@ -53,9 +53,9 @@ public class NewHouseInfoFragment extends BaseMyFragment {
     @BindView(R.id.banner)
     Banner banner;
     @BindView(R.id.tv_houseName)
-    TextView tvHouseName;
+    TvNoNullText tvHouseName;
     @BindView(R.id.tv_jianJie)
-    TextView tvJianJie;
+    TvNoNullText tvJianJie;
     @BindView(R.id.rv_biaoQian)
     RecyclerView rvBiaoQian;
     @BindView(R.id.tv_jiaGe)
@@ -196,10 +196,12 @@ public class NewHouseInfoFragment extends BaseMyFragment {
         mapView.showZoomControls(false);
         PublicUtil.setGoMarker(mBaiduMap, house.getLatitude(), house.getLongitude(), 19);
         //房屋数据
-        tvLouPanDiZhi.setNewText(house.getHouse_address());
+        tvLouPanDiZhi.setNewText(house.getTotal_house_address());
         tvJiaGe.setNewText(house.getOn_chang_text());
         tvZuiXinKaiPan.setNewText(ZhuanHuanUtil.Time2nian2(house.getStart_time() * 1000));
         //楼盘数据
+        tvHouseName.setNewText(house.getHouse_name());
+        tvJianJie.setNewText(house.getSynopsis());
         tvLouPanMinCheng.setNewText(house.getPremises_name());
         tvJianZhuLeiBie.setNewText(house.getArchitecture_type());
         tvChanQuanNianXian.setNewText(house.getProperty(), "年");
@@ -215,7 +217,7 @@ public class NewHouseInfoFragment extends BaseMyFragment {
         }
         tvZhanDiMianJi.setNewText(house.getIsset());
         tvShouLouXuKe.setNewText(house.getSales());
-        tvShouLouDiZhi.setNewText(house.getTotal_house_address());
+        tvShouLouDiZhi.setNewText(house.getSales_address());
         //户型
         BaseAdapter<HouseHuXinBean> huXinAdapter = new BaseAdapter.Builder<HouseHuXinBean>(rvHuXin, mActivity, R.layout.adapter_house_info_huxin)
                 .setNoEnpty()

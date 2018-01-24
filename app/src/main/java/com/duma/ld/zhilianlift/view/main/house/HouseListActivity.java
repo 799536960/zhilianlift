@@ -96,6 +96,7 @@ public class HouseListActivity extends BaseMyActivity {
     private HouseQuYuPopupWindow houseQuYuPopupWindow;
     private List<QuModel> quModelList;
     private String city;
+    private QuModel quModel;
     //价格pop
     private HouseTwoListPopupWindow houseTwoListPopupWindow;
     //区域
@@ -145,8 +146,10 @@ public class HouseListActivity extends BaseMyActivity {
                 String name;
                 if (houseQuYuPopupWindow.getmPosition() != 0) {
                     name = quModelList.get(houseQuYuPopupWindow.getmPosition()).getName();
+                    quModel = quModelList.get(houseQuYuPopupWindow.getmPosition());
                 } else {
                     name = "区域";
+                    quModel = null;
                 }
                 if (!name.equals(cbDiQu.getText())) {
                     cbDiQu.setText(name);
@@ -171,23 +174,6 @@ public class HouseListActivity extends BaseMyActivity {
                 onClickLoadingRefresh();
             }
         });
-
-//        houseTwoListPopupWindow.setOnDismissListener(new BasePopupWindow.OnDismissListener() {
-//            @Override
-//            public void onDismiss() {
-//                cbJiaGe.setChecked(false);
-//                String name;
-//                if (houseTwoListPopupWindow.getmPositionContent() != 0) {
-//                    name = houseTwoListPopupWindow.getmAdapterContent().getData().get(houseTwoListPopupWindow.getmPositionContent()).getSo_name();
-//                } else {
-//                    name = "价格";
-//                }
-//                if (!name.equals(cbJiaGe.getText())) {
-//                    cbJiaGe.setText(name);
-//                    onClickLoadingRefresh();
-//                }
-//            }
-//        });
     }
 
     private void initAdapter() {
@@ -243,6 +229,9 @@ public class HouseListActivity extends BaseMyActivity {
                         if (selectModel != null) {
                             Logger.e("户型 Key: " + selectModel.getSo_key() + " value: " + selectModel.getSo_value());
                             request.params(selectModel.getSo_key(), selectModel.getSo_value());
+                        }
+                        if (quModel != null) {
+                            request.params("district", quModel.getId());
                         }
                         request
                                 .tag(httpTag)

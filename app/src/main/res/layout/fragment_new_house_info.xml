@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="375dp" />
 
-        <TextView
+        <com.duma.ld.zhilianlift.widget.TvNoNullText
             android:id="@+id/tv_houseName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
             android:text="嘉丰万悦城7号线地铁旁 约95～132㎡精致公寓 周边三横一纵交通路网环绕 左右皆繁华"
             android:textSize="17sp" />
 
-        <TextView
+        <com.duma.ld.zhilianlift.widget.TvNoNullText
             android:id="@+id/tv_jianJie"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

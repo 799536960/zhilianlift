@@ -132,6 +132,7 @@
         <activity android:name=".view.main.house.HouseMapActivity" />
         <activity android:name=".view.main.house.HuXinListActivity" />
         <activity android:name=".view.main.wode.WoDeBaoBeiActivity" />
+        <activity android:name=".view.start.SaoMaActivity" />
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package com.duma.ld.zhilianlift.util;
 
 /**
+ * 常量
  * Created by liudong on 2017/9/5.
  */
 
