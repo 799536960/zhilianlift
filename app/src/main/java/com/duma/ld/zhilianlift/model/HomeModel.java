@@ -1,5 +1,6 @@
 package com.duma.ld.zhilianlift.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
  * Created by liudong on 2017/12/1.
  */
 
-public class HomeModel {
+public class HomeModel implements Serializable {
     private AdBean ad1;
     private AdBean ad2;
     private AdBean ad3;

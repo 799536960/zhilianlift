@@ -60,6 +60,9 @@ public abstract class PublicConfig {
 
     private TextView tv_topBar_title;
 
+    public SwipeRefreshLayout getSw_loading() {
+        return sw_loading;
+    }
 
     public void setTitle(String title) {
         if (tv_topBar_title != null) {

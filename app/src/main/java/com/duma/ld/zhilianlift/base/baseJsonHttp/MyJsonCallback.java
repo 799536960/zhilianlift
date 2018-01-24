@@ -20,7 +20,7 @@ import com.orhanobut.logger.Logger;
 public abstract class MyJsonCallback<T> extends JsonCallback<T> {
     private PublicConfig config;
     private boolean successIsHideLoading;
-    private boolean isOpenCache;
+    private boolean isReadCache;//是否读取缓存
 
     //分页的适配器
     private BaseAdapter adapter;
@@ -28,6 +28,10 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
     //是否开启dialog
     private boolean isDialog = false;
     private Activity mActivity;
+
+    //是否开启缓存更新
+    private boolean isCacheRefresh = false;
+
 
     @Override
     public void onStart(Request<T, ? extends Request> request) {
@@ -47,7 +51,7 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
     public MyJsonCallback(PublicConfig config, boolean successIsHideLoading) {
         this.config = config;
         this.successIsHideLoading = successIsHideLoading;
-        isOpenCache = false;
+        isReadCache = false;
     }
 
     public MyJsonCallback<T> setLoadAdapter(BaseAdapter adapter) {
@@ -61,17 +65,53 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
         return this;
     }
 
+    public MyJsonCallback<T> openCacheRefresh() {
+        isCacheRefresh = true;
+        return this;
+    }
+
     @Override
     public void onSuccess(Response<T> response) {
-        if (isOpenCache) {
-            /**
-             * 如果缓存开启的话 网络请求回来的就不回调了
-             * 因为缓存已经回调一次了
-             * 网络请求就负责缓存就好了
-             */
+        if (isReadCache && !isCacheRefresh) {
+            //如果已经读过缓存 就不加载了 除非isCacheRefresh==true
             return;
         }
         httpSuccess(response);
+    }
+
+    /**
+     * 缓存只读一次
+     *
+     * @param response
+     */
+    @Override
+    public void onCacheSuccess(Response<T> response) {
+        super.onCacheSuccess(response);
+
+        //没读过缓存同时页面没数据 才会读缓存
+        if (!isReadCache) {
+            if (config != null) {
+                if (!config.isOneSuccess()) {
+                    //页面没数据
+                    readCache(response);
+                }
+            } else {
+                Logger.e("请传入PublicConfig或者自己重写缓存逻辑");
+            }
+        }
+    }
+
+    public void readCache(Response<T> response) {
+        Logger.e("读取了缓存");
+        // 已经读取缓存
+        isReadCache = true;
+        httpSuccess(response);
+        if (isCacheRefresh) {
+            //现在show小圆圈
+            if (config.getSw_loading() != null) {
+                config.showLoadingView();
+            }
+        }
     }
 
     private void httpSuccess(Response<T> response) {
@@ -79,22 +119,10 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
         if (config != null) {
             config.setOneSuccess(true);
         }
-        if (successIsHideLoading) {
-            loadingHide();
-        }
-        if (isDialog) {
+        if (successIsHideLoading || isDialog) {
             loadingHide();
         }
         onJsonSuccess(response, response.body());
-    }
-
-    @Override
-    public void onCacheSuccess(Response<T> response) {
-        super.onCacheSuccess(response);
-        //回调了这里 说明启动了缓存
-        Logger.e("读取的缓存");
-        isOpenCache = true;
-        httpSuccess(response);
     }
 
     @Override

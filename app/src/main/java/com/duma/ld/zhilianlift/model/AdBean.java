@@ -1,6 +1,8 @@
 package com.duma.ld.zhilianlift.model;
 
-public class AdBean {
+import java.io.Serializable;
+
+public class AdBean implements Serializable {
     /**
      * title : 广告5
      * img_url : /public/upload/ad/2017/11-30/a22852227d812b8fbf2b268ff4956f5d.png

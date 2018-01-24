@@ -50,6 +50,7 @@ import butterknife.OnClick;
 
 import static com.duma.ld.zhilianlift.util.Constants.event_location_home;
 import static com.duma.ld.zhilianlift.util.HttpUrl.homePage;
+import static com.lzy.okgo.cache.CacheMode.FIRST_CACHE_THEN_REQUEST;
 
 /**
  * 首页
@@ -187,6 +188,7 @@ public class HomeFragment extends BaseMyFragment {
         tvCity.setText(SpDataUtil.getCity());
         OkGo.getInstance().cancelTag("onClickLoadingRefresh");
         OkGo.<HttpResModel<HomeModel>>get(homePage)
+                .cacheMode(FIRST_CACHE_THEN_REQUEST)
                 .tag(httpTag)
                 .params("city_name", SpDataUtil.getCity())
                 .execute(new MyJsonCallback<HttpResModel<HomeModel>>(mFragmentConfig) {
@@ -194,7 +196,7 @@ public class HomeFragment extends BaseMyFragment {
                     protected void onJsonSuccess(Response<HttpResModel<HomeModel>> respons, HttpResModel<HomeModel> homeModelHttpResModel) {
                         initData(homeModelHttpResModel.getResult());
                     }
-                });
+                }.openCacheRefresh());
     }
 
     @OnClick({R.id.layout_city, R.id.layout_search, R.id.layout_scan})

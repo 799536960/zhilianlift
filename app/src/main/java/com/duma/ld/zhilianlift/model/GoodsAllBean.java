@@ -1,8 +1,9 @@
 package com.duma.ld.zhilianlift.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class GoodsAllBean {
+public class GoodsAllBean implements Serializable {
     private int id;
     private int type;
     private String img_url;
