@@ -21,7 +21,16 @@ public class HouseChuZuInfoModel implements Serializable {
     private CollectBean collect;
     private List<HouseHuXinBean> house_doorList;
     private List<HouseImagesListBean> houseImagesList;
+    private List<HouseImgModel> houseImagesList_;
     private List<HouseLabelBean> houseLabel;
+
+    public List<HouseImgModel> getHouseImagesList_() {
+        return houseImagesList_;
+    }
+
+    public void setHouseImagesList_(List<HouseImgModel> houseImagesList_) {
+        this.houseImagesList_ = houseImagesList_;
+    }
 
     public HouseBean getHouse() {
         return house;

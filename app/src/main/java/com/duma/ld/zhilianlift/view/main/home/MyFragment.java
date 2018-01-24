@@ -26,6 +26,7 @@ import com.duma.ld.zhilianlift.view.main.pay.PointsPayListActivity;
 import com.duma.ld.zhilianlift.view.main.pay.YuEListActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.afterSales.AfterSalesListActivity;
 import com.duma.ld.zhilianlift.view.main.wode.SettingActivity;
+import com.duma.ld.zhilianlift.view.main.wode.WoDeBaoBeiActivity;
 import com.duma.ld.zhilianlift.widget.LinearImageLayout;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
@@ -223,9 +224,10 @@ public class MyFragment extends BaseMyFragment {
                 startActivity(new Intent(mActivity, PointsPayListActivity.class));
                 break;
             case R.id.layout_wode_daikuan:
+                // TODO: 2018/1/24 贷款
                 break;
             case R.id.layout_wode_baobei:
-                IntentUtil.goWebView(mActivity, "https://www.jd.com");
+                startActivity(new Intent(mActivity, WoDeBaoBeiActivity.class));
                 break;
             case R.id.layout_wode_chuzu:
                 IntentUtil.goRental(mActivity);

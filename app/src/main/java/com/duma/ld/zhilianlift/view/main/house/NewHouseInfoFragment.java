@@ -154,11 +154,11 @@ public class NewHouseInfoFragment extends BaseMyFragment {
         paint.setFakeBoldText(true);
         //banner
         final List<String> list = new ArrayList<>();
-        // TODO: 2018/1/24 轮播没有
-//        for (int i = 0; i < model.getHouseImagesList().size(); i++) {
-//            list.add(model.getHouseImagesList().get(i).getImage_url());
-//        }
-        list.add("11");
+        if (model.getHouseImagesList_() != null) {
+            for (int i = 0; i < model.getHouseImagesList_().size(); i++) {
+                list.add(model.getHouseImagesList_().get(i).getImage_url());
+            }
+        }
         banner.setOnBannerListener(new OnBannerListener() {
             @Override
             public void OnBannerClick(int position) {
@@ -224,7 +224,7 @@ public class NewHouseInfoFragment extends BaseMyFragment {
                 .build(new OnBaseAdapterListener<HouseHuXinBean>() {
                     @Override
                     public void convert(BaseViewHolder helper, HouseHuXinBean item) {
-                        helper.setText(R.id.tv_biaoti, "没有字段")
+                        helper.setText(R.id.tv_biaoti, "" + item.getScale())
                                 .setText(R.id.tv_name, "建筑面积" + item.getArchitecture_area() + "㎡");
                         ImageLoader.with(item.getDoor_img(), (ImageView) helper.getView(R.id.img_icon));
                     }
@@ -251,25 +251,27 @@ public class NewHouseInfoFragment extends BaseMyFragment {
                 });
 
         List<HouseChuZuInfoModel.HouseImagesListBean> houseImagesList = model.getHouseImagesList();
-        Iterator<HouseChuZuInfoModel.HouseImagesListBean> iterator = houseImagesList.iterator();
-        while (iterator.hasNext()) {
-            HouseChuZuInfoModel.HouseImagesListBean bean = iterator.next();
-            if (bean.getHouseImages() == null || bean.getHouseImages().size() == 0) {
-                iterator.remove();
-            }
-        }
-        zhaoPianAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                List<HouseChuZuInfoModel.HouseImagesListBean.HouseImagesBean> houseImages = zhaoPianAdapter.getData().get(position).getHouseImages();
-                List<String> imgList = new ArrayList<>();
-                for (int i = 0; i < houseImages.size(); i++) {
-                    imgList.add(houseImages.get(i).getImage_url());
+        if (houseImagesList != null) {
+            Iterator<HouseChuZuInfoModel.HouseImagesListBean> iterator = houseImagesList.iterator();
+            while (iterator.hasNext()) {
+                HouseChuZuInfoModel.HouseImagesListBean bean = iterator.next();
+                if (bean.getHouseImages() == null || bean.getHouseImages().size() == 0) {
+                    iterator.remove();
                 }
-                IntentUtil.goPhoto(mActivity, imgList, 0);
             }
-        });
-        zhaoPianAdapter.setNewData(houseImagesList);
+            zhaoPianAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                    List<HouseChuZuInfoModel.HouseImagesListBean.HouseImagesBean> houseImages = zhaoPianAdapter.getData().get(position).getHouseImages();
+                    List<String> imgList = new ArrayList<>();
+                    for (int i = 0; i < houseImages.size(); i++) {
+                        imgList.add(houseImages.get(i).getImage_url());
+                    }
+                    IntentUtil.goPhoto(mActivity, imgList, 0);
+                }
+            });
+            zhaoPianAdapter.setNewData(houseImagesList);
+        }
     }
 
 

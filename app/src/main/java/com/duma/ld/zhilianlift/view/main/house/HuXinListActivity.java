@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.StringUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.duma.ld.baselibrary.util.ZhuanHuanUtil;
@@ -22,10 +23,12 @@ import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.ImageLoader;
 import com.duma.ld.zhilianlift.util.IntentUtil;
+import com.google.android.flexbox.FlexboxLayoutManager;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -88,13 +91,27 @@ public class HuXinListActivity extends BaseMyActivity {
                 .build(new OnBaseAdapterListener<HouseHuXinBean>() {
                     @Override
                     public void convert(BaseViewHolder helper, HouseHuXinBean item) {
-                        // TODO: 2018/1/24 缺少字段 和 数组
-                        helper.setText(R.id.tv_biaoti, "没字段")
+                        helper.setText(R.id.tv_biaoti, "" + item.getScale())
                                 .setText(R.id.tv_jianZhuMianJi, item.getArchitecture_area() + "㎡")
                                 .setText(R.id.tv_taoLeiMianJi, item.getDoor_area() + "㎡")
                                 .setText(R.id.tv_defangLv, item.getDoor_get() + "%")
                                 .setText(R.id.tv_zongJia, "¥" + item.getDoor_price() + "万/套起");
                         ImageLoader.with(item.getDoor_img(), (ImageView) helper.getView(R.id.img_icon));
+                        if (!StringUtils.isEmpty(item.getLabel())) {
+                            String[] strings = item.getLabel().split(",");
+                            BaseAdapter<String> adapter = new BaseAdapter.Builder<String>((RecyclerView) helper.getView(R.id.rv_laber), mActivity, R.layout.adapter_house_baobei_item)
+                                    .setNoEnpty()
+                                    .isNested()
+                                    .setLayoutManager(new FlexboxLayoutManager(mActivity))
+                                    .build(new OnBaseAdapterListener<String>() {
+                                        @Override
+                                        public void convert(BaseViewHolder helper, String item) {
+                                            helper.setText(R.id.tv_name, item);
+                                        }
+                                    });
+                            //使用转数组 不能使用修改数组的方法
+                            adapter.setNewData(Arrays.asList(strings));
+                        }
                     }
                 });
         mAdapterContent.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {

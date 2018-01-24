@@ -16,6 +16,24 @@ public class HouseHuXinBean implements Serializable {
     private String architecture_area;
     private String door_door;
     private String door_sort;
+    private String scale;
+    private String label;
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public String getScale() {
+        return scale;
+    }
+
+    public void setScale(String scale) {
+        this.scale = scale;
+    }
 
     public int getId() {
         return id;

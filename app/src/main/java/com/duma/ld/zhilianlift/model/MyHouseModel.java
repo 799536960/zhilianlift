@@ -66,6 +66,7 @@ public class MyHouseModel {
     private String facilities;
     private String company_district_name;
     private List<HouseImagesListBean> houseImagesList;
+    private List<HouseImgModel> houseImagesList_;
     private List<HouseLabelBean> houseLabel;
     private String read_count;
     private String rent;
@@ -86,6 +87,14 @@ public class MyHouseModel {
             default:
                 return "价格待定";
         }
+    }
+
+    public List<HouseImgModel> getHouseImagesList_() {
+        return houseImagesList_;
+    }
+
+    public void setHouseImagesList_(List<HouseImgModel> houseImagesList_) {
+        this.houseImagesList_ = houseImagesList_;
     }
 
     public void setOn_chang(int on_chang) {
