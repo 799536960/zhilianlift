@@ -101,4 +101,6 @@ public class HttpUrl {
     public static String TwoCategoryList = BaseUrl + "/index.php/api/goods/TwoCategoryList";
     public static String StoreByBrand = BaseUrl + "/index.php/api/Store/StoreByBrand";
     public static String plan = BaseUrl + "/index.php/api/user/plan";
+    public static String getCredit = BaseUrl + "/index.php/api/user/getCredit";
+    public static String credit = BaseUrl + "/index.php/api/user/credit";
 }

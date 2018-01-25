@@ -21,7 +21,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="嘉丰万悦城7号线地铁旁 约95～132㎡精致公寓 周边三横一纵交通路网环绕 左右皆繁华"
             android:textSize="17sp" />
 
         <com.duma.ld.zhilianlift.widget.TvNoNullText
@@ -30,7 +29,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:text="购房特惠【专车看房 成交享豪礼 抢千元优惠券】询40转88享优惠"
             android:textColor="@color/hei2"
             android:textSize="13sp" />
 
@@ -60,7 +58,6 @@
                 android:id="@+id/tv_jiaGe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2000元/平"
                 android:textColor="@color/huang2" />
 
         </LinearLayout>
@@ -92,7 +89,6 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="余杭区临平东湖北路旺盛路口（32号湘潭路)"
                     android:textColor="@color/huang2" />
             </LinearLayout>
 
@@ -122,7 +118,6 @@
                 android:id="@+id/tv_zuiXinKaiPan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2016-12-03"
                 android:textColor="@color/huang2" />
 
         </LinearLayout>
@@ -145,7 +140,6 @@
                 android:id="@+id/tv_zaiShouHuXin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="3居、2居、1居"
                 android:textColor="@color/huang2" />
 
         </LinearLayout>

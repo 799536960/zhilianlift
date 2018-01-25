@@ -196,6 +196,7 @@ public class NewHouseInfoFragment extends BaseMyFragment {
         mapView.showZoomControls(false);
         PublicUtil.setGoMarker(mBaiduMap, house.getLatitude(), house.getLongitude(), 19);
         //房屋数据
+        tvZaiShouHuXin.setNewText(house.getSales_door());
         tvLouPanDiZhi.setNewText(house.getTotal_house_address());
         tvJiaGe.setNewText(house.getOn_chang_text());
         tvZuiXinKaiPan.setNewText(ZhuanHuanUtil.Time2nian2(house.getStart_time() * 1000));

@@ -133,8 +133,11 @@
         <activity android:name=".view.main.house.HuXinListActivity" />
         <activity android:name=".view.main.wode.WoDeBaoBeiActivity" />
         <activity android:name=".view.start.SaoMaActivity" />
-        <activity android:name=".view.start.PinPaiActivity"/>
-        <activity android:name=".view.start.PinPaiMenDIanActivity"/>
+        <activity android:name=".view.start.PinPaiActivity" />
+        <activity android:name=".view.start.PinPaiMenDIanActivity" />
+        <activity android:name=".view.main.finance.AddFinanceInfoActivity" />
+        <activity android:name=".view.main.finance.AddFinanceIdCardActivity"/>
+        <activity android:name=".view.main.finance.AddFinanceActivity"/>
     </application>
 
 </manifest>

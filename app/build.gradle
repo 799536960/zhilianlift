@@ -27,9 +27,9 @@ android {
             signingConfig signingConfigs.release
         }
         debug {
+            minifyEnabled true
             // Zipalign优化
             zipAlignEnabled true
-            minifyEnabled true
             //只优化不混淆
 //            useProguard false
             shrinkResources true
