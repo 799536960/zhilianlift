@@ -363,7 +363,6 @@ public class HouseListActivity extends BaseMyActivity {
         OkGo.<HttpResModel<HousePopModel>>get(getALL2)
                 .tag(httpTag)
                 .params("cat_id", cat_id)
-                .tag(httpTag)
                 .execute(new MyJsonCallback<HttpResModel<HousePopModel>>() {
                     @Override
                     protected void onJsonSuccess(Response<HttpResModel<HousePopModel>> respons, HttpResModel<HousePopModel> listHttpResModel) {

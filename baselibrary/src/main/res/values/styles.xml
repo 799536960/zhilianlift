@@ -10,6 +10,13 @@
         <item name="android:paddingRight">20dp</item>
     </style>
 
+    <style name="base_topbar_h">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:background">@drawable/ripple_bai</item>
+        <item name="android:gravity">center</item>
+    </style>
+
     <style name="base_topbar_noClick">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">48dp</item>

@@ -97,4 +97,8 @@ public class HttpUrl {
     public static String addPreparation = BaseUrl + "/index.php/api/house/addPreparation";
     public static String myPreparation = BaseUrl + "/index.php/api/house/myPreparation";
     public static String editPreparationStatus = BaseUrl + "/index.php/api/house/editPreparationStatus";
+    public static String ThereCategoryList = BaseUrl + "/index.php/api/goods/ThereCategoryList";
+    public static String TwoCategoryList = BaseUrl + "/index.php/api/goods/TwoCategoryList";
+    public static String StoreByBrand = BaseUrl + "/index.php/api/Store/StoreByBrand";
+    public static String plan = BaseUrl + "/index.php/api/user/plan";
 }

@@ -133,6 +133,8 @@
         <activity android:name=".view.main.house.HuXinListActivity" />
         <activity android:name=".view.main.wode.WoDeBaoBeiActivity" />
         <activity android:name=".view.start.SaoMaActivity" />
+        <activity android:name=".view.start.PinPaiActivity"/>
+        <activity android:name=".view.start.PinPaiMenDIanActivity"/>
     </application>
 
 </manifest>

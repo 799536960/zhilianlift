@@ -8,7 +8,9 @@
         android:id="@+id/tv_name"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:ellipsize="end"
         android:gravity="center"
+        android:maxLines="1"
         android:text="TextView"
         android:textSize="15sp" />
 

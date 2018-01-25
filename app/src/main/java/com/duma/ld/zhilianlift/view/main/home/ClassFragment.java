@@ -87,7 +87,7 @@ public class ClassFragment extends BaseMyFragment {
             @Override
             protected void convert(BaseViewHolder holder, ClassModel item) {
                 final TextView tv_name = holder.getView(R.id.tv_name);
-                tv_name.setText(item.getName());
+                tv_name.setText(item.getMobile_name());
                 setChecked(tv_name, false);
                 if (holder.getLayoutPosition() == click_position) {
                     setChecked(tv_name, true);

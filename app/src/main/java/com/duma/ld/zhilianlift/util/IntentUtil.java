@@ -47,6 +47,7 @@ import com.duma.ld.zhilianlift.view.main.wode.userSecuryty.PayPasswordActivity;
 import com.duma.ld.zhilianlift.view.main.wode.userSecuryty.PayPasswordSuccessActivity;
 import com.duma.ld.zhilianlift.view.main.wode.userSecuryty.PaySettingActivity;
 import com.duma.ld.zhilianlift.view.start.PhotoQueryActivity;
+import com.duma.ld.zhilianlift.view.start.PinPaiMenDIanActivity;
 import com.duma.ld.zhilianlift.view.start.WebViewActivity;
 
 import java.io.Serializable;
@@ -479,6 +480,13 @@ public class IntentUtil {
     public static void goAddBaoBei(Activity activity, int houseId) {
         Intent intent = new Intent(activity, AddBaoBeiActivity.class);
         intent.putExtra(Constants.id, houseId + "");
+        activity.startActivity(intent);
+    }
+
+    //品牌门店
+    public static void goMenDian(Activity activity, int id) {
+        Intent intent = new Intent(activity, PinPaiMenDIanActivity.class);
+        intent.putExtra(Constants.id, id + "");
         activity.startActivity(intent);
     }
 
