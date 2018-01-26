@@ -65,6 +65,12 @@ public class Constants {
     public static final String SearchString = "SearchString";
     public static final String Url = "Url";
     public static final String Model = "model";
+    public static final String ViewInfo = "ViewInfo";
+
+    public static final String PROPNAME_SCREENLOCATION_LEFT = "PROPNAME_SCREENLOCATION_LEFT";
+    public static final String PROPNAME_SCREENLOCATION_TOP = "PROPNAME_SCREENLOCATION_TOP";
+    public static final String PROPNAME_WIDTH = "PROPNAME_WIDTH";
+    public static final String PROPNAME_HEIGHT = "PROPNAME_HEIGHT";
 
     //验证手机后 跳转页面类型
     //跳转实名认证

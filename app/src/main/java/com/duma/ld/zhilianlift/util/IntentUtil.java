@@ -11,7 +11,6 @@ import com.duma.ld.zhilianlift.model.OrderModel;
 import com.duma.ld.zhilianlift.model.RealNameModel;
 import com.duma.ld.zhilianlift.model.ShoppingSpacModel;
 import com.duma.ld.zhilianlift.view.login.LoginOrRegisterActivity;
-import com.duma.ld.zhilianlift.view.main.finance.FinanceInfoActivity;
 import com.duma.ld.zhilianlift.view.main.home.MainActivity;
 import com.duma.ld.zhilianlift.view.main.house.AddBaoBeiActivity;
 import com.duma.ld.zhilianlift.view.main.house.AddHouseActivity;
@@ -501,7 +500,7 @@ public class IntentUtil {
 
     //贷款详情
     public static void goFinanceInfo(Activity activity, int id) {
-        Intent intent = new Intent(activity, FinanceInfoActivity.class);
+        Intent intent = new Intent(activity, PinPaiMenDIanActivity.class);
         intent.putExtra(Constants.id, id + "");
         activity.startActivity(intent);
     }

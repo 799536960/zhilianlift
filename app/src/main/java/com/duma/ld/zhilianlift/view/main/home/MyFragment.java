@@ -2,6 +2,7 @@ package com.duma.ld.zhilianlift.view.main.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
@@ -27,6 +28,7 @@ import com.duma.ld.zhilianlift.view.main.pay.YuEListActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.afterSales.AfterSalesListActivity;
 import com.duma.ld.zhilianlift.view.main.wode.MyFinanceActivity;
 import com.duma.ld.zhilianlift.view.main.wode.SettingActivity;
+import com.duma.ld.zhilianlift.view.main.wode.UserDataActivity;
 import com.duma.ld.zhilianlift.view.main.wode.WoDeBaoBeiActivity;
 import com.duma.ld.zhilianlift.widget.LinearImageLayout;
 import com.lzy.okgo.OkGo;
@@ -243,7 +245,12 @@ public class MyFragment extends BaseMyFragment {
                 IntentUtil.goMyRecord(mActivity);
                 break;
             case R.id.layout_user:
-                IntentUtil.goUserData(mActivity);
+//                IntentUtil.goUserData(mActivity);
+                Intent intent = new Intent(mActivity, UserDataActivity.class);
+                ActivityOptionsCompat options = ActivityOptionsCompat
+                        .makeSceneTransitionAnimation(mActivity,
+                                imgIcon, "testImg");
+                startActivity(intent, options.toBundle());
                 break;
         }
     }

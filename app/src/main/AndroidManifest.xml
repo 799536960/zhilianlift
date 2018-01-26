@@ -71,7 +71,8 @@
             android:name=".view.login.ForgetPasswordActivity"
             android:windowSoftInputMode="stateVisible" />
         <activity android:name=".view.main.wode.SettingActivity" />
-        <activity android:name=".view.main.wode.UserDataActivity" />
+        <activity android:name=".view.main.wode.UserDataActivity"
+            android:theme="@style/AppTheme_tm_tm"/>
         <activity android:name=".view.main.wode.addres.AddresListActivity" />
         <activity android:name=".view.main.wode.addres.AddOrChangeActivity" />
         <activity

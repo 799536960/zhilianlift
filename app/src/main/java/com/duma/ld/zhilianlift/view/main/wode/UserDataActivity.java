@@ -212,4 +212,9 @@ public class UserDataActivity extends BaseMyActivity {
                     }
                 });
     }
+
+    @Override
+    protected void onBack() {
+        supportFinishAfterTransition();
+    }
 }
