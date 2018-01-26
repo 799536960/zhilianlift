@@ -197,6 +197,29 @@ public class PublicUtil {
         }
     }
 
+    public static void getViewType(BaseViewHolder helper, BaseAdapter mAdapter) {
+        View view_top = helper.getView(R.id.view_top);
+        View view_bottom = helper.getView(R.id.view_bottom);
+        ImageView img_icon = helper.getView(R.id.img_icon);
+        TextView tv_name = helper.getView(R.id.tv_name);
+        if (helper.getLayoutPosition() == 0) {
+            view_top.setVisibility(View.INVISIBLE);
+            view_bottom.setVisibility(View.VISIBLE);
+            tv_name.setTextColor(ZhuanHuanUtil.getColor(R.color.hei1));
+            img_icon.setImageDrawable(ZhuanHuanUtil.getDrawable(R.drawable.dian1));
+        } else if (helper.getLayoutPosition() == (mAdapter.getData().size() - 1)) {
+            tv_name.setTextColor(ZhuanHuanUtil.getColor(R.color.hui2));
+            view_top.setVisibility(View.VISIBLE);
+            view_bottom.setVisibility(View.INVISIBLE);
+            img_icon.setImageDrawable(ZhuanHuanUtil.getDrawable(R.drawable.dian2));
+        } else {
+            tv_name.setTextColor(ZhuanHuanUtil.getColor(R.color.hui2));
+            view_top.setVisibility(View.VISIBLE);
+            view_bottom.setVisibility(View.VISIBLE);
+            img_icon.setImageDrawable(ZhuanHuanUtil.getDrawable(R.drawable.dian2));
+        }
+    }
+
     public static void getViewHouseNew(BaseViewHolder helper, MyHouseModel item, Activity mActivity) {
         getViewHousePublic(helper, item, mActivity);
         TextView tv_money = helper.getView(R.id.tv_money);

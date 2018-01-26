@@ -25,6 +25,7 @@ import com.duma.ld.zhilianlift.view.main.pay.HousePayListActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PointsPayListActivity;
 import com.duma.ld.zhilianlift.view.main.pay.YuEListActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.afterSales.AfterSalesListActivity;
+import com.duma.ld.zhilianlift.view.main.wode.MyFinanceActivity;
 import com.duma.ld.zhilianlift.view.main.wode.SettingActivity;
 import com.duma.ld.zhilianlift.view.main.wode.WoDeBaoBeiActivity;
 import com.duma.ld.zhilianlift.widget.LinearImageLayout;
@@ -224,7 +225,7 @@ public class MyFragment extends BaseMyFragment {
                 startActivity(new Intent(mActivity, PointsPayListActivity.class));
                 break;
             case R.id.layout_wode_daikuan:
-                // TODO: 2018/1/24 贷款
+                startActivity(new Intent(mActivity, MyFinanceActivity.class));
                 break;
             case R.id.layout_wode_baobei:
                 startActivity(new Intent(mActivity, WoDeBaoBeiActivity.class));

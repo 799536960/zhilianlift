@@ -138,6 +138,8 @@
         <activity android:name=".view.main.finance.AddFinanceInfoActivity" />
         <activity android:name=".view.main.finance.AddFinanceIdCardActivity"/>
         <activity android:name=".view.main.finance.AddFinanceActivity"/>
+        <activity android:name=".view.main.wode.MyFinanceActivity"/>
+        <activity android:name=".view.main.finance.FinanceInfoActivity"/>
     </application>
 
 </manifest>

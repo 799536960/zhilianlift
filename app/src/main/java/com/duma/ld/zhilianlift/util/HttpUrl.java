@@ -103,4 +103,6 @@ public class HttpUrl {
     public static String plan = BaseUrl + "/index.php/api/user/plan";
     public static String getCredit = BaseUrl + "/index.php/api/user/getCredit";
     public static String credit = BaseUrl + "/index.php/api/user/credit";
+    public static String getCreditList = BaseUrl + "/index.php/api/user/getCreditList";
+    public static String getCredit_Schedule = BaseUrl + "/index.php/api/user/getCredit_Schedule";
 }

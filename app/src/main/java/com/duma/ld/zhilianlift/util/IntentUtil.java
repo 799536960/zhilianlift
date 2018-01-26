@@ -11,6 +11,7 @@ import com.duma.ld.zhilianlift.model.OrderModel;
 import com.duma.ld.zhilianlift.model.RealNameModel;
 import com.duma.ld.zhilianlift.model.ShoppingSpacModel;
 import com.duma.ld.zhilianlift.view.login.LoginOrRegisterActivity;
+import com.duma.ld.zhilianlift.view.main.finance.FinanceInfoActivity;
 import com.duma.ld.zhilianlift.view.main.home.MainActivity;
 import com.duma.ld.zhilianlift.view.main.house.AddBaoBeiActivity;
 import com.duma.ld.zhilianlift.view.main.house.AddHouseActivity;
@@ -494,6 +495,14 @@ public class IntentUtil {
     public static void goHouseMap(Activity activity, HouseMapModel model) {
         Intent intent = new Intent(activity, HouseMapActivity.class);
         intent.putExtra(Constants.Model, model);
+        activity.startActivity(intent);
+    }
+
+
+    //贷款详情
+    public static void goFinanceInfo(Activity activity, int id) {
+        Intent intent = new Intent(activity, FinanceInfoActivity.class);
+        intent.putExtra(Constants.id, id + "");
         activity.startActivity(intent);
     }
 }

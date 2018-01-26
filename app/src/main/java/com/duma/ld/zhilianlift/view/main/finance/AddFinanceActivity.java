@@ -17,9 +17,9 @@ import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.DialogUtil;
 import com.duma.ld.zhilianlift.util.ImageLoader;
-import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.imageSelect.ImageSelectManager;
 import com.duma.ld.zhilianlift.util.imageSelect.OnSelectFileListener;
+import com.duma.ld.zhilianlift.view.main.wode.MyFinanceActivity;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 
@@ -114,7 +114,7 @@ public class AddFinanceActivity extends BaseMyActivity {
                     protected void onJsonSuccess(Response<HttpResModel<String>> respons, HttpResModel<String> stringHttpResModel) {
                         DialogUtil.getInstance().hide();
                         TsUtils.show("提交成功");
-                        IntentUtil.goMain(mActivity);
+                        startActivity(new Intent(mActivity, MyFinanceActivity.class));
                     }
                 });
     }

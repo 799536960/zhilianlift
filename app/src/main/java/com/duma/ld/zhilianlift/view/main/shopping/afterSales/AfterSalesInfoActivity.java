@@ -2,7 +2,6 @@ package com.duma.ld.zhilianlift.view.main.shopping.afterSales;
 
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +18,7 @@ import com.duma.ld.zhilianlift.model.AfterSalesInfoModel;
 import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.ImageLoader;
+import com.duma.ld.zhilianlift.util.PublicUtil;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 
@@ -70,28 +70,14 @@ public class AfterSalesInfoActivity extends BaseMyActivity {
                 .build(new OnBaseAdapterListener<AfterSalesInfoModel.OrderStatusContextBean>() {
                     @Override
                     public void convert(BaseViewHolder helper, AfterSalesInfoModel.OrderStatusContextBean item) {
-                        View view_top = helper.getView(R.id.view_top);
-                        View view_bottom = helper.getView(R.id.view_bottom);
-                        ImageView img_icon = helper.getView(R.id.img_icon);
-                        if (helper.getLayoutPosition() == 0) {
-                            view_top.setVisibility(View.INVISIBLE);
-                            view_bottom.setVisibility(View.VISIBLE);
-                            img_icon.setImageDrawable(ZhuanHuanUtil.getDrawable(R.drawable.dian1));
-                        } else if (helper.getLayoutPosition() == (mAdapter.getData().size() - 1)) {
-                            view_top.setVisibility(View.VISIBLE);
-                            view_bottom.setVisibility(View.INVISIBLE);
-                            img_icon.setImageDrawable(ZhuanHuanUtil.getDrawable(R.drawable.dian2));
-                        } else {
-                            view_top.setVisibility(View.VISIBLE);
-                            view_bottom.setVisibility(View.VISIBLE);
-                            img_icon.setImageDrawable(ZhuanHuanUtil.getDrawable(R.drawable.dian2));
-                        }
+                        PublicUtil.getViewType(helper, mAdapter);
                         helper.setText(R.id.tv_name, item.getContext())
                                 .setText(R.id.tv_time, ZhuanHuanUtil.Time2fen(item.getAdd_time() * 1000));
                     }
                 });
         onClickLoadingRefresh();
     }
+
 
     @Override
     public void onClickLoadingRefresh() {
