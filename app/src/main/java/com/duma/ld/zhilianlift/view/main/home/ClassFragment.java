@@ -64,6 +64,7 @@ public class ClassFragment extends BaseMyFragment {
         super.init(savedInstanceState);
         initAdapter();
         initFragment();
+        mFragmentConfig.showLoadingView();
     }
 
     @Override
@@ -107,7 +108,6 @@ public class ClassFragment extends BaseMyFragment {
                 setChecked(tv_name_new, true);
                 switchClass();
             }
-
         });
         rvClass.setLayoutManager(new LinearLayoutManager(mActivity));
         rvClass.setAdapter(baseAdapter);
@@ -160,4 +160,71 @@ public class ClassFragment extends BaseMyFragment {
                 break;
         }
     }
+
+//
+//    @Override
+//    public void onAttach(Context context) {
+//        Logger.e("ClassFragment:" + "onAttach");
+//        super.onAttach(context);
+//    }
+//
+//    @Override
+//    public void onCreate(@Nullable Bundle savedInstanceState) {
+//        Logger.e("ClassFragment:" + "onCreate");
+//        super.onCreate(savedInstanceState);
+//    }
+//
+//    @Override
+//    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+//        Logger.e("ClassFragment:" + "onCreateView");
+//        return super.onCreateView(inflater, container, savedInstanceState);
+//    }
+//
+//    @Override
+//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+//        Logger.e("ClassFragment:" + "onActivityCreated");
+//        super.onActivityCreated(savedInstanceState);
+//    }
+//
+//    @Override
+//    public void onStart() {
+//        Logger.e("ClassFragment:" + "onStart");
+//        super.onStart();
+//    }
+//
+//    @Override
+//    public void onResume() {
+//        Logger.e("ClassFragment:" + "onResume");
+//        super.onResume();
+//    }
+//
+//    @Override
+//    public void onPause() {
+//        Logger.e("ClassFragment:" + "onPause");
+//        super.onPause();
+//    }
+//
+//    @Override
+//    public void onStop() {
+//        Logger.e("ClassFragment:" + "onStop");
+//        super.onStop();
+//    }
+//
+//    @Override
+//    public void onDestroyView() {
+//        Logger.e("ClassFragment:" + "onDestroyView");
+//        super.onDestroyView();
+//    }
+//
+//    @Override
+//    public void onDestroy() {
+//        Logger.e("ClassFragment:" + "onDestroy");
+//        super.onDestroy();
+//    }
+//
+//    @Override
+//    public void onDetach() {
+//        Logger.e("ClassFragment:" + "onDetach");
+//        super.onDetach();
+//    }
 }

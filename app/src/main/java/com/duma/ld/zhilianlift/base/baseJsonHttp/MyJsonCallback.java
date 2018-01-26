@@ -87,7 +87,6 @@ public abstract class MyJsonCallback<T> extends JsonCallback<T> {
     @Override
     public void onCacheSuccess(Response<T> response) {
         super.onCacheSuccess(response);
-
         //没读过缓存同时页面没数据 才会读缓存
         if (!isReadCache) {
             if (config != null) {
