@@ -61,7 +61,6 @@ public class EllipsizeLayout extends LinearLayout {
                                 // clear maxWidth on mEllipView before measure
                                 ellipView.setMaxWidth(Integer.MAX_VALUE);
                             } else {
-                                // TODO: support multiple android:ellipsize
                                 outOfSpec = true;
                             }
                         }
@@ -78,7 +77,6 @@ public class EllipsizeLayout extends LinearLayout {
 
             if (!outOfSpec && totalLength > parentWidth) {
                 int maxWidth = ellipView.getMeasuredWidth() - (totalLength - parentWidth);
-                // TODO: Respect android:minWidth (easy with @TargetApi(16))
                 int minWidth = 0;
                 if (maxWidth < minWidth) {
                     maxWidth = minWidth;

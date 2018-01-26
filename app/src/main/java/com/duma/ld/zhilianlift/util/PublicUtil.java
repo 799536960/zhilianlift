@@ -105,6 +105,13 @@ public class PublicUtil {
                 .setBannerStyle(BannerConfig.NUM_INDICATOR);
     }
 
+    public static Banner initBanner_Main(Banner banner) {
+        return banner.setImageLoader(new GlideImageLoader())
+                .setDelayTime(3000)
+                .setIndicatorGravity(BannerConfig.RIGHT)
+                .setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
+    }
+
     //这个eventType 只是订单详情回到订单列表的时候eventbus发的事件用的
     public static void getViewOrder(final Activity mActivity, final BaseViewHolder helper,
                                     final OrderModel item, final boolean isOrderInfo,

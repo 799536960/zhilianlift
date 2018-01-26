@@ -12,8 +12,6 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bigkoo.convenientbanner.ConvenientBanner;
-import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.duma.ld.baselibrary.model.EventModel;
 import com.duma.ld.baselibrary.util.config.FragmentConfig;
@@ -32,7 +30,6 @@ import com.duma.ld.zhilianlift.model.HomeMultipleModel;
 import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.IntentUtil;
-import com.duma.ld.zhilianlift.util.LocalImageHolderView;
 import com.duma.ld.zhilianlift.util.LocationUtil;
 import com.duma.ld.zhilianlift.util.PublicUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
@@ -41,6 +38,7 @@ import com.duma.ld.zhilianlift.view.start.PinPaiActivity;
 import com.duma.ld.zhilianlift.widget.VerticalSwipeRefreshLayout;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
+import com.youth.banner.Banner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,9 +71,9 @@ public class HomeFragment extends BaseMyFragment {
 
     private HomeClickTypeListener listener;
     //轮播图
-    private CBViewHolderCreator<LocalImageHolderView> cbViewHolderCreator;
-    private ConvenientBanner<AdBean> mBanner;
-
+//    private CBViewHolderCreator<LocalImageHolderView> cbViewHolderCreator;
+    private Banner mBanner;
+    private List<String> list;
     private HomeAdapter mAdapter;
     private List<HomeMultipleModel> mList;
 
@@ -134,22 +132,12 @@ public class HomeFragment extends BaseMyFragment {
             }
         });
         View inflate = getLayoutInflater().inflate(R.layout.adapter_head_banner, (ViewGroup) rvList.getParent(), false);
-        mBanner = inflate.findViewById(R.id.banner_top);
+        mBanner = inflate.findViewById(R.id.banner);
         mAdapter.addHeaderView(inflate);
         rvList.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(listener);
         //初始化banner
-//        .setPageIndicator(new int[]{R.drawable.lunbo_unselected, R.drawable.lunbo_selected})
-        //设置指示器的方向
-        mBanner.setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
-                .setOnItemClickListener(listener)
-                .startTurning(3 * 1000);
-        cbViewHolderCreator = new CBViewHolderCreator<LocalImageHolderView>() {
-            @Override
-            public LocalImageHolderView createHolder() {
-                return new LocalImageHolderView();
-            }
-        };
+        list = new ArrayList<>();
         //请求数据
         onClickLoadingRefresh();
     }
@@ -158,7 +146,15 @@ public class HomeFragment extends BaseMyFragment {
     private void initData(HomeModel result) {
         listener.setResult(result);
         //轮播图数据
-        mBanner.setPages(cbViewHolderCreator, result.getLunbo());
+        list.clear();
+        for (int i = 0; i < result.getLunbo().size(); i++) {
+            list.add(result.getLunbo().get(i).getImg_url());
+        }
+//        mBanner.update(list);
+        mBanner = PublicUtil.initBanner_Main(mBanner)
+                .setOnBannerListener(listener)
+                .setImages(list)
+                .start();
         mList.clear();
         //添加分类
         List<AdBean> goodsCategoryList = result.getGoodsCategoryList();

@@ -9,7 +9,6 @@ import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.baselibrary.util.config.FragmentConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
@@ -93,7 +92,7 @@ public class Class_2_Fragment extends BaseMyFragment {
 
     @OnClick(R.id.img_title)
     public void onViewClicked() {
-        TsUtils.show("点击url:" + model.getUrl());
+        IntentUtil.goWebView(mActivity, model.getUrl());
     }
 
     public void setData(ClassModel model) {

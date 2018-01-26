@@ -4,9 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.bigkoo.convenientbanner.ConvenientBanner
-        android:id="@+id/banner_top"
+    <com.youth.banner.Banner
+        android:id="@+id/banner"
         android:layout_width="match_parent"
-        android:layout_height="188dp"
-        app:canLoop="true" />
+        android:layout_height="188dp" />
 </android.support.constraint.ConstraintLayout>

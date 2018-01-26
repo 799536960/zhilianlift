@@ -3,7 +3,6 @@ package com.duma.ld.zhilianlift.Adapter;
 import android.app.Activity;
 import android.view.View;
 
-import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.zhilianlift.R;
@@ -12,12 +11,14 @@ import com.duma.ld.zhilianlift.model.GoodsBean;
 import com.duma.ld.zhilianlift.model.HomeModel;
 import com.duma.ld.zhilianlift.model.HomeMultipleModel;
 import com.duma.ld.zhilianlift.util.IntentUtil;
+import com.youth.banner.listener.OnBannerListener;
 
 /**
+ * 监听
  * Created by liudong on 2017/12/4.
  */
 
-public class HomeClickTypeListener implements View.OnClickListener, OnItemClickListener, BaseQuickAdapter.OnItemClickListener {
+public class HomeClickTypeListener implements View.OnClickListener, BaseQuickAdapter.OnItemClickListener, OnBannerListener {
     private HomeModel result;
     private Activity mActivity;
 
@@ -83,8 +84,12 @@ public class HomeClickTypeListener implements View.OnClickListener, OnItemClickL
      *
      * @param position 下标
      */
+//    @Override
+//    public void onItemClick(int position) {
+//        clickItem(result.getLunbo().get(position));
+//    }
     @Override
-    public void onItemClick(int position) {
+    public void OnBannerClick(int position) {
         clickItem(result.getLunbo().get(position));
     }
 
@@ -102,10 +107,13 @@ public class HomeClickTypeListener implements View.OnClickListener, OnItemClickL
                 clickItem(multipleModel.getClassModel());
                 break;
             case HomeMultipleModel.goodsHead:
+                //todo head事件
                 break;
             case HomeMultipleModel.goods:
                 IntentUtil.goGoodsDetails(mActivity, multipleModel.getGoodsModel().getGoods_id());
                 break;
         }
     }
+
+
 }
