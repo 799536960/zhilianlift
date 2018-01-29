@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.baidu.mapapi.map.BaiduMap;
-import com.baidu.mapapi.map.MapView;
+import com.baidu.mapapi.map.TextureMapView;
 import com.baidu.mapapi.map.UiSettings;
 import com.baidu.mapapi.model.LatLng;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -111,12 +111,11 @@ public class NewHouseInfoFragment extends BaseMyFragment {
     @BindView(R.id.tv_info_zhouBian)
     TextView tvInfoZhouBian;
     @BindView(R.id.mapView)
-    MapView mapView;
+    TextureMapView mapView;
     @BindView(R.id.layout_mapView)
     MapFrameLayout layoutMapView;
     private HouseChuZuInfoModel model;
     private HouseChuZuInfoModel.HouseBean house;
-    private LatLng point;
 
     public static NewHouseInfoFragment newInstance(HouseChuZuInfoModel model) {
         NewHouseInfoFragment fragment = new NewHouseInfoFragment();
@@ -185,7 +184,7 @@ public class NewHouseInfoFragment extends BaseMyFragment {
         /**
          * 配置地图
          */
-        point = new LatLng(house.getLatitude(), house.getLongitude());
+        LatLng point = new LatLng(house.getLatitude(), house.getLongitude());
         BaiduMap mBaiduMap = mapView.getMap();
         UiSettings mUiSettings = mBaiduMap.getUiSettings();
         //关闭指南针

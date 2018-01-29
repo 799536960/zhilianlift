@@ -150,7 +150,6 @@ public class HomeFragment extends BaseMyFragment {
         for (int i = 0; i < result.getLunbo().size(); i++) {
             list.add(result.getLunbo().get(i).getImg_url());
         }
-//        mBanner.update(list);
         mBanner = PublicUtil.initBanner_Main(mBanner)
                 .setOnBannerListener(listener)
                 .setImages(list)
@@ -182,7 +181,6 @@ public class HomeFragment extends BaseMyFragment {
     @Override
     public void onClickLoadingRefresh() {
         tvCity.setText(SpDataUtil.getCity());
-        OkGo.getInstance().cancelTag("onClickLoadingRefresh");
         OkGo.<HttpResModel<HomeModel>>get(homePage)
                 .cacheMode(FIRST_CACHE_THEN_REQUEST)
                 .tag(httpTag)

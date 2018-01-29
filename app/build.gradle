@@ -88,8 +88,8 @@ dependencies {
     //bottomBar
     implementation 'com.github.ittianyu:BottomNavigationViewEx:1.2.4'
     implementation 'com.android.support:design:27.0.2'
-    //轮播
-    implementation 'com.bigkoo:convenientbanner:2.0.5'
+//    //轮播
+//    implementation 'com.bigkoo:convenientbanner:2.0.5'
     //选择城市索引
     implementation 'me.yokeyword:indexablerecyclerview:1.3.0'
     //可伸缩布局
