@@ -8,6 +8,8 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.duma.ld.zhilianlift.base.MyApplication;
 
+import static com.duma.ld.zhilianlift.util.PermissionUtil.codeLocation;
+
 /**
  * 定位权限=>定位(网络,gps)=>定位信息=>逆地理编码http请求=>获取有区划代码信息=>发送事件=>保存或者取消
  * Created by liudong on 2017/11/30.
@@ -68,7 +70,7 @@ public class LocationUtil {
         PermissionUtil permissionUtil = new PermissionUtil(activity, new PermissionUtil.onPermissionListener() {
             @Override
             public void onResult(int requestCode, boolean result) {
-                if (result) {
+                if (requestCode == codeLocation && result) {
                     //开启定位
                     mLocationClient.start();
                 }

@@ -142,6 +142,11 @@
         <activity android:name=".view.main.finance.AddFinanceActivity" />
         <activity android:name=".view.main.wode.MyFinanceActivity" />
         <activity android:name=".view.main.finance.FinanceInfoActivity" />
+        <activity android:name=".view.main.pay.ScanPayActivity" />
+        <activity
+            android:name=".view.main.pay.PayStoreActivity"
+            android:theme="@style/AppTheme_tm_hei" />
+        <activity android:name=".view.main.pay.PayStoreSuccessActivity"/>
     </application>
 
 </manifest>

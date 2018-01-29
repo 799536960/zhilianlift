@@ -86,6 +86,9 @@ public class SpDataUtil {
         return getLocation().getCity();
     }
 
+    /**
+     * @return true 登录了
+     */
     public static boolean isLogin() {
         if (getUser() == null) {
             return false;

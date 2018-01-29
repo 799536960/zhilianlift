@@ -34,7 +34,6 @@ import com.duma.ld.zhilianlift.util.LocationUtil;
 import com.duma.ld.zhilianlift.util.PublicUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
 import com.duma.ld.zhilianlift.view.main.city.SelectCityActivity;
-import com.duma.ld.zhilianlift.view.start.PinPaiActivity;
 import com.duma.ld.zhilianlift.widget.VerticalSwipeRefreshLayout;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
@@ -71,7 +70,6 @@ public class HomeFragment extends BaseMyFragment {
 
     private HomeClickTypeListener listener;
     //轮播图
-//    private CBViewHolderCreator<LocalImageHolderView> cbViewHolderCreator;
     private Banner mBanner;
     private List<String> list;
     private HomeAdapter mAdapter;
@@ -203,8 +201,8 @@ public class HomeFragment extends BaseMyFragment {
                 IntentUtil.goSearch(mActivity);
                 break;
             case R.id.layout_scan:
-//                startActivity(new Intent(mActivity, SaoMaActivity.class));
-                startActivity(new Intent(mActivity, PinPaiActivity.class));
+                IntentUtil.goSaoMa(mActivity);
+//                startActivity(new Intent(mActivity, PinPaiActivity.class));
                 break;
         }
     }

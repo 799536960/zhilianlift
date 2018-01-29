@@ -8,12 +8,13 @@ import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
+import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.orhanobut.logger.Logger;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.bingoogolapple.qrcode.core.QRCodeView;
-import cn.bingoogolapple.qrcode.zxing.ZXingView;
+import cn.bingoogolapple.qrcode.zbar.ZBarView;
 
 
 /**
@@ -34,7 +35,7 @@ public class SaoMaActivity extends BaseMyActivity implements QRCodeView.Delegate
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        mQRCodeView = (ZXingView) findViewById(R.id.zxingview);
+        mQRCodeView = (ZBarView) findViewById(R.id.zxingview);
         mQRCodeView.setDelegate(this);
         mQRCodeView.startSpot();
         isOpen = false;
@@ -44,6 +45,8 @@ public class SaoMaActivity extends BaseMyActivity implements QRCodeView.Delegate
     public void onScanQRCodeSuccess(String result) {
         TsUtils.show(result);
         mQRCodeView.startSpot();
+        IntentUtil.goScanPay(mActivity, result);
+        finish();
         Logger.e("扫码结果:" + result);
     }
 

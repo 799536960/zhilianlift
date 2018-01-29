@@ -8,6 +8,7 @@ import com.duma.ld.zhilianlift.model.AddresModel;
 import com.duma.ld.zhilianlift.model.CommitOrderModel;
 import com.duma.ld.zhilianlift.model.HouseMapModel;
 import com.duma.ld.zhilianlift.model.OrderModel;
+import com.duma.ld.zhilianlift.model.PayStoreModel;
 import com.duma.ld.zhilianlift.model.RealNameModel;
 import com.duma.ld.zhilianlift.model.ShoppingSpacModel;
 import com.duma.ld.zhilianlift.view.login.LoginOrRegisterActivity;
@@ -22,7 +23,10 @@ import com.duma.ld.zhilianlift.view.main.house.HuXinListActivity;
 import com.duma.ld.zhilianlift.view.main.house.MyHouseActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PayActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PayInputPasswordActivity;
+import com.duma.ld.zhilianlift.view.main.pay.PayStoreActivity;
+import com.duma.ld.zhilianlift.view.main.pay.PayStoreSuccessActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PaySuccessActivity;
+import com.duma.ld.zhilianlift.view.main.pay.ScanPayActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.AddCommentActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.SearchActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.afterSales.AfterSalesInfoActivity;
@@ -49,6 +53,7 @@ import com.duma.ld.zhilianlift.view.main.wode.userSecuryty.PayPasswordSuccessAct
 import com.duma.ld.zhilianlift.view.main.wode.userSecuryty.PaySettingActivity;
 import com.duma.ld.zhilianlift.view.start.PhotoQueryActivity;
 import com.duma.ld.zhilianlift.view.start.PinPaiMenDIanActivity;
+import com.duma.ld.zhilianlift.view.start.SaoMaActivity;
 import com.duma.ld.zhilianlift.view.start.WebViewActivity;
 
 import java.io.Serializable;
@@ -60,6 +65,7 @@ import static com.duma.ld.zhilianlift.util.Constants.ClassId;
 import static com.duma.ld.zhilianlift.util.Constants.Res;
 import static com.duma.ld.zhilianlift.util.Constants.SearchString;
 import static com.duma.ld.zhilianlift.util.Constants.Type;
+import static com.duma.ld.zhilianlift.util.PermissionUtil.QuanXian_paizhao;
 
 /**
  * Created by liudong on 2017/12/6.
@@ -503,6 +509,46 @@ public class IntentUtil {
     public static void goFinanceInfo(Activity activity, int id) {
         Intent intent = new Intent(activity, FinanceInfoActivity.class);
         intent.putExtra(Constants.id, id + "");
+        activity.startActivity(intent);
+    }
+
+    //贷款详情
+    public static void goSaoMa(final Activity mActivity) {
+        if (!SpDataUtil.isLogin()) {
+            IntentUtil.goLogin(mActivity);
+        } else {
+            PermissionUtil permissionUtil = new PermissionUtil(mActivity, new PermissionUtil.onPermissionListener() {
+                @Override
+                public void onResult(int requestCode, boolean result) {
+                    if (requestCode == QuanXian_paizhao && result) {
+                        Intent intent = new Intent(mActivity, SaoMaActivity.class);
+                        mActivity.startActivity(intent);
+                    }
+                }
+            });
+            permissionUtil.openCamera();
+        }
+    }
+
+    //扫码支付
+    public static void goScanPay(Activity activity, String id) {
+        Intent intent = new Intent(activity, ScanPayActivity.class);
+        intent.putExtra(Constants.id, id);
+        activity.startActivity(intent);
+    }
+
+    //去商家付款
+    public static void goPayStore(Activity activity, PayStoreModel model) {
+        Intent intent = new Intent(activity, PayStoreActivity.class);
+        intent.putExtra(Constants.Model, model);
+        activity.startActivity(intent);
+        activity.overridePendingTransition(R.anim.out_to_left2, R.anim.in_from_right);
+    }
+
+    //商家扫码支付成功页面
+    public static void goPayStoreSuccess(Activity activity, PayStoreModel model) {
+        Intent intent = new Intent(activity, PayStoreSuccessActivity.class);
+        intent.putExtra(Constants.Model, model);
         activity.startActivity(intent);
     }
 }

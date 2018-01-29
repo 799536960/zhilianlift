@@ -146,7 +146,7 @@ public class ClassFragment extends BaseMyFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.layout_scan:
-                // TODO: 2018/1/15 扫码
+                IntentUtil.goSaoMa(mActivity);
                 break;
             case R.id.layout_search:
                 IntentUtil.goSearch(mActivity);

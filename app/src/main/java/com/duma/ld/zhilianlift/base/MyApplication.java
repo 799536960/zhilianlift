@@ -2,6 +2,7 @@ package com.duma.ld.zhilianlift.base;
 
 import com.baidu.mapapi.SDKInitializer;
 import com.duma.ld.baselibrary.base.BaseApplication;
+import com.squareup.leakcanary.LeakCanary;
 
 import org.litepal.LitePal;
 
@@ -19,6 +20,9 @@ public class MyApplication extends BaseApplication {
          * 数据库
          */
         LitePal.initialize(this);
+
+        //检查内存溢出
+        LeakCanary.install(this);
     }
 
     /**

@@ -105,4 +105,7 @@ public class HttpUrl {
     public static String credit = BaseUrl + "/index.php/api/user/credit";
     public static String getCreditList = BaseUrl + "/index.php/api/user/getCreditList";
     public static String getCredit_Schedule = BaseUrl + "/index.php/api/user/getCredit_Schedule";
+    public static String getStoreInfo = BaseUrl + "/index.php/api/user/getStoreInfo";
+    public static String getRenovationCat = BaseUrl + "/index.php/api/user/getRenovationCat";
+    public static String StoreMoney = BaseUrl + "/index.php/api/user/StoreMoney";
 }
