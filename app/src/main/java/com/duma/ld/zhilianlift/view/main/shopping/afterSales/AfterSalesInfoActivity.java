@@ -97,7 +97,7 @@ public class AfterSalesInfoActivity extends BaseMyActivity {
         tvGoodsTitle.setText(result.getGoods_name());
         tvSpec.setText("数量:" + result.getGoods_num() + " " + result.getSpec_key_name_noNull());
         tvPrice.setText("¥" + result.getGoods_price());
-        ImageLoader.with(mActivity, result.getOriginal_img(), imgIcon);
+        ImageLoader.with(result.getOriginal_img(), imgIcon);
         double money = result.getRefund_integral() + result.getRenovation_money() + result.getRefund_money();
         mAdapter.setNewData(result.getOrder_status_context());
         switch (result.getType()) {

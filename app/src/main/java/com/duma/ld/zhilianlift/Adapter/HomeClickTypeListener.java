@@ -55,7 +55,7 @@ public class HomeClickTypeListener implements View.OnClickListener, BaseQuickAda
                 IntentUtil.goGoodsDetails(mActivity, goods.getGoods_id());
                 break;
             case 2:
-                IntentUtil.goGoodsList_class(mActivity, adBean.getGoods_id() + "");
+                IntentUtil.goGoodsList_class(mActivity, adBean.getCat_id() + "");
                 break;
             case 3:
                 IntentUtil.goWebView(mActivity, adBean.getUrl());

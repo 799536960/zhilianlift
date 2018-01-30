@@ -37,7 +37,7 @@ public class RealNameMainActivity extends BaseMyActivity {
     protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
         RealNameModel model = (RealNameModel) getIntent().getSerializableExtra(Constants.Model);
-        ImageLoader.with_head(mActivity, SpDataUtil.getUser().getHead_pic(), imgIcon);
+        ImageLoader.with_head(SpDataUtil.getUser().getHead_pic(), imgIcon);
         tvName.setText(model.getRealname());
         tvIdCard.setText(ZhuanHuanUtil.setIdCardXX(model.getIdcard()));
     }

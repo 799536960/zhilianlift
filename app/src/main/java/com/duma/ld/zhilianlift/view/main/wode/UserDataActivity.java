@@ -88,7 +88,7 @@ public class UserDataActivity extends BaseMyActivity {
         tvBirthday.setText(ZhuanHuanUtil.Time2nian(user.getBirthday() * 1000));
         tvSex.setText(user.getSex());
         tvPhone.setText(user.getMobile_xx());
-        ImageLoader.with_head(mActivity, user.getHead_pic(), imgIcon);
+        ImageLoader.with_head(user.getHead_pic(), imgIcon);
         timePickerView = new TimePickerView.Builder(mActivity, new TimePickerView.OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
@@ -207,7 +207,7 @@ public class UserDataActivity extends BaseMyActivity {
                     @Override
                     protected void onJsonSuccess(Response<HttpResModel<String>> respons, HttpResModel<String> stringHttpResModel) {
                         DialogUtil.getInstance().hide();
-                        ImageLoader.with_head(mActivity, file, imgIcon);
+                        ImageLoader.with_head(file, imgIcon);
                         SpDataUtil.setImgHead(stringHttpResModel.getResult());
                     }
                 });

@@ -130,7 +130,7 @@ public class AddCommentActivity extends BaseMyActivity {
                 .build(new OnBaseAdapterListener<OrderCommentModel.OrderInfoBean.NoCommentGoodsListBean>() {
                     @Override
                     public void convert(final BaseViewHolder helper, final OrderCommentModel.OrderInfoBean.NoCommentGoodsListBean item) {
-                        ImageLoader.with(mActivity, item.getOriginal_img(), (ImageView) helper.getView(R.id.img_icon));
+                        ImageLoader.with(item.getOriginal_img(), (ImageView) helper.getView(R.id.img_icon));
                         final SimpleRatingBar rating_rank = helper.getView(R.id.rating_rank);
                         RecyclerView rv_photo = helper.getView(R.id.rv_photo);
                         EditText edit_comment_content = helper.getView(R.id.edit_comment_content);

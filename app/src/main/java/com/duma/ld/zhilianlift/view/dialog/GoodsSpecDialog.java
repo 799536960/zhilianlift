@@ -152,7 +152,7 @@ public class GoodsSpecDialog extends BaseDownDialog implements View.OnClickListe
     }
 
     private void setData() {
-        ImageLoader.with(mActivity, model.getGoods().getOriginal_img(), img_icon);
+        ImageLoader.with(model.getGoods().getOriginal_img(), img_icon);
         tv_num.setText("商品编号：" + model.getGoods().getGoods_sn());
         //没有规格的库存
         goodsCount = model.getGoods().getStore_count();

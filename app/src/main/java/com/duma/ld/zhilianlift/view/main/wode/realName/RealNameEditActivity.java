@@ -76,15 +76,15 @@ public class RealNameEditActivity extends BaseMyActivity {
                 switch (code) {
                     case 1:
                         file1 = file;
-                        ImageLoader.with(mActivity, file1, imgImg1);
+                        ImageLoader.with(file1, imgImg1);
                         break;
                     case 2:
                         file2 = file;
-                        ImageLoader.with(mActivity, file2, imgImg2);
+                        ImageLoader.with(file2, imgImg2);
                         break;
                     case 3:
                         file3 = file;
-                        ImageLoader.with(mActivity, file3, imgImg3);
+                        ImageLoader.with(file3, imgImg3);
                         break;
                 }
             }

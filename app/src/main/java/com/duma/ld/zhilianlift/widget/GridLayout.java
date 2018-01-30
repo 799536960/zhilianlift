@@ -95,39 +95,39 @@ public class GridLayout extends LinearLayout implements View.OnClickListener {
             switch (i) {
                 case 0:
                     img_view_img1.setVisibility(View.VISIBLE);
-                    ImageLoader.with(context, mList.get(i), img_view_img1);
+                    ImageLoader.with(mList.get(i), img_view_img1);
                     break;
                 case 1:
                     img_view_img2.setVisibility(View.VISIBLE);
-                    ImageLoader.with(context, mList.get(i), img_view_img2);
+                    ImageLoader.with(mList.get(i), img_view_img2);
                     break;
                 case 2:
                     img_view_img3.setVisibility(View.VISIBLE);
-                    ImageLoader.with(context, mList.get(i), img_view_img3);
+                    ImageLoader.with(mList.get(i), img_view_img3);
                     break;
                 case 3:
                     img_view_img4.setVisibility(View.VISIBLE);
-                    ImageLoader.with(context, mList.get(i), img_view_img4);
+                    ImageLoader.with(mList.get(i), img_view_img4);
                     break;
                 case 4:
                     img_view_img5.setVisibility(View.VISIBLE);
-                    ImageLoader.with(context, mList.get(i), img_view_img5);
+                    ImageLoader.with(mList.get(i), img_view_img5);
                     break;
                 case 5:
                     img_view_img6.setVisibility(View.VISIBLE);
-                    ImageLoader.with(context, mList.get(i), img_view_img6);
+                    ImageLoader.with(mList.get(i), img_view_img6);
                     break;
                 case 6:
                     img_view_img7.setVisibility(View.VISIBLE);
-                    ImageLoader.with(context, mList.get(i), img_view_img7);
+                    ImageLoader.with(mList.get(i), img_view_img7);
                     break;
                 case 7:
                     img_view_img8.setVisibility(View.VISIBLE);
-                    ImageLoader.with(context, mList.get(i), img_view_img8);
+                    ImageLoader.with(mList.get(i), img_view_img8);
                     break;
                 case 8:
                     img_view_img9.setVisibility(View.VISIBLE);
-                    ImageLoader.with(context, mList.get(i), img_view_img9);
+                    ImageLoader.with(mList.get(i), img_view_img9);
                     break;
             }
         }

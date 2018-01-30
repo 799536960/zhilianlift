@@ -182,7 +182,7 @@ public class ConfirmOrderActivity extends BaseMyActivity {
                                 .setText(R.id.tv_price, "¥" + item.getGoods_price())
                                 .setText(R.id.tv_num, "x" + item.getGoods_num());
                         ImageView img_icon = helper.getView(R.id.img_icon);
-                        ImageLoader.with(mActivity, item.getOriginal_img(), img_icon);
+                        ImageLoader.with(item.getOriginal_img(), img_icon);
                     }
                 });
         //初始化按钮

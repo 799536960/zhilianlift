@@ -64,11 +64,11 @@ public class AddFinanceActivity extends BaseMyActivity {
                 switch (code) {
                     case 1:
                         file1 = file;
-                        ImageLoader.with(mActivity, file1, imgImg1);
+                        ImageLoader.with(file1, imgImg1);
                         break;
                     case 2:
                         file2 = file;
-                        ImageLoader.with(mActivity, file2, imgImg2);
+                        ImageLoader.with(file2, imgImg2);
                         break;
                 }
             }

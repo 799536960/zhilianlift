@@ -15,9 +15,18 @@ public class AdBean implements Serializable {
     private String title;
     private String img_url;
     private String url;
+    private int cat_id;
     private int type;
     private int goods_id;
     private GoodsBean goods;
+
+    public int getCat_id() {
+        return cat_id;
+    }
+
+    public void setCat_id(int cat_id) {
+        this.cat_id = cat_id;
+    }
 
     public String getTitle() {
         return title;

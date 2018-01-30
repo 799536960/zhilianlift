@@ -93,7 +93,7 @@ public class FinanceFragment extends BaseMyFragment implements RadioGroup.OnChec
         });
         View view = mAdapter.getView(R.layout.adapter_head_finance);
         img_icon = view.findViewById(R.id.img_icon);
-        ImageLoader.with("/public/upload/carousel/xinjiaju.png", img_icon);
+        ImageLoader.with_noCache("/public/upload/carousel/xinjiaju.png", img_icon);
         radioGroup = view.findViewById(R.id.radioGroup);
         radioButton = view.findViewById(R.id.radio_left);
         radioGroup.setOnCheckedChangeListener(this);

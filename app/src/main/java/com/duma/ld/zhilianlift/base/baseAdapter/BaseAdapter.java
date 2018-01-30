@@ -140,10 +140,6 @@ public class BaseAdapter<T> extends BaseQuickAdapter<T, BaseViewHolder> implemen
         if (data == null) {
             data = new ArrayList();
         }
-//        if (data.size() == 0 && page == 1) {
-//            //第一页的时候是空数据
-//
-//        } else
         if (data.size() == 0 && page != 1) {
             //不是第一页 是空数据 说明加载到最后一页了
             loadMoreEnd();

@@ -169,7 +169,7 @@ public class PublicUtil {
                 .setText(R.id.tv_spec, "数量:" + item.getGoods_num() + " " + item.getSpec_key_name_noNull())
                 .setText(R.id.tv_price, "¥" + item.getGoods_price());
         ImageView img_icon = helper.getView(R.id.img_icon);
-        ImageLoader.with(activity, item.getOriginal_img(), img_icon);
+        ImageLoader.with(item.getOriginal_img(), img_icon);
     }
 
     public static void getViewOrderGoods(BaseViewHolder helper, AfterSalesModel item, Activity activity) {
@@ -177,7 +177,7 @@ public class PublicUtil {
                 .setText(R.id.tv_spec, "数量:" + item.getGoods_num() + " " + item.getSpec_key_name_noNull())
                 .setText(R.id.tv_price, "¥" + item.getGoods_price());
         ImageView img_icon = helper.getView(R.id.img_icon);
-        ImageLoader.with(activity, item.getOriginal_img(), img_icon);
+        ImageLoader.with(item.getOriginal_img(), img_icon);
     }
 
     public static void getViewOrderGoods(BaseViewHolder helper, AfterSalesListModel item, Activity activity) {
@@ -185,7 +185,7 @@ public class PublicUtil {
                 .setText(R.id.tv_spec, "数量:" + item.getGoods_num() + " " + item.getSpec_key_name_noNull())
                 .setText(R.id.tv_price, "¥" + item.getGoods_price());
         ImageView img_icon = helper.getView(R.id.img_icon);
-        ImageLoader.with(activity, item.getOriginal_img(), img_icon);
+        ImageLoader.with(item.getOriginal_img(), img_icon);
     }
 
     public static void getViewHouse(BaseViewHolder helper, MyHouseModel item, Activity mActivity, boolean isChuZu) {

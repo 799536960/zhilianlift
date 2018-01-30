@@ -158,7 +158,7 @@ public class GoodsMainFragment extends BaseMyFragment {
                         layout_imageList = helper.getView(R.id.layout_imageList);
                         //设置
                         rating_rank.setRating(item.getGoods_rank());
-                        ImageLoader.with_head(mActivity, item.getHead_pic(), img_icon);
+                        ImageLoader.with_head( item.getHead_pic(), img_icon);
                         if (item.getNickname() == null || item.getNickname().isEmpty()) {
                             tv_Nick_name.setText("<未设置>");
                         } else {
@@ -184,19 +184,19 @@ public class GoodsMainFragment extends BaseMyFragment {
                                 switch (i) {
                                     case 0:
                                         img_1.setVisibility(View.VISIBLE);
-                                        ImageLoader.with(mActivity, item.getImg().get(i), img_1);
+                                        ImageLoader.with(item.getImg().get(i), img_1);
                                         break;
                                     case 1:
                                         img_2.setVisibility(View.VISIBLE);
-                                        ImageLoader.with(mActivity, item.getImg().get(i), img_2);
+                                        ImageLoader.with(item.getImg().get(i), img_2);
                                         break;
                                     case 2:
                                         img_3.setVisibility(View.VISIBLE);
-                                        ImageLoader.with(mActivity, item.getImg().get(i), img_3);
+                                        ImageLoader.with(item.getImg().get(i), img_3);
                                         break;
                                     case 3:
                                         layout_img4.setVisibility(View.VISIBLE);
-                                        ImageLoader.with(mActivity, item.getImg().get(i), img_4);
+                                        ImageLoader.with(item.getImg().get(i), img_4);
                                         break;
                                 }
                             }

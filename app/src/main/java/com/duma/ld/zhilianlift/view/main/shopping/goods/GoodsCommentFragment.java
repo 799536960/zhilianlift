@@ -109,7 +109,7 @@ public class GoodsCommentFragment extends BaseMyFragment implements View.OnClick
                         } else {
                             helper.setGone(R.id.tv_type, true);
                         }
-                        ImageLoader.with_head(mActivity, item.getHead_pic(), (ImageView) helper.getView(R.id.imageView3));
+                        ImageLoader.with_head(item.getHead_pic(), (ImageView) helper.getView(R.id.imageView3));
                         GridLayout gridLayout = helper.getView(R.id.gridLayout_imgs);
                         gridLayout.setmList(item.getImg(), mActivity);
                         SimpleRatingBar rating_rank = helper.getView(R.id.rating_rank);

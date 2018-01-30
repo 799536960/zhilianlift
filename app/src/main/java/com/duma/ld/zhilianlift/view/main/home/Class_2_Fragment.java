@@ -48,7 +48,7 @@ public class Class_2_Fragment extends BaseMyFragment {
                         final BaseAdapter<ClassModel.ListBean.SubCategoryBean> adapter_3 = new BaseAdapter<ClassModel.ListBean.SubCategoryBean>(R.layout.adapter_class_3) {
                             @Override
                             protected void convert(BaseViewHolder helper, ClassModel.ListBean.SubCategoryBean item) {
-                                ImageLoader.with(mActivity, item.getImage(), (ImageView) helper.getView(R.id.img_title));
+                                ImageLoader.with(item.getImage(), (ImageView) helper.getView(R.id.img_title));
                                 helper.setText(R.id.tv_name, item.getMobile_name());
                             }
                         };
@@ -97,7 +97,7 @@ public class Class_2_Fragment extends BaseMyFragment {
     public void setData(ClassModel model) {
         this.model = model;
         baseAdapter.setNewData(model.getList());
-        ImageLoader.with(mActivity, model.getImage(), img_title);
+        ImageLoader.with(model.getImage(), img_title);
     }
 
 //    @Override
