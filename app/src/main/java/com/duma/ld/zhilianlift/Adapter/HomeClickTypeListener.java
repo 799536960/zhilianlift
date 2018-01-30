@@ -1,6 +1,6 @@
 package com.duma.ld.zhilianlift.Adapter;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -11,6 +11,8 @@ import com.duma.ld.zhilianlift.model.GoodsBean;
 import com.duma.ld.zhilianlift.model.HomeModel;
 import com.duma.ld.zhilianlift.model.HomeMultipleModel;
 import com.duma.ld.zhilianlift.util.IntentUtil;
+import com.duma.ld.zhilianlift.view.main.home.MainActivity;
+import com.duma.ld.zhilianlift.view.start.PinPaiActivity;
 import com.youth.banner.listener.OnBannerListener;
 
 /**
@@ -20,9 +22,9 @@ import com.youth.banner.listener.OnBannerListener;
 
 public class HomeClickTypeListener implements View.OnClickListener, BaseQuickAdapter.OnItemClickListener, OnBannerListener {
     private HomeModel result;
-    private Activity mActivity;
+    private MainActivity mActivity;
 
-    public HomeClickTypeListener(Activity mActivity) {
+    public HomeClickTypeListener(MainActivity mActivity) {
         this.mActivity = mActivity;
     }
 
@@ -35,9 +37,14 @@ public class HomeClickTypeListener implements View.OnClickListener, BaseQuickAda
      * type=2 分类商品列表 id title imgUrl
      * type=3 网页 h5 url title  imgUrl不能为空
      * type=4 搜索  title  imgUrl不能为空
+     * 5  装修
+     * 6  找新房
+     * 7  二手房
+     * 8  租房
+     * 9  合作品牌
      */
     private void clickItem(AdBean adBean) {
-        TsUtils.show("name:" + adBean.getTitle() + " type:" + adBean.getType());
+        TsUtils.show("type:" + adBean.getType());
         switch (adBean.getType()) {
             case 1:
                 GoodsBean goods = adBean.getGoods();
@@ -48,10 +55,31 @@ public class HomeClickTypeListener implements View.OnClickListener, BaseQuickAda
                 IntentUtil.goGoodsDetails(mActivity, goods.getGoods_id());
                 break;
             case 2:
+                IntentUtil.goGoodsList_class(mActivity, adBean.getGoods_id() + "");
                 break;
             case 3:
+                IntentUtil.goWebView(mActivity, adBean.getUrl());
                 break;
             case 4:
+                IntentUtil.goGoodsList_search(mActivity, adBean.getTitle() + "");
+                break;
+            case 5:
+                mActivity.showFinance();
+                break;
+            case 6:
+                //新房
+                IntentUtil.goHouseList_xinFang(mActivity);
+                break;
+            case 7:
+                //二手房
+                IntentUtil.goHouseList_erShoufang(mActivity);
+                break;
+            case 8:
+                //出租房
+                IntentUtil.goHouseList_zuFang(mActivity);
+                break;
+            case 9:
+                mActivity.startActivity(new Intent(mActivity, PinPaiActivity.class));
                 break;
         }
     }
@@ -107,7 +135,7 @@ public class HomeClickTypeListener implements View.OnClickListener, BaseQuickAda
                 clickItem(multipleModel.getClassModel());
                 break;
             case HomeMultipleModel.goodsHead:
-                //todo head事件
+                mActivity.showClass();
                 break;
             case HomeMultipleModel.goods:
                 IntentUtil.goGoodsDetails(mActivity, multipleModel.getGoodsModel().getGoods_id());

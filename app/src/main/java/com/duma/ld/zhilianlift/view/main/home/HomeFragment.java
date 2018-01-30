@@ -118,7 +118,7 @@ public class HomeFragment extends BaseMyFragment {
         //获取权限 和定位
         LocationUtil.getInstance().start(mActivity, event_location_home);
         //初始化home所有的监听
-        listener = new HomeClickTypeListener(mActivity);
+        listener = new HomeClickTypeListener((MainActivity) mActivity);
         //初始adapter
         mList = new ArrayList<>();
         mAdapter = new HomeAdapter(mList, listener);
@@ -202,7 +202,6 @@ public class HomeFragment extends BaseMyFragment {
                 break;
             case R.id.layout_scan:
                 IntentUtil.goSaoMa(mActivity);
-//                startActivity(new Intent(mActivity, PinPaiActivity.class));
                 break;
         }
     }

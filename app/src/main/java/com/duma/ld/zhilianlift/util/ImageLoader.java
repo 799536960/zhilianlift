@@ -10,6 +10,7 @@ import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.MyApplication;
 
 /**
+ * 图片加载
  * Created by 79953 on 2016/7/29.
  */
 public class ImageLoader {

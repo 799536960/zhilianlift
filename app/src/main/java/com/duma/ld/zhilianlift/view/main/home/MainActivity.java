@@ -104,6 +104,14 @@ public class MainActivity extends BaseMyActivity {
         });
     }
 
+    public void showFinance() {
+        barBottom.setCurrentItem(2);
+    }
+
+    public void showClass() {
+        barBottom.setCurrentItem(1);
+    }
+
     @Override
     protected void onBack() {
         if (System.currentTimeMillis() - Constants.TOUCH_TIME < Constants.WAIT_TIME) {

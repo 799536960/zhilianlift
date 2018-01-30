@@ -116,16 +116,20 @@ public class GoodsTypeAdapter implements BaseQuickAdapter.OnItemClickListener {
                 tv_price.setText(spannableStringBuilder);
                 tv_price.setTextColor(ZhuanHuanUtil.getColor(R.color.hong));
                 break;
-            case 1:
-                tv_price.setText(item.getGoods_price() + "元/平");
-                tv_price.setTextColor(ZhuanHuanUtil.getColor(R.color.huang1));
-                break;
-            case 2:
-                tv_price.setText(item.getGoods_price() + "万元");
-                tv_price.setTextColor(ZhuanHuanUtil.getColor(R.color.huang1));
-                break;
-            case 3:
-                tv_price.setText(item.getGoods_price() + "元/月");
+//            case 1:
+//                tv_price.setText(item.getGoods_price() + "元/平");
+//                tv_price.setTextColor(ZhuanHuanUtil.getColor(R.color.huang1));
+//                break;
+//            case 2:
+//                tv_price.setText(item.getGoods_price() + "万元");
+//                tv_price.setTextColor(ZhuanHuanUtil.getColor(R.color.huang1));
+//                break;
+//            case 3:
+//                tv_price.setText(item.getGoods_price() + "元/月");
+//                tv_price.setTextColor(ZhuanHuanUtil.getColor(R.color.huang1));
+//                break;
+            default:
+                tv_price.setText(item.getGoods_price() + "");
                 tv_price.setTextColor(ZhuanHuanUtil.getColor(R.color.huang1));
                 break;
         }

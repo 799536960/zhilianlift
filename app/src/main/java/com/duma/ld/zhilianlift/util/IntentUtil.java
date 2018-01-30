@@ -513,6 +513,13 @@ public class IntentUtil {
     }
 
     //贷款详情
+    public static void goFinanceInfo(Activity activity, String id) {
+        Intent intent = new Intent(activity, FinanceInfoActivity.class);
+        intent.putExtra(Constants.id, id + "");
+        activity.startActivity(intent);
+    }
+
+    //贷款详情
     public static void goSaoMa(final Activity mActivity) {
         if (!SpDataUtil.isLogin()) {
             IntentUtil.goLogin(mActivity);
