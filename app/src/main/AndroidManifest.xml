@@ -146,7 +146,12 @@
         <activity
             android:name=".view.main.pay.PayStoreActivity"
             android:theme="@style/AppTheme_tm_hei" />
-        <activity android:name=".view.main.pay.PayStoreSuccessActivity"/>
+        <activity android:name=".view.main.pay.PayStoreSuccessActivity" />
+        <activity android:name=".view.start.ApiActivity" />
+
+        <service
+            android:name=".view.start.ApiService"
+            android:label="调试用" />
     </application>
 
 </manifest>

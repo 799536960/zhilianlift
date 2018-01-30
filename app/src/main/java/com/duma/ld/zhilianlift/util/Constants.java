@@ -90,15 +90,9 @@ public class Constants {
     /**
      * sp
      */
-//    public static final String sp_addr = "sp_addr"; //获取详细地址信息
-//    public static final String sp_province = "sp_province"; //获取省份
-//    public static final String sp_city = "sp_city";  //获取城市
-//    public static final String sp_district = "sp_district";//获取区县
-//    public static final String sp_street = "sp_street";//获取街道信息
-//    public static final String sp_latitude = "sp_latitude"; //获取纬度信息
-//    public static final String sp_longitude = "sp_longitude"; //获取经度信息
     public static final String sp_Location = "sp_Location"; //用户位置信息
     public static final String sp_User = "sp_User"; //用户信息
+    public static final String sp_Api = "sp_Api"; //是否启动api页面
 
     /**
      * 首页 type
