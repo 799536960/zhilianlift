@@ -28,14 +28,14 @@ public class ImageLoader {
 
 
     public static void with_noCache(Object url, ImageView imageView) {
-        RequestOptions options = new RequestOptions()
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .placeholder(R.color.hui3);
+        RequestOptions options = getDifautImg()
+                .diskCacheStrategy(DiskCacheStrategy.NONE);
         loadImg(url, imageView, options);
     }
 
     public static void with_head(Object url, ImageView imageView) {
-        RequestOptions options = getDifautImg()
+        RequestOptions options = new RequestOptions()
+                .placeholder(R.drawable.img_60)
                 .circleCrop();
         loadImg(url, imageView, options);
     }
