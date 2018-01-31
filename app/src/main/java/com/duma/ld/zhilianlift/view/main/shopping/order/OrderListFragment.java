@@ -146,7 +146,7 @@ public class OrderListFragment extends BaseMyFragment {
                         cancelOrder(position, orderModel.getOrder_id());
                         break;
                     case Order_Text_QuZhiFu:
-                        IntentUtil.goPay(mActivity, orderModel.getMaster_order_sn(), orderModel.getDaFuKuan());
+                        IntentUtil.goPay(mActivity, orderModel.getOrder_id(), orderModel.getDaFuKuan());
                         break;
                     case Order_Text_ChaKanWuLiu:
                         //跳转

@@ -134,7 +134,7 @@ public class MyFragment extends BaseMyFragment {
         if (user != null) {
             //登录后
 //            Logger.e("user: " + user.toString());
-            ImageLoader.with_head( user.getHead_pic(), imgIcon);
+            ImageLoader.with_head(user.getHead_pic(), imgIcon);
             tvPhone.setVisibility(View.VISIBLE);
             tvName.setText(user.getNickname());
             tvPhone.setText("用户名:" + user.getMobile_xx());

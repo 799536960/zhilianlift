@@ -1,5 +1,6 @@
 package com.duma.ld.zhilianlift.view.main.pay;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
@@ -8,7 +9,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.baselibrary.util.ZhuanHuanUtil;
 import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
@@ -88,14 +88,14 @@ public class YuEListActivity extends BaseMyActivity {
         tv_tixian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TsUtils.show("去提现");
+                startActivity(new Intent(mActivity, TiXianActivity.class));
             }
         });
         tv_chongzhi = view.findViewById(R.id.tv_chongzhi);
         tv_chongzhi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TsUtils.show("去充值");
+                startActivity(new Intent(mActivity, ChongZhiActivity.class));
             }
         });
         mAdapter.addHeaderView(view);

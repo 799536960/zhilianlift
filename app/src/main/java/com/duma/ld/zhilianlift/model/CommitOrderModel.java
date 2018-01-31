@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by liudong on 2018/1/8.
  */
 
-public class CommitOrderModel implements Serializable{
+public class CommitOrderModel implements Serializable {
     /**
      * master_order_sn : 201801081512017529
      * order_amount : 500
@@ -14,8 +14,10 @@ public class CommitOrderModel implements Serializable{
 
     private String master_order_sn;
     private double order_amount;
+    private int orderId;
 
-    public CommitOrderModel() {
+    public CommitOrderModel(double order_amount) {
+        this.order_amount = order_amount;
     }
 
     public CommitOrderModel(String master_order_sn, double order_amount) {
@@ -37,5 +39,13 @@ public class CommitOrderModel implements Serializable{
 
     public void setOrder_amount(double order_amount) {
         this.order_amount = order_amount;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 }

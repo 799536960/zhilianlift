@@ -14,6 +14,8 @@ public class Constants {
     public static final String Page = "p";
     public static final String Size = "size";
 
+    //支付宝
+    public static final int SDK_PAY_FLAG = 1;
     //默认城市
     public static final String defaultCity = "湖州市";
     public static final String defaultCity_code = "330500";
@@ -52,6 +54,8 @@ public class Constants {
     public static final int event_refresh_order = 14;
     //评论像订单详情和列表发更新事件
     public static final int event_refresh_order_comment = 15;
+    //支付宝支付成功
+    public static final int event_zhifuBao_success = 16;
     /**
      * intent
      */
@@ -94,13 +98,6 @@ public class Constants {
     public static final String sp_User = "sp_User"; //用户信息
     public static final String sp_Api = "sp_Api"; //是否启动api页面
 
-    /**
-     * 首页 type
-     */
-    public static final int type_1 = 1; //商品 goodsModel不能为空
-    public static final int type_2 = 2; //分类 id title imgUrl
-    public static final int type_3 = 3; //网页 h5 url title  imgUrl不能为空
-    public static final int type_4 = 4; //搜索 title  imgUrl不能为空
 
     /**
      * 订单

@@ -266,7 +266,7 @@ public class OrderInfoActivity extends BaseMyActivity {
                 cancelOrder();
                 break;
             case Order_Text_QuZhiFu:
-                IntentUtil.goPay(mActivity, model.getMaster_order_sn(), model.getDaFuKuan());
+                IntentUtil.goPay(mActivity, model.getOrder_id(), model.getDaFuKuan());
                 break;
             case Order_Text_ChaKanWuLiu:
                 IntentUtil.goWebView(mActivity, logistics + model.getOrder_id(), "订单跟踪");

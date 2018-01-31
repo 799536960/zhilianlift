@@ -295,8 +295,10 @@ public class IntentUtil {
         activity.startActivity(intent);
     }
 
-    public static void goPay(Activity activity, String master_order_sn, double order_amount) {
-        goPay(activity, new CommitOrderModel(master_order_sn, order_amount));
+    public static void goPay(Activity activity, int orderId, double order_amount) {
+        CommitOrderModel model = new CommitOrderModel(order_amount);
+        model.setOrderId(orderId);
+        goPay(activity, model);
     }
 
     //订单列表

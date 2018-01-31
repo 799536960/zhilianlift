@@ -158,7 +158,7 @@ public class GoodsMainFragment extends BaseMyFragment {
                         layout_imageList = helper.getView(R.id.layout_imageList);
                         //设置
                         rating_rank.setRating(item.getGoods_rank());
-                        ImageLoader.with_head( item.getHead_pic(), img_icon);
+                        ImageLoader.with_head(item.getHead_pic(), img_icon);
                         if (item.getNickname() == null || item.getNickname().isEmpty()) {
                             tv_Nick_name.setText("<未设置>");
                         } else {
@@ -239,6 +239,7 @@ public class GoodsMainFragment extends BaseMyFragment {
         OkGo.<HttpResModel<GoodsMainModel>>get(goodsInfo)
                 .tag(httpTag)
                 .params("id", id)
+                .params("code", SpDataUtil.getLocation().getCode())
                 .execute(new MyJsonCallback<HttpResModel<GoodsMainModel>>(mFragmentConfig) {
                     @Override
                     protected void onJsonSuccess(Response<HttpResModel<GoodsMainModel>> respons, HttpResModel<GoodsMainModel> goodsMainModelHttpResModel) {

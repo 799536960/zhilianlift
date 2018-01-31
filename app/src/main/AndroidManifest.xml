@@ -162,6 +162,8 @@
             android:theme="@style/AppTheme_tm_hei" />
         <activity android:name=".view.main.pay.PayStoreSuccessActivity" />
         <activity android:name=".view.start.ApiActivity" />
+        <activity android:name=".view.main.pay.TiXianActivity" />
+        <activity android:name=".view.main.pay.ChongZhiActivity" />
 
         <service
             android:name=".view.start.ApiService"
