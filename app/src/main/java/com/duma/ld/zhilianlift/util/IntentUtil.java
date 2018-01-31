@@ -11,6 +11,7 @@ import com.duma.ld.zhilianlift.model.OrderModel;
 import com.duma.ld.zhilianlift.model.PayStoreModel;
 import com.duma.ld.zhilianlift.model.RealNameModel;
 import com.duma.ld.zhilianlift.model.ShoppingSpacModel;
+import com.duma.ld.zhilianlift.model.ZhiFuBaoUserModel;
 import com.duma.ld.zhilianlift.view.login.LoginOrRegisterActivity;
 import com.duma.ld.zhilianlift.view.main.finance.FinanceInfoActivity;
 import com.duma.ld.zhilianlift.view.main.home.MainActivity;
@@ -21,6 +22,7 @@ import com.duma.ld.zhilianlift.view.main.house.HouseListActivity;
 import com.duma.ld.zhilianlift.view.main.house.HouseMapActivity;
 import com.duma.ld.zhilianlift.view.main.house.HuXinListActivity;
 import com.duma.ld.zhilianlift.view.main.house.MyHouseActivity;
+import com.duma.ld.zhilianlift.view.main.pay.AddZhiFuBaoActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PayActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PayInputPasswordActivity;
 import com.duma.ld.zhilianlift.view.main.pay.PayStoreActivity;
@@ -557,6 +559,14 @@ public class IntentUtil {
     //商家扫码支付成功页面
     public static void goPayStoreSuccess(Activity activity, PayStoreModel model) {
         Intent intent = new Intent(activity, PayStoreSuccessActivity.class);
+        intent.putExtra(Constants.Model, model);
+        activity.startActivity(intent);
+    }
+
+
+    //添加支付宝账号
+    public static void goAddZhiFuBao(Activity activity, ZhiFuBaoUserModel model) {
+        Intent intent = new Intent(activity, AddZhiFuBaoActivity.class);
         intent.putExtra(Constants.Model, model);
         activity.startActivity(intent);
     }

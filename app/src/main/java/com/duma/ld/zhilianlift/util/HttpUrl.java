@@ -109,4 +109,8 @@ public class HttpUrl {
     public static String getRenovationCat = BaseUrl + "/index.php/api/user/getRenovationCat";
     public static String StoreMoney = BaseUrl + "/index.php/api/user/StoreMoney";
     public static String get_code = BaseUrl + "/index.php/api/Alipay/get_code";
+    public static String addRecharge = BaseUrl + "/index.php/api/user/addRecharge";
+    public static String getalipay = BaseUrl + "/index.php/api/user/getalipay";
+    public static String editalipay = BaseUrl + "/index.php/api/user/editalipay";
+    public static String addtixian = BaseUrl + "/index.php/api/user/addtixian";
 }

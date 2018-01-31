@@ -48,6 +48,12 @@ public class YuEListActivity extends BaseMyActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        onClickLoadingRefresh();
+    }
+
+    @Override
     protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
         mAdapter = new BaseAdapter.Builder<HousePayListModel.AccountLogListBean>(rvList, mActivity, R.layout.adapter_house_pay_list)
@@ -100,7 +106,6 @@ public class YuEListActivity extends BaseMyActivity {
         });
         mAdapter.addHeaderView(view);
         mAdapter.setHeaderAndEmpty(true);
-        onClickLoadingRefresh();
     }
 
     private void setData(HousePayListModel.UsersBean users) {

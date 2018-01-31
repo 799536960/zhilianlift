@@ -56,6 +56,8 @@ public class Constants {
     public static final int event_refresh_order_comment = 15;
     //支付宝支付成功
     public static final int event_zhifuBao_success = 16;
+    //添加支付宝账号成功 刷新
+    public static final int event_addZhiFuBao_success = 17;
     /**
      * intent
      */
