@@ -164,6 +164,7 @@
         <activity android:name=".view.start.ApiActivity" />
         <activity android:name=".view.main.pay.TiXianActivity" />
         <activity android:name=".view.main.pay.ChongZhiActivity" />
+        <activity android:name=".view.main.pay.AddZhiFuBaoActivity" />
 
         <service
             android:name=".view.start.ApiService"
