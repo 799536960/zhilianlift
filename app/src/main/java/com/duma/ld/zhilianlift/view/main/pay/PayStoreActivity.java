@@ -43,10 +43,11 @@ public class PayStoreActivity extends BaseMyActivity {
         return new DefaultHorizontalAnimator();
     }
 
+
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+        overridePendingTransition(R.anim.v_back_enter, R.anim.v_back_exit);
     }
 
     @Override

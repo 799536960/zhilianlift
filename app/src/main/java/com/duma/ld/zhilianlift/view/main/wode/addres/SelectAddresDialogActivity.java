@@ -150,7 +150,7 @@ public class SelectAddresDialogActivity extends BaseMyActivity {
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+        overridePendingTransition(R.anim.v_back_enter, R.anim.v_back_exit);
     }
 
     @OnClick(R.id.layout_back)

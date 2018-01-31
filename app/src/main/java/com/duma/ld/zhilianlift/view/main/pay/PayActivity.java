@@ -67,6 +67,7 @@ public class PayActivity extends BaseMyActivity implements RadioGroup.OnCheckedC
         switch (eventModel.getCode()) {
             case Constants.event_zhifuBao_success:
                 IntentUtil.goPaySuccess(mActivity);
+                finish();
                 break;
         }
     }

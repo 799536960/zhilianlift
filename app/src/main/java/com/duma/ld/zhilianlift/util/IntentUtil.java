@@ -97,7 +97,7 @@ public class IntentUtil {
     public static void goLogin(Activity activity) {
         Intent intent = new Intent(activity, LoginOrRegisterActivity.class);
         activity.startActivity(intent);
-        activity.overridePendingTransition(R.anim.out_to_left2, R.anim.in_from_right);
+        activity.overridePendingTransition(R.anim.v_enter, R.anim.v_exit);
     }
 
     public static void goUserData(Activity activity) {
@@ -279,7 +279,7 @@ public class IntentUtil {
     public static void goPayInputPassword(Activity activity) {
         Intent intent = new Intent(activity, PayInputPasswordActivity.class);
         activity.startActivity(intent);
-        activity.overridePendingTransition(R.anim.out_to_left2, R.anim.in_from_right);
+        activity.overridePendingTransition(R.anim.v_enter, R.anim.v_exit);
     }
 
     //去支付成功
@@ -446,7 +446,7 @@ public class IntentUtil {
     public static void goAddress(Activity activity) {
         Intent intent = new Intent(activity, SelectAddresDialogActivity.class);
         activity.startActivity(intent);
-        activity.overridePendingTransition(R.anim.out_to_left2, R.anim.in_from_right);
+        activity.overridePendingTransition(R.anim.v_enter, R.anim.v_exit);
     }
 
     /**
@@ -551,7 +551,7 @@ public class IntentUtil {
         Intent intent = new Intent(activity, PayStoreActivity.class);
         intent.putExtra(Constants.Model, model);
         activity.startActivity(intent);
-        activity.overridePendingTransition(R.anim.out_to_left2, R.anim.in_from_right);
+        activity.overridePendingTransition(R.anim.v_enter, R.anim.v_exit);
     }
 
     //商家扫码支付成功页面
