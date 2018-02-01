@@ -44,7 +44,7 @@ public class HomeClickTypeListener implements View.OnClickListener, BaseQuickAda
      * 9  合作品牌
      */
     private void clickItem(AdBean adBean) {
-        TsUtils.show("type:" + adBean.getType());
+//        TsUtils.show("type:" + adBean.getType());
         switch (adBean.getType()) {
             case 1:
                 GoodsBean goods = adBean.getGoods();

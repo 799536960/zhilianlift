@@ -115,5 +115,8 @@ dependencies {
     implementation 'cn.bingoogolapple:bga-qrcode-zbar:1.2.1'
     //检查内存溢出
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+    //支付宝
     implementation files('libs/alipaySdk-20170922.jar')
+    //微信
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.1.0'
 }
