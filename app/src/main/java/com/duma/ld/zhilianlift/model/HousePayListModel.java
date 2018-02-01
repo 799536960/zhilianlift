@@ -14,6 +14,24 @@ public class HousePayListModel {
 
     private UsersBean users;
     private List<AccountLogListBean> account_logList;
+    private String pay_points_sum_month;
+    private String pay_points_sum;
+
+    public String getPay_points_sum_month() {
+        return pay_points_sum_month;
+    }
+
+    public void setPay_points_sum_month(String pay_points_sum_month) {
+        this.pay_points_sum_month = pay_points_sum_month;
+    }
+
+    public String getPay_points_sum() {
+        return pay_points_sum;
+    }
+
+    public void setPay_points_sum(String pay_points_sum) {
+        this.pay_points_sum = pay_points_sum;
+    }
 
     public UsersBean getUsers() {
         return users;

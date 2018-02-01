@@ -62,7 +62,7 @@ public class PointsPayListActivity extends BaseMyActivity {
                                     @Override
                                     protected void onJsonSuccess(Response<HttpResModel<HousePayListModel>> respons, HttpResModel<HousePayListModel> myRecordModel) {
                                         mAdapter.setLoadData(myRecordModel.getResult().getAccount_logList());
-                                        setData(myRecordModel.getResult().getUsers());
+                                        setData(myRecordModel.getResult());
                                     }
                                 }.setLoadAdapter(mAdapter));
                     }
@@ -90,10 +90,10 @@ public class PointsPayListActivity extends BaseMyActivity {
         onClickLoadingRefresh();
     }
 
-    private void setData(HousePayListModel.UsersBean users) {
-        tv_money.setText(users.getPay_points());
-        tv_yue.setText("本月获取：还没做");
-        tv_all.setText("累计获取：还没做");
+    private void setData(HousePayListModel users) {
+        tv_money.setText(users.getUsers().getPay_points());
+        tv_yue.setText("本月获取：" + users.getPay_points_sum_month());
+        tv_all.setText("累计获取：" + users.getPay_points_sum());
     }
 
     @Override
