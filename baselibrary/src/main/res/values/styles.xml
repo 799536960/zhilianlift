@@ -36,7 +36,12 @@
     </style>
 
     <style name="topbar_h_fragment">
-        <item name="android:layout_height">68dp</item>
-        <item name="android:paddingTop">20dp</item>
+        <item name="android:layout_height">70dp</item>
+        <item name="android:paddingTop">22dp</item>
+    </style>
+
+    <style name="topbar_h_fragment2">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">25dp</item>
     </style>
 </resources>
