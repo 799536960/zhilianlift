@@ -167,7 +167,7 @@ public class TiXianActivity extends BaseMyActivity {
 
     private void tiXianHttp() {
         AlertDialog.Builder builder = PublicUtil.getAlertDialog(mActivity, "确认提现", "您确定要提现该账户嘛?(提现成功将无法撤回)")
-                .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         OkGo.<HttpResModel<String>>get(addtixian)
@@ -182,7 +182,7 @@ public class TiXianActivity extends BaseMyActivity {
                                 }.isDialog(mActivity));
                     }
                 })
-                .setNegativeButton("否", null)
+                .setNegativeButton("取消", null)
                 .setCancelable(false);
         builder.show();
 

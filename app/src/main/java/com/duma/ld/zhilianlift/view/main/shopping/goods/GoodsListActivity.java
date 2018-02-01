@@ -81,7 +81,7 @@ public class GoodsListActivity extends BaseMyActivity {
     @BindView(R.id.cb_tabList)
     CheckBox cbTabList;
     @BindView(R.id.view_show)
-    View viewShow;
+    LinearLayout viewShow;
     @BindView(R.id.rv_screen)
     RecyclerView rvScreen;
     @BindView(R.id.tv_cancel)
@@ -255,6 +255,8 @@ public class GoodsListActivity extends BaseMyActivity {
                 IntentUtil.goGoodsDetails(mActivity, bean.getGoods_id());
             }
         });
+//        View view = adapter.getView(R.layout.adapter_head_demo);
+//        adapter.addHeaderView(view);
         onClickLoadingRefresh();
     }
 
@@ -354,6 +356,5 @@ public class GoodsListActivity extends BaseMyActivity {
         } else {
             finish();
         }
-
     }
 }
