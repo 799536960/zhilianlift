@@ -1,12 +1,13 @@
 package com.duma.ld.zhilianlift.util;
 
 /**
+ * 接口
  * Created by liudong on 2017/12/1.
  */
 
 public class HttpUrl {
-    public static String BaseUrl = "http://192.168.0.58:8081";
-    //    public static String BaseUrl = "http://192.168.0.94:8080";
+    //    public static String BaseUrl = "http://192.168.0.58:8081";
+    public static String BaseUrl = "http://www.duma-ivy.cn:8080";
     /**
      * webview
      */

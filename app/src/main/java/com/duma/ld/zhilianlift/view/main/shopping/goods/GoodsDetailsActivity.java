@@ -164,7 +164,7 @@ public class GoodsDetailsActivity extends BaseMyActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (goodsNumModel == null) {
+        if (goodsNumModel == null && SpDataUtil.isLogin()) {
             OkGo.<HttpResModel<GoodsNumModel>>get(getInfo)
                     .tag(httpTag)
                     .params("goods_id", id)
