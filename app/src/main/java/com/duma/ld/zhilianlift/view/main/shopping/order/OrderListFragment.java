@@ -104,6 +104,7 @@ public class OrderListFragment extends BaseMyFragment {
 
     private void initAdapter() {
         mAdapter = new BaseAdapter.Builder<OrderModel>(rvList, mActivity, R.layout.adapter_order_list)
+                .setrawableId(R.drawable.ld2)
                 .buildLoad(new OnBaseLoadAdapterListener<OrderModel>() {
                     @Override
                     public void onLoadHttp(int page, int size) {

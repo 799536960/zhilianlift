@@ -103,7 +103,7 @@ public class ShoppingCartFragment extends BaseMyFragment {
         LinearLayoutManager layout = new LinearLayoutManager(mActivity);
         rvList.setLayoutManager(layout);
         rvList.setAdapter(mAdapter);
-        mAdapter.setEmptyLayout("您现在的购物车是空的哦～", R.drawable.shoppingcard1, rvList);
+        mAdapter.setEmptyLayout("您现在的购物车是空的哦～", R.drawable.ld3, rvList);
         mFragmentConfig.showLoadingView();
     }
 

@@ -92,8 +92,8 @@ public class PointsPayListActivity extends BaseMyActivity {
 
     private void setData(HousePayListModel users) {
         tv_money.setText(users.getUsers().getPay_points());
-        tv_yue.setText("本月获取：" + users.getPay_points_sum_month());
-        tv_all.setText("累计获取：" + users.getPay_points_sum());
+        tv_yue.setText("本月获取：" + users.getPay_points_sum_monthNull());
+        tv_all.setText("累计获取：" + users.getPay_points_sumNulll());
     }
 
     @Override

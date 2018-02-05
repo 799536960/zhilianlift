@@ -21,11 +21,25 @@ public class HousePayListModel {
         return pay_points_sum_month;
     }
 
+    public String getPay_points_sum_monthNull() {
+        if (pay_points_sum_month == null) {
+            return "0";
+        }
+        return pay_points_sum_month;
+    }
+
     public void setPay_points_sum_month(String pay_points_sum_month) {
         this.pay_points_sum_month = pay_points_sum_month;
     }
 
     public String getPay_points_sum() {
+        return pay_points_sum;
+    }
+
+    public String getPay_points_sumNulll() {
+        if (pay_points_sum == null) {
+            return "0";
+        }
         return pay_points_sum;
     }
 

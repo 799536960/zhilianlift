@@ -171,11 +171,6 @@
 -dontwarn okio.**
 -keep class okio.**{*;}
 
-#bottom bar
--keep public class android.support.design.widget.BottomNavigationView { *; }
--keep public class android.support.design.internal.BottomNavigationMenuView { *; }
--keep public class android.support.design.internal.BottomNavigationPresenter { *; }
--keep public class android.support.design.internal.BottomNavigationItemView { *; }
 
 #百度地图
 -keep class com.baidu.** {*;}
@@ -194,13 +189,13 @@
 -keep class com.youth.banner.** {
     *;
  }
--dontwarn com.iarcuschin.simpleratingbar.**
 
 #webview
 -keep class com.just.agentweb.** {
     *;
 }
 -dontwarn com.just.agentweb.**
+
 #Java 注入类不要混淆 ， 例如 sample 里面的 AndroidInterface 类 ， 需要 Keep 。
 #-keepclassmembers class com.just.library.agentweb.AndroidInterface{ *; }
 
@@ -307,3 +302,20 @@
 -keep class com.ut.device.** { *;}
 -dontwarn android.net.**
 -keep class android.net.SSLCertificateSocketFactory{*;}
+
+
+#    bottomBar  这个库的
+#    implementation 'com.github.ittianyu:BottomNavigationViewEx:1.2.4'
+-keep public class android.support.design.widget.BottomNavigationView { *; }
+-keep public class android.support.design.internal.BottomNavigationMenuView { *; }
+-keep public class android.support.design.internal.BottomNavigationPresenter { *; }
+-keep public class android.support.design.internal.BottomNavigationItemView { *; }
+
+#权限
+-dontwarn com.yanzhenjie.permission.**
+
+# 状态栏
+-keep class com.jaeger.library.**{*;}
+
+#fragment
+-keep class * extends android.support.v4.app.FragmentManager{ *; }

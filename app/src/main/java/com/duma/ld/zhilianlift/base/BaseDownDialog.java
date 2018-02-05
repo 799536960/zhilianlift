@@ -38,7 +38,6 @@ public abstract class BaseDownDialog extends Dialog {
     protected abstract int getLayoutId();
 
 
-
     @Override
     public void show() {
         super.show();
