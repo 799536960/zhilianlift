@@ -221,8 +221,8 @@ public class ConfirmOrderActivity extends BaseMyActivity {
         }
         typeModel typeModel = new typeModel();
         if (b) {
-            if (!isZhuangXiu()) {
-                typeModel.setRedio(ZhuangXiu);
+            if (!isYuE()) {
+                typeModel.setRedio(YuE);
                 refresh(typeModel);
                 return;
             }
@@ -231,8 +231,8 @@ public class ConfirmOrderActivity extends BaseMyActivity {
                 refresh(typeModel);
                 return;
             }
-            if (!isYuE()) {
-                typeModel.setRedio(YuE);
+            if (!isZhuangXiu()) {
+                typeModel.setRedio(ZhuangXiu);
                 refresh(typeModel);
                 return;
             }
