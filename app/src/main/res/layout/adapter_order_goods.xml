@@ -23,7 +23,7 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="10dp">
 
             <TextView
@@ -43,8 +43,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
-                android:ellipsize="end"
-                android:maxLines="2"
                 android:text="规格"
                 android:textColor="@color/hui2"
                 android:textSize="13sp"
@@ -59,11 +57,12 @@
                 android:id="@+id/tv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="0dp"
+                android:layout_marginTop="8dp"
                 android:text="TextView"
                 android:textColor="@color/hong"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent" />
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_spec" />
 
             <TextView
                 android:id="@+id/tv_num"

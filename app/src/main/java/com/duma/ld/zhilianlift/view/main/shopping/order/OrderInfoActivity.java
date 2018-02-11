@@ -176,7 +176,7 @@ public class OrderInfoActivity extends BaseMyActivity {
         tvAddressName.setText(result.getConsignee());
         tvAddressInfo.setText(result.getTotal_address());
         tvAddressPhone.setText(ZhuanHuanUtil.setPhoneXX(result.getMobile()));
-        tvSnNum.setText("订单编号：" + result.getMaster_order_sn());
+        tvSnNum.setText("订单编号：" + result.getOrder_sn());
         tvSnTime.setText("下单时间：" + ZhuanHuanUtil.Time2fen(result.getAdd_time() * 1000));
         tvGoodsMoney.setText("¥" + result.getGoods_price());
         tvCourierMoney.setText("¥" + result.getShipping_price());
