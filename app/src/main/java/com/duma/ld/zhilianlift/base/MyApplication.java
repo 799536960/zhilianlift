@@ -1,13 +1,21 @@
 package com.duma.ld.zhilianlift.base;
 
+import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 
 import com.baidu.mapapi.SDKInitializer;
 import com.blankj.utilcode.util.SPUtils;
 import com.duma.ld.baselibrary.base.BaseApplication;
+import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.util.HttpApiCacheInterceptor;
 import com.duma.ld.zhilianlift.view.start.ApiService;
 import com.lzy.okgo.OkGo;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
+import com.scwang.smartrefresh.layout.api.RefreshHeader;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 
 import org.litepal.LitePal;
 
@@ -20,6 +28,18 @@ import static com.duma.ld.zhilianlift.util.Constants.sp_Api;
 
 
 public class MyApplication extends BaseApplication {
+
+    static {
+        SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
+            @NonNull
+            @Override
+            public RefreshHeader createRefreshHeader(@NonNull Context context, @NonNull RefreshLayout layout) {
+                layout.setPrimaryColorsId(R.color.white, R.color.white);//全局设置主题颜色
+                return new ClassicsHeader(context);
+            }
+        });
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();

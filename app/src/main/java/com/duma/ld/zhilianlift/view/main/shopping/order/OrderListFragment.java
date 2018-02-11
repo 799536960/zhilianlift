@@ -104,7 +104,7 @@ public class OrderListFragment extends BaseMyFragment {
 
     private void initAdapter() {
         mAdapter = new BaseAdapter.Builder<OrderModel>(rvList, mActivity, R.layout.adapter_order_list)
-                .setrawableId(R.drawable.ld2)
+                .setTitleOrDrawableId("你还没有订单哦~", R.drawable.ld2)
                 .buildLoad(new OnBaseLoadAdapterListener<OrderModel>() {
                     @Override
                     public void onLoadHttp(int page, int size) {
@@ -126,7 +126,7 @@ public class OrderListFragment extends BaseMyFragment {
                             @Override
                             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                                 // 跳转到订单详情
-                                IntentUtil.goOrderInfo(mActivity, helper.getLayoutPosition(), item.getMaster_order_sn(), type);
+                                IntentUtil.goOrderInfo(mActivity, helper.getLayoutPosition(), item.getOrder_id() + "", type);
                             }
                         });
                     }
@@ -134,7 +134,7 @@ public class OrderListFragment extends BaseMyFragment {
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                IntentUtil.goOrderInfo(mActivity, position, mAdapter.getData().get(position).getMaster_order_sn(), type);
+                IntentUtil.goOrderInfo(mActivity, position, mAdapter.getData().get(position).getOrder_id() + "", type);
             }
         });
         mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
@@ -167,7 +167,7 @@ public class OrderListFragment extends BaseMyFragment {
                         deleteOrder(position, orderModel.getOrder_id());
                         break;
                     default:
-                        IntentUtil.goOrderInfo(mActivity, position, orderModel.getMaster_order_sn(), type);
+                        IntentUtil.goOrderInfo(mActivity, position, orderModel.getOrder_id() + "", type);
                         break;
                 }
             }
