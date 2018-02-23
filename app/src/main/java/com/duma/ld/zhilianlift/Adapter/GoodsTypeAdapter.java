@@ -67,7 +67,7 @@ public class GoodsTypeAdapter implements BaseQuickAdapter.OnItemClickListener {
 
     public GoodsTypeAdapter buildLoad(final PublicConfig config) {
         mAdapter = new BaseAdapter.Builder<MyRecordModel.VisitBean>(mRecyclerView, mActivity, R.layout.adapter_my_record_goods)
-                .setTitleOrDrawableId("您还没有收藏的物品哦~", R.drawable.record1)
+                .setTitleOrDrawableId("您还没有收藏的物品哦~", R.drawable.sc)
                 .buildLoad(new OnBaseLoadAdapterListener<MyRecordModel.VisitBean>() {
                     @Override
                     public void onLoadHttp(int page, int size) {

@@ -101,7 +101,7 @@ public abstract class BaseSelectDelectActivity extends BaseMyActivity {
                 break;
             case R.id.cb_type:
                 if (baseAdapter.getData().size() == 0) {
-                    TsUtils.show("没有需要清空的哦~");
+                    TsUtils.show("当前没有商品!");
                     return;
                 }
                 setEdit(!isEdit);

@@ -58,6 +58,7 @@ public class CouponsActivity extends BaseMyActivity {
     protected void init(Bundle savedInstanceState) {
         last_order_amount = getIntent().getStringExtra(Constants.key);
         adapter = new BaseAdapter.Builder<CouponsModel>(rvList, mActivity, R.layout.adapter_coupons)
+                .setTitleOrDrawableId("当前没有可用的优惠券~", R.drawable.youhuquan)
                 .buildLoad(new OnBaseLoadAdapterListener<CouponsModel>() {
                     @Override
                     public void onLoadHttp(int page, int size) {

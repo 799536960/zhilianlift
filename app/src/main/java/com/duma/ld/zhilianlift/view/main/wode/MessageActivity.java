@@ -62,6 +62,10 @@ public class MessageActivity extends BaseMyActivity {
         }, R.drawable.lajitong, new OnTopBarRightListener() {
             @Override
             public void onClick() {
+                if (mAdapter.getData().size() == 0) {
+                    TsUtils.show("没有需要清空的消息!");
+                    return;
+                }
                 AlertDialog.Builder builder = PublicUtil.getAlertDialog(mActivity, "清空消息", "您确定要清空消息中心嘛?")
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override
@@ -81,6 +85,7 @@ public class MessageActivity extends BaseMyActivity {
     protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
         mAdapter = new BaseAdapter.Builder<MessageModel>(rvList, mActivity, R.layout.adapter_message)
+                .setTitleOrDrawableId("当前还没有新的消息!", R.drawable.xiaoxi)
                 .buildLoad(new OnBaseLoadAdapterListener<MessageModel>() {
                     @Override
                     public void onLoadHttp(int page, int size) {

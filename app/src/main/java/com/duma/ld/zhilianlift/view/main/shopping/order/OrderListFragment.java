@@ -104,7 +104,7 @@ public class OrderListFragment extends BaseMyFragment {
 
     private void initAdapter() {
         mAdapter = new BaseAdapter.Builder<OrderModel>(rvList, mActivity, R.layout.adapter_order_list)
-                .setTitleOrDrawableId("你还没有订单哦~", R.drawable.ld2)
+                .setTitleOrDrawableId("没有当前类型的订单!", R.drawable.ld2)
                 .buildLoad(new OnBaseLoadAdapterListener<OrderModel>() {
                     @Override
                     public void onLoadHttp(int page, int size) {

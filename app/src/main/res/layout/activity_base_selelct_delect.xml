@@ -72,7 +72,8 @@
     <FrameLayout
         android:id="@+id/layout_root"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/hui_bg">
 
         <LinearLayout
             android:id="@+id/layout_content"
@@ -96,6 +97,7 @@
                 android:id="@+id/layout_bottom"
                 android:layout_width="match_parent"
                 android:layout_height="49dp"
+                android:background="@color/white"
                 android:elevation="2dp"
                 android:orientation="horizontal">
 

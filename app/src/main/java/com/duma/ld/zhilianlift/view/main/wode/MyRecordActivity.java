@@ -36,7 +36,7 @@ public class MyRecordActivity extends BaseSelectDelectActivity {
     @Override
     protected BaseAdapter initAdapter() {
         mAdapter = new BaseAdapter.Builder<MyRecordModel>(rvList, mActivity, R.layout.adapter_my_record)
-                .setTitleOrDrawableId("您还没有浏览记录哦~", R.drawable.record1)
+                .setTitleOrDrawableId("您还没有浏览记录哦~", R.drawable.zuji)
                 .buildLoad(new OnBaseLoadAdapterListener<MyRecordModel>() {
                     @Override
                     public void onLoadHttp(int page, int size) {
