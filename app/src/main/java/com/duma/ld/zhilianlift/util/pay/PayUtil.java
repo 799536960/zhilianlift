@@ -4,7 +4,13 @@ import android.app.Activity;
 import android.os.Message;
 
 import com.alipay.sdk.app.PayTask;
+import com.duma.ld.zhilianlift.base.MyApplication;
+import com.duma.ld.zhilianlift.model.WeiXinModel;
+import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
+import com.tencent.mm.opensdk.modelpay.PayReq;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import java.util.Map;
 
@@ -41,4 +47,20 @@ public class PayUtil {
         });
         thread.start();
     }
+
+    public void starWeiXin(final String payInfo) {
+        WeiXinModel weiXinBean = new Gson().fromJson(payInfo, WeiXinModel.class);
+        PayReq req = new PayReq();
+        req.appId = weiXinBean.getAppid();
+        req.partnerId = weiXinBean.getPartnerid();
+        req.prepayId = weiXinBean.getPrepayid();
+        req.nonceStr = weiXinBean.getNoncestr();
+        req.timeStamp = weiXinBean.getTimestamp();
+        req.packageValue = "Sign=WXPay";
+        req.sign = weiXinBean.getPaySign();
+        IWXAPI wxapi = WXAPIFactory.createWXAPI(MyApplication.getInstance(), null);
+        wxapi.registerApp(weiXinBean.getAppid());
+        wxapi.sendReq(req);
+    }
+
 }

@@ -65,6 +65,7 @@ public class PayActivity extends BaseMyActivity implements RadioGroup.OnCheckedC
     protected void onReceiveEvent(EventModel eventModel) {
         super.onReceiveEvent(eventModel);
         switch (eventModel.getCode()) {
+            case Constants.event_weixin_success:
             case Constants.event_zhifuBao_success:
                 IntentUtil.goPaySuccess(mActivity);
                 finish();
@@ -105,8 +106,7 @@ public class PayActivity extends BaseMyActivity implements RadioGroup.OnCheckedC
         model = (CommitOrderModel) getIntent().getSerializableExtra(Constants.Model);
         tvMoney.setText("¥" + model.getOrder_amount() + "元");
         radioGroup.setOnCheckedChangeListener(this);
-//        radioWeiXin.setChecked(true);
-        radioZhiFuBao.setChecked(true);
+        radioWeiXin.setChecked(true);
     }
 
     private void setType(int i) {

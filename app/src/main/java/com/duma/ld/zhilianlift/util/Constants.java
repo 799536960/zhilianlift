@@ -13,7 +13,7 @@ public class Constants {
     public static final String youxiang = "service@saibertron.com";
     public static final String Page = "p";
     public static final String Size = "size";
-
+    public static final String Weixin = "wx43bcc455bb86ae68";
     //支付宝
     public static final int SDK_PAY_FLAG = 1;
     //默认城市
@@ -56,6 +56,8 @@ public class Constants {
     public static final int event_refresh_order_comment = 15;
     //支付宝支付成功
     public static final int event_zhifuBao_success = 16;
+    //微信支付成功
+    public static final int event_weixin_success = 18;
     //添加支付宝账号成功 刷新
     public static final int event_addZhiFuBao_success = 17;
     /**

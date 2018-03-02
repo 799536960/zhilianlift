@@ -176,6 +176,10 @@
         <activity android:name=".view.main.pay.TiXianActivity" />
         <activity android:name=".view.main.pay.ChongZhiActivity" />
         <activity android:name=".view.main.pay.AddZhiFuBaoActivity" />
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
 
         <service
             android:name=".view.start.ApiService"
