@@ -31,10 +31,11 @@ public class AfterSalesListModel {
     private int id;
     private String return_code;
     private String reason;
-    private int refund_integral;
+    private String refund_integral;
     private String refund_deposit;
     private String refund_money;
     private String context;
+
 
     public String getSpec_key_name_noNull() {
         if (spec_key_name == null) {
@@ -132,11 +133,11 @@ public class AfterSalesListModel {
         this.reason = reason;
     }
 
-    public int getRefund_integral() {
+    public String getRefund_integral() {
         return refund_integral;
     }
 
-    public void setRefund_integral(int refund_integral) {
+    public void setRefund_integral(String refund_integral) {
         this.refund_integral = refund_integral;
     }
 

@@ -48,7 +48,7 @@ public class AddZhiFuBaoActivity extends BaseMyActivity {
     protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
         ZhiFuBaoUserModel model = (ZhiFuBaoUserModel) getIntent().getSerializableExtra(Constants.Model);
-        if (model != null && StringUtils.isEmpty(model.getAlipay_name())) {
+        if (model == null || StringUtils.isEmpty(model.getAlipay_name())) {
             mActivityConfig.setTopBar_A("添加支付宝账号");
         } else {
             mActivityConfig.setTopBar_A("修改支付宝账号");
