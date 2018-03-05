@@ -19,6 +19,7 @@ import com.duma.ld.zhilianlift.base.baseJsonHttp.MyJsonCallback;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
 import com.duma.ld.zhilianlift.model.CommitOrderModel;
 import com.duma.ld.zhilianlift.model.HttpResModel;
+import com.duma.ld.zhilianlift.model.WeiXinModel;
 import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.PublicUtil;
@@ -31,6 +32,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 import static com.duma.ld.zhilianlift.util.HttpUrl.get_code;
+import static com.duma.ld.zhilianlift.util.HttpUrl.get_code2;
 
 /**
  * 收银台
@@ -130,7 +132,7 @@ public class PayActivity extends BaseMyActivity implements RadioGroup.OnCheckedC
             case R.id.tv_Type_money:
                 switch (type) {
                     case 0:
-                        TsUtils.show("微信支付");
+                        weiXinHttp();
                         break;
                     case 1:
                         zhiFuBaoHttp();
@@ -161,17 +163,33 @@ public class PayActivity extends BaseMyActivity implements RadioGroup.OnCheckedC
     private void zhiFuBaoHttp() {
         GetRequest<HttpResModel<String>> request = OkGo.<HttpResModel<String>>get(get_code)
                 .tag(httpTag);
-        if (StringUtils.isEmpty(model.getMaster_order_sn())) {
-            request.params("order_id", model.getOrderId());
-        } else {
-            request.params("master_order_sn", model.getMaster_order_sn());
-        }
+        pulicRequest(request);
         request.execute(new MyJsonCallback<HttpResModel<String>>() {
             @Override
             protected void onJsonSuccess(Response<HttpResModel<String>> respons, HttpResModel<String> stringHttpResModel) {
                 payUtil.starZhiFuBao(stringHttpResModel.getResult());
             }
         }.isDialog(mActivity));
+    }
+
+    private void weiXinHttp() {
+        GetRequest<HttpResModel<WeiXinModel>> request = OkGo.<HttpResModel<WeiXinModel>>get(get_code2)
+                .tag(httpTag);
+        pulicRequest(request);
+        request.execute(new MyJsonCallback<HttpResModel<WeiXinModel>>() {
+            @Override
+            protected void onJsonSuccess(Response<HttpResModel<WeiXinModel>> respons, HttpResModel<WeiXinModel> stringHttpResModel) {
+                payUtil.starWeiXin(stringHttpResModel.getResult());
+            }
+        }.isDialog(mActivity));
+    }
+
+    private void pulicRequest(GetRequest request) {
+        if (StringUtils.isEmpty(model.getMaster_order_sn())) {
+            request.params("order_id", model.getOrderId());
+        } else {
+            request.params("master_order_sn", model.getMaster_order_sn());
+        }
     }
 }
 

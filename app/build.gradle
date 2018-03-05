@@ -117,7 +117,8 @@ dependencies {
     //支付宝
     implementation files('libs/alipaySdk-20170922.jar')
     //微信
-    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.1.0'
+//    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.1.0'
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
     //刷新
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
 }

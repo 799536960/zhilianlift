@@ -1,5 +1,7 @@
 package com.duma.ld.zhilianlift.model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by liudong on 16/12/5.
  */
@@ -7,20 +9,22 @@ package com.duma.ld.zhilianlift.model;
 public class WeiXinModel {
 
     /**
-     * appid : wxa8dce5196935ec34
-     * noncestr : xet7n9e6eqnzof8yu0jqqwslkchpe7yn
+     * appid : wx43bcc455bb86ae68
+     * noncestr : uvl0brnz2f6wthvlmh1g5gkzocvv32cs
      * package : Sign=WXPay
-     * partnerid : 1410577202
-     * prepayid : wx20161205123958f4e858975b0694564321
-     * timestamp : 1480912804
-     * paySign : 7C34D1A235A1A670C5D3BCA229EB0056
+     * partnerid : 1499284052
+     * prepayid : wx20180305111133a81f6359a00963757434
+     * timeStamp : 1520219493
+     * paySign : 7EC0BDC5435C5FE5D8A52B05BB3B1BA3
      */
 
     private String appid;
     private String noncestr;
+    @SerializedName("package")
+    private String packageX;
     private String partnerid;
     private String prepayid;
-    private String timestamp;
+    private String timeStamp;
     private String paySign;
 
     public String getAppid() {
@@ -39,6 +43,13 @@ public class WeiXinModel {
         this.noncestr = noncestr;
     }
 
+    public String getPackageX() {
+        return packageX;
+    }
+
+    public void setPackageX(String packageX) {
+        this.packageX = packageX;
+    }
 
     public String getPartnerid() {
         return partnerid;
@@ -56,12 +67,12 @@ public class WeiXinModel {
         this.prepayid = prepayid;
     }
 
-    public String getTimestamp() {
-        return timestamp;
+    public String getTimeStamp() {
+        return timeStamp;
     }
 
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
+    public void setTimeStamp(String timeStamp) {
+        this.timeStamp = timeStamp;
     }
 
     public String getPaySign() {
@@ -70,17 +81,5 @@ public class WeiXinModel {
 
     public void setPaySign(String paySign) {
         this.paySign = paySign;
-    }
-
-    @Override
-    public String toString() {
-        return "WeiXinModel{" +
-                "appid='" + appid + '\'' +
-                ", noncestr='" + noncestr + '\'' +
-                ", partnerid='" + partnerid + '\'' +
-                ", prepayid='" + prepayid + '\'' +
-                ", timestamp='" + timestamp + '\'' +
-                ", paySign='" + paySign + '\'' +
-                '}';
     }
 }
