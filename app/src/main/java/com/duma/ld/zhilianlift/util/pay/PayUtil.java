@@ -54,7 +54,7 @@ public class PayUtil {
         req.partnerId = weiXinBean.getPartnerid();
         req.prepayId = weiXinBean.getPrepayid();
         req.nonceStr = weiXinBean.getNoncestr();
-        req.timeStamp = weiXinBean.getTimeStamp();
+        req.timeStamp = weiXinBean.getTimestamp();
         req.packageValue = "Sign=WXPay";
         req.sign = weiXinBean.getPaySign();
         IWXAPI wxapi = WXAPIFactory.createWXAPI(MyApplication.getInstance(), Constants.Weixin, false);

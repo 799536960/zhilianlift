@@ -10,12 +10,12 @@ public class WeiXinModel {
 
     /**
      * appid : wx43bcc455bb86ae68
-     * noncestr : uvl0brnz2f6wthvlmh1g5gkzocvv32cs
+     * noncestr : qh2eixo9ahktfsur3y9r1jb0gdtkico5
      * package : Sign=WXPay
      * partnerid : 1499284052
-     * prepayid : wx20180305111133a81f6359a00963757434
-     * timeStamp : 1520219493
-     * paySign : 7EC0BDC5435C5FE5D8A52B05BB3B1BA3
+     * prepayid : wx20180305133804933434c8190194587877
+     * timestamp : 1520228284
+     * paySign : 491489ADB35BAAF8AC7D2137D2750E40
      */
 
     private String appid;
@@ -24,7 +24,7 @@ public class WeiXinModel {
     private String packageX;
     private String partnerid;
     private String prepayid;
-    private String timeStamp;
+    private String timestamp;
     private String paySign;
 
     public String getAppid() {
@@ -67,12 +67,12 @@ public class WeiXinModel {
         this.prepayid = prepayid;
     }
 
-    public String getTimeStamp() {
-        return timeStamp;
+    public String getTimestamp() {
+        return timestamp;
     }
 
-    public void setTimeStamp(String timeStamp) {
-        this.timeStamp = timeStamp;
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 
     public String getPaySign() {

@@ -14,6 +14,7 @@ import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseJsonHttp.MyJsonCallback;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
 import com.duma.ld.zhilianlift.model.HttpResModel;
+import com.duma.ld.zhilianlift.model.WeiXinModel;
 import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.pay.PayUtil;
 import com.lzy.okgo.OkGo;
@@ -23,6 +24,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 import static com.duma.ld.zhilianlift.util.HttpUrl.addRecharge;
+import static com.duma.ld.zhilianlift.util.HttpUrl.get_code_recharge;
 
 /**
  * 充值
@@ -72,8 +74,7 @@ public class ChongZhiActivity extends BaseMyActivity implements RadioGroup.OnChe
         super.init(savedInstanceState);
         payUtil = new PayUtil(mActivity);
         radioGroup.setOnCheckedChangeListener(this);
-//        radioWeiXin.setChecked(true);
-        radioZhiFuBao.setChecked(true);
+        radioWeiXin.setChecked(true);
     }
 
     @OnClick(R.id.tv_ok)
@@ -92,7 +93,7 @@ public class ChongZhiActivity extends BaseMyActivity implements RadioGroup.OnChe
 
         switch (type) {
             case 0:
-                TsUtils.show("微信支付");
+                weixinHttp();
                 break;
             case 1:
                 zhiFuBaoHttp();
@@ -111,6 +112,18 @@ public class ChongZhiActivity extends BaseMyActivity implements RadioGroup.OnChe
                     @Override
                     protected void onJsonSuccess(Response<HttpResModel<String>> respons, HttpResModel<String> stringHttpResModel) {
                         payUtil.starZhiFuBao(stringHttpResModel.getResult());
+                    }
+                }.isDialog(mActivity));
+    }
+
+    private void weixinHttp() {
+        OkGo.<HttpResModel<WeiXinModel>>get(get_code_recharge)
+                .tag(httpTag)
+                .params("account", editMoney.getText().toString())
+                .execute(new MyJsonCallback<HttpResModel<WeiXinModel>>() {
+                    @Override
+                    protected void onJsonSuccess(Response<HttpResModel<WeiXinModel>> respons, HttpResModel<WeiXinModel> stringHttpResModel) {
+                        payUtil.starWeiXin(stringHttpResModel.getResult());
                     }
                 }.isDialog(mActivity));
     }

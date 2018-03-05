@@ -115,4 +115,5 @@ public class HttpUrl {
     public static String editalipay = BaseUrl + "/index.php/api/user/editalipay";
     public static String addtixian = BaseUrl + "/index.php/api/user/addtixian";
     public static String get_code2 = BaseUrl + "/index.php/api/wxpay/get_code";
+    public static String get_code_recharge = BaseUrl + "/index.php/api/wxpay/get_code_recharge";
 }
