@@ -10,6 +10,14 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a', 'x86', 'x86_64'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
     }
     signingConfigs {
         release {
@@ -75,7 +83,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation project(':baselibrary')
     implementation project(':maplibrary')
-    implementation 'com.android.support:cardview-v7:27.0.2'
+    //银联
+    implementation files('libs/UPPayAssistEx.jar')
+    implementation files('libs/UPPayPluginExPro.jar')
+    implementation 'com.android.support:cardview-v7:27.1.0'
     implementation 'com.google.code.gson:gson:2.8.1'
     //权限
     implementation 'com.yanzhenjie:permission:1.1.2'
@@ -86,9 +97,7 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     //bottomBar
     implementation 'com.github.ittianyu:BottomNavigationViewEx:1.2.4'
-    implementation 'com.android.support:design:27.0.2'
-    //    //轮播
-    //    implementation 'com.bigkoo:convenientbanner:2.0.5'
+    implementation 'com.android.support:design:27.1.0'
     //选择城市索引
     implementation 'me.yokeyword:indexablerecyclerview:1.3.0'
     //可伸缩布局
@@ -97,9 +106,6 @@ dependencies {
     implementation 'org.litepal.android:core:1.6.0'
     //图片拍照选择器
     implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.1.9'
-//    implementation project(':picture_library')
-    //图片 因为上面的图片选择器带了 所以去掉
-//    implementation 'com.github.bumptech.glide:glide:4.3.1'
     //时间选择器
     implementation 'com.contrarywind:Android-PickerView:3.2.7'
     //popupWindow
@@ -112,13 +118,12 @@ dependencies {
     implementation 'com.just.agentweb:agentweb:3.1.0'
     //二维码
     implementation 'cn.bingoogolapple:bga-qrcode-zbar:1.2.1'
-//    //检查内存溢出
-//    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.4'
     //支付宝
     implementation files('libs/alipaySdk-20170922.jar')
     //微信
-//    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.1.0'
+    //    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.1.0'
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
     //刷新
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
+
 }

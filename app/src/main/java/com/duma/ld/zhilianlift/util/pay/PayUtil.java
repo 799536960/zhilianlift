@@ -1,9 +1,12 @@
 package com.duma.ld.zhilianlift.util.pay;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Message;
 
 import com.alipay.sdk.app.PayTask;
+import com.duma.ld.baselibrary.util.EventBusUtil;
+import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.zhilianlift.base.MyApplication;
 import com.duma.ld.zhilianlift.model.WeiXinModel;
 import com.duma.ld.zhilianlift.util.Constants;
@@ -11,10 +14,12 @@ import com.orhanobut.logger.Logger;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+import com.unionpay.UPPayAssistEx;
 
 import java.util.Map;
 
 import static com.duma.ld.zhilianlift.util.Constants.SDK_PAY_FLAG;
+import static com.duma.ld.zhilianlift.util.Constants.event_yinlian_success;
 
 /**
  * 支付工具
@@ -62,4 +67,36 @@ public class PayUtil {
         wxapi.sendReq(req);
     }
 
+    public void starYL(String sn) {
+        Logger.e("sn:" + sn);
+        String serverMode = "01";
+        int i = UPPayAssistEx.startPay(mActivity, null, null, sn, serverMode);
+        switch (i) {
+            case UPPayAssistEx.PLUGIN_VALID:
+                break;
+            case UPPayAssistEx.PLUGIN_NOT_FOUND:
+                TsUtils.show("请安装银联支付控件!");
+                break;
+        }
+    }
+
+    public void yinLanResult(Intent data) {
+        if (data == null) {
+            return;
+        }
+        /*
+         * 支付控件返回字符串:success、fail、cancel 分别代表支付成功，支付失败，支付取消
+         */
+        String str = data.getExtras().getString("pay_result");
+        if (str == null) {
+            return;
+        }
+        if (str.equalsIgnoreCase("success")) {
+            EventBusUtil.sendModel(event_yinlian_success);
+        } else if (str.equalsIgnoreCase("fail")) {
+            TsUtils.show("支付失败!");
+        } else if (str.equalsIgnoreCase("cancel")) {
+            TsUtils.show("用户取消支付!");
+        }
+    }
 }

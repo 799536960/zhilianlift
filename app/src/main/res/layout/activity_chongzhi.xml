@@ -74,7 +74,6 @@
             android:drawableEnd="@drawable/sl_radio"
             android:drawablePadding="10dp"
             android:drawableStart="@drawable/pay3"
-            android:enabled="false"
             android:paddingEnd="20dp"
             android:paddingStart="10dp"
             android:text="银联支付" />

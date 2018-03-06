@@ -1,6 +1,7 @@
 package com.duma.ld.zhilianlift.view.main.pay;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
@@ -11,7 +12,6 @@ import android.widget.TextView;
 import com.blankj.utilcode.util.StringUtils;
 import com.duma.ld.baselibrary.base.OnTopBarLeftListener;
 import com.duma.ld.baselibrary.model.EventModel;
-import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
@@ -31,6 +31,7 @@ import com.lzy.okgo.request.GetRequest;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.duma.ld.zhilianlift.util.HttpUrl.UnionPay;
 import static com.duma.ld.zhilianlift.util.HttpUrl.get_code;
 import static com.duma.ld.zhilianlift.util.HttpUrl.get_code2;
 
@@ -68,6 +69,7 @@ public class PayActivity extends BaseMyActivity implements RadioGroup.OnCheckedC
         super.onReceiveEvent(eventModel);
         switch (eventModel.getCode()) {
             case Constants.event_weixin_success:
+            case Constants.event_yinlian_success:
             case Constants.event_zhifuBao_success:
                 IntentUtil.goPaySuccess(mActivity);
                 finish();
@@ -138,7 +140,7 @@ public class PayActivity extends BaseMyActivity implements RadioGroup.OnCheckedC
                         zhiFuBaoHttp();
                         break;
                     case 2:
-                        TsUtils.show("银联支付");
+                        yinLianHttp();
                         break;
                 }
                 break;
@@ -158,6 +160,18 @@ public class PayActivity extends BaseMyActivity implements RadioGroup.OnCheckedC
                 setType(2);
                 break;
         }
+    }
+
+    private void yinLianHttp() {
+        GetRequest<HttpResModel<String>> request = OkGo.<HttpResModel<String>>get(UnionPay)
+                .tag(httpTag);
+        pulicRequest(request);
+        request.execute(new MyJsonCallback<HttpResModel<String>>() {
+            @Override
+            protected void onJsonSuccess(Response<HttpResModel<String>> respons, HttpResModel<String> stringHttpResModel) {
+                payUtil.starYL(stringHttpResModel.getResult());
+            }
+        }.isDialog(mActivity));
     }
 
     private void zhiFuBaoHttp() {
@@ -191,6 +205,15 @@ public class PayActivity extends BaseMyActivity implements RadioGroup.OnCheckedC
             request.params("master_order_sn", model.getMaster_order_sn());
         }
     }
+
+    //银联支付结果返回
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        payUtil.yinLanResult(data);
+    }
+
+
 }
 
 

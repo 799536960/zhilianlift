@@ -1,5 +1,6 @@
 package com.duma.ld.zhilianlift.view.main.pay;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -23,6 +24,7 @@ import com.lzy.okgo.model.Response;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.duma.ld.zhilianlift.util.HttpUrl.UnRecharge;
 import static com.duma.ld.zhilianlift.util.HttpUrl.addRecharge;
 import static com.duma.ld.zhilianlift.util.HttpUrl.get_code_recharge;
 
@@ -57,6 +59,8 @@ public class ChongZhiActivity extends BaseMyActivity implements RadioGroup.OnChe
     protected void onReceiveEvent(EventModel eventModel) {
         super.onReceiveEvent(eventModel);
         switch (eventModel.getCode()) {
+            case Constants.event_yinlian_success:
+            case Constants.event_weixin_success:
             case Constants.event_zhifuBao_success:
                 TsUtils.show("支付成功!");
                 finish();
@@ -99,7 +103,7 @@ public class ChongZhiActivity extends BaseMyActivity implements RadioGroup.OnChe
                 zhiFuBaoHttp();
                 break;
             case 2:
-                TsUtils.show("银联支付");
+                yinLianHttp();
                 break;
         }
     }
@@ -112,6 +116,18 @@ public class ChongZhiActivity extends BaseMyActivity implements RadioGroup.OnChe
                     @Override
                     protected void onJsonSuccess(Response<HttpResModel<String>> respons, HttpResModel<String> stringHttpResModel) {
                         payUtil.starZhiFuBao(stringHttpResModel.getResult());
+                    }
+                }.isDialog(mActivity));
+    }
+
+    private void yinLianHttp() {
+        OkGo.<HttpResModel<String>>get(UnRecharge)
+                .tag(httpTag)
+                .params("account", editMoney.getText().toString())
+                .execute(new MyJsonCallback<HttpResModel<String>>() {
+                    @Override
+                    protected void onJsonSuccess(Response<HttpResModel<String>> respons, HttpResModel<String> stringHttpResModel) {
+                        payUtil.starYL(stringHttpResModel.getResult());
                     }
                 }.isDialog(mActivity));
     }
@@ -147,4 +163,10 @@ public class ChongZhiActivity extends BaseMyActivity implements RadioGroup.OnChe
         type = i;
     }
 
+    //银联支付结果返回
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        payUtil.yinLanResult(data);
+    }
 }
