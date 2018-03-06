@@ -24,21 +24,19 @@ import com.duma.ld.zhilianlift.base.baseJsonHttp.MyJsonCallback;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyFragment;
 import com.duma.ld.zhilianlift.model.CommentModel;
 import com.duma.ld.zhilianlift.model.GoodsMainModel;
+import com.duma.ld.zhilianlift.model.GoodsMainStoreAddressModel;
 import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.ImageLoader;
 import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.PublicUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
+import com.duma.ld.zhilianlift.view.main.home.GoodsRefreshUtil;
 import com.duma.ld.zhilianlift.widget.SimpleRatingBar;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshFooter;
-import com.scwang.smartrefresh.layout.api.RefreshHeader;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.constant.RefreshState;
-import com.scwang.smartrefresh.layout.listener.OnMultiPurposeListener;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;
 
@@ -117,32 +115,7 @@ public class GoodsMainFragment extends BaseMyFragment {
             mActivity.finish();
         }
         activity = (GoodsDetailsActivity) mActivity;
-        scrollView.setOnMultiPurposeListener(new OnMultiPurposeListener() {
-            @Override
-            public void onHeaderPulling(RefreshHeader header, float percent, int offset, int headerHeight, int extendHeight) {
-
-            }
-
-            @Override
-            public void onHeaderReleased(RefreshHeader header, int headerHeight, int extendHeight) {
-
-            }
-
-            @Override
-            public void onHeaderReleasing(RefreshHeader header, float percent, int offset, int headerHeight, int extendHeight) {
-
-            }
-
-            @Override
-            public void onHeaderStartAnimator(RefreshHeader header, int headerHeight, int extendHeight) {
-
-            }
-
-            @Override
-            public void onHeaderFinish(RefreshHeader header, boolean success) {
-
-            }
-
+        scrollView.setOnMultiPurposeListener(new GoodsRefreshUtil() {
             @Override
             public void onFooterPulling(RefreshFooter footer, float percent, int offset, int footerHeight, int extendHeight) {
                 if (percent > 1) {
@@ -150,11 +123,6 @@ public class GoodsMainFragment extends BaseMyFragment {
                 } else {
                     tvRefresh.setText("上拉查看图文详情");
                 }
-            }
-
-            @Override
-            public void onFooterReleased(RefreshFooter footer, int footerHeight, int extendHeight) {
-
             }
 
             @Override
@@ -166,44 +134,80 @@ public class GoodsMainFragment extends BaseMyFragment {
                     }
                 }
             }
-
-            @Override
-            public void onFooterStartAnimator(RefreshFooter footer, int footerHeight, int extendHeight) {
-
-            }
-
-            @Override
-            public void onFooterFinish(RefreshFooter footer, boolean success) {
-
-            }
-
-            @Override
-            public void onLoadMore(RefreshLayout refreshLayout) {
-
-            }
-
-            @Override
-            public void onRefresh(RefreshLayout refreshLayout) {
-
-            }
-
-            @Override
-            public void onStateChanged(RefreshLayout refreshLayout, RefreshState oldState, RefreshState newState) {
-
-            }
         });
-//        scrollView.setOnScrollEnd(new MyScrollview.OnScrollEnd() {
+//        scrollView.setOnMultiPurposeListener(new OnMultiPurposeListener() {
 //            @Override
-//            public void onEnd() {
-////                if (tvRefresh.getText().equals("松开后查看详情")) {
-////                    tvRefresh.setText("上拉查看图文详情");
-//                activity.tabInfo();
-////                }
+//            public void onHeaderPulling(RefreshHeader header, float percent, int offset, int headerHeight, int extendHeight) {
+//
 //            }
 //
 //            @Override
-//            public void onSuccess() {
-////                tvRefresh.setText("松开后查看详情");
+//            public void onHeaderReleased(RefreshHeader header, int headerHeight, int extendHeight) {
+//
+//            }
+//
+//            @Override
+//            public void onHeaderReleasing(RefreshHeader header, float percent, int offset, int headerHeight, int extendHeight) {
+//
+//            }
+//
+//            @Override
+//            public void onHeaderStartAnimator(RefreshHeader header, int headerHeight, int extendHeight) {
+//
+//            }
+//
+//            @Override
+//            public void onHeaderFinish(RefreshHeader header, boolean success) {
+//
+//            }
+//
+//            @Override
+//            public void onFooterPulling(RefreshFooter footer, float percent, int offset, int footerHeight, int extendHeight) {
+//                if (percent > 1) {
+//                    tvRefresh.setText("松开查看图文详情");
+//                } else {
+//                    tvRefresh.setText("上拉查看图文详情");
+//                }
+//            }
+//
+//            @Override
+//            public void onFooterReleased(RefreshFooter footer, int footerHeight, int extendHeight) {
+//
+//            }
+//
+//            @Override
+//            public void onFooterReleasing(RefreshFooter footer, float percent, int offset, int footerHeight, int extendHeight) {
+//                if (percent == 0) {
+//                    if (tvRefresh.getText().equals("松开查看图文详情")) {
+//                        activity.tabInfo();
+//                        tvRefresh.setText("上拉查看图文详情");
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onFooterStartAnimator(RefreshFooter footer, int footerHeight, int extendHeight) {
+//
+//            }
+//
+//            @Override
+//            public void onFooterFinish(RefreshFooter footer, boolean success) {
+//
+//            }
+//
+//            @Override
+//            public void onLoadMore(RefreshLayout refreshLayout) {
+//
+//            }
+//
+//            @Override
+//            public void onRefresh(RefreshLayout refreshLayout) {
+//
+//            }
+//
+//            @Override
+//            public void onStateChanged(RefreshLayout refreshLayout, RefreshState oldState, RefreshState newState) {
+//
 //            }
 //        });
         initCommentAdapter();
@@ -363,7 +367,13 @@ public class GoodsMainFragment extends BaseMyFragment {
             tvGoodsTitle.setText(goods_remark);
         }
         //区域
-        tvGoodsCity.setText("仅限" + "湖州吴兴区,长兴县");
+        List<GoodsMainStoreAddressModel> storeAddressAll = result.getStoreAddressAll();
+        if (storeAddressAll != null && storeAddressAll.size() > 0) {
+            GoodsMainStoreAddressModel addressModel = storeAddressAll.get(0);
+            tvGoodsCity.setText("仅限" + addressModel.getAddress());
+        } else {
+            tvGoodsCity.setText("区域获取失败!");
+        }
         //店铺名字
         tvGoodsStore.setText("由 " + result.getStore().getStore_name() + " 提供");
         //默认规格

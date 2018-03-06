@@ -17,6 +17,15 @@ public class GoodsMainModel {
     private List<GalleryBean> gallery;
     private List<CommentModel> comment;
     private StoreModel store;
+    private List<GoodsMainStoreAddressModel> StoreAddressAll;
+
+    public List<GoodsMainStoreAddressModel> getStoreAddressAll() {
+        return StoreAddressAll;
+    }
+
+    public void setStoreAddressAll(List<GoodsMainStoreAddressModel> storeAddressAll) {
+        StoreAddressAll = storeAddressAll;
+    }
 
     public StoreModel getStore() {
         return store;
@@ -803,7 +812,6 @@ public class GoodsMainModel {
             this.district = district;
         }
     }
-
 
 
     public static class GalleryBean {
