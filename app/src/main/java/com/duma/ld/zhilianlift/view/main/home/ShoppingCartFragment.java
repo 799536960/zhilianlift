@@ -55,6 +55,7 @@ import static com.duma.ld.zhilianlift.util.HttpUrl.goodsInfo;
 /**
  * 购物车
  * Created by liudong on 2017/11/29.
+ * 3.8 使用diff优化购物车
  */
 
 public class ShoppingCartFragment extends BaseMyFragment {
