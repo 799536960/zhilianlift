@@ -140,7 +140,7 @@ public class ScanPayActivity extends BaseMyActivity {
                                 model.setRenovation_money(-1);
                             }
                             if (result.getPay_points() == 1) {
-                                model.setPay_points(result.getUsers().getUser_money());
+                                model.setPay_points(result.getUsers().getPay_points());
                                 model.setOnClickDefaut(1);
                             } else {
                                 model.setPay_points(-1);
