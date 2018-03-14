@@ -10,12 +10,19 @@ import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.baselibrary.util.config.FragmentConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
+import com.duma.ld.zhilianlift.base.baseJsonHttp.MyJsonCallback;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyFragment;
+import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.model.PayStoreModel;
 import com.duma.ld.zhilianlift.util.Constants;
+import com.duma.ld.zhilianlift.util.IntentUtil;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.model.Response;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static com.duma.ld.zhilianlift.util.HttpUrl.paypwd_is;
 
 /**
  * 确认付款
@@ -111,8 +118,38 @@ public class ConfirmPayFragment extends BaseMyFragment {
                 startForResult(SelectPayTypeFragment.newInstance(model), REQ_CODE);
                 break;
             case R.id.tv_ok:
-                start(PayInputPasswordFragment.newInstance(model));
+                /**
+                 * 先判断 是否设置密码
+                 */
+                OkGo.<HttpResModel<String>>get(paypwd_is)
+                        .tag(httpTag)
+                        .execute(new MyJsonCallback<HttpResModel<String>>() {
+                            @Override
+                            protected void onJsonSuccess(Response<HttpResModel<String>> respons, HttpResModel<String> stringHttpResModel) {
+                                if (isSetting(stringHttpResModel.getResult())) {
+                                    //跳转设置支付密码
+                                    IntentUtil.goVerifyPhone_payPassword(mActivity);
+                                    TsUtils.show("请设置支付密码!");
+                                } else {
+                                    start(PayInputPasswordFragment.newInstance(model));
+                                }
+                            }
+                        }.isDialog(mActivity));
                 break;
+        }
+    }
+
+    /**
+     * result: 1   没有设置支付密码
+     * result: 2   有设置支付密码
+     * <p>
+     * true 咩有
+     */
+    public boolean isSetting(String isSetting) {
+        if (isSetting.equals("1")) {
+            return true;
+        } else {
+            return false;
         }
     }
 }

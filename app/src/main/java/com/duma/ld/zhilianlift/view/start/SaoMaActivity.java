@@ -60,11 +60,11 @@ public class SaoMaActivity extends BaseMyActivity implements QRCodeView.Delegate
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        mQRCodeView.startSpot();
                     }
                 })
                 .setCancelable(false);
         builder.show();
-        mQRCodeView.startSpot();
     }
 
 

@@ -53,7 +53,7 @@ public class SendCodeUtil {
         this.textView = codeText;
         this.mActivity = activity;
         initTextView();
-        countDownTimer = new CountDownTimer(10 * 1000, 1 + 1000) {
+        countDownTimer = new CountDownTimer(150 * 1000, 1 + 1000) {
             @Override
             public void onTick(long l) {
                 textView.setText("重新发送(" + (int) (l / 1000) + "s)");

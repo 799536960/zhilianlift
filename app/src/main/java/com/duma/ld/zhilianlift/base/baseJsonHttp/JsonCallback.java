@@ -25,12 +25,13 @@ public abstract class JsonCallback<T> extends AbsCallback<T> {
         Type rawType = ((ParameterizedType) type).getRawType();
         Type typeArgument = ((ParameterizedType) type).getActualTypeArguments()[0];
         JsonReader jsonReader = new JsonReader(response.body().charStream());
+        //获取格式化的数据
+        HttpResModel httpResModel = null;
         if (typeArgument == Void.class) {
             HttpSimpleResModel simpleResponse = Convert.fromJson(jsonReader, HttpSimpleResModel.class);
+            httpResModel = simpleResponse.toLzyResponse();
             response.close();
-            return (T) simpleResponse.toLzyResponse();
         } else if (rawType == HttpResModel.class) {
-            HttpResModel httpResModel = null;
             try {
                 httpResModel = Convert.fromJson(jsonReader, type);
             } catch (JsonIOException | JsonSyntaxException e) {
@@ -38,31 +39,27 @@ public abstract class JsonCallback<T> extends AbsCallback<T> {
             } finally {
                 response.close();
             }
-            String code = httpResModel.getStatus();
-            /**
-             * 200成功 100重新登陆 400读msg
-             */
-//            if (code.equals("200")){
-//                return (T) httpResModel;
-//            }else {
-//                throw new IllegalStateException(httpResModel.message);
-//            }
-            switch (code) {
-                case "200":
-                    return (T) httpResModel;
-                case "400":
-                    String msg = httpResModel.getMsg();
-                    if (msg == null) {
-                        throw new IllegalStateException("服务器异常!");
-                    } else {
-                        throw new IllegalStateException(msg);
-                    }
-                default:
-                    throw new IllegalStateException(httpResModel.getStatus());
-            }
         } else {
             response.close();
             throw new IllegalStateException("基类错误无法解析!");
         }
+        /**
+         * 200成功 100重新登陆 400读msg
+         */
+        String code = httpResModel.getStatus();
+        switch (code) {
+            case "200":
+                return (T) httpResModel;
+            case "400":
+                String msg = httpResModel.getMsg();
+                if (msg == null) {
+                    throw new IllegalStateException("服务器异常!");
+                } else {
+                    throw new IllegalStateException(msg);
+                }
+            default:
+                throw new IllegalStateException(httpResModel.getStatus());
+        }
     }
+
 }
