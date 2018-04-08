@@ -117,5 +117,5 @@ public class HttpUrl {
     public static String get_code2 = BaseUrl + "/index.php/api/wxpay/get_code";
     public static String get_code_recharge = BaseUrl + "/index.php/api/wxpay/get_code_recharge";
     public static String UnionPay = BaseUrl + "/index.php/api/Union/UnionPay";
-    public static String UnRecharge= BaseUrl + "/index.php/api/Union/UnRecharge";
+    public static String UnRecharge = BaseUrl + "/index.php/api/Union/UnRecharge";
 }

@@ -55,19 +55,27 @@
                 android:textSize="12sp" />
         </LinearLayout>
 
-        <FrameLayout
+        <LinearLayout
             android:id="@+id/layout_scan"
             style="@style/layout_padding"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@drawable/ripple_bai">
+            android:background="@drawable/ripple_bai"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:src="@drawable/scanning" />
-        </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="扫一扫"
+                android:textSize="10sp" />
+        </LinearLayout>
 
 
     </LinearLayout>

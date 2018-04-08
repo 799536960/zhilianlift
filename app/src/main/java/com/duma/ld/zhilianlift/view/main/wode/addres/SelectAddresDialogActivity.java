@@ -109,42 +109,6 @@ public class SelectAddresDialogActivity extends BaseMyActivity {
             viewPager.setCurrentItem(3);
         }
 
-
-//        MyViewPagerAdapter viewPagerAdapter = new MyViewPagerAdapter(getSupportFragmentManager());
-//        if (pcdAddresModel.getProvinceModel() == null) {
-//            //还没有选择省 表示还没选择
-//            provinceFragment = SelectAddresFragment.newInstance(pcdAddresModel);
-//            viewPagerAdapter.addFragment(provinceFragment, "请选择");
-//            viewPager.setOffscreenPageLimit(3);
-//            viewPager.setAdapter(viewPagerAdapter);
-//            tabLayout.setupWithViewPager(viewPager);
-//            return;
-//        }
-//        if (pcdAddresModel.getProvinceModel() != null && pcdAddresModel.getCityModel() == null) {
-//            //还没有选择市 已经选择了省
-//            viewPagerAdapter.addFragment(provinceFragment, pcdAddresModel.getProvinceModel().getName());
-//            cityFragment = SelectAddresFragment.newInstance(pcdAddresModel);
-//            viewPagerAdapter.addFragment(cityFragment, "请选择");
-//            viewPager.setOffscreenPageLimit(3);
-//            viewPager.setAdapter(viewPagerAdapter);
-//            tabLayout.setupWithViewPager(viewPager);
-//            viewPager.setCurrentItem(2);
-//            return;
-//        }
-//        if (pcdAddresModel.getProvinceModel() != null && pcdAddresModel.getCityModel() != null && pcdAddresModel.getDistrictModel() == null) {
-//            //还没有选择区 已经选择了省 市
-//            viewPagerAdapter.addFragment(provinceFragment, pcdAddresModel.getProvinceModel().getName());
-//            viewPagerAdapter.addFragment(cityFragment, pcdAddresModel.getCityModel().getName());
-//            districtFragment = SelectAddresFragment.newInstance(pcdAddresModel);
-//            viewPagerAdapter.addFragment(districtFragment, "请选择");
-//            viewPager.setOffscreenPageLimit(3);
-//            viewPager.setAdapter(viewPagerAdapter);
-//            tabLayout.setupWithViewPager(viewPager);
-//            viewPager.setCurrentItem(3);
-//            return;
-//        }
-
-
     }
 
     @Override

@@ -5,7 +5,6 @@
     android:background="@color/hui_bg"
     android:orientation="vertical">
 
-
     <LinearLayout
         android:id="@+id/layout_icon"
         style="@style/layout_userdata_padding"
