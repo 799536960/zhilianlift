@@ -18,7 +18,8 @@
             android:id="@+id/img_1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:scaleType="centerCrop" />
 
         <View style="@style/shuxian" />
 
@@ -32,7 +33,8 @@
                 android:id="@+id/img_2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:scaleType="centerCrop" />
 
             <View style="@style/henxian" />
 
@@ -40,7 +42,8 @@
                 android:id="@+id/img_4"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:scaleType="centerCrop" />
         </LinearLayout>
 
         <View style="@style/shuxian" />
@@ -55,7 +58,8 @@
                 android:id="@+id/img_3"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:scaleType="centerCrop" />
 
             <View style="@style/henxian" />
 
@@ -63,7 +67,8 @@
                 android:id="@+id/img_5"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:scaleType="centerCrop" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -6,8 +6,6 @@ import android.view.animation.Animation;
 import android.widget.LinearLayout;
 
 import com.duma.ld.zhilianlift.R;
-import com.duma.ld.zhilianlift.base.baseAdapter.BaseAdapter;
-import com.duma.ld.zhilianlift.model.QuModel;
 import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
 import com.duma.ld.zhilianlift.widget.LinearImageLayout;
@@ -21,7 +19,6 @@ import razerdp.basepopup.BasePopupWindow;
 
 public class GoodsInfoPopupWindow extends BasePopupWindow implements View.OnClickListener {
     private Activity activity;
-    public BaseAdapter<QuModel> adapter;
     private LinearLayout layout_message, layout_home, layout_search, layout_collect, layout_jilu;
     private LinearImageLayout img_message;
 

@@ -69,6 +69,7 @@
                 android:id="@+id/edit_num"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:digits="1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"
                 android:hint="请填写身份证号码"
                 android:inputType="number"
                 android:textSize="15sp" />

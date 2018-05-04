@@ -473,7 +473,7 @@ public class IntentUtil {
     }
 
 
-    //租房详情页
+    //租房详情页w
     public static void goHouseInfo(Activity activity, int houseId) {
         Intent intent = new Intent(activity, HouseInfoActivity.class);
         intent.putExtra(Constants.id, houseId + "");

@@ -206,8 +206,8 @@ public class NewHouseInfoFragment extends BaseMyFragment {
         tvJianZhuLeiBie.setNewText(house.getArchitecture_type());
         tvChanQuanNianXian.setNewText(house.getProperty(), "年");
         tvTingCheWei.setNewText(house.getParkinglot());
-        tvRongJiLv.setNewText(house.getVolume(), "%");
-        tvLvHuaLv.setNewText(house.getGreen(), "%");
+        tvRongJiLv.setNewText(house.getVolume());
+        tvLvHuaLv.setNewText(house.getGreen());
         tvKaiFaShang.setNewText(house.getDevelopers());
         tvWuYeleiXin.setNewText(house.getPurpose_name());
         if (house.getCompleted_time() == 0) {

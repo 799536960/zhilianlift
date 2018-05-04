@@ -64,7 +64,7 @@ public class PinPaiMenDIanActivity extends BaseMyActivity {
                         OkGo.<HttpResModel<PinPaiMenDianModel>>get(StoreByBrand)
                                 .tag(httpTag)
                                 .params(Constants.Page, page)
-                                .params("cat_id3", id)
+                                .params("brand_id", id)
                                 .params("latitude", SpDataUtil.getLocation().getmLatitude())
                                 .params("longitude", SpDataUtil.getLocation().getmLongitude())
                                 .execute(new MyJsonCallback<HttpResModel<PinPaiMenDianModel>>(mActivityConfig) {

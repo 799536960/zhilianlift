@@ -32,7 +32,7 @@ public class SaoMaActivity extends BaseMyActivity implements QRCodeView.Delegate
 
     @Override
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig) {
-        return initConfig.setLayoutIdByActivity(R.layout.activity_saoma, false).setTopBar_A("付款");
+        return initConfig.setLayoutIdByActivity(R.layout.activity_saoma, false).setTopBar_A("");
     }
 
     @Override

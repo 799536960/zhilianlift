@@ -41,7 +41,7 @@ import static com.lzy.okgo.cache.CacheMode.FIRST_CACHE_THEN_REQUEST;
 
 public class ClassFragment extends BaseMyFragment {
     @BindView(R.id.layout_scan)
-    FrameLayout layoutScan;
+    LinearLayout layoutScan;
     @BindView(R.id.layout_search)
     LinearLayout layoutSearch;
     @BindView(R.id.layout_message)

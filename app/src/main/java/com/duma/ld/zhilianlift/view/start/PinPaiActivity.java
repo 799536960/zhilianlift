@@ -19,8 +19,8 @@ import com.duma.ld.zhilianlift.base.baseAdapter.OnBaseLoadAdapterListener;
 import com.duma.ld.zhilianlift.base.baseJsonHttp.MyJsonCallback;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
 import com.duma.ld.zhilianlift.model.HttpResModel;
-import com.duma.ld.zhilianlift.model.PinPaiClass12Model;
-import com.duma.ld.zhilianlift.model.PinPaiClass3Model;
+import com.duma.ld.zhilianlift.model.PingPaiListModel;
+import com.duma.ld.zhilianlift.model.PingPaiShaiXuanModel;
 import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.DialogUtil;
 import com.duma.ld.zhilianlift.util.ImageLoader;
@@ -37,8 +37,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static com.duma.ld.zhilianlift.util.HttpUrl.ThereCategoryList;
-import static com.duma.ld.zhilianlift.util.HttpUrl.TwoCategoryList;
+import static com.duma.ld.zhilianlift.util.HttpUrl.getBrandById;
+import static com.duma.ld.zhilianlift.util.HttpUrl.goodsSecAndThirdCategoryList;
 
 /**
  * 品牌
@@ -58,7 +58,7 @@ public class PinPaiActivity extends BaseMyActivity {
     CheckBoxGoodsList cbShaiXuan;
     @BindView(R.id.view_show)
     View viewShow;
-    private BaseAdapter<PinPaiClass3Model> mAdapter;
+    private BaseAdapter<PingPaiListModel> mAdapter;
     private PinPaiTwoListPopupWindow pinPaiTwoListPopupWindow;
 
     @Override
@@ -77,32 +77,33 @@ public class PinPaiActivity extends BaseMyActivity {
                 onClickLoadingRefresh();
             }
         });
-        mAdapter = new BaseAdapter.Builder<PinPaiClass3Model>(rvList, mActivity, R.layout.adapter_pinpai)
+        mAdapter = new BaseAdapter.Builder<PingPaiListModel>(rvList, mActivity, R.layout.adapter_pinpai)
                 .setLayoutManager(new GridLayoutManager(mActivity, 4))
-                .buildLoad(new OnBaseLoadAdapterListener<PinPaiClass3Model>() {
+                .buildLoad(new OnBaseLoadAdapterListener<PingPaiListModel>() {
                     @Override
                     public void onLoadHttp(int page, int size) {
-                        GetRequest<HttpResModel<List<PinPaiClass3Model>>> params = OkGo.<HttpResModel<List<PinPaiClass3Model>>>get(ThereCategoryList)
+                        GetRequest<HttpResModel<List<PingPaiListModel>>> params = OkGo.<HttpResModel<List<PingPaiListModel>>>get(getBrandById)
                                 .tag(httpTag)
                                 .params(Constants.Page, page)
                                 .params(Constants.Size, 30);
-                        PinPaiClass12Model.ListBean selectModel = pinPaiTwoListPopupWindow.getSelectModel();
+                        PingPaiShaiXuanModel.SubCategoryBean selectModel = pinPaiTwoListPopupWindow.getSelectModel();
                         if (selectModel != null) {
                             params.params("id", selectModel.getId());
+                            params.params("level", selectModel.getLevel());
                         }
                         params
-                                .execute(new MyJsonCallback<HttpResModel<List<PinPaiClass3Model>>>(mActivityConfig) {
+                                .execute(new MyJsonCallback<HttpResModel<List<PingPaiListModel>>>(mActivityConfig) {
                                     @Override
-                                    protected void onJsonSuccess(Response<HttpResModel<List<PinPaiClass3Model>>> respons, HttpResModel<List<PinPaiClass3Model>> listHttpResModel) {
+                                    protected void onJsonSuccess(Response<HttpResModel<List<PingPaiListModel>>> respons, HttpResModel<List<PingPaiListModel>> listHttpResModel) {
                                         mAdapter.setLoadData(listHttpResModel.getResult());
                                     }
                                 }.setLoadAdapter(mAdapter));
                     }
 
                     @Override
-                    public void convert(BaseViewHolder helper, PinPaiClass3Model item) {
-                        helper.setText(R.id.tv_name, item.getMobile_name());
-                        ImageLoader.with(item.getImage(), (ImageView) helper.getView(R.id.img_icon));
+                    public void convert(BaseViewHolder helper, PingPaiListModel item) {
+                        helper.setText(R.id.tv_name, item.getName());
+                        ImageLoader.with(item.getLogo(), (ImageView) helper.getView(R.id.img_icon));
                     }
                 });
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
@@ -140,11 +141,11 @@ public class PinPaiActivity extends BaseMyActivity {
 
     private void getShaiXuanHttp() {
         DialogUtil.getInstance().show_noBack(mActivity);
-        OkGo.<HttpResModel<List<PinPaiClass12Model>>>get(TwoCategoryList)
+        OkGo.<HttpResModel<List<PingPaiShaiXuanModel>>>get(goodsSecAndThirdCategoryList)
                 .tag(httpTag)
-                .execute(new MyJsonCallback<HttpResModel<List<PinPaiClass12Model>>>() {
+                .execute(new MyJsonCallback<HttpResModel<List<PingPaiShaiXuanModel>>>() {
                     @Override
-                    protected void onJsonSuccess(Response<HttpResModel<List<PinPaiClass12Model>>> respons, HttpResModel<List<PinPaiClass12Model>> listHttpResModel) {
+                    protected void onJsonSuccess(Response<HttpResModel<List<PingPaiShaiXuanModel>>> respons, HttpResModel<List<PingPaiShaiXuanModel>> listHttpResModel) {
                         DialogUtil.getInstance().hide();
                         pinPaiTwoListPopupWindow.setHousePopModel(listHttpResModel.getResult());
                         cbShaiXuan.setChecked(true);

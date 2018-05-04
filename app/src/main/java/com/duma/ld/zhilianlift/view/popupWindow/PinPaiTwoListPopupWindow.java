@@ -12,7 +12,7 @@ import com.duma.ld.baselibrary.util.ZhuanHuanUtil;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseAdapter.BaseAdapter;
 import com.duma.ld.zhilianlift.base.baseAdapter.OnBaseAdapterListener;
-import com.duma.ld.zhilianlift.model.PinPaiClass12Model;
+import com.duma.ld.zhilianlift.model.PingPaiShaiXuanModel;
 import com.duma.ld.zhilianlift.widget.CheckBoxGoodsList;
 
 import java.util.List;
@@ -26,8 +26,8 @@ import razerdp.basepopup.BasePopupWindow;
 
 public class PinPaiTwoListPopupWindow extends BasePopupWindow {
     private Activity mActivity;
-    private BaseAdapter<PinPaiClass12Model> mAdapterTitle;
-    private BaseAdapter<PinPaiClass12Model.ListBean> mAdapterContent;
+    private BaseAdapter<PingPaiShaiXuanModel> mAdapterTitle;
+    private BaseAdapter<PingPaiShaiXuanModel.SubCategoryBean> mAdapterContent;
     private int mPositionTitle;
     private int mPositionContent;
 
@@ -36,11 +36,11 @@ public class PinPaiTwoListPopupWindow extends BasePopupWindow {
         return mPositionContent;
     }
 
-    public BaseAdapter<PinPaiClass12Model> getmAdapterTitle() {
+    public BaseAdapter<PingPaiShaiXuanModel> getmAdapterTitle() {
         return mAdapterTitle;
     }
 
-    public BaseAdapter<PinPaiClass12Model.ListBean> getmAdapterContent() {
+    public BaseAdapter<PingPaiShaiXuanModel.SubCategoryBean> getmAdapterContent() {
         return mAdapterContent;
     }
 
@@ -73,11 +73,11 @@ public class PinPaiTwoListPopupWindow extends BasePopupWindow {
     protected void initData() {
         RecyclerView rv_list_title = getPopupWindowView().findViewById(R.id.rv_list_title);
         RecyclerView rv_list_content = getPopupWindowView().findViewById(R.id.rv_list_content);
-        mAdapterTitle = new BaseAdapter.Builder<PinPaiClass12Model>(rv_list_title, mActivity, R.layout.adapter_pop_list_title)
+        mAdapterTitle = new BaseAdapter.Builder<PingPaiShaiXuanModel>(rv_list_title, mActivity, R.layout.adapter_pop_list_title)
                 .setNoEnpty()
-                .build(new OnBaseAdapterListener<PinPaiClass12Model>() {
+                .build(new OnBaseAdapterListener<PingPaiShaiXuanModel>() {
                     @Override
-                    public void convert(BaseViewHolder helper, PinPaiClass12Model item) {
+                    public void convert(BaseViewHolder helper, PingPaiShaiXuanModel item) {
                         TextView tv_name = helper.getView(R.id.tv_name);
                         tv_name.setText(item.getMobile_name());
                         if (mPositionTitle == helper.getLayoutPosition()) {
@@ -89,11 +89,11 @@ public class PinPaiTwoListPopupWindow extends BasePopupWindow {
                         }
                     }
                 });
-        mAdapterContent = new BaseAdapter.Builder<PinPaiClass12Model.ListBean>(rv_list_content, mActivity, R.layout.adapter_pop_list)
+        mAdapterContent = new BaseAdapter.Builder<PingPaiShaiXuanModel.SubCategoryBean>(rv_list_content, mActivity, R.layout.adapter_pop_list)
                 .setNoEnpty()
-                .build(new OnBaseAdapterListener<PinPaiClass12Model.ListBean>() {
+                .build(new OnBaseAdapterListener<PingPaiShaiXuanModel.SubCategoryBean>() {
                     @Override
-                    public void convert(BaseViewHolder helper, PinPaiClass12Model.ListBean item) {
+                    public void convert(BaseViewHolder helper, PingPaiShaiXuanModel.SubCategoryBean item) {
                         TextView tv_name = helper.getView(R.id.tv_name);
                         tv_name.setText(item.getMobile_name());
                         if (mPositionContent == helper.getLayoutPosition()) {
@@ -108,7 +108,7 @@ public class PinPaiTwoListPopupWindow extends BasePopupWindow {
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 mPositionContent = 0;
                 mPositionTitle = position;
-                setContentData(mAdapterTitle.getData().get(position).getList());
+                setContentData(mAdapterTitle.getData().get(position).getSub_category());
                 mAdapterTitle.notifyDataSetChanged();
             }
         });
@@ -122,9 +122,9 @@ public class PinPaiTwoListPopupWindow extends BasePopupWindow {
         });
     }
 
-    public PinPaiClass12Model.ListBean getSelectModel() {
+    public PingPaiShaiXuanModel.SubCategoryBean getSelectModel() {
         if (isModel()) return null;
-        return mAdapterTitle.getData().get(mPositionTitle).getList().get(mPositionContent);
+        return mAdapterTitle.getData().get(mPositionTitle).getSub_category().get(mPositionContent);
     }
 
     public boolean isModel() {
@@ -135,12 +135,12 @@ public class PinPaiTwoListPopupWindow extends BasePopupWindow {
     }
 
 
-    public void setHousePopModel(List<PinPaiClass12Model> list) {
+    public void setHousePopModel(List<PingPaiShaiXuanModel> list) {
         mAdapterTitle.setNewData(list);
-        setContentData(list.get(0).getList());
+        setContentData(list.get(0).getSub_category());
     }
 
-    private void setContentData(List<PinPaiClass12Model.ListBean> item) {
+    private void setContentData(List<PingPaiShaiXuanModel.SubCategoryBean> item) {
         mAdapterContent.setNewData(item);
     }
 

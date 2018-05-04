@@ -7,7 +7,7 @@ package com.duma.ld.zhilianlift.util;
 
 public class HttpUrl {
     //        public static String BaseUrl = "http://192.168.0.58:8081";
-    public static String BaseUrl = "http://www.duma-ivy.cn:8080";
+    public static String BaseUrl = "http://www.zl0572.com:8080";
     /**
      * webview
      */
@@ -100,7 +100,7 @@ public class HttpUrl {
     public static String editPreparationStatus = BaseUrl + "/index.php/api/house/editPreparationStatus";
     public static String ThereCategoryList = BaseUrl + "/index.php/api/goods/ThereCategoryList";
     public static String TwoCategoryList = BaseUrl + "/index.php/api/goods/TwoCategoryList";
-    public static String StoreByBrand = BaseUrl + "/index.php/api/Store/StoreByBrand";
+//    public static String StoreByBrand = BaseUrl + "/index.php/api/Store/StoreByBrand";
     public static String plan = BaseUrl + "/index.php/api/user/plan";
     public static String getCredit = BaseUrl + "/index.php/api/user/getCredit";
     public static String credit = BaseUrl + "/index.php/api/user/credit";
@@ -118,4 +118,7 @@ public class HttpUrl {
     public static String get_code_recharge = BaseUrl + "/index.php/api/wxpay/get_code_recharge";
     public static String UnionPay = BaseUrl + "/index.php/api/Union/UnionPay";
     public static String UnRecharge = BaseUrl + "/index.php/api/Union/UnRecharge";
+    public static String goodsSecAndThirdCategoryList = BaseUrl + "/index.php/api/goods/goodsSecAndThirdCategoryList?parent_id=872";
+    public static String getBrandById = BaseUrl + "/index.php/api/goods/getBrandById";
+    public static String StoreByBrand = BaseUrl + "/index.php/api/goods/StoreByBrand";
 }

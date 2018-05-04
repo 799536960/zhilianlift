@@ -62,7 +62,7 @@ public class HomeFragment extends BaseMyFragment {
     @BindView(R.id.layout_search)
     LinearLayout layoutSearch;
     @BindView(R.id.layout_scan)
-    FrameLayout layoutScan;
+    LinearLayout layoutScan;
     @BindView(R.id.rv_list)
     RecyclerView rvList;
     @BindView(R.id.sw_loading)
