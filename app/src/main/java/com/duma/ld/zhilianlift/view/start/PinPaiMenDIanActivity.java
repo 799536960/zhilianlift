@@ -20,6 +20,7 @@ import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
 import com.duma.ld.zhilianlift.model.HouseMapModel;
 import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.model.PinPaiMenDianModel;
+import com.duma.ld.zhilianlift.util.ArithUtil;
 import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.ImageLoader;
 import com.duma.ld.zhilianlift.util.IntentUtil;
@@ -85,7 +86,10 @@ public class PinPaiMenDIanActivity extends BaseMyActivity {
                                 .setText(R.id.tv_address, item.getStore_address() + "");
                         TextView tv_jili = helper.getView(R.id.tv_jili);
                         if (isJuli) {
-                            tv_jili.setText(item.getDistance() + "m");
+                            try {
+                                tv_jili.setText(ArithUtil.div(item.getDistance(), "1000", 2) + "km");
+                            } catch (IllegalAccessException e) {
+                            }
                         } else {
                             tv_jili.setText("定位失败");
                         }

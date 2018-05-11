@@ -90,7 +90,11 @@ public class FinanceListFragment extends BaseMyFragment {
                         ImageLoader.with(item.getPlan_img(), (ImageView) helper.getView(R.id.img_icon));
                         helper.setText(R.id.tv_money, item.getPlan_money() + "")
                                 .setText(R.id.tv_name, item.getPlan_name() + "")
-                                .setText(R.id.tv_info, item.getPlan_text() + "");
+                                .setText(R.id.tv_info, item.getPlan_text() + "")
+                                .setText(R.id.tv_shijian, item.getPlan_time() + "")
+                                .setText(R.id.tv_zhouqi, item.getPlan_zhouqi() + "")
+                                .setText(R.id.tv_fangshi, item.getPlan_fangshi() + "")
+                                .setText(R.id.tv_lilv, item.getPlan_lilv() + "");
                     }
                 });
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {

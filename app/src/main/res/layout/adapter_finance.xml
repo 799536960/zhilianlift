@@ -92,6 +92,7 @@
             android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/tv_shijian"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="当天"
@@ -110,11 +111,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="预计放款时间："
+            android:text="贷款使用周期："
             android:textColor="@color/hei2"
             android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/tv_zhouqi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="当天"
@@ -133,11 +135,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="预计放款时间："
+            android:text="贷款利率(月)："
             android:textColor="@color/hei2"
             android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/tv_lilv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="当天"
@@ -156,11 +159,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="预计放款时间："
+            android:text="还款方式："
             android:textColor="@color/hei2"
             android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/tv_fangshi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="当天"

@@ -27,6 +27,7 @@ public class NumInputLayout extends LinearLayout implements TextWatcher {
     private EditText edit_num;
     private int num;
     private int maxNum;
+    private int smallNum;
 
     private Context mContext;
     private OnInputListener onInputListener;
@@ -98,7 +99,8 @@ public class NumInputLayout extends LinearLayout implements TextWatcher {
         });
         edit_num.addTextChangedListener(this);
         maxNum = 999;
-        setNum(1);
+        smallNum = 1;
+        setNum(smallNum);
 
         if (attrs != null) {
             TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.NumInputLayout);
@@ -132,19 +134,21 @@ public class NumInputLayout extends LinearLayout implements TextWatcher {
 
 
     public void setMaxNum(int maxNum) {
-        if (maxNum < 1) {
-            this.maxNum = 1;
-        } else if (maxNum > 999) {
-            this.maxNum = 999;
-        } else {
-            this.maxNum = maxNum;
-        }
+        this.maxNum = maxNum;
+        setNum(num);
+    }
+
+    public void setSmallNum(int smallNum) {
+        this.smallNum = smallNum;
         setNum(num);
     }
 
     public void setNum(int num) {
         this.num = getReadNum(num);
-        if (this.num == 1) {
+        if (this.num == smallNum && this.num == maxNum) {
+            img_jian.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.jian_hui));
+            img_jia.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.jia_hui));
+        } else if (this.num == smallNum) {
             img_jian.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.jian_hui));
             img_jia.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.jia_hei));
         } else if (this.num == maxNum) {
@@ -164,8 +168,8 @@ public class NumInputLayout extends LinearLayout implements TextWatcher {
     }
 
     public int getReadNum(int num) {
-        if (num < 1) {
-            return 1;
+        if (num < smallNum) {
+            return smallNum;
         } else if (num > maxNum) {
             return maxNum;
         } else {
@@ -203,12 +207,13 @@ public class NumInputLayout extends LinearLayout implements TextWatcher {
     public void afterTextChanged(Editable s) {
         String s1 = s.toString();
         if (s1.isEmpty()) {
-            s1 = "1";
+            s1 = smallNum + "";
         }
         if (!s1.equals(num + "") || edit_num.getText().toString().isEmpty()) {
             setNum(Integer.parseInt(s1));
         }
     }
+
 
     public EditText getEdit_num() {
         return edit_num;

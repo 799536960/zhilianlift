@@ -64,8 +64,9 @@ public class SpecAdapter extends BaseMultiItemQuickAdapter<GoodsSpecModel, BaseV
                 break;
             case GoodsSpecModel.footer:
                 NumInputLayout numInputLayout = helper.getView(R.id.numInput);
+                numInputLayout.setSmallNum(0);
                 numInputLayout.setMaxNum(item.getGoodsCount());
-                numInputLayout.setNum(count);
+                numInputLayout.setNum(getCount());
                 numInputLayout.setOnInputListener(onInputListener);
                 break;
         }

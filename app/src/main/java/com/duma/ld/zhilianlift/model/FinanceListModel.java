@@ -23,6 +23,18 @@ public class FinanceListModel {
     private int plan_type;
     private String plan_title;
     private String plan_money;
+    /**
+     * plan_time : null
+     * plan_zhouqi : null
+     * plan_lilv : null
+     * plan_fangshi : null
+     */
+
+    private String plan_time;
+    private String plan_zhouqi;
+    private String plan_lilv;
+    private String plan_fangshi;
+
 
     public int getId() {
         return id;
@@ -78,5 +90,21 @@ public class FinanceListModel {
 
     public void setPlan_money(String plan_money) {
         this.plan_money = plan_money;
+    }
+
+    public String getPlan_time() {
+        return plan_time;
+    }
+
+    public String getPlan_zhouqi() {
+        return plan_zhouqi;
+    }
+
+    public String getPlan_lilv() {
+        return plan_lilv;
+    }
+
+    public String getPlan_fangshi() {
+        return plan_fangshi;
     }
 }

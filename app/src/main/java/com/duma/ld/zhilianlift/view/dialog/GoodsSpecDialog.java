@@ -112,7 +112,11 @@ public class GoodsSpecDialog extends BaseDownDialog implements View.OnClickListe
             @Override
             public void onInput(int num) {
                 if (onDialogListener != null) {
-                    onDialogListener.onSelectNum(num);
+                    if (num == 0) {
+                        onDialogListener.onSelectNum(1);
+                    } else {
+                        onDialogListener.onSelectNum(num);
+                    }
                 }
             }
         });
@@ -311,7 +315,6 @@ public class GoodsSpecDialog extends BaseDownDialog implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        Logger.e(specAdapter.getCount() + " num");
         switch (v.getId()) {
             case R.id.layout_back:
                 dismiss();
