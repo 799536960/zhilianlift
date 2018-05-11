@@ -53,7 +53,7 @@ public class HouseHttpModel implements Serializable {
      * 房屋数据
      */
     //地区
-    private PCDAddresModel addresModel;
+    private HouseAddressModel addresModel;
     //房屋名称
     private String fangWuMinCheng;
     //房屋简介 (去掉了)
@@ -356,11 +356,11 @@ public class HouseHttpModel implements Serializable {
         this.zhouBianPeiTao = zhouBianPeiTao;
     }
 
-    public PCDAddresModel getAddresModel() {
+    public HouseAddressModel getAddresModel() {
         return addresModel;
     }
 
-    public void setAddresModel(PCDAddresModel addresModel) {
+    public void setAddresModel(HouseAddressModel addresModel) {
         this.addresModel = addresModel;
     }
 

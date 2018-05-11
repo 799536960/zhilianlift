@@ -11,14 +11,18 @@ import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
+import com.duma.ld.zhilianlift.model.UserModel;
 import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.jaeger.library.StatusBarUtil;
+import com.orhanobut.logger.Logger;
 
 import butterknife.BindView;
 import me.yokeyword.fragmentation.SupportFragment;
+import q.rorbin.badgeview.Badge;
+import q.rorbin.badgeview.QBadgeView;
 
 
 /**
@@ -43,6 +47,28 @@ public class MainActivity extends BaseMyActivity {
     protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
         initFragment();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        UserModel user = SpDataUtil.getUser();
+        if (user != null) {
+            try {
+                addBadgeAt(3, Integer.parseInt(user.getCart_goods_num()));
+            } catch (NumberFormatException e) {
+                Logger.e("小圆点错误");
+            }
+        }
+
+    }
+
+    private Badge addBadgeAt(int position, int number) {
+        // add badge
+        return new QBadgeView(this)
+                .setBadgeNumber(number)
+                .setGravityOffset(12, 2, true)
+                .bindTarget(barBottom.getBottomNavigationItemView(position));
     }
 
     @Override

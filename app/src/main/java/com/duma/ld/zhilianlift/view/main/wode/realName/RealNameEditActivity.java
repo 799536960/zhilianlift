@@ -134,8 +134,11 @@ public class RealNameEditActivity extends BaseMyActivity {
         if (model != null) {
             params.params("id", model.getId());
         }
+        for (int i = 0; i < list.size(); i++) {
+            params.params("idcard_img[]", list.get(i));
+        }
         params
-                .addFileParams("idcard_img[]", list)
+//                .addFileParams("idcard_img[]", list)
                 .execute(new MyJsonCallback<HttpResModel<String>>() {
                     @Override
                     protected void onJsonSuccess(Response<HttpResModel<String>> respons, HttpResModel<String> stringHttpResModel) {

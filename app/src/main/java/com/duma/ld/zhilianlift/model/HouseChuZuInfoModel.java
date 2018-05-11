@@ -138,9 +138,19 @@ public class HouseChuZuInfoModel implements Serializable {
         private String purpose_name;
         private String admin_telephone;
         private String total_house_address;
+        private String total_house_address1;
         // 0售价 1总价 2待定
         private int on_chang;
         private String sales_door;
+
+
+        public String getTotal_house_address1() {
+            return total_house_address1;
+        }
+
+        public void setTotal_house_address1(String total_house_address1) {
+            this.total_house_address1 = total_house_address1;
+        }
 
         public String getSales_door() {
             return sales_door;

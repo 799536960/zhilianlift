@@ -2,6 +2,8 @@ package com.duma.ld.zhilianlift.view.main.pay;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.InputFilter;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -17,7 +19,10 @@ import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
 import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.model.WeiXinModel;
 import com.duma.ld.zhilianlift.util.Constants;
+import com.duma.ld.zhilianlift.util.EditUtil;
+import com.duma.ld.zhilianlift.util.PointLengthFilter;
 import com.duma.ld.zhilianlift.util.pay.PayUtil;
+import com.duma.ld.zhilianlift.view.main.house.OnTextChangeListener;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 
@@ -49,6 +54,7 @@ public class ChongZhiActivity extends BaseMyActivity implements RadioGroup.OnChe
     //0 微信 1 支付宝 2 英联
     private int type;
     private PayUtil payUtil;
+    double money = 0;
 
     @Override
     protected boolean isRegisterEventBus() {
@@ -79,22 +85,25 @@ public class ChongZhiActivity extends BaseMyActivity implements RadioGroup.OnChe
         payUtil = new PayUtil(mActivity);
         radioGroup.setOnCheckedChangeListener(this);
         radioWeiXin.setChecked(true);
+        editMoney.addTextChangedListener(new EditUtil(new OnTextChangeListener() {
+            @Override
+            public void textChanged(Editable s) {
+                try {
+                    money = Double.parseDouble(s.toString());
+                } catch (NumberFormatException e) {
+                    money = 0;
+                }
+            }
+        }));
+        editMoney.setFilters(new InputFilter[]{new PointLengthFilter()});
     }
 
     @OnClick(R.id.tv_ok)
     public void onViewClicked() {
-        int money = 0;
-        try {
-            money = Integer.parseInt(editMoney.getText().toString());
-        } catch (NumberFormatException e) {
-            TsUtils.show("请输入正确的金额!");
-            return;
-        }
         if (money == 0) {
             TsUtils.show("请输入正确的金额!");
             return;
         }
-
         switch (type) {
             case 0:
                 weixinHttp();

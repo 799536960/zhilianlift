@@ -85,6 +85,11 @@ public class HouseHttpInfoModel {
                 isCheck = false;
             }
 
+            public ItemBean(String so_name, String so_value) {
+                this.so_name = so_name;
+                this.so_value = so_value;
+            }
+
             public boolean isCheck() {
                 return isCheck;
             }

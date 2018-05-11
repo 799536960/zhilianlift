@@ -21,6 +21,7 @@ import com.duma.ld.zhilianlift.base.baseAdapter.BaseAdapter;
 import com.duma.ld.zhilianlift.base.baseAdapter.OnBaseLoadAdapterListener;
 import com.duma.ld.zhilianlift.base.baseJsonHttp.MyJsonCallback;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
+import com.duma.ld.zhilianlift.model.HouseChuZuInfoModel;
 import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.model.MyHouseModel;
 import com.duma.ld.zhilianlift.util.Constants;
@@ -37,6 +38,7 @@ import butterknife.OnClick;
 import static com.duma.ld.zhilianlift.util.HttpUrl.deleteHouse;
 import static com.duma.ld.zhilianlift.util.HttpUrl.editHouseStatus;
 import static com.duma.ld.zhilianlift.util.HttpUrl.getMyHouse;
+import static com.duma.ld.zhilianlift.util.HttpUrl.gethoustInfo;
 
 /**
  * 我的二手房
@@ -96,7 +98,7 @@ public class MyHouseActivity extends BaseMyActivity {
                     }
 
                     @Override
-                    public void convert(BaseViewHolder helper, MyHouseModel item) {
+                    public void convert(BaseViewHolder helper, final MyHouseModel item) {
                         PublicUtil.getViewHouse(helper, item, mActivity, isChuZu);
                         helper.addOnClickListener(R.id.tv_delete)
                                 .setText(R.id.tv_time, ZhuanHuanUtil.Time2fen(item.getOn_time() * 1000))
@@ -105,6 +107,7 @@ public class MyHouseActivity extends BaseMyActivity {
                         TextView tv_delete = helper.getView(R.id.tv_delete);
                         TextView tv_change = helper.getView(R.id.tv_change);
                         TextView tv_type = helper.getView(R.id.tv_type);
+                        TextView tv_bianji = helper.getView(R.id.tv_bianji);
                         tv_num.setText(item.getRead_count() + "次浏览");
                         if (isChuZu) {
                             tv_num.setVisibility(View.VISIBLE);
@@ -113,14 +116,31 @@ public class MyHouseActivity extends BaseMyActivity {
                         }
                         if (item.getHouse_status() == 0) {
                             //下架
+                            tv_bianji.setVisibility(View.VISIBLE);
                             tv_delete.setVisibility(View.VISIBLE);
                             tv_change.setText("上架");
                             tv_type.setText("已下架");
                         } else {
+                            tv_bianji.setVisibility(View.GONE);
                             tv_delete.setVisibility(View.GONE);
                             tv_change.setText("下架");
                             tv_type.setText("已发布");
                         }
+                        tv_bianji.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                OkGo.<HttpResModel<HouseChuZuInfoModel>>get(gethoustInfo)
+                                        .tag(httpTag)
+                                        .params("house_id", item.getHouse_id())
+                                        .execute(new MyJsonCallback<HttpResModel<HouseChuZuInfoModel>>() {
+                                            @Override
+                                            protected void onJsonSuccess(Response<HttpResModel<HouseChuZuInfoModel>> respons
+                                                    , HttpResModel<HouseChuZuInfoModel> houseChuZuInfoModelHttpResModel) {
+                                                IntentUtil.goAddHouse(mActivity, isChuZu, houseChuZuInfoModelHttpResModel.getResult());
+                                            }
+                                        }.isDialog(mActivity));
+                            }
+                        });
                     }
                 });
         mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
@@ -205,11 +225,6 @@ public class MyHouseActivity extends BaseMyActivity {
 
     @OnClick(R.id.tv_sell)
     public void onViewClicked() {
-        if (isChuZu) {
-            IntentUtil.goAddRentalHouse(mActivity);
-        } else {
-            IntentUtil.goAddSecondHouse(mActivity);
-        }
-
+        IntentUtil.goAddHouse(mActivity, isChuZu, null);
     }
 }

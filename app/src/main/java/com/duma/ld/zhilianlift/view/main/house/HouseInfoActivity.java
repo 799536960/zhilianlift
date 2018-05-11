@@ -102,7 +102,8 @@ public class HouseInfoActivity extends BaseMyActivity {
         HouseBean = result;
         String telephone = result.getHouse().getAdmin_telephone();
         if (StringUtils.isEmpty(telephone)) {
-            telephone = Constants.kefu;
+//            telephone = Constants.kefu;
+            telephone = result.getHouse().getHouse_telephone();
         }
         final String finalTelephone = telephone;
         dialog = PublicUtil.getAlertDialog(mActivity, "确认拨打", "即将为您拨打 " + telephone)

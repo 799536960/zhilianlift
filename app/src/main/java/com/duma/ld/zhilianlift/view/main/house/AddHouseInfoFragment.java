@@ -13,6 +13,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.StringUtils;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.duma.ld.baselibrary.model.EventModel;
 import com.duma.ld.baselibrary.util.TsUtils;
@@ -23,8 +24,10 @@ import com.duma.ld.zhilianlift.base.baseAdapter.BaseAdapter;
 import com.duma.ld.zhilianlift.base.baseAdapter.OnBaseAdapterListener;
 import com.duma.ld.zhilianlift.base.baseJsonHttp.MyJsonCallback;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyFragment;
+import com.duma.ld.zhilianlift.model.HouseAddressModel;
 import com.duma.ld.zhilianlift.model.HouseHttpInfoModel;
 import com.duma.ld.zhilianlift.model.HouseHttpModel;
+import com.duma.ld.zhilianlift.model.HouseLabelBean;
 import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.model.PCDAddresModel;
 import com.duma.ld.zhilianlift.util.Constants;
@@ -137,6 +140,7 @@ public class AddHouseInfoFragment extends BaseMyFragment implements OnBaseAdapte
     //房屋设施
     private BaseAdapter<HouseHttpInfoModel.FilterAttrBean.ItemBean> mAdapterSheShi;
     private HouseListDialog leiXinListDialog, fuKuanFangShiDialog;
+    private AddHouseActivity addHouseActivity;
 
     public static AddHouseInfoFragment newInstance(HouseHttpModel model) {
         AddHouseInfoFragment fragment = new AddHouseInfoFragment();
@@ -154,6 +158,7 @@ public class AddHouseInfoFragment extends BaseMyFragment implements OnBaseAdapte
     @Override
     protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
+        addHouseActivity = (AddHouseActivity) mActivity;
         Bundle args = getArguments();
         if (args != null) {
             model = (HouseHttpModel) args.getSerializable(Constants.Model);
@@ -193,9 +198,12 @@ public class AddHouseInfoFragment extends BaseMyFragment implements OnBaseAdapte
         groupLaiYuan.setOnCheckedChangeListener(this);
         groupLeiXin.setOnCheckedChangeListener(this);
         groupXinBie.setOnCheckedChangeListener(this);
-        groupLeiXin.check(R.id.radio_zhenZu);
-        groupXinBie.check(R.id.radio_buxian);
-        groupLaiYuan.check(R.id.radio_yeZhu);
+        if (!addHouseActivity.isEdit()) {
+            //不是编辑状态才会初始化
+            groupLeiXin.check(R.id.radio_zhenZu);
+            groupXinBie.check(R.id.radio_buxian);
+            groupLaiYuan.check(R.id.radio_yeZhu);
+        }
         //初始化付款方式
         fuKuanFangShiDialog = new HouseListDialog(mActivity, getInitFuKuanFangShiList(), new HouseListDialog.OnStringClickListener() {
             @Override
@@ -308,6 +316,83 @@ public class AddHouseInfoFragment extends BaseMyFragment implements OnBaseAdapte
         }));
     }
 
+    private void setEdit() {
+        editFangWuMinCheng.setText(model.getFangWuMinCheng());
+        editLouPanMinCheng.setText(model.getLouPanMinCheng());
+        editDiZhi.setText(model.getXiangXiDiZhi());
+        editJiShi.setText(model.getJiShi());
+        editJiTing.setText(model.getJiTing());
+        editJiWei.setText(model.getJiWei());
+        editJiLou.setText(model.getJiLou());
+        editGongJiCeng.setText(model.getGongJiCeng());
+        editMianJi.setText(model.getJianZhuMianJi());
+        editZuJin.setText(model.getZuJing());
+        editShouJia.setText(model.getShouJia());
+        editZhuangXiu.setText(model.getFangWuZhuangXiu());
+        editNianDai.setText(model.getNianDai());
+        editChaoXiang.setText(model.getFangWuChaoXiang());
+        editXinMin.setText(model.getXinMing());
+        editDianHua.setText(model.getLianXiDianHua());
+        tvDiQu.setText(model.getAddresModel().getAddress());
+        //出租类型 0 整租 1 合租    出租才会出现
+        switch (model.getChuZuleiXin()) {
+            case 0:
+                groupLeiXin.check(R.id.radio_zhenZu);
+                break;
+            case 1:
+                groupLeiXin.check(R.id.radio_heZu);
+                break;
+        }
+        //性别要求 0 不限 1 男 2 女 出租才会出现
+        switch (model.getXinBieYaoQiu()) {
+            case 0:
+                groupXinBie.check(R.id.radio_buxian);
+                break;
+            case 1:
+                groupXinBie.check(R.id.radio_nan);
+                break;
+            case 2:
+                groupXinBie.check(R.id.radio_nv);
+                break;
+        }
+        //来源     0 业主房源 1 经纪人
+        switch (model.getLaiYuan()) {
+            case 0:
+                groupLaiYuan.check(R.id.radio_yeZhu);
+                break;
+            case 1:
+                groupLaiYuan.check(R.id.radio_jiJiRen);
+                break;
+        }
+
+        tvFuKuanFangShi.setText(model.getFuKuanFangShiModel().getSo_name());
+        tvWuYeleiXin.setText(model.getWuYeLeiXinModel().getSo_name());
+
+        //房屋特色
+        List<HouseLabelBean> labelBeanList = addHouseActivity.getHouseChuZuInfoModel().getHouseLabel();
+        for (int i = 0; i < labelBeanList.size(); i++) {
+            for (int m = 0; m < mAdapterTeSe.getData().size(); m++) {
+                if (labelBeanList.get(i).getSo_name().equals(mAdapterTeSe.getData().get(m).getSo_name())) {
+                    mAdapterTeSe.getData().get(m).setCheck(true);
+                }
+            }
+        }
+        mAdapterTeSe.notifyDataSetChanged();
+
+        //房屋设施
+        String facilities = addHouseActivity.getHouseChuZuInfoModel().getHouse().getFacilities();
+        if (!StringUtils.isEmpty(facilities)) {
+            String[] split = facilities.split(",");
+            for (int i = 0; i < split.length; i++) {
+                for (int m = 0; m < mAdapterSheShi.getData().size(); m++) {
+                    if (split[i].equals(mAdapterSheShi.getData().get(m).getSo_name())) {
+                        mAdapterSheShi.getData().get(m).setCheck(true);
+                    }
+                }
+            }
+            mAdapterSheShi.notifyDataSetChanged();
+        }
+    }
 
     @OnClick({R.id.layout_wuYeleiXin, R.id.layout_diQu, R.id.layout_fuKuanFangShi})
     public void onViewClicked(View view) {
@@ -344,6 +429,9 @@ public class AddHouseInfoFragment extends BaseMyFragment implements OnBaseAdapte
             @Override
             protected void onJsonSuccess(Response<HttpResModel<HouseHttpInfoModel>> respons, HttpResModel<HouseHttpInfoModel> houseHttpInfoModelHttpResModel) {
                 initData(houseHttpInfoModelHttpResModel.getResult());
+                if (addHouseActivity.isEdit()) {
+                    setEdit();
+                }
             }
         });
     }
@@ -381,6 +469,7 @@ public class AddHouseInfoFragment extends BaseMyFragment implements OnBaseAdapte
                 item.setCheck(isChecked);
             }
         });
+        cb_name.setChecked(item.isCheck());
     }
 
     @Override
@@ -458,8 +547,11 @@ public class AddHouseInfoFragment extends BaseMyFragment implements OnBaseAdapte
         super.onReceiveEvent(eventModel);
         if (eventModel.getCode() == Constants.event_addres_add) {
             PCDAddresModel addresModel = (PCDAddresModel) eventModel.getData();
-            model.setAddresModel(addresModel);
-            tvDiQu.setText(addresModel.getProvinceModel().getName() + addresModel.getCityModel().getName() + addresModel.getDistrictModel().getName());
+            String text = addresModel.getProvinceModel().getName() + addresModel.getCityModel().getName() + addresModel.getDistrictModel().getName();
+            HouseAddressModel houseAddressModel = new HouseAddressModel(text, addresModel.getProvinceModel().getId(), addresModel.getCityModel().getId(), addresModel.getDistrictModel().getId());
+            model.setAddresModel(houseAddressModel);
+            tvDiQu.setText(text);
+
         }
     }
 

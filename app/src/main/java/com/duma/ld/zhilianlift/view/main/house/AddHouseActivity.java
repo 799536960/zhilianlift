@@ -13,6 +13,9 @@ import com.duma.ld.zhilianlift.Adapter.MyViewPagerAdapter;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseJsonHttp.MyJsonCallback;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
+import com.duma.ld.zhilianlift.model.HouseAddressModel;
+import com.duma.ld.zhilianlift.model.HouseChuZuInfoModel;
+import com.duma.ld.zhilianlift.model.HouseHttpInfoModel;
 import com.duma.ld.zhilianlift.model.HouseHttpModel;
 import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.util.Constants;
@@ -28,6 +31,8 @@ import java.util.List;
 
 import butterknife.BindView;
 
+import static com.duma.ld.zhilianlift.util.HttpUrl.editlease;
+import static com.duma.ld.zhilianlift.util.HttpUrl.editsecond;
 import static com.duma.ld.zhilianlift.util.HttpUrl.lease;
 import static com.duma.ld.zhilianlift.util.HttpUrl.second;
 
@@ -43,8 +48,14 @@ public class AddHouseActivity extends BaseMyActivity implements OnTopBarRightLis
     @BindView(R.id.viewPager_content)
     ViewPager viewPagerContent;
     //是不是二手房
-    private boolean isSecondHouse;
+    private boolean isChuZU;
     private HouseHttpModel model;
+    private HouseChuZuInfoModel houseChuZuInfoModel;
+
+
+    public HouseChuZuInfoModel getHouseChuZuInfoModel() {
+        return houseChuZuInfoModel;
+    }
 
     @Override
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig) {
@@ -54,17 +65,19 @@ public class AddHouseActivity extends BaseMyActivity implements OnTopBarRightLis
     @Override
     protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
-        isSecondHouse = false;
-        if (getIntent().getStringExtra(Constants.key) != null) {
-            isSecondHouse = true;
-        }
         model = new HouseHttpModel();
-        if (isSecondHouse) {
-            mActivityConfig.setTopBar_A("我要出售", "提交", this);
-            model.setRental(false);
-        } else {
+        isChuZU = getIntent().getBooleanExtra(Constants.Type, false);
+        houseChuZuInfoModel = (HouseChuZuInfoModel) getIntent().getSerializableExtra(Constants.Model);
+        if (isEdit()) {
+            //编辑
+            initEdit();
+        }
+        if (isChuZU) {
             mActivityConfig.setTopBar_A("我要出租", "提交", this);
             model.setRental(true);
+        } else {
+            mActivityConfig.setTopBar_A("我要出售", "提交", this);
+            model.setRental(false);
         }
         MyViewPagerAdapter viewPagerAdapter = new MyViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFragment(AddHouseInfoFragment.newInstance(model), "房屋信息");
@@ -73,6 +86,59 @@ public class AddHouseActivity extends BaseMyActivity implements OnTopBarRightLis
         viewPagerContent.setAdapter(viewPagerAdapter);
         viewPagerContent.setOffscreenPageLimit(3);
         layoutTablayout.setupWithViewPager(viewPagerContent);
+    }
+
+    public boolean isEdit() {
+        if (houseChuZuInfoModel != null) {
+            //编辑
+            return true;
+        }
+        return false;
+    }
+
+    private void initEdit() {
+        HouseChuZuInfoModel.HouseBean house = houseChuZuInfoModel.getHouse();
+        model.setFangWuMinCheng(house.getHouse_name());
+        model.setXiaoQuGaiKuang(house.getVillage());
+        model.setJiaoTongZhuangKuang(house.getTraffic());
+        model.setZhouBianPeiTao(house.getPeriphery());
+        model.setFangWuJianJie(house.getSynopsis());
+        model.setXiangXiDiZhi(house.getHouse_address());
+        model.setJiShi(house.getDoor_door());
+        model.setJiTing(house.getOffice());
+        model.setJiWei(house.getToilet());
+        model.setJiLou(house.getFloor());
+        model.setGongJiCeng(house.getFloorall());
+        model.setJianZhuMianJi(house.getArchitecture());
+        model.setZuJing(house.getRent());
+        model.setShouJia(house.getAllprice());
+        model.setFangWuZhuangXiu(house.getRenovation());
+        model.setNianDai(house.getYears());
+        model.setFangWuChaoXiang(house.getOrientation());
+        model.setXinMing(house.getUser_name());
+        model.setLianXiDianHua(house.getHouse_telephone());
+        model.setLouPanMinCheng(house.getPremises_name());
+        model.setJianZhuLieBie(house.getArchitecture_type());
+        model.setChanQuanNianXian(house.getProperty());
+        model.setTingCheWei(house.getParkinglot());
+        model.setRongJiLv(house.getVolume());
+        model.setLvHuaLv(house.getGreen());
+        model.setJunGongShiJian(house.getCompleted_time() + "");
+        model.setKaiFaShang(house.getDevelopers());
+        model.setAddresModel(new HouseAddressModel(house.getTotal_house_address1(), house.getProvince_id(), house.getCity_id(), house.getDistrict()));
+
+        model.setChuZuleiXin(house.getLease_type());
+        model.setXinBieYaoQiu(house.getSex());
+        int laiYuan = 0;
+        try {
+            laiYuan = Integer.parseInt(house.getSource());
+        } catch (NumberFormatException e) {
+            TsUtils.show("转化异常");
+        }
+        model.setLaiYuan(laiYuan);
+
+        model.setWuYeLeiXinModel(new HouseHttpInfoModel.FilterAttrBean.ItemBean(house.getPurpose_name(), house.getPurpose()));
+        model.setFuKuanFangShiModel(new HouseHttpInfoModel.FilterAttrBean.ItemBean(house.getPayment()));
     }
 
     @Override
@@ -189,16 +255,20 @@ public class AddHouseActivity extends BaseMyActivity implements OnTopBarRightLis
     }
 
     private void chuShouHttp() {
-        PostRequest<HttpResModel<String>> params = OkGo.<HttpResModel<String>>post(second)
-                .tag(httpTag);
+        PostRequest<HttpResModel<String>> params;
+        if (isEdit()) {
+            params = OkGo.<HttpResModel<String>>post(editsecond)
+                    .tag(httpTag);
+            params.params("house_id_edit", houseChuZuInfoModel.getHouse().getHouse_id());
+        } else {
+            params = OkGo.<HttpResModel<String>>post(second)
+                    .tag(httpTag);
+        }
         setPublicParam(params);
         params.params("house_name", model.getFangWuMinCheng())
                 .params("synopsis", model.getFangWuJianJie())
                 .params("purpose", model.getWuYeLeiXinModel().getSo_value())
                 .params("premises_name", model.getLouPanMinCheng())
-                .params("province_id", model.getAddresModel().getProvinceModel().getId())
-                .params("city_id", model.getAddresModel().getCityModel().getId())
-                .params("district", model.getAddresModel().getDistrictModel().getId())
                 .params("house_address", model.getXiangXiDiZhi())
                 .params("door_door", model.getJiShi())
                 .params("floor", model.getJiLou())
@@ -241,20 +311,27 @@ public class AddHouseActivity extends BaseMyActivity implements OnTopBarRightLis
                 .params("volume", model.getRongJiLv())
                 .params("green", model.getLvHuaLv())
                 .params("completed_time", model.getJunGongShiJian())
-                .params("developers", model.getKaiFaShang());
+                .params("developers", model.getKaiFaShang())
+                .params("province_id", model.getAddresModel().getProvince_id())
+                .params("city_id", model.getAddresModel().getCity_id())
+                .params("district", model.getAddresModel().getDistrict());
     }
 
     private void chuZuHttp() {
-        PostRequest<HttpResModel<String>> params = OkGo.<HttpResModel<String>>post(lease)
-                .tag(httpTag);
+        PostRequest<HttpResModel<String>> params;
+        if (isEdit()) {
+            params = OkGo.<HttpResModel<String>>post(editlease)
+                    .tag(httpTag);
+            params.params("house_id_edit", houseChuZuInfoModel.getHouse().getHouse_id());
+        } else {
+            params = OkGo.<HttpResModel<String>>post(lease)
+                    .tag(httpTag);
+        }
         setPublicParam(params);
         params.params("house_name", model.getFangWuMinCheng())
                 .params("synopsis", model.getFangWuJianJie())
                 .params("purpose", model.getWuYeLeiXinModel().getSo_value())
                 .params("premises_name", model.getLouPanMinCheng())
-                .params("province_id", model.getAddresModel().getProvinceModel().getId())
-                .params("city_id", model.getAddresModel().getCityModel().getId())
-                .params("district", model.getAddresModel().getDistrictModel().getId())
                 .params("house_address", model.getXiangXiDiZhi())
                 .params("lease_type", model.getChuZuleiXin())//出租类型
                 .params("door_door", model.getJiShi())

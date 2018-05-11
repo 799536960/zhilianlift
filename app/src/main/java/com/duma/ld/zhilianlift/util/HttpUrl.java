@@ -100,7 +100,7 @@ public class HttpUrl {
     public static String editPreparationStatus = BaseUrl + "/index.php/api/house/editPreparationStatus";
     public static String ThereCategoryList = BaseUrl + "/index.php/api/goods/ThereCategoryList";
     public static String TwoCategoryList = BaseUrl + "/index.php/api/goods/TwoCategoryList";
-//    public static String StoreByBrand = BaseUrl + "/index.php/api/Store/StoreByBrand";
+    //    public static String StoreByBrand = BaseUrl + "/index.php/api/Store/StoreByBrand";
     public static String plan = BaseUrl + "/index.php/api/user/plan";
     public static String getCredit = BaseUrl + "/index.php/api/user/getCredit";
     public static String credit = BaseUrl + "/index.php/api/user/credit";
@@ -121,4 +121,6 @@ public class HttpUrl {
     public static String goodsSecAndThirdCategoryList = BaseUrl + "/index.php/api/goods/goodsSecAndThirdCategoryList?parent_id=872";
     public static String getBrandById = BaseUrl + "/index.php/api/goods/getBrandById";
     public static String StoreByBrand = BaseUrl + "/index.php/api/goods/StoreByBrand";
+    public static String editlease = BaseUrl + "/index.php/api/house/editlease";
+    public static String editsecond = BaseUrl + "/index.php/api/house/editsecond";
 }

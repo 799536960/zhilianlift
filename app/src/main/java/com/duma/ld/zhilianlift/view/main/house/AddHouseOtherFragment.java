@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.TimePickerView;
+import com.blankj.utilcode.util.StringUtils;
 import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.baselibrary.util.ZhuanHuanUtil;
 import com.duma.ld.baselibrary.util.config.FragmentConfig;
@@ -61,6 +62,7 @@ public class AddHouseOtherFragment extends BaseMyFragment {
     private HouseHttpModel model;
     private EditMaxLengthUtil editMaxLengthUtil1, editMaxLengthUtil2, editMaxLengthUtil3;
     private TimePickerView timePickerView;
+    private AddHouseActivity addHouseActivity;
 
     public static AddHouseOtherFragment newInstance(HouseHttpModel model) {
         AddHouseOtherFragment fragment = new AddHouseOtherFragment();
@@ -78,6 +80,7 @@ public class AddHouseOtherFragment extends BaseMyFragment {
     @Override
     protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
+        addHouseActivity = (AddHouseActivity) mActivity;
         Bundle args = getArguments();
         if (args != null) {
             model = (HouseHttpModel) args.getSerializable(Constants.Model);
@@ -119,6 +122,25 @@ public class AddHouseOtherFragment extends BaseMyFragment {
                 .build();
         //初始化编辑框监听
         initEdit();
+        if (addHouseActivity.isEdit()) {
+            setEdit();
+        }
+    }
+
+    private void setEdit() {
+        editJianZhuLieBie.setText(model.getJianZhuLieBie());
+        editChanQuanNianXian.setText(model.getChanQuanNianXian());
+        editTingCheWei.setText(model.getTingCheWei());
+        editRongJiLv.setText(model.getRongJiLv());
+        editLvhuaLv.setText(model.getLvHuaLv());
+        editKaiFaShang.setText(model.getKaiFaShang());
+        editXiaoQu.setText(model.getXiaoQuGaiKuang());
+        editJiaoTong.setText(model.getJiaoTongZhuangKuang());
+        editZhoubian.setText(model.getZhouBianPeiTao());
+        String junGongShiJian = model.getJunGongShiJian();
+        if (!StringUtils.isEmpty(junGongShiJian) && !junGongShiJian.equals("0")) {
+            tvJunGongShiJian.setText(ZhuanHuanUtil.Time2nian2(Long.parseLong(junGongShiJian)));
+        }
     }
 
     private void initEdit() {

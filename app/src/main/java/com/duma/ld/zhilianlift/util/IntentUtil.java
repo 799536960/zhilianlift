@@ -6,6 +6,7 @@ import android.content.Intent;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.model.AddresModel;
 import com.duma.ld.zhilianlift.model.CommitOrderModel;
+import com.duma.ld.zhilianlift.model.HouseChuZuInfoModel;
 import com.duma.ld.zhilianlift.model.HouseMapModel;
 import com.duma.ld.zhilianlift.model.OrderModel;
 import com.duma.ld.zhilianlift.model.PayStoreModel;
@@ -333,18 +334,26 @@ public class IntentUtil {
         activity.startActivity(intent);
     }
 
-    //添加二手房
-    public static void goAddSecondHouse(Activity activity) {
+//    //添加二手房
+//    public static void goAddSecondHouse(Activity activity) {
+//        Intent intent = new Intent(activity, AddHouseActivity.class);
+//        intent.putExtra(Constants.key, Constants.key);
+//        activity.startActivity(intent);
+//    }
+
+    //添加房产
+    public static void goAddHouse(Activity activity, boolean isZuFang, HouseChuZuInfoModel model) {
         Intent intent = new Intent(activity, AddHouseActivity.class);
-        intent.putExtra(Constants.key, Constants.key);
+        intent.putExtra(Constants.Type, isZuFang);
+        intent.putExtra(Constants.Model, model);
         activity.startActivity(intent);
     }
 
-    //添加出租
-    public static void goAddRentalHouse(Activity activity) {
-        Intent intent = new Intent(activity, AddHouseActivity.class);
-        activity.startActivity(intent);
-    }
+//    //添加出租
+//    public static void goAddRentalHouse(Activity activity) {
+//        Intent intent = new Intent(activity, AddHouseActivity.class);
+//        activity.startActivity(intent);
+//    }
 
 
     /**
