@@ -188,6 +188,7 @@ public class ShoppingCartFragment extends BaseMyFragment {
                                 mList.get(position).getShoppingCartStoreGoodsModel().setGoods_num(stringHttpResModel.getResult().getCart().getGoods_num());
                                 mAdapter.notifyItemChanged(position);
                                 refreshNum(stringHttpResModel.getResult().getTotal_price());
+                                refreYuanDian();
                             }
                         });
             }
@@ -352,6 +353,15 @@ public class ShoppingCartFragment extends BaseMyFragment {
             refreshCbAll();
         }
         refreshAdapter();
+
+        refreYuanDian();
+    }
+
+    private void refreYuanDian() {
+        if (mActivity instanceof MainActivity) {
+            MainActivity mainActivity = (MainActivity) mActivity;
+            mainActivity.refreYuanDIan();
+        }
     }
 
     private void refreshCbAll() {

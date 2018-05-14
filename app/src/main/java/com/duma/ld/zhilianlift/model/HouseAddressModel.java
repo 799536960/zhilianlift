@@ -1,10 +1,12 @@
 package com.duma.ld.zhilianlift.model;
 
+import java.io.Serializable;
+
 /**
  * Created by liudong on 2018/5/11.
  */
 
-public class HouseAddressModel {
+public class HouseAddressModel implements Serializable {
     private String address;
     private int province_id;
     private int city_id;

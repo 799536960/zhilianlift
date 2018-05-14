@@ -102,6 +102,8 @@ public class HomeFragment extends BaseMyFragment {
                         .setNegativeButton("否", null)
                         .setCancelable(false);
                 builder.show();
+            } else {
+                SpDataUtil.setLocationData(model);
             }
         } else if (eventModel.getCode() == Constants.event_select_city) {
             onClickLoadingRefresh();

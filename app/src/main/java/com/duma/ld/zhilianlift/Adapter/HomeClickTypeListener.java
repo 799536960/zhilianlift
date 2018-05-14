@@ -81,6 +81,10 @@ public class HomeClickTypeListener implements View.OnClickListener, BaseQuickAda
             case 9:
                 mActivity.startActivity(new Intent(mActivity, PinPaiActivity.class));
                 break;
+            case 10:
+                //房产详情
+                IntentUtil.goHouseInfo(mActivity, adBean.getGoods_id());
+                break;
         }
     }
 

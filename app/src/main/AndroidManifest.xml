@@ -33,6 +33,7 @@
     <uses-permission android:name="org.simalliance.openmobileapi.SMARTCARD" />
 
     <uses-feature android:name="android.hardware.nfc.hce" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".base.MyApplication"

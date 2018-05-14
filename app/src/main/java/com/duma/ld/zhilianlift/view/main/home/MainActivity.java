@@ -10,19 +10,25 @@ import android.widget.Toast;
 import com.duma.ld.baselibrary.util.config.ActivityConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
+import com.duma.ld.zhilianlift.base.baseJsonHttp.MyJsonCallback;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
+import com.duma.ld.zhilianlift.model.HttpResModel;
 import com.duma.ld.zhilianlift.model.UserModel;
 import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.jaeger.library.StatusBarUtil;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.model.Response;
 import com.orhanobut.logger.Logger;
 
 import butterknife.BindView;
 import me.yokeyword.fragmentation.SupportFragment;
 import q.rorbin.badgeview.Badge;
 import q.rorbin.badgeview.QBadgeView;
+
+import static com.duma.ld.zhilianlift.util.HttpUrl.userInfo;
 
 
 /**
@@ -36,6 +42,7 @@ public class MainActivity extends BaseMyActivity {
     BottomNavigationViewEx barBottom;
 
     private SupportFragment[] mFragments = new SupportFragment[5];
+    private Badge badge;
 
     @Override
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig) {
@@ -52,23 +59,45 @@ public class MainActivity extends BaseMyActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        UserModel user = SpDataUtil.getUser();
-        if (user != null) {
-            try {
-                addBadgeAt(3, Integer.parseInt(user.getCart_goods_num()));
-            } catch (NumberFormatException e) {
-                Logger.e("小圆点错误");
-            }
-        }
-
+        refreYuanDIan();
     }
 
-    private Badge addBadgeAt(int position, int number) {
-        // add badge
-        return new QBadgeView(this)
-                .setBadgeNumber(number)
-                .setGravityOffset(12, 2, true)
-                .bindTarget(barBottom.getBottomNavigationItemView(position));
+    public void refreYuanDIan() {
+        UserModel user = SpDataUtil.getUser();
+        if (user != null) {
+            OkGo.<HttpResModel<UserModel>>get(userInfo)
+                    .tag(httpTag)
+                    .execute(new MyJsonCallback<HttpResModel<UserModel>>() {
+                        @Override
+                        protected void onJsonSuccess(Response<HttpResModel<UserModel>> respons, HttpResModel<UserModel> userModelHttpResModel) {
+                            SpDataUtil.setUser(userModelHttpResModel.getResult());
+                            try {
+                                addBadgeAt(3, Integer.parseInt(userModelHttpResModel.getResult().getCart_goods_num()));
+                            } catch (NumberFormatException e) {
+                                Logger.e("小圆点错误");
+                            }
+                        }
+
+                        @Override
+                        public void onError(Response<HttpResModel<UserModel>> response) {
+                            super.onError(response);
+                        }
+                    });
+        }
+    }
+
+    private void addBadgeAt(int position, int number) {
+        if (badge == null) {
+            // add badge
+            badge = new QBadgeView(this)
+                    .setGravityOffset(12, 2, true)
+                    .bindTarget(barBottom.getBottomNavigationItemView(position));
+        }
+        badge.setBadgeNumber(number);
+        if (number == 0) {
+            badge
+                    .hide(true);
+        }
     }
 
     @Override
