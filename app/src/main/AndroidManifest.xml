@@ -143,7 +143,16 @@
             android:launchMode="singleTask" />
         <activity android:name=".view.main.wode.userSecuryty.PayPasswordActivity" />
         <activity android:name=".view.main.wode.userSecuryty.PayPasswordSuccessActivity" />
-        <activity android:name=".view.main.shopping.goods.GoodsDetailsActivity" />
+        <activity android:name=".view.main.shopping.goods.GoodsDetailsActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="zhilianshenghuo.com"
+                    android:path="/goods"
+                    android:scheme="zlsh" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".view.start.PhotoQueryActivity"
             android:theme="@style/AppTheme_tm" />
@@ -180,7 +189,16 @@
             android:name=".view.main.wode.addres.SelectAddresDialogActivity"
             android:theme="@style/AppTheme_tm_hei" />
         <activity android:name=".view.main.house.HouseListActivity" />
-        <activity android:name=".view.main.house.HouseInfoActivity" />
+        <activity android:name=".view.main.house.HouseInfoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="zhilianshenghuo.com"
+                    android:path="/house"
+                    android:scheme="zlsh" />
+            </intent-filter>
+        </activity>
         <activity android:name=".view.main.house.AddBaoBeiActivity" />
         <activity android:name=".view.main.house.HouseMapActivity" />
         <activity android:name=".view.main.house.HuXinListActivity" />

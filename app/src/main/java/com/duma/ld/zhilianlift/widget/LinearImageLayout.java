@@ -18,11 +18,11 @@ import com.duma.ld.zhilianlift.R;
  */
 
 public class LinearImageLayout extends LinearLayout {
-//    private TextView view_tv_name;
+    //    private TextView view_tv_name;
     private TextView view_tv_number;
     private ImageView view_img_icon;
     private Drawable imgDrawable;
-//    private String tvString;
+    //    private String tvString;
 //    private float padding;
     private int Num;
 
@@ -71,7 +71,12 @@ public class LinearImageLayout extends LinearLayout {
             view_tv_number.setVisibility(GONE);
         } else {
             view_tv_number.setVisibility(VISIBLE);
-            view_tv_number.setText(num);
+            if (num.length() > 2) {
+                view_tv_number.setText("99+");
+            } else {
+                view_tv_number.setText(num);
+            }
+
         }
     }
 

@@ -2,6 +2,7 @@ package com.duma.ld.zhilianlift.view.main.shopping.goods;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -10,7 +11,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.PhoneUtils;
+import com.blankj.utilcode.util.StringUtils;
 import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.baselibrary.util.ZhuanHuanUtil;
 import com.duma.ld.baselibrary.util.config.ActivityConfig;
@@ -31,6 +34,7 @@ import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.PublicUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
 import com.duma.ld.zhilianlift.view.dialog.GoodsSpecDialog;
+import com.duma.ld.zhilianlift.view.main.home.MainActivity;
 import com.duma.ld.zhilianlift.view.main.shopping.ShoppingCartActivity;
 import com.duma.ld.zhilianlift.view.popupWindow.GoodsInfoPopupWindow;
 import com.duma.ld.zhilianlift.widget.LinearImageLayout;
@@ -91,7 +95,18 @@ public class GoodsDetailsActivity extends BaseMyActivity {
     @Override
     protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
-        id = getIntent().getStringExtra(Constants.id);
+        Intent intent = getIntent();
+        id = intent.getStringExtra(Constants.id);
+        if (StringUtils.isEmpty(id)) {
+            Uri uri = intent.getData();
+            if (uri != null) {
+                id = uri.getQueryParameter(Constants.id);
+            }
+        }
+        if (StringUtils.isEmpty(id)) {
+            TsUtils.show("获取id异常");
+            finish();
+        }
         count = 1;
         goodsInfoPopupWindow = new GoodsInfoPopupWindow(mActivity);
         MyViewPagerAdapter viewPagerAdapter = new MyViewPagerAdapter(getSupportFragmentManager());
@@ -143,6 +158,14 @@ public class GoodsDetailsActivity extends BaseMyActivity {
             }
         });
 
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        if (!ActivityUtils.isActivityExistsInStack(MainActivity.class)) {
+            IntentUtil.goMain(mActivity);
+        }
     }
 
     public GoodsMainFragment getGoodsMainFragment() {

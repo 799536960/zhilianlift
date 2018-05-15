@@ -1,6 +1,8 @@
 package com.duma.ld.zhilianlift.view.main.house;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
@@ -9,6 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.PhoneUtils;
 import com.blankj.utilcode.util.StringUtils;
 import com.duma.ld.baselibrary.util.TsUtils;
@@ -25,6 +28,7 @@ import com.duma.ld.zhilianlift.util.DialogUtil;
 import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.PublicUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
+import com.duma.ld.zhilianlift.view.main.home.MainActivity;
 import com.duma.ld.zhilianlift.view.popupWindow.GoodsInfoPopupWindow;
 import com.duma.ld.zhilianlift.widget.LinearImageLayout;
 import com.lzy.okgo.OkGo;
@@ -69,6 +73,7 @@ public class HouseInfoActivity extends BaseMyActivity {
     private HouseChuZuInfoModel HouseBean;
     private AlertDialog dialog;
 
+
     @Override
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig) {
         return initConfig.setLayoutIdByActivity(R.layout.activity_zufang_info).setLoadingOrErrorView_A(R.id.layout_root, R.id.layout_content);
@@ -77,7 +82,18 @@ public class HouseInfoActivity extends BaseMyActivity {
     @Override
     protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
-        houseId = getIntent().getStringExtra(Constants.id);
+        Intent intent = getIntent();
+        houseId = intent.getStringExtra(Constants.id);
+        if (StringUtils.isEmpty(houseId)) {
+            Uri uri = intent.getData();
+            if (uri != null) {
+                houseId = uri.getQueryParameter(Constants.id);
+            }
+        }
+        if (StringUtils.isEmpty(houseId)) {
+            TsUtils.show("获取id异常");
+            finish();
+        }
         goodsInfoPopupWindow = new GoodsInfoPopupWindow(mActivity);
         goodsInfoPopupWindow.setMessageNum(SpDataUtil.getMessageNum());
         onClickLoadingRefresh();
@@ -135,6 +151,14 @@ public class HouseInfoActivity extends BaseMyActivity {
         HouseChuZuInfoModel.CollectBean collect = result.getCollect();
         if (collect != null) {
             setShouCang(collect.getResult() + "");
+        }
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        if (!ActivityUtils.isActivityExistsInStack(MainActivity.class)) {
+            IntentUtil.goMain(mActivity);
         }
     }
 

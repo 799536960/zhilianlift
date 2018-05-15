@@ -28,15 +28,15 @@ public class ShoppingCartModel {
     }
 
     public static class TotalPriceBean {
-        private double total_fee;
+        private String total_fee;
         private int cut_fee;
         private int num;
 
-        public double getTotal_fee() {
+        public String getTotal_fee() {
             return total_fee;
         }
 
-        public void setTotal_fee(double total_fee) {
+        public void setTotal_fee(String total_fee) {
             this.total_fee = total_fee;
         }
 

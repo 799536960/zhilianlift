@@ -98,7 +98,7 @@ public class NumInputLayout extends LinearLayout implements TextWatcher {
             }
         });
         edit_num.addTextChangedListener(this);
-        maxNum = 999;
+        maxNum = 999999;
         smallNum = 1;
         setNum(smallNum);
 
@@ -161,9 +161,9 @@ public class NumInputLayout extends LinearLayout implements TextWatcher {
         if (!edit_num.getText().toString().equals(this.num + "")) {
             edit_num.setText(this.num + "");
             edit_num.setSelection(edit_num.getText().toString().length());
-            if (onInputListener != null) {
-                onInputListener.onInput(this.num);
-            }
+        }
+        if (onInputListener != null) {
+            onInputListener.onInput(this.num);
         }
     }
 

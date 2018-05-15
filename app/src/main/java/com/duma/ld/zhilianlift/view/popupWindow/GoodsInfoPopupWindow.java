@@ -5,9 +5,11 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.widget.LinearLayout;
 
+import com.blankj.utilcode.util.ActivityUtils;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
+import com.duma.ld.zhilianlift.view.main.home.MainActivity;
 import com.duma.ld.zhilianlift.widget.LinearImageLayout;
 
 import razerdp.basepopup.BasePopupWindow;
@@ -76,6 +78,9 @@ public class GoodsInfoPopupWindow extends BasePopupWindow implements View.OnClic
         switch (v.getId()) {
             case R.id.layout_home:
                 IntentUtil.goMain(activity);
+                if (!ActivityUtils.isActivityExistsInStack(MainActivity.class)) {
+                    activity.finish();
+                }
                 return;
             case R.id.layout_search:
                 IntentUtil.goSearch(activity);
