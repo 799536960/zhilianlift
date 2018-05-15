@@ -252,7 +252,7 @@ public class GoodsListActivity extends BaseMyActivity {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 GoodsBean bean = (GoodsBean) adapter.getData().get(position);
-                IntentUtil.goGoodsDetails(mActivity, bean.getGoods_id());
+                IntentUtil.goGoodsDetails(mActivity, bean.getGoods_id()+"");
             }
         });
 //        View view = adapter.getView(R.layout.adapter_head_demo);

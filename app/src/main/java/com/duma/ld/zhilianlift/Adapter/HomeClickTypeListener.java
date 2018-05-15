@@ -52,7 +52,7 @@ public class HomeClickTypeListener implements View.OnClickListener, BaseQuickAda
                     TsUtils.show("没有该商品");
                     return;
                 }
-                IntentUtil.goGoodsDetails(mActivity, goods.getGoods_id());
+                IntentUtil.goGoodsDetails(mActivity, goods.getGoods_id()+"");
                 break;
             case 2:
                 IntentUtil.goGoodsList_class(mActivity, adBean.getCat_id() + "");
@@ -83,7 +83,7 @@ public class HomeClickTypeListener implements View.OnClickListener, BaseQuickAda
                 break;
             case 10:
                 //房产详情
-                IntentUtil.goHouseInfo(mActivity, adBean.getGoods_id());
+                IntentUtil.goHouseInfo(mActivity, adBean.getGoods_id()+"");
                 break;
         }
     }
@@ -142,7 +142,7 @@ public class HomeClickTypeListener implements View.OnClickListener, BaseQuickAda
                 mActivity.showClass();
                 break;
             case HomeMultipleModel.goods:
-                IntentUtil.goGoodsDetails(mActivity, multipleModel.getGoodsModel().getGoods_id());
+                IntentUtil.goGoodsDetails(mActivity, multipleModel.getGoodsModel().getGoods_id()+"");
                 break;
         }
     }

@@ -236,7 +236,7 @@ public class ShoppingCartFragment extends BaseMyFragment {
                                 });
                         break;
                     default:
-                        IntentUtil.goGoodsDetails(mActivity, mList.get(position).getShoppingCartStoreGoodsModel().getGoods_id());
+                        IntentUtil.goGoodsDetails(mActivity, mList.get(position).getShoppingCartStoreGoodsModel().getGoods_id()+"");
                         break;
                 }
             }

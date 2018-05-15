@@ -162,10 +162,10 @@ public class GoodsTypeAdapter implements BaseQuickAdapter.OnItemClickListener {
         MyRecordModel.VisitBean visitBean = mAdapter.getData().get(position);
         switch (visitBean.getType()) {
             case 0:
-                IntentUtil.goGoodsDetails(mActivity, visitBean.getGoods_id());
+                IntentUtil.goGoodsDetails(mActivity, visitBean.getGoods_id()+"");
                 break;
             default:
-                IntentUtil.goHouseInfo(mActivity, visitBean.getHouse_id());
+                IntentUtil.goHouseInfo(mActivity, visitBean.getHouse_id()+"");
                 break;
         }
     }

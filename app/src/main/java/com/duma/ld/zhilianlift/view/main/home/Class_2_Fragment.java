@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.baselibrary.util.config.FragmentConfig;
 import com.duma.ld.baselibrary.util.config.InitConfig;
 import com.duma.ld.zhilianlift.R;
@@ -86,7 +87,19 @@ public class Class_2_Fragment extends BaseMyFragment {
         img_title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IntentUtil.goWebView(mActivity, model.getUrl());
+                String url = model.getUrl();
+                String[] split = url.split(",");
+                if (split.length == 2) {
+                    if (split[0].equals("1")) {
+                        //商品
+                        IntentUtil.goGoodsDetails(mActivity, split[1]);
+                    } else {
+                        //房产
+                        IntentUtil.goHouseInfo(mActivity, split[1]);
+                    }
+                } else {
+                    TsUtils.show("未设置");
+                }
             }
         });
         baseAdapter.setHeaderView(view);

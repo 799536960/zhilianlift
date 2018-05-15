@@ -223,7 +223,7 @@ public class IntentUtil {
     }
 
     //商品详情页
-    public static void goGoodsDetails(Activity activity, int goodsId) {
+    public static void goGoodsDetails(Activity activity, String goodsId) {
         Intent intent = new Intent(activity, GoodsDetailsActivity.class);
         intent.putExtra(Constants.id, goodsId + "");
         activity.startActivity(intent);
@@ -484,7 +484,7 @@ public class IntentUtil {
 
 
     //租房详情页w
-    public static void goHouseInfo(Activity activity, int houseId) {
+    public static void goHouseInfo(Activity activity, String houseId) {
         Intent intent = new Intent(activity, HouseInfoActivity.class);
         intent.putExtra(Constants.id, houseId + "");
         activity.startActivity(intent);

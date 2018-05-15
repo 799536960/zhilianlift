@@ -271,7 +271,7 @@ public class HouseListActivity extends BaseMyActivity {
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                IntentUtil.goHouseInfo(mActivity, mAdapter.getData().get(position).getHouse_id());
+                IntentUtil.goHouseInfo(mActivity, mAdapter.getData().get(position).getHouse_id()+"");
             }
         });
     }
