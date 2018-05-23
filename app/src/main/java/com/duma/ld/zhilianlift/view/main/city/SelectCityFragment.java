@@ -100,10 +100,10 @@ public class SelectCityFragment extends BaseMyFragment {
     }
 
     private void setCity(String name, String code) {
-        if (SpDataUtil.isCity(name)) {
-            mActivity.finish();
-            return;
-        }
+//        if (SpDataUtil.isCity(name)) {
+//            mActivity.finish();
+//            return;
+//        }
         SpDataUtil.setCity(name, code);
         EventBusUtil.sendModel(Constants.event_select_city);
         mActivity.finish();

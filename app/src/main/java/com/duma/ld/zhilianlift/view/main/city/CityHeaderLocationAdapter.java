@@ -53,10 +53,10 @@ public class CityHeaderLocationAdapter extends IndexableHeaderAdapter<CityEntity
                 if (entity.equals(locationString)) {
                     return;
                 }
-                if (SpDataUtil.isCity(entity.getName())) {
-                    activity.finish();
-                    return;
-                }
+//                if (SpDataUtil.isCity(entity.getName())) {
+//                    activity.finish();
+//                    return;
+//                }
                 SpDataUtil.setCity(entity.getName(), entity.getCode());
                 EventBusUtil.sendModel(Constants.event_select_city);
                 activity.finish();

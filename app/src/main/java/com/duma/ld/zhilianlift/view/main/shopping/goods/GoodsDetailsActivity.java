@@ -86,6 +86,7 @@ public class GoodsDetailsActivity extends BaseMyActivity {
     private int count;//商品数量
     private String SpecString;//规格语句
     private GoodsInfoPopupWindow goodsInfoPopupWindow;
+    private GoodsMainModel goodsMainModel;
 
     @Override
     protected ActivityConfig setActivityConfig(Bundle savedInstanceState, InitConfig initConfig) {
@@ -224,6 +225,7 @@ public class GoodsDetailsActivity extends BaseMyActivity {
     }
 
     public void setGoodsModel(GoodsMainModel model) {
+        goodsMainModel = model;
         goodsSpecDialog.setModel(model);
     }
 
@@ -234,8 +236,11 @@ public class GoodsDetailsActivity extends BaseMyActivity {
                 finish();
                 return;
             case R.id.layout_share:
-                // TODO: 2017/12/26 分享
-                TsUtils.show("分享商品 id=" + id);
+                if (goodsMainModel != null) {
+                    PublicUtil.shareGoods(mActivity, goodsMainModel.getGoods().getGoods_name(), id);
+                } else {
+                    TsUtils.show("加载中");
+                }
                 return;
             case R.id.layout_menu:
                 goodsInfoPopupWindow.showPopupWindow(R.id.layout_tobBar);

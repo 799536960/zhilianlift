@@ -498,7 +498,7 @@ public class IntentUtil {
     }
 
     //添加报备
-    public static void goAddBaoBei(Activity activity, int houseId) {
+    public static void goAddBaoBei(Activity activity, String houseId) {
         Intent intent = new Intent(activity, AddBaoBeiActivity.class);
         intent.putExtra(Constants.id, houseId + "");
         activity.startActivity(intent);

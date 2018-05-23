@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.blankj.utilcode.util.RegexUtils;
 import com.blankj.utilcode.util.StringUtils;
 import com.duma.ld.baselibrary.util.TsUtils;
 import com.duma.ld.baselibrary.util.config.ActivityConfig;
@@ -60,18 +59,18 @@ public class AddBaoBeiActivity extends BaseMyActivity {
             TsUtils.show("请输入被推荐人姓名");
             return;
         }
-        if (StringUtils.isEmpty(editName.getText().toString())) {
-            TsUtils.show("请输入您的姓名");
-            return;
-        }
-        if (!RegexUtils.isMobileSimple(editBeiTuiJianPhone.getText().toString())) {
+//        if (StringUtils.isEmpty(editName.getText().toString())) {
+//            TsUtils.show("请输入您的姓名");
+//            return;
+//        }
+        if (StringUtils.isEmpty(editBeiTuiJianPhone.getText().toString())) {
             TsUtils.show("请输入正确的被推荐人手机号码");
             return;
         }
-        if (!RegexUtils.isMobileSimple(editPhone.getText().toString())) {
-            TsUtils.show("请输入正确的您的手机号");
-            return;
-        }
+//        if (!RegexUtils.isMobileSimple(editPhone.getText().toString())) {
+//            TsUtils.show("请输入正确的您的手机号");
+//            return;
+//        }
         OkGo.<HttpResModel<String>>post(addPreparation)
                 .tag(httpTag)
                 .params("house_id", houseId)

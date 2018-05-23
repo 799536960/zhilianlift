@@ -146,7 +146,7 @@ public class OrderInfoActivity extends BaseMyActivity {
                             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                                 //点击商品跳转商品详情页
                                 OrderModel.OrderGoodsBean item = (OrderModel.OrderGoodsBean) adapter.getData().get(position);
-                                IntentUtil.goGoodsDetails(mActivity, item.getGoods_id()+"");
+                                IntentUtil.goGoodsDetails(mActivity, item.getGoods_id() + "");
                             }
                         });
                     }

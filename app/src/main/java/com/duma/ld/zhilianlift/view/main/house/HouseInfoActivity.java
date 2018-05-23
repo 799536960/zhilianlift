@@ -169,8 +169,11 @@ public class HouseInfoActivity extends BaseMyActivity {
                 finish();
                 return;
             case R.id.layout_share:
-                // TODO: 2017/12/26 分享
-                TsUtils.show("分享");
+                if (HouseBean != null) {
+                    PublicUtil.shareHouse(mActivity, HouseBean.getHouse().getHouse_name(), houseId);
+                } else {
+                    TsUtils.show("加载中");
+                }
                 return;
             case R.id.layout_menu:
                 goodsInfoPopupWindow.showPopupWindow(R.id.layout_tobBar);
@@ -189,7 +192,7 @@ public class HouseInfoActivity extends BaseMyActivity {
                 collectHouse();
                 break;
             case R.id.layout_baobei:
-                IntentUtil.goAddBaoBei(mActivity, HouseBean.getHouse().getHouse_id());
+                IntentUtil.goAddBaoBei(mActivity, houseId);
                 break;
 
         }

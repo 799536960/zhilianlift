@@ -13,6 +13,10 @@ public class HttpUrl {
      */
     public static String logistics = BaseUrl + "/index.php/mobile/Goods/logistics?order_id=";
 
+    //商品分享
+    public static String goodsdetail = BaseUrl + "/index.php/Mobile/Goods/goodsdetail?id=";
+    public static String housesdetail = BaseUrl + "/index.php/Mobile/Goods/housesdetail?id=";
+
     /**
      * api
      */

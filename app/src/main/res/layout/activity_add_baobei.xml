@@ -45,7 +45,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="请输入被推荐人手机号码"
-            android:inputType="number" />
+            android:inputType="text"
+            android:maxLength="11" />
     </LinearLayout>
 
     <View style="@style/henxian" />
@@ -96,7 +97,7 @@
             style="@style/edit_1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="请输入您的姓名"
+            android:hint="请输入您的姓名(选填)"
             android:inputType="text" />
     </LinearLayout>
 
@@ -119,7 +120,7 @@
             style="@style/edit_1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="请输入您的手机号"
+            android:hint="请输入您的手机号(选填)"
             android:inputType="number" />
     </LinearLayout>
 

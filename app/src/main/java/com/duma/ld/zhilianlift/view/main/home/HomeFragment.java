@@ -12,6 +12,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.StringUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.duma.ld.baselibrary.model.EventModel;
 import com.duma.ld.baselibrary.util.config.FragmentConfig;
@@ -180,7 +181,11 @@ public class HomeFragment extends BaseMyFragment {
 
     @Override
     public void onClickLoadingRefresh() {
-        tvCity.setText(SpDataUtil.getCity());
+        if (StringUtils.isEmpty(SpDataUtil.getLocation().getDistrict())) {
+            tvCity.setText(SpDataUtil.getCity());
+        } else {
+            tvCity.setText(SpDataUtil.getLocation().getDistrict());
+        }
         OkGo.<HttpResModel<HomeModel>>get(homePage)
                 .cacheMode(FIRST_CACHE_THEN_REQUEST)
                 .tag(httpTag)

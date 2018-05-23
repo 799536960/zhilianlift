@@ -11,10 +11,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.duma.ld.baselibrary.util.EventBusUtil;
 import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseAdapter.BaseAdapter;
 import com.duma.ld.zhilianlift.model.CityHeaderModel;
 import com.duma.ld.zhilianlift.model.QuModel;
+import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
 
 import java.util.List;
@@ -87,8 +89,9 @@ public class CityHeaderRvAdapter extends IndexableHeaderAdapter<CityHeaderModel>
                 helper.setOnClickListener(R.id.layout_location, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        activity.finish();
                         SpDataUtil.setDistrict(item.getName(), item.getCode());
+                        activity.finish();
+                        EventBusUtil.sendModel(Constants.event_select_city);
                     }
                 });
             }

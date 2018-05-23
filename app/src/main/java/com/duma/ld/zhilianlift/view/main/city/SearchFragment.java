@@ -83,10 +83,10 @@ public class SearchFragment extends BaseMyFragment {
                 @Override
                 public void onClick(View v) {
                     int position = holder.getAdapterPosition();
-                    if (SpDataUtil.isCity(items.get(position).getName())) {
-                        mActivity.finish();
-                        return;
-                    }
+//                    if (SpDataUtil.isCity(items.get(position).getName())) {
+//                        mActivity.finish();
+//                        return;
+//                    }
                     SpDataUtil.setCity(items.get(position).getName(), items.get(position).getCode());
                     EventBusUtil.sendModel(Constants.event_select_city);
                     mActivity.finish();

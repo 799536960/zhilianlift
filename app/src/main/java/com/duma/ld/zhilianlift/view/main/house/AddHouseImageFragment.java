@@ -50,7 +50,7 @@ public class AddHouseImageFragment extends BaseMyFragment {
             mActivity.finish();
         }
         imageSelectManager = ImageSelectManager.create(mActivity)
-                .setMaxNum(6)
+                .setMaxNum(10)
                 .setFragment(this)
                 .starRvStyle(rvPhoto);
     }

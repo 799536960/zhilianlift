@@ -9,7 +9,7 @@ public class Constants {
     // 再点一次退出程序时间设置
     public static final long WAIT_TIME = 2000L;
     public static long TOUCH_TIME = 0;
-    public static final String kefu = "0571-28227987";
+    public static final String kefu = "0572-6220003";
     public static final String youxiang = "service@saibertron.com";
     public static final String Page = "p";
     public static final String Size = "size";

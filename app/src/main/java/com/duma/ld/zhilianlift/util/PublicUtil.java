@@ -22,6 +22,7 @@ import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.blankj.utilcode.util.ConvertUtils;
+import com.blankj.utilcode.util.IntentUtils;
 import com.blankj.utilcode.util.SpanUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -61,6 +62,8 @@ import static com.duma.ld.zhilianlift.util.Constants.Order_Type_YiWanChen;
 import static com.duma.ld.zhilianlift.util.HttpUrl.buy;
 import static com.duma.ld.zhilianlift.util.HttpUrl.cancelOrder;
 import static com.duma.ld.zhilianlift.util.HttpUrl.del_order;
+import static com.duma.ld.zhilianlift.util.HttpUrl.goodsdetail;
+import static com.duma.ld.zhilianlift.util.HttpUrl.housesdetail;
 import static com.duma.ld.zhilianlift.util.HttpUrl.orderConfirm;
 
 /**
@@ -426,5 +429,15 @@ public class PublicUtil {
                 .icon(bitmap);
         //在地图上添加Marker，并显示
         mBaiduMap.addOverlay(option);
+    }
+
+    public static void shareGoods(Activity activity, String title, String id) {
+        Intent shareTextIntent = IntentUtils.getShareTextIntent("【" + title + "】 " + goodsdetail + id + " （分享自智联生活）");
+        activity.startActivity(shareTextIntent);
+    }
+
+    public static void shareHouse(Activity activity, String title, String id) {
+        Intent shareTextIntent = IntentUtils.getShareTextIntent("【" + title + "】 " + housesdetail + id + " （分享自智联生活）");
+        activity.startActivity(shareTextIntent);
     }
 }
