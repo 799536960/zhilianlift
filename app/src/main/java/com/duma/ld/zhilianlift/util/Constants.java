@@ -103,7 +103,7 @@ public class Constants {
     public static final String sp_Location = "sp_Location"; //用户位置信息
     public static final String sp_User = "sp_User"; //用户信息
     public static final String sp_Api = "sp_Api"; //是否启动api页面
-
+    public static final String sp_Hide = "sp_Hide"; //是否启动api页面
 
     /**
      * 订单

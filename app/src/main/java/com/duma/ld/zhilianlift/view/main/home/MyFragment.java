@@ -127,6 +127,11 @@ public class MyFragment extends BaseMyFragment {
         if (SpDataUtil.isLogin()) {
             getUserDataHttp();
         }
+        if (SpDataUtil.isHide()) {
+            layoutWodeDaikuan.setVisibility(View.GONE);
+        } else {
+            layoutWodeDaikuan.setVisibility(View.VISIBLE);
+        }
     }
 
     private void refreshUserData() {

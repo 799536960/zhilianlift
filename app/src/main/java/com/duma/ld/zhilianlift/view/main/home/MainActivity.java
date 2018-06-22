@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -13,21 +14,31 @@ import com.duma.ld.zhilianlift.R;
 import com.duma.ld.zhilianlift.base.baseJsonHttp.MyJsonCallback;
 import com.duma.ld.zhilianlift.base.baseView.BaseMyActivity;
 import com.duma.ld.zhilianlift.model.HttpResModel;
+import com.duma.ld.zhilianlift.model.UpDateAppModel;
 import com.duma.ld.zhilianlift.model.UserModel;
 import com.duma.ld.zhilianlift.util.Constants;
 import com.duma.ld.zhilianlift.util.IntentUtil;
 import com.duma.ld.zhilianlift.util.SpDataUtil;
+import com.google.gson.Gson;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.jaeger.library.StatusBarUtil;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 import com.orhanobut.logger.Logger;
 
+import org.lzh.framework.updatepluginlib.UpdateBuilder;
+import org.lzh.framework.updatepluginlib.UpdateConfig;
+import org.lzh.framework.updatepluginlib.base.UpdateParser;
+import org.lzh.framework.updatepluginlib.model.Update;
+
 import butterknife.BindView;
 import me.yokeyword.fragmentation.SupportFragment;
 import q.rorbin.badgeview.Badge;
 import q.rorbin.badgeview.QBadgeView;
 
+import static com.duma.ld.zhilianlift.util.HttpUrl.BaseUrl;
+import static com.duma.ld.zhilianlift.util.HttpUrl.IOS;
+import static com.duma.ld.zhilianlift.util.HttpUrl.android_version;
 import static com.duma.ld.zhilianlift.util.HttpUrl.userInfo;
 
 
@@ -54,12 +65,57 @@ public class MainActivity extends BaseMyActivity {
     protected void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
         initFragment();
+        UpDateApp();
+        barBottom.getBottomNavigationItemView(2).setVisibility(View.GONE);
+        IsHede();
+    }
+
+    private void IsHede() {
+        OkGo.<HttpResModel<String>>get(IOS)
+                .tag(httpTag)
+                .execute(new MyJsonCallback<HttpResModel<String>>() {
+                    @Override
+                    protected void onJsonSuccess(Response<HttpResModel<String>> respons, HttpResModel<String> listHttpResModel) {
+                        SpDataUtil.setHide(listHttpResModel.getResult());
+                        if (SpDataUtil.isHide()) {
+                            barBottom.getBottomNavigationItemView(2).setVisibility(View.GONE);
+                        } else {
+                            barBottom.getBottomNavigationItemView(2).setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         refreYuanDIan();
+    }
+
+    private void UpDateApp() {
+        UpdateConfig.getConfig()
+                .setUrl(android_version)
+                .setUpdateParser(new UpdateParser() {
+                    @Override
+                    public Update parse(String response) throws Exception {
+                        UpDateAppModel appModel = new Gson().fromJson(response, UpDateAppModel.class);
+                        Update update = new Update();
+                        //是否强制更新
+                        if (appModel.getResult().getApp_do().equals("0")) {
+                            update.setForced(false);
+                        } else {
+                            update.setForced(true);
+                        }
+                        update.setIgnore(false);
+                        update.setUpdateContent(appModel.getResult().getApp_log());
+                        update.setUpdateUrl(BaseUrl + "/" + appModel.getResult().getApp_path());
+                        update.setVersionCode(Integer.parseInt(appModel.getResult().getApp_version()));
+                        update.setVersionName(appModel.getResult().getApp_name());
+                        return update;
+                    }
+                });
+        UpdateBuilder task = UpdateBuilder.create();
+        task.checkWithDaemon(60);
     }
 
     public void refreYuanDIan() {
@@ -125,7 +181,6 @@ public class MainActivity extends BaseMyActivity {
             mFragments[3] = findFragment(ShoppingCartFragment.class);
             mFragments[4] = findFragment(MyFragment.class);
         }
-
         barBottom.enableAnimation(true);
         barBottom.enableShiftingMode(false);
         barBottom.enableItemShiftingMode(false);

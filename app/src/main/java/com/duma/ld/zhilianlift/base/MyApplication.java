@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 
 import com.baidu.mapapi.SDKInitializer;
+import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.SPUtils;
 import com.duma.ld.baselibrary.base.BaseApplication;
 import com.duma.ld.zhilianlift.R;
@@ -87,6 +88,6 @@ public class MyApplication extends BaseApplication {
      */
     @Override
     public boolean isDebug() {
-        return true;
+        return AppUtils.isAppDebug();
     }
 }

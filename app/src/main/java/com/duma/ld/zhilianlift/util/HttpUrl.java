@@ -127,4 +127,6 @@ public class HttpUrl {
     public static String StoreByBrand = BaseUrl + "/index.php/api/goods/StoreByBrand";
     public static String editlease = BaseUrl + "/index.php/api/house/editlease";
     public static String editsecond = BaseUrl + "/index.php/api/house/editsecond";
+    public static String android_version = BaseUrl + "/index.php/api/app/android_version";
+    public static String IOS = BaseUrl + "/index.php/api/app/IOS";
 }

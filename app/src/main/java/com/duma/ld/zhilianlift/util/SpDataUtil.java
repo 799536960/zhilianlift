@@ -12,6 +12,7 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 import com.orhanobut.logger.Logger;
 
+import static com.duma.ld.zhilianlift.util.Constants.sp_Hide;
 import static com.duma.ld.zhilianlift.util.Constants.sp_Location;
 
 /**
@@ -79,6 +80,18 @@ public class SpDataUtil {
     public static LocationModel getLocation() {
         String string = SPUtils.getInstance().getString(sp_Location, "");
         return LocationModel.getJsonModel(string);
+    }
+
+    public static boolean isHide() {
+        return SPUtils.getInstance().getBoolean(sp_Hide, true);
+    }
+
+    public static void setHide(String hide) {
+        if (hide.equals("Yes")) {
+            SPUtils.getInstance().put(sp_Hide, false);
+        } else {
+            SPUtils.getInstance().put(sp_Hide, true);
+        }
     }
 
     //返回当前城市
