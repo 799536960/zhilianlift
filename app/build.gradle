@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.jakewharton.butterknife'
+
 android {
     compileSdkVersion 27
-    buildToolsVersion "27.0.2"
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.duma.ld.zhilianlift"
         minSdkVersion 19
@@ -47,7 +47,8 @@ android {
     //修改生成的最终文件名
     applicationVariants.all { variant ->
         variant.outputs.all {
-            def apkName = '智联生活' + '_v' + variant.versionName + '_' + new Date().format("yyyy-MM-dd HH:mm:ss", TimeZone.getTimeZone("GMT+8"))
+            def apkName = '智联生活' + '_v' + variant.versionName
+//            + '_' + new Date().format("yyyy-MM-dd HH:mm:ss", TimeZone.getTimeZone("GMT+8"))
             if (variant.buildType.name == "release") {
                 apkName = apkName + '_release'
             } else {
